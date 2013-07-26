@@ -1,0 +1,118 @@
+﻿/**
+ * RTL LESS stylesheet.
+ *
+ * Adding support for language written in a Right To Left (RTL) direction.
+ * @link http://codex.wordpress.org/Right_to_Left_Language_Support
+ */
+
+/**
+ * 1.0 Reset
+ * ----------------------------------------------------------------------------
+ */
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+dd {
+	margin: 0 40px 0 0;
+}
+
+menu,
+ol,
+ul {
+	padding: 0 40px 0 0;
+}
+
+blockquote {
+	padding: 0 15px 0 0;
+}
+
+
+/**
+ * 2.0 The Content
+ * ----------------------------------------------------------------------------
+ */
+
+/**
+ * 2.1 Posts Loop
+ * ----------------------------------------------------------------------------
+ */
+
+.loop-entry {
+
+	.entry-thumbnail {
+		float: left;
+	}
+
+}
+
+/**
+ * 2.2 Loop Navigation
+ * ----------------------------------------------------------------------------
+ */
+
+.navigation {
+
+	.previous {
+		float: right;
+		text-align: right;
+	}
+	.next {
+		float: left;
+		text-align: left;
+	}
+
+}
+
+/**
+ * 2.3 Comments
+ * ----------------------------------------------------------------------------
+ */
+
+.comments-area {
+
+	.comment {
+
+		.comment-header {
+
+			.comment-author-avatar {
+				float:right;
+			}
+
+		}
+
+		.comment-utility,
+		.comment-utility a {
+			float:left;
+		}
+
+	}
+
+	#comment-list .children {
+		margin-right:5%;
+		margin-left:0;
+	}
+
+}
+
+/**
+ * 2.4 Author Bio
+ * ----------------------------------------------------------------------------
+ */
+
+.author-bio {
+
+	img.avatar {
+		float:right;
+		margin-right:0px;
+		margin-left:10px;
+	}
+
+	.author-description {
+		margin-left: 0px;
+		margin-right: 125px;
+	}
+
+}

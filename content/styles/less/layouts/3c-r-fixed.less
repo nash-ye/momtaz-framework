@@ -1,0 +1,67 @@
+/* --------------------------------------------------------------
+
+   Three-Column (Right)
+
+   Three-column 940px fixed layout with two sidebars right of content
+
+   Since : 1.0
+
+-------------------------------------------------------------- */
+
+// Momtaz Grid System
+@import "grid.less";
+
+@columns: 12;
+@column-width: 60;
+@gutter-width: 20;
+
+#wrapper {
+	width: 960px;
+}
+
+#content {
+	// Grid.less
+	.column( 7 );
+
+	float:left;
+}
+
+#sidebar {
+
+	// Grid.less
+	.column( 5 );
+
+	float:right;
+
+	#primary-sidebar {
+		// Grid.less
+		.theWidth( 2.5 , 5 );
+
+		margin: 0 5px;
+		float:right;
+	}
+
+	#secondary-sidebar {
+		// Grid.less
+		.theWidth( 2.5 , 5 );
+
+		margin: 0 5px;
+		float:left;
+	}
+
+}
+
+/*** No Widgets ***/
+
+body.no-widgets {
+
+	#content {
+		// Grid.less
+		.column( 12 );
+	}
+
+	#sidebar {
+		display:none;
+	}
+
+}

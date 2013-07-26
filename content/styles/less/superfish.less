@@ -1,0 +1,135 @@
+/* --------------------------------------------------------------
+
+   Dropdowns Stylesheet
+
+   @use: Superfish v1.7.4 - jQuery menu widget
+
+-------------------------------------------------------------- */
+
+/*** ESSENTIAL STYLES ***/
+
+.dropdown,
+.dropdown * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.dropdown {
+
+    a {
+        display: block;
+        position: relative;
+    }
+	
+    ul {
+        left: 0;	
+        top: 100%;	
+        z-index: 99;	
+        display: none;	
+        position: absolute;
+		
+        ul {
+            top: 0;
+            left: 100%;
+        }
+    }
+	
+    & > li {
+        float: left;
+    }
+	
+    li {
+        position: relative;		
+    }
+	
+}
+.dropdown li:hover &>ul,
+.dropdown li.sfHover &>ul {
+    display: block;
+}
+
+/*** DEMO SKIN ***/
+
+.dropdown {
+    float: left;
+    a {
+        zoom: 1;
+        padding: .75em 1em;
+        text-decoration: none;
+    }
+    ul {
+        min-width: 12em;
+        *width: 12em;
+    }
+    li {
+        white-space: nowrap;
+        *white-space: normal;
+    }
+}
+
+/*** Arrows (for all except IE7) ***/
+
+.sf-arrows {
+
+    .sf-with-ul {
+        padding-right: 2.5em;
+        *padding-right: 1em;
+    }
+	
+    .sf-with-ul:after {
+        border-top-color: rgba(255,255,255,.5);
+        border: 5px solid transparent;
+        border-top-color: #222;
+        position: absolute;
+        margin-top: -3px;
+        content: '';
+        right: 1em;
+        height: 0;
+        width: 0;
+        top: 50%;
+    }
+	
+    ul .sf-with-ul:after {
+		margin-top: -5px;
+		margin-right: -3px;
+		border-color: transparent;
+		border-left-color: #222;
+		border-left-color: rgba(255,255,255,.5);
+    }
+	
+}
+.sf-arrows &>li &>.sf-with-ul:focus:after,
+.sf-arrows &>li:hover &>.sf-with-ul:after,
+.sf-arrows &>.sfHover &>.sf-with-ul:after {
+    border-top-color: #ccc;
+}
+.sf-arrows ul li &>.sf-with-ul:focus:after,
+.sf-arrows ul li:hover &>.sf-with-ul:after,
+.sf-arrows ul .sfHover &>.sf-with-ul:after {
+    border-left-color: #ccc;
+}
+
+/*** RTL Style ***/
+
+html[dir=rtl] {
+
+	.dropdown {
+
+		float:right;
+
+		ul {
+			right: 0;
+			left: auto;
+			ul {
+				left: auto;
+				right: 100%;
+			}
+		}
+		
+		& > li {
+			float: right;
+		}
+
+	}
+
+}

@@ -1,0 +1,36 @@
+﻿/* --------------------------------------------------------------
+
+   Momtaz Admin Style
+
+   @since 1.0
+
+-------------------------------------------------------------- */
+
+/*** Clearfix ***/
+
+.clearfix {
+    *zoom:1;
+}
+.clearfix:before,
+.clearfix:after {
+    display:table;
+    content:"";
+}
+.clearfix::after {
+    clear:both;
+}
+
+/*** Updated ***/
+
+div.updated {
+    margin:5px 2px;
+    padding:0 0.6em;
+    border-width:1px;
+    position: relative;
+    border-style:solid;
+    border-color:#E6DB55;
+    background-color: rgb(255, 251, 204);
+    -webkit-border-radius:3px;
+       -moz-border-radius:3px;
+            border-radius:3px;
+}

@@ -1,0 +1,49 @@
+/* --------------------------------------------------------------
+
+   One-Column (Right) Fixed
+
+   Two-column 940px fixed layout with one sidebar right of content
+
+   Since : 1.0
+
+-------------------------------------------------------------- */
+
+// Momtaz Grid System
+@import "grid.less";
+
+@columns: 12;
+@column-width: 60;
+@gutter-width: 20;
+
+#wrapper {
+	width: 960px;
+}
+
+#content {
+	// Grid.less
+	.column( 8 );
+
+	float:left;
+}
+
+#sidebar {
+	// Grid.less
+	.column( 4 );
+
+	float:right;
+}
+
+/*** No Widgets ***/
+
+body.no-widgets {
+
+	#content {
+		// Grid.less
+		.column( 12 );
+	}
+
+	#sidebar {
+		display:none;
+	}
+
+}
