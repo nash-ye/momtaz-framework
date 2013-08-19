@@ -23,7 +23,7 @@ function momtaz_meta_box_theme_add_about( $screen_ID ) {
     $theme = wp_get_theme( get_template() );
 
     // Adds the About box for the parent theme.
-    add_meta_box( 'momtaz-core-about-theme', sprintf( __( 'About %s', THEME_TEXTDOMAIN ), $theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
+    add_meta_box( 'momtaz-core-about-theme', sprintf( __( 'About %s', 'momtaz' ), $theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
 
     // If the user is using a child theme, add an About box for it.
     if ( is_child_theme() ) {
@@ -32,7 +32,7 @@ function momtaz_meta_box_theme_add_about( $screen_ID ) {
         $child_theme = wp_get_theme( get_stylesheet() );
 
         // Adds the About box for the child theme.
-        add_meta_box( 'momtaz-core-about-child', sprintf( __( 'About %s', THEME_TEXTDOMAIN ), $child_theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
+        add_meta_box( 'momtaz-core-about-child', sprintf( __( 'About %s', 'momtaz' ), $child_theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
 
     } // end if
 
@@ -68,15 +68,15 @@ function momtaz_meta_box_theme_display_about( $object, $box ) {
 
     <table class="form-table">
         <tr>
-            <th><?php _e( 'Theme:', THEME_TEXTDOMAIN ); ?></th>
+            <th><?php _e( 'Theme:', 'momtaz' ); ?></th>
             <td><a href="<?php echo esc_url( $theme_data->display( 'ThemeURI' ) ); ?>"><?php echo $theme_data->display( 'Name' ); ?> <?php echo $theme_data->display( 'Version' ); ?></a></td>
         </tr>
         <tr>
-            <th><?php _e( 'Author:', THEME_TEXTDOMAIN ); ?></th>
+            <th><?php _e( 'Author:', 'momtaz' ); ?></th>
             <td><?php echo $theme_data->display( 'Author' ); ?></td>
         </tr>
         <tr>
-            <th><?php _e( 'Description:', THEME_TEXTDOMAIN ); ?></th>
+            <th><?php _e( 'Description:', 'momtaz' ); ?></th>
             <td><?php echo $theme_data->display( 'Description' ); ?></td>
         </tr>
     </table> <!-- .form-table -->

@@ -1,10 +1,8 @@
 /* --------------------------------------------------------------
 
-   One-Column (Left) Fluid
+   Three-column 960px fixed layout with two sidebars right of content
 
-   Two-column layout with one sidebar left of content
-
-   Since : 1.0
+   @since: 1.0
 
 -------------------------------------------------------------- */
 
@@ -14,24 +12,41 @@
 @columns: 12;
 @column-width: 60;
 @gutter-width: 20;
-@total-width: 100%;
 
 #wrapper {
-	width: 100%;
+	width: 960px;
 }
 
 #content {
 	// Grid.less
-	.column( 8 );
+	.column( 7 );
 
 	float:left;
 }
 
 #sidebar {
+
 	// Grid.less
-	.column( 4 );
+	.column( 5 );
 
 	float:right;
+
+	#primary-sidebar {
+		// Grid.less
+		.theWidth( 2.5 , 5 );
+
+		margin: 0 5px;
+		float:right;
+	}
+
+	#secondary-sidebar {
+		// Grid.less
+		.theWidth( 2.5 , 5 );
+
+		margin: 0 5px;
+		float:left;
+	}
+
 }
 
 /*** No Widgets ***/

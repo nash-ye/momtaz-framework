@@ -84,7 +84,7 @@ function momtaz_settings_page_capability() {
  * @since 1.0
  */
 function momtaz_get_settings_page_title() {
-    return apply_filters( 'momtaz_get_settings_page_title', esc_html__( 'Theme Settings', THEME_TEXTDOMAIN ) );
+    return apply_filters( 'momtaz_get_settings_page_title', esc_html__( 'Theme Settings', 'momtaz' ) );
 } // end momtaz_get_settings_page_title()
 
 /**
@@ -120,7 +120,7 @@ function momtaz_theme_settings_page() {
 
         <h2>
             <?php echo momtaz_get_settings_page_title(); ?>
-            <a href="<?php echo admin_url( 'customize.php' ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', THEME_TEXTDOMAIN ); ?></a>
+            <a href="<?php echo admin_url( 'customize.php' ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ); ?></a>
         </h2>
 
         <?php settings_errors(); ?>
@@ -135,7 +135,7 @@ function momtaz_theme_settings_page() {
 
                     <?php do_action( "{$prefix}_settings_page_before_submit_button" ); ?>
 
-                    <?php submit_button( esc_attr__( 'Update Settings', THEME_TEXTDOMAIN ), 'primary', 'update', false ) ?>
+                    <?php submit_button( esc_attr__( 'Update Settings', 'momtaz' ), 'primary', 'update', false ) ?>
 
                     <?php do_action( "{$prefix}_settings_page_after_submit_button" ); ?>
 

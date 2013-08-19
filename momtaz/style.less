@@ -8,19 +8,19 @@
  */
 
 // LESS Elements.
-@import "content/styles/less/mixins.less";
+@import "content/styles/mixins.less";
 
 // Normalize CSS.
-@import "content/styles/css/normalize.css";
+@import "content/styles/normalize.css";
 
 // Superfish - jQuery Menu Plugin.
-@import "content/styles/less/superfish.less";
+@import "content/styles/superfish.less";
 
 // WordPress Defaults.
-@import "content/styles/less/wp-default.less";
+@import "content/styles/wp-default.less";
 
 // One-Column (Left) Fixed Layout.
-@import "content/styles/less/layouts/2c-r-fixed.less";
+@import "content/styles/layouts/2c-r-fixed.less";
 
 // Un-comment the line below to set a 12 column grid with 22px line-height
 //body:hover { background:url(content/grids/12-column-height-22px.gif) repeat-y top center; }
@@ -560,6 +560,9 @@ textarea {
 	}
 	img {
 		max-width: 100%;
+
+		// Mixins
+		.box-sizing( border-box );
 	}
 }
 

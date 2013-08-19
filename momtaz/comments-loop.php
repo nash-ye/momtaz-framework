@@ -17,7 +17,7 @@ if ( have_comments() ) :
 
             <header id="comments-header" class="comments-header">
                 <h2 id="comments-number" class="comments-title">
-                    <?php printf( __( 'Comments (%d)', THEME_TEXTDOMAIN ), get_comments_number() ); ?>
+                    <?php printf( __( 'Comments (%d)', 'momtaz' ), get_comments_number() ); ?>
                 </h2> <!-- #comments-number -->
             </header> <!-- .comments-header -->
 
@@ -44,7 +44,7 @@ if ( have_comments() ) :
 
             <header id="pings-header" class="comments-header">
                 <h2 id="pings-number" class="comments-title">
-                    <?php printf( __( 'Pingbacks and Trackbacks (%d)', THEME_TEXTDOMAIN ), number_format_i18n( $pings_count ) ); ?>
+                    <?php printf( __( 'Pingbacks and Trackbacks (%d)', 'momtaz' ), number_format_i18n( $pings_count ) ); ?>
                 </h2> <!-- #pings-number -->
             </header> <!-- #pings-header -->
 
@@ -65,7 +65,7 @@ endif; // end have_comments()
 if ( ! comments_open() && get_comments_number() > 0 ) : ?>
 
     <p class="alert comments-closed">
-        <?php _e( 'Comments are closed.', THEME_TEXTDOMAIN ); ?>
+        <?php _e( 'Comments are closed.', 'momtaz' ); ?>
     </p> <!-- .comments-closed -->
 
 <?php endif;

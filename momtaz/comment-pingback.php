@@ -12,8 +12,8 @@
 
 <li id="comment-<?php comment_ID() ?>" <?php comment_class(); ?>>
 
-    <small><?php _e( 'Pingback:', THEME_TEXTDOMAIN ); ?></small> <?php comment_author_link(); ?>
+    <small><?php _e( 'Pingback:', 'momtaz' ); ?></small> <?php comment_author_link(); ?>
 
-    <?php edit_comment_link( __( 'Edit', THEME_TEXTDOMAIN ), '<span class="edit-link">', '</span>' ); ?>
+    <?php edit_comment_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ); ?>
 
 <?php /* No closing. WordPress will know where to add it. */ ?>

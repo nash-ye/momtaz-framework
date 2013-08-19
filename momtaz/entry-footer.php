@@ -20,7 +20,7 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) )
 
         /*** Post Categories List *********************************************/
 
-        $post_category = get_the_category_list( _x( ' , ', 'categories-list', THEME_TEXTDOMAIN ) );
+        $post_category = get_the_category_list( _x( ' , ', 'categories-list', 'momtaz' ) );
 
         if ( $post_category ) { ?>
 
@@ -28,7 +28,7 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) )
 
                 <?php
 
-                    printf( __( '<span class="prep entry-utility-prep">Categories:</span> %s', THEME_TEXTDOMAIN ),
+                    printf( __( '<span class="prep entry-utility-prep">Categories:</span> %s', 'momtaz' ),
                             $post_category
                          );
 
@@ -43,18 +43,18 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) )
 
         /*** Post Tags List ***************************************************/
 
-        $post_tags = get_the_tag_list( '', _x( ' , ', 'tags-list', THEME_TEXTDOMAIN ) );
+        $post_tags = get_the_tag_list( '', _x( ' , ', 'tags-list', 'momtaz' ) );
 
         if ( $post_tags ) {
 
             if ( isset( $show_sep ) && $show_sep )
-                echo '<span class="sep">' . _x( ' | ', 'entry-meta-sep', THEME_TEXTDOMAIN ) . '</span>'; ?>
+                echo '<span class="sep">' . _x( ' | ', 'entry-meta-sep', 'momtaz' ) . '</span>'; ?>
 
             <span class="tag-links">
 
                 <?php
 
-                    printf( __( '<span class="prep entry-utility-prep">Tags:</span> %s', THEME_TEXTDOMAIN ),
+                    printf( __( '<span class="prep entry-utility-prep">Tags:</span> %s', 'momtaz' ),
                             $post_tags
                          );
 

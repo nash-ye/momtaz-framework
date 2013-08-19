@@ -1,10 +1,8 @@
 /* --------------------------------------------------------------
 
-   One-Column (Left) Fluid
+   Two-column 960px fixed layout with one sidebar right of content
 
-   Two-column layout with one sidebar left of content
-
-   Since : 1.0
+   @since: 1.0
 
 -------------------------------------------------------------- */
 
@@ -14,24 +12,23 @@
 @columns: 12;
 @column-width: 60;
 @gutter-width: 20;
-@total-width: 100%;
 
 #wrapper {
-	width: 100%;
+	width: 960px;
 }
 
 #content {
 	// Grid.less
 	.column( 8 );
 
-	float:right;
+	float:left;
 }
 
 #sidebar {
 	// Grid.less
 	.column( 4 );
 
-	float:left;
+	float:right;
 }
 
 /*** No Widgets ***/

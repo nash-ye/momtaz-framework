@@ -68,7 +68,7 @@ function momtaz_comment_form_args( $defaults ) {
             ->set_NID( 'author' );
 
     $args['fields']['author'] = Momtaz_Nmwdhj::decorate_element( 'label', $args['fields']['author'] )
-            ->set_label( __( 'Name', THEME_TEXTDOMAIN ) . $required );
+            ->set_label( __( 'Name', 'momtaz' ) . $required );
 
 
     $args['fields']['email'] = Momtaz_Nmwdhj::create_element( 'input_email' )
@@ -81,7 +81,7 @@ function momtaz_comment_form_args( $defaults ) {
             ->set_NID( 'email' );
 
     $args['fields']['email'] = Momtaz_Nmwdhj::decorate_element( 'label', $args['fields']['email'] )
-            ->set_label( __( 'Email', THEME_TEXTDOMAIN ) . $required );
+            ->set_label( __( 'Email', 'momtaz' ) . $required );
 
 
     $args['fields']['url'] = Momtaz_Nmwdhj::create_element( 'input_url' )
@@ -90,7 +90,7 @@ function momtaz_comment_form_args( $defaults ) {
             ->set_NID( 'url' );
 
     $args['fields']['url'] = Momtaz_Nmwdhj::decorate_element( 'label', $args['fields']['url'] )
-            ->set_label( __( 'Website', THEME_TEXTDOMAIN ) );
+            ->set_label( __( 'Website', 'momtaz' ) );
 
 
     foreach ( $args['fields'] as $key => $field ) {

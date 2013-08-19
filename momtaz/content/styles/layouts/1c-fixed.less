@@ -1,10 +1,8 @@
 /* --------------------------------------------------------------
 
-   One-Column (Right) Fixed
+   One-column 960px fixed layout
 
-   Two-column 940px fixed layout with one sidebar right of content
-
-   Since : 1.0
+   @since: 1.0
 
 -------------------------------------------------------------- */
 
@@ -21,29 +19,11 @@
 
 #content {
 	// Grid.less
-	.column( 8 );
-
-	float:left;
-}
-
-#sidebar {
-	// Grid.less
-	.column( 4 );
+	.column( 12 );
 
 	float:right;
 }
 
-/*** No Widgets ***/
-
-body.no-widgets {
-
-	#content {
-		// Grid.less
-		.column( 12 );
-	}
-
-	#sidebar {
-		display:none;
-	}
-
+#sidebar {
+	display:none;
 }

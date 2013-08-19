@@ -1,10 +1,8 @@
 /* --------------------------------------------------------------
 
-   One-Column Fixed
+   Two-column layout with one sidebar left of content
 
-   One-column 940px fixed layout
-
-   Since: 1.0
+   @since: 1.0
 
 -------------------------------------------------------------- */
 
@@ -14,18 +12,37 @@
 @columns: 12;
 @column-width: 60;
 @gutter-width: 20;
+@total-width: 100%;
 
 #wrapper {
-	width: 960px;
+	width: 100%;
 }
 
 #content {
 	// Grid.less
-	.column( 12 );
+	.column( 8 );
 
 	float:right;
 }
 
 #sidebar {
-	display:none;
+	// Grid.less
+	.column( 4 );
+
+	float:left;
+}
+
+/*** No Widgets ***/
+
+body.no-widgets {
+
+	#content {
+		// Grid.less
+		.column( 12 );
+	}
+
+	#sidebar {
+		display:none;
+	}
+
 }

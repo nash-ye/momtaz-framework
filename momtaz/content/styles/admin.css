@@ -6,8 +6,6 @@
 
 -------------------------------------------------------------- */
 
-/*** Clearfix ***/
-
 .clearfix {
     *zoom:1;
 }
@@ -19,8 +17,6 @@
 .clearfix::after {
     clear:both;
 }
-
-/*** Updated ***/
 
 div.updated {
     margin:5px 2px;

@@ -11,8 +11,8 @@ if ( get_option( 'page_comments' ) && get_comment_pages_count() > 1 ) : ?>
 
     <nav class="navigation comment-navigation" role="navigation">
 
-        <div class="previous"><?php previous_comments_link( __( '&larr; Older Comments', THEME_TEXTDOMAIN ) ); ?></div>
-        <div class="next"><?php next_comments_link( __( 'Newer Comments &rarr;', THEME_TEXTDOMAIN ) ); ?></div>
+        <div class="previous"><?php previous_comments_link( __( '&larr; Older Comments', 'momtaz' ) ); ?></div>
+        <div class="next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'momtaz' ) ); ?></div>
 
     </nav> <!-- .comment-navigation -->
 

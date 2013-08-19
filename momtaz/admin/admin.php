@@ -29,15 +29,24 @@ function momtaz_admin_register_styles() {
  * @since 1.0
  * @return boolean
 */
-function momtaz_verify_common_post_meta_box( $post, $nonce, $action ){
+function momtaz_verify_common_post_meta_box( $post, $args ){
 
-    // Verify that the input is coming from the proper form
-    if ( ! isset( $_POST[$nonce] ) )
-        return false;
+    $args = wp_parse_args( $args, array(
+        'nonce_action' => -1,
+        'nonce_name' => '',
+    ) );
 
-    // Verify that correct nonce was used in the meta box
-    if ( ! wp_verify_nonce( $_POST[$nonce], $action ) )
-        return false;
+    if ( ! empty( $args['nonce_name'] ) ) {
+
+        // Verify that the input is coming from the proper form
+        if ( empty( $_POST[ $args['nonce_name'] ] ) )
+            return false;
+
+        // Verify that correct nonce action was used in the form.
+        if ( ! wp_verify_nonce( $_POST[ $args['nonce_name'] ], $args['nonce_action'] ) )
+            return false;
+
+    } // end if
 
     // Don't save if the user hasn't submitted the changes
     if ( wp_is_post_autosave( $post ) || wp_is_post_revision( $post ) )
@@ -54,10 +63,10 @@ function momtaz_verify_common_post_meta_box( $post, $nonce, $action ){
 /**
  * The common way to save the meta data associated with a post.
  *
- * @since 1.0
+ * @since 1.1
  * @return boolean
 */
-function momtaz_save_common_post_meta_box( $post_id, $meta_box_id, $meta ){
+function momtaz_save_post_meta_array( $post_id, $meta ){
 
     if ( ! is_array( $meta ) )
         return false;
@@ -67,25 +76,23 @@ function momtaz_save_common_post_meta_box( $post_id, $meta_box_id, $meta ){
 
     foreach ( $meta as $meta_key => $new_meta_value ) {
 
-        /* Get the meta value of the custom field key. */
+        // Get the meta value of the custom field key.
         $meta_value = get_post_meta( $post_id, $meta_key, true );
 
-        /* If a new meta value was added and there was no previous value, add it. */
+        // If a new meta value was added and there was no previous value, add it.
         if ( $new_meta_value && '' == $meta_value )
             add_post_meta( $post_id, $meta_key, $new_meta_value, true );
 
-        /* If the new meta value does not match the old value, update it. */
+        // If the new meta value does not match the old value, update it.
         elseif ( $new_meta_value && $new_meta_value != $meta_value )
             update_post_meta( $post_id, $meta_key, $new_meta_value );
 
-        /* If there is no new meta value but an old value exists, delete it. */
+        // If there is no new meta value but an old value exists, delete it.
         elseif ( '' == $new_meta_value && $meta_value )
             delete_post_meta( $post_id, $meta_key, $meta_value );
 
     } // end foreach
 
-    do_action( 'momtaz_save_common_post_meta_box', $post_id, $meta_box_id, $meta );
-
     return true;
 
-} // end momtaz_verify_common_post_meta_box()
+} // end momtaz_save_post_meta_array()

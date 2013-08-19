@@ -25,8 +25,8 @@ static $search_num = 0; ++$search_num; ?>
             // Create and output the search text input.
             Momtaz_Nmwdhj::create_element( 'input_search' )
                 ->set_atts( array(
-                    'placeholder' => _x( 'Search this site...', 'placeholder', THEME_TEXTDOMAIN ),
-                    'title' => _x( 'Search for:', 'label', THEME_TEXTDOMAIN ),
+                    'placeholder' => _x( 'Search this site...', 'placeholder', 'momtaz' ),
+                    'title' => _x( 'Search for:', 'label', 'momtaz' ),
                     'class' => 'search-text',
                     'required' => true,
                   ) )
@@ -37,7 +37,7 @@ static $search_num = 0; ++$search_num; ?>
             // Create and output the search submit button.
             Momtaz_Nmwdhj::create_element( 'input_submit' )
                 ->set_atts( array( 'class' => 'search-submit' ) )
-                ->set_value( __( 'Search', THEME_TEXTDOMAIN ) )
+                ->set_value( __( 'Search', 'momtaz' ) )
                 ->output();
 
         ?>

@@ -1,10 +1,8 @@
 /* --------------------------------------------------------------
 
-   Three-Column
+   Two-column layout with one sidebar right of content
 
-   Three-column fluid layout with two sidebars on the left side of content
-
-   Since : 1.0
+   @since: 1.0
 
 -------------------------------------------------------------- */
 
@@ -22,31 +20,16 @@
 
 #content {
 	// Grid.less
-	.column( 7 );
+	.column( 8 );
 
-	float:right;
+	float:left;
 }
 
 #sidebar {
 	// Grid.less
-	.column( 5 );
+	.column( 4 );
 
-	float:left;
-
-	#primary-sidebar {
-		// Grid.less
-		.column( 2.5 , 5 );
-
-		float:right;
-	}
-
-	#secondary-sidebar {
-		// Grid.less
-		.column( 2.5 , 5 );
-
-		float:left;
-	}
-
+	float:right;
 }
 
 /*** No Widgets ***/

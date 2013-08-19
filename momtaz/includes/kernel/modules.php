@@ -431,7 +431,7 @@ final class Momtaz_Module implements ArrayAccess {
         if ( ! ( $slug = sanitize_key( $slug ) ) ) {
 
             throw new Momtaz_Module_Exception(
-                    __( 'Invalid module slug.', THEME_TEXTDOMAIN ),
+                    __( 'Invalid module slug.', 'momtaz' ),
                     'invalid-module-slug'
                 );
 
@@ -466,7 +466,7 @@ final class Momtaz_Module implements ArrayAccess {
         if ( ! Momtaz_Modules::locate_module( $path ) ) {
 
             throw new Momtaz_Module_Exception(
-                    __( 'Invalid module path.', THEME_TEXTDOMAIN ),
+                    __( 'Invalid module path.', 'momtaz' ),
                     'invalid-module-path'
                 );
 

@@ -60,9 +60,6 @@ final class Momtaz {
         if ( ! defined( 'THEME_PREFIX' ) )
              define( 'THEME_PREFIX', 'momtaz' );
 
-        if ( ! defined( 'THEME_TEXTDOMAIN' ) )
-             define( 'THEME_TEXTDOMAIN', 'momtaz' );
-
         define( 'THEME_DIR', get_template_directory() );
         define( 'THEME_URI', get_template_directory_uri() );
 
@@ -93,12 +90,15 @@ final class Momtaz {
      */
     private function load_l10n() {
 
-        // Load theme textDomain.
-        load_theme_textdomain( THEME_TEXTDOMAIN );
+        // Load parent theme translation files.
+        momtaz_load_parent_theme_textdomain();
 
-        // Load child theme textDomain.
-        if ( is_child_theme() && defined( 'CHILD_THEME_TEXTDOMAIN' ) )
-             load_child_theme_textdomain( CHILD_THEME_TEXTDOMAIN );
+        if ( is_child_theme() ) {
+
+            // Load child theme translation files.
+            momtaz_load_child_theme_textdomain();
+
+        } // end if
 
     } // end load_l10n()
 
@@ -119,7 +119,7 @@ final class Momtaz {
 
             // Tell the user about the problem.
             wp_die( __( 'The current environment doesn\'t meet the Momtaz requirements.<br>'.
-                    '<b>The default theme will be activated automaticly.</b>', THEME_TEXTDOMAIN ) );
+                    '<b>The default theme will be activated automaticly.</b>', 'momtaz' ) );
 
         } // end if
 

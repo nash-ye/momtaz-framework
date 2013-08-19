@@ -34,20 +34,20 @@ global $comment, $comment_depth, $max_depth; ?>
                 </div> <!-- .comment-author -->
 
                 <div class="comment-datetime">
-                   <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><time datetime="<?php echo esc_attr( get_comment_date('c') ); ?>"><?php printf( _x( '%1s @ %2s', 'comment-datetime', THEME_TEXTDOMAIN ), get_comment_date(), get_comment_time() );  ?></time></a>
+                   <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><time datetime="<?php echo esc_attr( get_comment_date('c') ); ?>"><?php printf( _x( '%1s @ %2s', 'comment-datetime', 'momtaz' ), get_comment_date(), get_comment_time() );  ?></time></a>
                 </div> <!-- .comment-datetime -->
 
             </header> <!-- .comment-header -->
 
             <div class="comment-utility">
-                <?php edit_comment_link( __( 'Edit', THEME_TEXTDOMAIN ), '<span class="edit-link">', '</span>' ); ?>
-                <?php comment_reply_link( array( 'reply_text' => __( 'Reply <span>&darr;</span>', THEME_TEXTDOMAIN ), 'depth' => $comment_depth, 'max_depth' => $max_depth, 'before' => '<span class="reply-link">', 'after' => '</span>' ) ); ?>
+                <?php edit_comment_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ); ?>
+                <?php comment_reply_link( array( 'reply_text' => __( 'Reply <span>&darr;</span>', 'momtaz' ), 'depth' => $comment_depth, 'max_depth' => $max_depth, 'before' => '<span class="reply-link">', 'after' => '</span>' ) ); ?>
             </div> <!-- .comment-utility -->
 
             <div class="comment-content">
 
                 <?php if ( $comment->comment_approved == 0 ) : ?>
-                     <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', THEME_TEXTDOMAIN ); ?></em>
+                     <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'momtaz' ); ?></em>
                 <?php endif; ?>
 
                 <?php comment_text(); ?>

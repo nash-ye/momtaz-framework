@@ -40,7 +40,7 @@ global $post_num; ++$post_num; ?>
                 <?php the_excerpt(); ?>
             </div> <!-- .entry-summary -->
 
-        <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', THEME_TEXTDOMAIN ) . '</span>', 'after' => '</div>' ) ); ?>
+        <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'momtaz' ) . '</span>', 'after' => '</div>' ) ); ?>
 
         <?php do_action( momtaz_format_hook( 'after_entry_content' ) ); ?>
 

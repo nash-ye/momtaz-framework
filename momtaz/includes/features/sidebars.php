@@ -30,28 +30,28 @@ function momtaz_register_sidebars() {
     $core_sidebars = array (
 
         'primary' => array (
-            'name' => _x( 'Primary', 'sidebar', THEME_TEXTDOMAIN ),
-            'description' => __( 'The main (primary) widget area.', THEME_TEXTDOMAIN )
+            'name' => _x( 'Primary', 'sidebar', 'momtaz' ),
+            'description' => __( 'The main (primary) widget area.', 'momtaz' )
         ),
         'secondary' => array (
-            'name' => _x( 'Secondary', 'sidebar', THEME_TEXTDOMAIN ),
-            'description' => __( 'The second most important widget area.', THEME_TEXTDOMAIN ),
+            'name' => _x( 'Secondary', 'sidebar', 'momtaz' ),
+            'description' => __( 'The second most important widget area.', 'momtaz' ),
         ),
         'subsidiary' => array (
-            'name' => _x( 'Subsidiary', 'sidebar', THEME_TEXTDOMAIN ),
-            'description' => __( 'Displayed within the site\'s footer area.', THEME_TEXTDOMAIN ),
+            'name' => _x( 'Subsidiary', 'sidebar', 'momtaz' ),
+            'description' => __( 'Displayed within the site\'s footer area.', 'momtaz' ),
         ),
         'header' => array (
-            'name' => _x( 'Header', 'sidebar', THEME_TEXTDOMAIN ),
-            'description' => __( 'Displayed within the site\'s header area.', THEME_TEXTDOMAIN ),
+            'name' => _x( 'Header', 'sidebar', 'momtaz' ),
+            'description' => __( 'Displayed within the site\'s header area.', 'momtaz' ),
         ),
         'before-entry' => array (
-            'name' => _x( 'Before Entry', 'sidebar', THEME_TEXTDOMAIN ),
-            'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the post title.', THEME_TEXTDOMAIN ),
+            'name' => _x( 'Before Entry', 'sidebar', 'momtaz' ),
+            'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the post title.', 'momtaz' ),
         ),
         'after-entry' => array (
-            'name' => _x( 'After Entry', 'sidebar', THEME_TEXTDOMAIN ),
-            'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the comments area.', THEME_TEXTDOMAIN ),
+            'name' => _x( 'After Entry', 'sidebar', 'momtaz' ),
+            'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the comments area.', 'momtaz' ),
         ),
 
     );

@@ -66,13 +66,13 @@ if ( is_home() && ! is_front_page() ) : ?>
             <time><?php
 
                 if ( is_day() ) {
-                    the_time( __( 'j F, Y', THEME_TEXTDOMAIN ) );
+                    the_time( __( 'j F, Y', 'momtaz' ) );
 
                 } elseif ( is_month() ) {
-                    the_time( __( 'F Y', THEME_TEXTDOMAIN ) );
+                    the_time( __( 'F Y', 'momtaz' ) );
 
                 } elseif ( is_year() ) {
-                    the_time( __( 'Y', THEME_TEXTDOMAIN ) );
+                    the_time( __( 'Y', 'momtaz' ) );
 
                 } // end if
 
@@ -81,7 +81,7 @@ if ( is_home() && ! is_front_page() ) : ?>
         </h1>
 
         <p class="loop-description">
-            <?php _e( 'You are browsing the site archives by date.', THEME_TEXTDOMAIN ); ?>
+            <?php _e( 'You are browsing the site archives by date.', 'momtaz' ); ?>
         </p> <!-- .loop-description -->
 
     </header> <!-- .loop-header -->
@@ -115,7 +115,7 @@ if ( is_home() && ! is_front_page() ) : ?>
         <h1 class="loop-title"><?php echo esc_html( get_search_query() ); ?></h1>
 
         <p class="loop-description">
-            <?php printf( __( 'You are browsing the search results for &quot;%1$s&quot;', THEME_TEXTDOMAIN ), esc_attr( get_search_query() ) ); ?>
+            <?php printf( __( 'You are browsing the search results for &quot;%1$s&quot;', 'momtaz' ), esc_attr( get_search_query() ) ); ?>
         </p> <!-- .loop-description -->
 
     </header> <!-- .loop-header -->
@@ -142,7 +142,7 @@ if ( is_home() && ! is_front_page() ) : ?>
 <?php elseif ( is_archive() ) : ?>
 
     <header class="loop-header">
-        <h1 class="loop-title"><?php _e( 'Archives', THEME_TEXTDOMAIN ); ?></h1>
+        <h1 class="loop-title"><?php _e( 'Archives', 'momtaz' ); ?></h1>
     </header> <!-- .loop-header -->
 
 <?php endif;

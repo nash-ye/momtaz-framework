@@ -20,11 +20,11 @@ function momtaz_404_template_primary_content() { ?>
     <article id="post-0" class="hentry not-found error-404">
 
         <header class="entry-header">
-            <h1 class="entry-title"><?php _e( 'Not found', THEME_TEXTDOMAIN ); ?></h1>
+            <h1 class="entry-title"><?php _e( 'Not found', 'momtaz' ); ?></h1>
         </header> <!-- .entry-header -->
 
         <div class="entry-content">
-            <p class="error"><?php _e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', THEME_TEXTDOMAIN ); ?></p>
+            <p class="error"><?php _e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'momtaz' ); ?></p>
             <?php get_search_form(); ?>
         </div> <!-- .entry-content -->
 

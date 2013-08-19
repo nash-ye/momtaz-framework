@@ -27,7 +27,7 @@
 
                 <?php
 
-                    printf( __( '<span class="prep entry-utility-prep">On:</span> %s', THEME_TEXTDOMAIN ),
+                    printf( __( '<span class="prep entry-utility-prep">On:</span> %s', 'momtaz' ),
                         sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="published" datetime="%3$s">%4$s</time></a>',
                             esc_url( get_permalink() ),
                             esc_attr( get_the_time() ),
@@ -44,13 +44,13 @@
 
             <?php if ( 'post' === get_post_type() && is_multi_author() ) : ?>
 
-                <span class="sep"><?php _ex( ' | ', 'entry-meta-sep', THEME_TEXTDOMAIN ); ?></span>
+                <span class="sep"><?php _ex( ' | ', 'entry-meta-sep', 'momtaz' ); ?></span>
 
                 <span class="by-author">
 
                     <?php
 
-                        printf( __( '<span class="prep entry-utility-prep">By:</span> %s', THEME_TEXTDOMAIN ),
+                        printf( __( '<span class="prep entry-utility-prep">By:</span> %s', 'momtaz' ),
                             sprintf( '<span class="vcard author"><a class="url fn n" href="%1$s" rel="author">%2$s</a></span>',
                                 esc_url( get_author_posts_url ( get_the_author_meta( 'ID' ) ) ) ,
                                 esc_html( get_the_author() )
@@ -67,15 +67,15 @@
 
             <?php if ( ! momtaz_is_single( get_the_ID() ) && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
-                    <?php if ( $show_sep ) { echo '<span class="sep">'. _x( ' | ', 'entry-meta-sep', THEME_TEXTDOMAIN ) .'</span>'; } ?>
+                    <?php if ( $show_sep ) { echo '<span class="sep">'. _x( ' | ', 'entry-meta-sep', 'momtaz' ) .'</span>'; } ?>
 
                     <span class="comments-link">
-                        <?php comments_popup_link( '<span class="leave-reply">'. __( 'Leave a comment', THEME_TEXTDOMAIN ) .'</span>' , __( '1 Comment', THEME_TEXTDOMAIN ), __( '<b>%</b> Comments', THEME_TEXTDOMAIN ) ); ?>
+                        <?php comments_popup_link( '<span class="leave-reply">'. __( 'Leave a comment', 'momtaz' ) .'</span>' , __( '1 Comment', 'momtaz' ), __( '<b>%</b> Comments', 'momtaz' ) ); ?>
                     </span> <!-- .comments-links -->
 
             <?php endif; ?>
 
-            <?php edit_post_link( __( 'Edit', THEME_TEXTDOMAIN ), '<span class="edit-link">', '</span>' ); ?>
+            <?php edit_post_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ); ?>
 
     </div> <!-- .entry-meta -->
 

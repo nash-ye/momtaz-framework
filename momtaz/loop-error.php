@@ -13,11 +13,11 @@
     <article id="post-0" class="hentry loop-error no-results not-found no-archive-data">
 
            <header class="entry-header loop-error-header">
-               <h1 class="entry-title loop-error-title"><?php _e( 'Nothing Found', THEME_TEXTDOMAIN )  ?></h1>
+               <h1 class="entry-title loop-error-title"><?php _e( 'Nothing Found', 'momtaz' )  ?></h1>
            </header>
 
            <div class="entry-content">
-               <p class='no-data'><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', THEME_TEXTDOMAIN)  ?></p>
+               <p class='no-data'><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'momtaz')  ?></p>
                <?php get_search_form(); ?>
            </div><!-- .entry-content -->
 
@@ -29,12 +29,12 @@
 
            <header class="entry-header loop-error-header search-header">
                <h1 class="entry-title loop-error-title search-title">
-                 <?php _e( 'Nothing Found', THEME_TEXTDOMAIN ); ?>
+                 <?php _e( 'Nothing Found', 'momtaz' ); ?>
                </h1>
            </header>
 
            <div class="entry-content no-data">
-               <p class='no-data'><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', THEME_TEXTDOMAIN); ?></p>
+               <p class='no-data'><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'momtaz'); ?></p>
                <?php get_search_form(); ?>
            </div><!-- .entry-content -->
 

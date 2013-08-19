@@ -62,7 +62,7 @@ global $post; ?>
                                 <?php the_content();  ?>
 
                                 <div class="download">
-                                    <a href="<?php echo esc_url( wp_get_attachment_url() ); ?>" type="<?php echo esc_attr( get_post_mime_type() ); ?>"><?php printf( __( 'Download &quot;%s&quot;', THEME_TEXTDOMAIN ), the_title( '<span class="fn">', '</span>', false ) ); ?></a>
+                                    <a href="<?php echo esc_url( wp_get_attachment_url() ); ?>" type="<?php echo esc_attr( get_post_mime_type() ); ?>"><?php printf( __( 'Download &quot;%s&quot;', 'momtaz' ), the_title( '<span class="fn">', '</span>', false ) ); ?></a>
                                 </div> <!-- .download -->
 
                         <?php } ?>
@@ -75,7 +75,7 @@ global $post; ?>
 
             </div> <!-- .entry-content -->
 
-        <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', THEME_TEXTDOMAIN ) . '</span>', 'after' => '</div>' ) ); ?>
+        <?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'momtaz' ) . '</span>', 'after' => '</div>' ) ); ?>
 
         <?php do_action( momtaz_format_hook( 'after_entry_content' ) ); ?>
 

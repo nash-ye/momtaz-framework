@@ -26,15 +26,15 @@ function momtaz_register_menus() {
 
         // Register the 'primary' menu.
         if ( in_array( 'primary', $args[0], true ) )
-            register_nav_menu( 'primary', _x( 'Primary', 'nav menu location', THEME_TEXTDOMAIN ) );
+            register_nav_menu( 'primary', _x( 'Primary', 'nav menu location', 'momtaz' ) );
 
         // Register the 'secondary' menu.
         if ( in_array( 'secondary', $args[0], true ) )
-            register_nav_menu( 'secondary', _x( 'Secondary', 'nav menu location', THEME_TEXTDOMAIN ) );
+            register_nav_menu( 'secondary', _x( 'Secondary', 'nav menu location', 'momtaz' ) );
 
         // Register the 'subsidiary' menu.
         if ( in_array( 'subsidiary', $args[0], true ) )
-            register_nav_menu( 'subsidiary', _x( 'Subsidiary', 'nav menu location', THEME_TEXTDOMAIN ) );
+            register_nav_menu( 'subsidiary', _x( 'Subsidiary', 'nav menu location', 'momtaz' ) );
 
     } // end if
 

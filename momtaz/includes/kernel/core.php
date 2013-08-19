@@ -8,8 +8,86 @@
  * @subpackage Functions
  */
 
-// Allow child themes to load the parent theme translation.
-add_filter( 'load_textdomain_mofile', 'momtaz_load_textdomain', 10, 2 );
+/**
+ * Gets the parent theme textdomain ID and path.
+ *
+ * @since 1.1
+ * @return array
+ */
+function momtaz_get_parent_theme_textdomain(){
+
+    // Get the parent theme object.
+    $theme = wp_get_theme( get_template() );
+
+    return apply_filters( 'momtaz_parent_theme_textdomain', array(
+        'path' => $theme->get( 'DomainPath' ),
+        'id' => $theme->get( 'TextDomain' ),
+    ) );
+
+} // momtaz_get_parent_theme_textdomain()
+
+/**
+ * Loads the parent theme translation files.
+ *
+ * @since 1.1
+ * @return bool
+ */
+function momtaz_load_parent_theme_textdomain(){
+
+    $textdomain = momtaz_get_parent_theme_textdomain();
+
+    if ( empty( $textdomain['id'] ) )
+        return false;
+
+    // Load the theme's translated strings.
+    return load_theme_textdomain( $textdomain['id'] );
+
+} // momtaz_load_parent_theme_textdomain()
+
+/**
+ * Gets the child theme textdomain ID and path.
+ *
+ * @since 1.1
+ * @return array
+ */
+function momtaz_get_child_theme_textdomain(){
+
+    $textdomain = array();
+
+    if ( is_child_theme() ) {
+
+        $theme = wp_get_theme( get_stylesheet() );
+
+        $textdomain = array(
+            'path' => $theme->get( 'DomainPath' ),
+            'id' => $theme->get( 'TextDomain' ),
+        );
+
+
+    } // end if
+
+    return apply_filters( 'momtaz_get_child_theme_textdomain', $textdomain );
+
+} // momtaz_get_child_theme_textdomain()
+
+/**
+ * Loads the child theme translation files.
+ *
+ * @since 1.1
+ * @return bool
+ */
+function momtaz_load_child_theme_textdomain(){
+
+    $textdomain = momtaz_get_child_theme_textdomain();
+
+    if ( empty( $textdomain['id'] ) )
+        return false;
+
+    return load_theme_textdomain( $textdomain['id'] );
+
+} // momtaz_load_child_theme_textdomain()
+
+add_filter( 'load_textdomain_mofile', 'momtaz_load_textdomain_mofile', 10, 2 );
 
 /**
  * Filters the 'load_textdomain_mofile' filter hook so that we can change the directory and file name
@@ -17,27 +95,42 @@ add_filter( 'load_textdomain_mofile', 'momtaz_load_textdomain', 10, 2 );
  * of their parent theme so that the translations aren't lost on a parent theme upgrade.
  *
  * @since 1.0
+ * @return string
  */
-function momtaz_load_textdomain( $mofile, $domain ) {
+function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
-    if ( $domain === THEME_TEXTDOMAIN ) {
+    $locale = apply_filters( 'theme_locale', get_locale(), $domain );
 
-        $locale = get_locale();
+    foreach( array( 'parent', 'child' ) as $source ) {
 
-        $locate_mofile = locate_template( array(
-                "content/languages/{$domain}-{$locale}.mo",
-                "languages/{$domain}-{$locale}.mo",
-                "{$domain}-{$locale}.mo"
-            ) );
+        switch( $source ) {
 
-        if ( ! empty( $locate_mofile ) )
-             $mofile = $locate_mofile;
+            case 'parent':
+                $textdomain = momtaz_get_parent_theme_textdomain();
+                break;
 
-    } // end if
+            case 'child':
+                $textdomain = momtaz_get_child_theme_textdomain();
+                break;
+
+        } // end Switch
+
+        if ( $textdomain['id'] === $domain ) {
+
+            $path = trailingslashit( $textdomain['path'] ) . "{$domain}-{$locale}.mo";
+
+            if ( ( $path = locate_template( $path ) ) )
+                $mofile = $path;
+
+            break; // Stop looping!
+
+        } // end if
+
+    } // end foreach
 
     return $mofile;
 
-} // end momtaz_load_textdomain()
+} // end momtaz_load_textdomain_mofile()
 
 /**
  * Function for formatting a hook name if needed. It automatically adds the

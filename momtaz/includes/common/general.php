@@ -56,7 +56,7 @@ function momtaz_filter_wp_title( $title, $sep ) {
 
     // Add a page number if necessary.
     if ( $paged >= 2 || $page >= 2 )
-        $title = "$title $sep " . sprintf( __( 'Page %s', THEME_TEXTDOMAIN ), max( $paged, $page ) );
+        $title = "$title $sep " . sprintf( __( 'Page %s', 'momtaz' ), max( $paged, $page ) );
 
     return $title;
 
@@ -121,7 +121,7 @@ function momtaz_continue_reading_link( $post_id = 0 ) {
         $post_id = get_the_ID();
 
     $link = '<a href="' . esc_url( get_permalink( $post_id ) ) . '" class="more-link"><span>';
-    $link .= __( 'Continue reading <span class="meta-nav">&rarr;</span>', THEME_TEXTDOMAIN );
+    $link .= __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'momtaz' );
     $link .= '</span></a>';
 
     return apply_filters( 'momtaz_continue_reading_link', $link, $post_id );
