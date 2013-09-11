@@ -236,6 +236,8 @@ final class Momtaz {
             // Check the Momtaz requirements.
             self::$instance->check_requirements();
 
+            do_action( 'momtaz_setup' );
+
             // Load the common functions.
             self::$instance->load_common();
 
