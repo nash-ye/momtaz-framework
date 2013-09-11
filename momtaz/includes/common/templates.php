@@ -16,6 +16,7 @@
  * Searches in the child theme directory so themes which inherit from
  * a parent theme can just overload one file.
  *
+ * @return string
  * @since 1.0
  */
 function momtaz_theme_uri( $template_name = '' ){
@@ -47,6 +48,7 @@ function momtaz_theme_uri( $template_name = '' ){
 /**
  * Retrieve the URI of a template file in the child theme.
  *
+ * @return string
  * @since 1.0
  */
 function momtaz_child_theme_uri( $template_name = '' ){
@@ -67,6 +69,7 @@ function momtaz_child_theme_uri( $template_name = '' ){
 /**
  * Retrieve the URI of a template file in the parent theme.
  *
+ * @return string
  * @since 1.0
  */
 function momtaz_parent_theme_uri( $template_name = '' ){
@@ -90,6 +93,7 @@ function momtaz_parent_theme_uri( $template_name = '' ){
  * Searches in the registered template stacks so that locations
  * which have a high priority checked first.
  *
+ * @return string
  * @since 1.0
  */
 function momtaz_locate_template_uri( $template_names ) {
