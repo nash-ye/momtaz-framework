@@ -40,50 +40,47 @@ add_action( 'after_momtaz_setup', 'momtaz_register_theme_modules' );
  */
 function momtaz_register_theme_modules() {
 
-	if ( ! class_exists( 'Momtaz_Nmwdhj' ) ) {
+	// Register the 'Momtaz Nmwdhj' module.
+	Momtaz_Modules::register( array(
+		'slug' => 'momtaz-nmwdhj',
+		'name' => 'Momtaz Nmwdhj',
+		'path' => 'momtaz-nmwdhj/nmwdhj.php',
+		'settings' => array(
+			'is_loaded_callback' => function() {
+				return class_exists( 'Momtaz_Nmwdhj' );
+			},
+			'auto' => false,
+			'once' => true,
+		),
+	) );
 
-		// Register the 'Momtaz Nmwdhj' module.
-		Momtaz_Modules::register( array(
-			'slug' => 'momtaz-nmwdhj',
-			'name' => 'Momtaz Nmwdhj',
-			'path' => 'momtaz-nmwdhj/nmwdhj.php',
-			'settings' => array(
-				'auto' => false,
-				'once' => true,
-			),
-		) );
+	// Register the 'Get The Image' module.
+	Momtaz_Modules::register( array(
+		'slug' => 'get-the-image',
+		'name' => 'Get The Image',
+		'path' => 'get-the-image/get-the-image.php',
+		'settings' => array(
+			'is_loaded_callback' => function() {
+				return function_exists( 'get_the_image' );
+			},
+			'auto' => true,
+			'once' => true,
+		),
+	) );
 
-	} // end if
-
-	if ( ! function_exists( 'get_the_image' ) ) {
-
-		// Register the 'Get The Image' module.
-		Momtaz_Modules::register( array(
-			'slug' => 'get-the-image',
-			'name' => 'Get The Image',
-			'path' => 'get-the-image/get-the-image.php',
-			'settings' => array(
-				'auto' => true,
-				'once' => true,
-			),
-		) );
-
-	} // end if
-
-	if ( ! function_exists( 'loop_pagination' ) ) {
-
-		// Register the 'Loop Pagination' module.
-		Momtaz_Modules::register( array(
-			'slug' => 'loop-pagination',
-			'name' => 'Loop Pagination',
-			'path' => 'loop-pagination/loop-pagination.php',
-			'settings' => array(
-				'auto' => false,
-				'once' => true,
-			),
-		) );
-
-	} // end if
+	// Register the 'Loop Pagination' module.
+	Momtaz_Modules::register( array(
+		'slug' => 'loop-pagination',
+		'name' => 'Loop Pagination',
+		'path' => 'loop-pagination/loop-pagination.php',
+		'settings' => array(
+			'is_loaded_callback' => function() {
+				return function_exists( 'loop_pagination' );
+			},
+			'auto' => false,
+			'once' => true,
+		),
+	) );
 
 } // end momtaz_register_theme_modules()
 

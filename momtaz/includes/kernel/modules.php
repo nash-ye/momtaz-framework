@@ -259,12 +259,12 @@ final class Momtaz_Module implements ArrayAccess {
 	private $path;
 
 	/**
-	 * Module loader status.
+	 * Module statuses.
 	 *
-	 * @var boolean
+	 * @var array
 	 * @since 1.1
 	 */
-	private $loaded = false;
+	private $statuses;
 
 	/**
 	 * Module data list.
@@ -509,7 +509,18 @@ final class Momtaz_Module implements ArrayAccess {
 	 * @since 1.1
 	 */
 	public function is_loaded() {
-		return $this->loaded;
+
+		if ( ! isset( $this->statuses['loaded'] ) ) {
+
+			$callback = $this->get_settings( 'is_loaded_callback' );
+
+			if ( is_callable( $callback ) )
+				$this->statuses['loaded'] = (bool) call_user_func( $callback, $this );
+
+		} // end if
+
+		return ( isset( $this->statuses['loaded'] ) && $this->statuses['loaded'] );
+
 	} // end is_loaded()
 
 	// Loaders
@@ -527,11 +538,11 @@ final class Momtaz_Module implements ArrayAccess {
 
 		if ( ( $path = Momtaz_Modules::locate_module( $this->get_path() ) ) ) {
 
-			// Load the module file.
+			// Load the module main file.
 			momtaz_load_template( $path, false );
 
 			// Set the module loader status.
-			$this->loaded = true;
+			$this->statuses['loaded'] = true;
 
 			return true;
 

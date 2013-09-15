@@ -56,9 +56,9 @@ function momtaz_settings_page_init() {
 		} );
 
 		// Load the JavaScript and Stylehsheets needed for the theme settings.
-		add_action( "admin_print_styles-{$settings_page}", 'momtaz_settings_page_enqueue_styles'  );
-		add_action( "admin_print_scripts-{$settings_page}", 'momtaz_settings_page_enqueue_script' );
-		add_action( "admin_head-{$settings_page}", 'momtaz_settings_page_load_scripts'			);
+		add_action( "admin_print_styles-{$settings_page}", 'momtaz_settings_page_enqueue_styles'	);
+		add_action( "admin_print_scripts-{$settings_page}", 'momtaz_settings_page_enqueue_script'	);
+		add_action( "admin_head-{$settings_page}", 'momtaz_settings_page_load_scripts'				);
 
 		// Filter the settings page capability so that it recognizes the 'edit_theme_options' cap.
 		add_filter( "option_page_capability_{$prefix}_theme_settings", 'momtaz_settings_page_capability' );
@@ -207,7 +207,7 @@ function momtaz_load_settings_page_meta_boxes() {
 
 		// Load the 'About' meta box.
 		if ( in_array( 'about', $args[0], true ) )
-			require( trailingslashit( MOMTAZ_ADMIN_DIR ) . 'meta-boxes/theme-about.php' );
+			require trailingslashit( MOMTAZ_ADMIN_DIR ) . 'meta-boxes/theme-about.php';
 
    } // end if
 
@@ -252,7 +252,7 @@ function momtaz_settings_page_load_scripts() {
 		//<![CDATA[
 		jQuery(document).ready( function($) {
 			$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-			postboxes.add_postbox_toggles( '<?php echo $screen->id; ?>' );
+			postboxes.add_postbox_toggles('<?php echo $screen->id; ?>');
 		});
 		//]]>
 	</script><?php
