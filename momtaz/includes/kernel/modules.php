@@ -58,57 +58,57 @@ final class Momtaz_Modules {
 		if ( empty( $operator ) )
 			 $operator = 'AND';
 
-	$filtered = array();
-	$count = count( $args );
+		$filtered = array();
+		$count = count( $args );
 
-	foreach ( self::$modules as $key => $obj ) {
+		foreach ( self::$modules as $key => $obj ) {
 
-			$matched = 0;
+				$matched = 0;
 
-			foreach ( $args as $m_key => $m_value ) {
+				foreach ( $args as $m_key => $m_value ) {
 
-				if ( property_exists( $obj, $m_key ) ) {
+					if ( property_exists( $obj, $m_key ) ) {
 
-					$obj_prop = $obj[$m_key];
+						$obj_prop = $obj[$m_key];
 
-					if ( is_array( $obj_prop ) && is_array( $m_value ) ) {
+						if ( is_array( $obj_prop ) && is_array( $m_value ) ) {
 
-						$m_akey = wp_filter_object_list( array( $obj_prop ), $m_value, $operator );
+							$m_akey = wp_filter_object_list( array( $obj_prop ), $m_value, $operator );
 
-						if ( ! empty( $m_akey ) )
+							if ( ! empty( $m_akey ) )
+								$matched++;
+
+						} elseif ( $obj_prop == $m_value ) {
 							$matched++;
+						} // end if
 
-					} elseif ( $obj_prop == $m_value ) {
-						$matched++;
 					} // end if
 
-				} // end if
+				} // end foreach
 
-			} // end foreach
+				$b = false;
+				switch( strtoupper( $operator ) ) {
 
-			$b = false;
-			switch( strtoupper( $operator ) ) {
+					case 'AND':
+						$b = ( $matched == $count );
+						break;
 
-				case 'AND':
-					$b = ( $matched == $count );
-					break;
+					case 'OR':
+						$b = ( $matched > 0 );
+						break;
 
-				case 'OR':
-					$b = ( $matched > 0 );
-					break;
+					case 'NOT':
+						$b = ( $matched == 0 );
+						break;
 
-				case 'NOT':
-					$b = ( $matched == 0 );
-					break;
+				} // end Switch
 
-			} // end Switch
+				if ( $b )
+					$filtered[$key] = $obj;
 
-			if ( $b )
-				$filtered[$key] = $obj;
+		} // end foreach
 
-	} // end foreach
-
-	return $filtered;
+		return $filtered;
 
 	} // end get()
 
@@ -169,20 +169,20 @@ final class Momtaz_Modules {
 	 */
 	public static function load_modules( array $modules, $force = false ) {
 
-	$loaded_modules = array();
+		$loaded_modules = array();
 
-		foreach ( $modules as $module ) {
+			foreach ( $modules as $module ) {
 
-			if ( $module instanceof Momtaz_Module ) {
+				if ( $module instanceof Momtaz_Module ) {
 
-				if ( $module->load( $force ) )
-					$loaded_modules[] = $module->get_path();
+					if ( $module->load( $force ) )
+						$loaded_modules[] = $module->get_path();
 
-			} // end if
+				} // end if
 
-		} // end foreach
+			} // end foreach
 
-	return $loaded_modules;
+		return $loaded_modules;
 
 	} // end load_modules()
 
