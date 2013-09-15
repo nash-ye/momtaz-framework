@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * will return early without loading the comments.
  */
 if ( post_password_required() )
-    return;
+	return;
 
 /* If no comments are given and comments/pings are closed, return. */
 if ( ! have_comments() && ! comments_open() && ! pings_open() )
@@ -26,18 +26,18 @@ if ( ! have_comments() && ! comments_open() && ! pings_open() )
 
 do_action( momtaz_format_hook( 'before_comments' ) ); ?>
 
-    <section id="comments" class="comments-area">
+	<section id="comments" class="comments-area">
 
-        <?php
+		<?php
 
-            // Load the comments-loop template.
-            momtaz_template_part( 'comments-loop' );
+			// Load the comments-loop template.
+			momtaz_template_part( 'comments-loop' );
 
-            // Load the comment form.
-            comment_form();
+			// Load the comment form.
+			comment_form();
 
-        ?>
+		?>
 
-    </section> <!-- #comments -->
-    
+	</section> <!-- #comments -->
+	
 <?php do_action( momtaz_format_hook( 'after_comments' ) );

@@ -16,12 +16,12 @@
  */
 function momtaz_register_scripts() {
 
-    // Register LessCSS script.
-    wp_register_script( 'less', momtaz_theme_uri( 'content/scripts/less.js' ), false, Momtaz::VERSION );
+	// Register LessCSS script.
+	wp_register_script( 'less', momtaz_theme_uri( 'content/scripts/less.js' ), false, Momtaz::VERSION );
 
-    // Register the drop-downs script.
-    if ( current_theme_supports( 'momtaz-core-drop-downs' ) )
-         wp_register_script( 'drop-downs', momtaz_theme_uri( 'content/scripts/dropdowns.js' ), array( 'jquery' ), Momtaz::VERSION, true );
+	// Register the drop-downs script.
+	if ( current_theme_supports( 'momtaz-core-drop-downs' ) )
+		 wp_register_script( 'drop-downs', momtaz_theme_uri( 'content/scripts/dropdowns.js' ), array( 'jquery' ), Momtaz::VERSION, true );
 
 } // end momtaz_register_scripts()
 
@@ -33,13 +33,13 @@ function momtaz_register_scripts() {
  */
 function momtaz_enqueue_scripts() {
 
-    if ( momtaz_is_style_dev_mode() )
-        wp_enqueue_script( 'less' );
+	if ( momtaz_is_style_dev_mode() )
+		wp_enqueue_script( 'less' );
 
-    if ( current_theme_supports( 'momtaz-core-drop-downs' ) )
-        wp_enqueue_script( 'drop-downs' );
+	if ( current_theme_supports( 'momtaz-core-drop-downs' ) )
+		wp_enqueue_script( 'drop-downs' );
 
-    if ( is_singular() && get_option( 'thread_comments' ) && comments_open() )
-        wp_enqueue_script( 'comment-reply' );
+	if ( is_singular() && get_option( 'thread_comments' ) && comments_open() )
+		wp_enqueue_script( 'comment-reply' );
 
 } // end momtaz_enqueue_scripts()
