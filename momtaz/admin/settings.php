@@ -23,16 +23,16 @@ function momtaz_settings_page_init() {
 
 	// Register the theme setting.
 	register_setting(
-		"{$prefix}_theme_settings",   // Options group.
+		"{$prefix}_theme_settings",	// Options group.
 		"{$prefix}_theme_settings"	// Database option.
 	);
 
 	// Create the theme settings page.
 	$settings_page = add_menu_page(
-		momtaz_get_settings_page_title(),	   // Settings page name.
+		momtaz_get_settings_page_title(),		// Settings page name.
 		momtaz_get_settings_page_menu_title(),  // Menu item name.
-		momtaz_settings_page_capability(),	  // Required capability.
-		'theme-settings',					   // Screen name.
+		momtaz_settings_page_capability(),		// Required capability.
+		'theme-settings',						// Screen name.
 		'momtaz_theme_settings_page'			// Callback function.
 	);
 
@@ -106,13 +106,12 @@ function momtaz_get_settings_page_menu_title() {
  */
 function momtaz_theme_settings_page() {
 
-	// Get theme prefix.
-	$prefix = THEME_PREFIX;
+	$screen = get_current_screen();
 
-	// Get theme settings page ID.
-	$settings_page = get_current_screen()->id;
+	if ( 'theme-settings' !== $screen->parent_base )
+		return;
 
-	do_action( "{$prefix}_before_settings_page" ); ?>
+	do_action( momtaz_format_hook( 'before_settings_page' ) ); ?>
 
 	<div class="wrap theme-settings">
 
@@ -125,7 +124,7 @@ function momtaz_theme_settings_page() {
 
 		<?php settings_errors(); ?>
 
-		<?php do_action( "{$prefix}_open_settings_page" ); ?>
+		<?php do_action( momtaz_format_hook( 'open_settings_page' ) ); ?>
 
 		<div class="momtaz-core-settings-wrap">
 
@@ -133,43 +132,43 @@ function momtaz_theme_settings_page() {
 
 				<p class="submit">
 
-					<?php do_action( "{$prefix}_settings_page_before_submit_button" ); ?>
+					<?php do_action( momtaz_format_hook( 'settings_page_before_submit_button' ) ); ?>
 
 					<?php submit_button( esc_attr__( 'Update Settings', 'momtaz' ), 'primary', 'update', false ) ?>
 
-					<?php do_action( "{$prefix}_settings_page_after_submit_button" ); ?>
+					<?php do_action( momtaz_format_hook( 'settings_page_after_submit_button' ) ); ?>
 
 				</p> <!-- .submit -->
 
-				<?php settings_fields( "{$prefix}_theme_settings" ); ?>
+				<?php settings_fields( momtaz_format_hook( 'theme_settings' ) ); ?>
 				<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
 				<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
 
 				<div class="metabox-holder">
 
 					<div class="post-box-container column-1 normal">
-						<?php do_meta_boxes( $settings_page, 'normal', null ); ?>
+						<?php do_meta_boxes( $screen->id, 'normal', null ); ?>
 					</div> <!-- .column-1 -->
 
 					<div class="post-box-container column-2 side">
-						<?php do_meta_boxes( $settings_page, 'side', null ); ?>
+						<?php do_meta_boxes( $screen->id, 'side', null ); ?>
 					</div> <!-- .column-2 -->
 
 					<div class="post-box-container column-3 advanced">
-						<?php do_meta_boxes( $settings_page, 'advanced', null ); ?>
+						<?php do_meta_boxes( $screen->id, 'advanced', null ); ?>
 					</div> <!-- .column-3 -->
 
 				</div> <!-- .metabox-holder -->
 
 			</form> <!-- Form End -->
 
-			<?php do_action( "{$prefix}_close_settings_page" ); ?>
+			<?php do_action( momtaz_format_hook( 'close_settings_page' ) ); ?>
 
 		</div> <!-- .momtaz-core-settings-wrap -->
 
 	</div> <!-- .wrap --> <?php
 
-	do_action( "{$prefix}_after_settings_page" );
+	do_action( momtaz_format_hook( 'after_settings_page' ) );
 
 } // end momtaz_theme_settings_page()
 
@@ -241,12 +240,19 @@ function momtaz_settings_page_enqueue_script() {
  * @return void
  * @since 1.0
  */
-function momtaz_settings_page_load_scripts() { ?>
+function momtaz_settings_page_load_scripts() {
+
+	$screen = get_current_screen();
+
+	if ( 'theme-settings' !== $screen->parent_base )
+		return;
+
+	?>
 	<script type="text/javascript">
 		//<![CDATA[
 		jQuery(document).ready( function($) {
 			$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-			postboxes.add_postbox_toggles( '<?php echo get_current_screen()->id; ?>' );
+			postboxes.add_postbox_toggles( '<?php echo $screen->id; ?>' );
 		});
 		//]]>
 	</script><?php
