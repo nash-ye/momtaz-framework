@@ -12,26 +12,26 @@
 ?>
 <div id="header-container">
 
-    <?php do_action( momtaz_format_hook( 'before_header' ) ); ?>
+	<?php do_action( momtaz_format_hook( 'before_header' ) ); ?>
 
-    <header id="header" role="banner">
+	<header id="header" role="banner">
 
-        <hgroup id="branding">
+		<hgroup id="branding">
 
-            <h1 id="site-title">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-            </h1> <!-- #site-title -->
+			<h1 id="site-title">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+			</h1> <!-- #site-title -->
 
-            <h2 id="site-description">
-                <?php bloginfo( 'description' ); ?>
-            </h2> <!-- #site-description -->
+			<h2 id="site-description">
+				<?php bloginfo( 'description' ); ?>
+			</h2> <!-- #site-description -->
 
-        </hgroup> <!-- #branding -->
+		</hgroup> <!-- #branding -->
 
-    </header> <!-- #header -->
+	</header> <!-- #header -->
 
-    <?php do_action( momtaz_format_hook( 'after_header' ) ); ?>
+	<?php do_action( momtaz_format_hook( 'after_header' ) ); ?>
 
-    <?php momtaz_template_part( 'menu', 'primary' ); ?>
+	<?php momtaz_template_part( 'menu', 'primary' ); ?>
 
 </div> <!-- #header-container -->
