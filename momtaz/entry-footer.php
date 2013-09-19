@@ -10,62 +10,62 @@
 
 
 if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) )
-    return;
+	return;
 
 ?>
 
 <footer class="entry-meta entry-footer">
 
-    <?php
+	<?php
 
-        /*** Post Categories List *********************************************/
+		/*** Post Categories List *********************************************/
 
-        $post_category = get_the_category_list( _x( ' , ', 'categories-list', 'momtaz' ) );
+		$post_category = get_the_category_list( _x( ' , ', 'categories-list', 'momtaz' ) );
 
-        if ( $post_category ) { ?>
+		if ( $post_category ) { ?>
 
-            <span class="category-links">
+			<span class="category-links">
 
-                <?php
+				<?php
 
-                    printf( __( '<span class="prep entry-utility-prep">Categories:</span> %s', 'momtaz' ),
-                            $post_category
-                         );
+					printf( __( '<span class="prep entry-utility-prep">Categories:</span> %s', 'momtaz' ),
+							$post_category
+						 );
 
-                    $show_sep = true;
+					$show_sep = true;
 
-                ?>
+				?>
 
-            </span> <!-- .category-links -->
+			</span> <!-- .category-links -->
 
-        <?php } // end if
+		<?php } // end if
 
 
-        /*** Post Tags List ***************************************************/
+		/*** Post Tags List ***************************************************/
 
-        $post_tags = get_the_tag_list( '', _x( ' , ', 'tags-list', 'momtaz' ) );
+		$post_tags = get_the_tag_list( '', _x( ' , ', 'tags-list', 'momtaz' ) );
 
-        if ( $post_tags ) {
+		if ( $post_tags ) {
 
-            if ( isset( $show_sep ) && $show_sep )
-                echo '<span class="sep">' . _x( ' | ', 'entry-meta-sep', 'momtaz' ) . '</span>'; ?>
+			if ( isset( $show_sep ) && $show_sep )
+				echo '<span class="sep">' . _x( ' | ', 'entry-meta-sep', 'momtaz' ) . '</span>'; ?>
 
-            <span class="tag-links">
+			<span class="tag-links">
 
-                <?php
+				<?php
 
-                    printf( __( '<span class="prep entry-utility-prep">Tags:</span> %s', 'momtaz' ),
-                            $post_tags
-                         );
+					printf( __( '<span class="prep entry-utility-prep">Tags:</span> %s', 'momtaz' ),
+							$post_tags
+						 );
 
-                    $show_sep = true;
+					$show_sep = true;
 
-                ?>
+				?>
 
-            </span> <!-- .tag-links -->
+			</span> <!-- .tag-links -->
 
-        <?php } // end if
+		<?php } // end if
 
-    ?>
+	?>
 
 </footer> <!-- .entry-footer -->

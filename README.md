@@ -8,6 +8,14 @@ Just another light and simple theme framework!
 Changelog:
 ================
 
+1.1 Final
+  - Add the momtaz.pot file.
+  - Fix the indent tabs bugs.
+  - Add the screenshot.png file.
+  - Update the normalize.css file to version 2.1.3.
+  - Add the 'Momtaz Sample' starter child theme.
+  - Improve how the theme check the modules loader status.
+
 1.1 Beta 2
   - Improve how the theme loads the translation files.
   - Enhance `momtaz_verify_common_post_meta_box()` function.

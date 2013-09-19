@@ -16,13 +16,13 @@
  */
 function momtaz_get_parent_theme_textdomain(){
 
-    // Get the parent theme object.
-    $theme = wp_get_theme( get_template() );
+	// Get the parent theme object.
+	$theme = wp_get_theme( get_template() );
 
-    return apply_filters( 'momtaz_parent_theme_textdomain', array(
-        'path' => $theme->get( 'DomainPath' ),
-        'id' => $theme->get( 'TextDomain' ),
-    ) );
+	return apply_filters( 'momtaz_parent_theme_textdomain', array(
+		'path' => $theme->get( 'DomainPath' ),
+		'id' => $theme->get( 'TextDomain' ),
+	) );
 
 } // momtaz_get_parent_theme_textdomain()
 
@@ -34,13 +34,13 @@ function momtaz_get_parent_theme_textdomain(){
  */
 function momtaz_load_parent_theme_textdomain(){
 
-    $textdomain = momtaz_get_parent_theme_textdomain();
+	$textdomain = momtaz_get_parent_theme_textdomain();
 
-    if ( empty( $textdomain['id'] ) )
-        return false;
+	if ( empty( $textdomain['id'] ) )
+		return false;
 
-    // Load the theme's translated strings.
-    return load_theme_textdomain( $textdomain['id'] );
+	// Load the theme's translated strings.
+	return load_theme_textdomain( $textdomain['id'] );
 
 } // momtaz_load_parent_theme_textdomain()
 
@@ -52,21 +52,21 @@ function momtaz_load_parent_theme_textdomain(){
  */
 function momtaz_get_child_theme_textdomain(){
 
-    $textdomain = array();
+	$textdomain = array();
 
-    if ( is_child_theme() ) {
+	if ( is_child_theme() ) {
 
-        $theme = wp_get_theme( get_stylesheet() );
+		$theme = wp_get_theme( get_stylesheet() );
 
-        $textdomain = array(
-            'path' => $theme->get( 'DomainPath' ),
-            'id' => $theme->get( 'TextDomain' ),
-        );
+		$textdomain = array(
+			'path' => $theme->get( 'DomainPath' ),
+			'id' => $theme->get( 'TextDomain' ),
+		);
 
 
-    } // end if
+	} // end if
 
-    return apply_filters( 'momtaz_get_child_theme_textdomain', $textdomain );
+	return apply_filters( 'momtaz_get_child_theme_textdomain', $textdomain );
 
 } // momtaz_get_child_theme_textdomain()
 
@@ -78,12 +78,12 @@ function momtaz_get_child_theme_textdomain(){
  */
 function momtaz_load_child_theme_textdomain(){
 
-    $textdomain = momtaz_get_child_theme_textdomain();
+	$textdomain = momtaz_get_child_theme_textdomain();
 
-    if ( empty( $textdomain['id'] ) )
-        return false;
+	if ( empty( $textdomain['id'] ) )
+		return false;
 
-    return load_theme_textdomain( $textdomain['id'] );
+	return load_theme_textdomain( $textdomain['id'] );
 
 } // momtaz_load_child_theme_textdomain()
 
@@ -99,36 +99,36 @@ add_filter( 'load_textdomain_mofile', 'momtaz_load_textdomain_mofile', 10, 2 );
  */
 function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
-    $locale = apply_filters( 'theme_locale', get_locale(), $domain );
+	$locale = apply_filters( 'theme_locale', get_locale(), $domain );
 
-    foreach( array( 'parent', 'child' ) as $source ) {
+	foreach( array( 'parent', 'child' ) as $source ) {
 
-        switch( $source ) {
+		switch( $source ) {
 
-            case 'parent':
-                $textdomain = momtaz_get_parent_theme_textdomain();
-                break;
+			case 'parent':
+				$textdomain = momtaz_get_parent_theme_textdomain();
+				break;
 
-            case 'child':
-                $textdomain = momtaz_get_child_theme_textdomain();
-                break;
+			case 'child':
+				$textdomain = momtaz_get_child_theme_textdomain();
+				break;
 
-        } // end Switch
+		} // end Switch
 
-        if ( $textdomain['id'] === $domain ) {
+		if ( $textdomain['id'] === $domain ) {
 
-            $path = trailingslashit( $textdomain['path'] ) . "{$domain}-{$locale}.mo";
+			$path = trailingslashit( $textdomain['path'] ) . "{$domain}-{$locale}.mo";
 
-            if ( ( $path = locate_template( $path ) ) )
-                $mofile = $path;
+			if ( ( $path = locate_template( $path ) ) )
+				$mofile = $path;
 
-            break; // Stop looping!
+			break; // Stop looping!
 
-        } // end if
+		} // end if
 
-    } // end foreach
+	} // end foreach
 
-    return $mofile;
+	return $mofile;
 
 } // end momtaz_load_textdomain_mofile()
 
@@ -141,5 +141,5 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
  * @param string $tag The basic name of the hook (e.g., 'before_header').
  */
 function momtaz_format_hook( $tag ) {
-    return THEME_PREFIX . "_{$tag}";
+	return THEME_PREFIX . "_{$tag}";
 } // end momtaz_format_hook()
