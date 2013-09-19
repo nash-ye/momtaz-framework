@@ -15,7 +15,7 @@
  * @return bool Validation result
  */
 function momtaz_is_vaild_url( $url ) {
-    return (bool) filter_var( utf8_uri_encode( $url ), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED + FILTER_FLAG_HOST_REQUIRED );
+	return (bool) filter_var( utf8_uri_encode( $url ), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED + FILTER_FLAG_HOST_REQUIRED );
 } // end momtaz_is_vaild_url()
 
 /**
@@ -26,10 +26,10 @@ function momtaz_is_vaild_url( $url ) {
  */
 function momtaz_limit_characters( $text, $limit ) {
 
-    if ( mb_strlen( $text ) > $limit )
-        $text = mb_substr( $text, 0, $limit );
+	if ( mb_strlen( $text ) > $limit )
+		$text = mb_substr( $text, 0, $limit );
 
-    return $text;
+	return $text;
 
 } // end momtaz_limit_characters()
 
@@ -42,7 +42,7 @@ function momtaz_limit_characters( $text, $limit ) {
  * @since 1.0
  */
 function momtaz_html_atts( array $atts, array $args = null ) {
-    echo momtaz_get_html_atts( $atts, $args );
+	echo momtaz_get_html_atts( $atts, $args );
 } // end momtaz_html_atts()
 
 /**
@@ -56,55 +56,55 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
    $output = '';
 
    if ( empty( $atts ) )
-        return $output;
+		return $output;
 
    $args = wp_parse_args( $args, array(
-       'after' => '',
-       'before' => ' ',
-       'escape' => true,
+	   'after' => '',
+	   'before' => ' ',
+	   'escape' => true,
    ) );
 
    foreach ( $atts as $key => $value ) {
 
-       $key = strtolower( $key );
+	   $key = strtolower( $key );
 
-        if ( is_bool( $value ) ) {
+		if ( is_bool( $value ) ) {
 
-            if ( $value === true )
-                 $value = $key;
-            else
-                 continue;
+			if ( $value === true )
+				 $value = $key;
+			else
+				 continue;
 
-        } elseif ( is_array( $value ) ) {
+		} elseif ( is_array( $value ) ) {
 
-            $value = implode( ' ', array_filter( $value ) );
+			$value = implode( ' ', array_filter( $value ) );
 
-        } // end if
+		} // end if
 
-        if ( $args['escape'] ) {
+		if ( $args['escape'] ) {
 
-            switch( $key ) {
+			switch( $key ) {
 
-                case 'src':
-                case 'href':
-                    $value = esc_url( $value );
-                    break;
+				case 'src':
+				case 'href':
+					$value = esc_url( $value );
+					break;
 
-                default:
-                    $value = esc_attr( $value );
-                    break;
+				default:
+					$value = esc_attr( $value );
+					break;
 
-            } // end switch
+			} // end switch
 
-        } // end if
+		} // end if
 
-        // @note: Trailing space is important.
-        $output .= $key . '="' . $value . '" ';
+		// @note: Trailing space is important.
+		$output .= $key . '="' . $value . '" ';
 
    } // end foreach
 
-    if ( ! empty( $output ) )
-        $output = $args['before'] . trim( $output ) . $args['after'];
+	if ( ! empty( $output ) )
+		$output = $args['before'] . trim( $output ) . $args['after'];
 
    return $output;
 

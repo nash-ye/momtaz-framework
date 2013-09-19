@@ -21,7 +21,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 
 <!--[if lt IE 9]>
-    <script src="<?php echo esc_url( momtaz_theme_uri( 'content/scripts/html5.js' ) ); ?>" type="text/javascript"></script>
+	<script src="<?php echo esc_url( momtaz_theme_uri( 'content/scripts/html5.js' ) ); ?>" type="text/javascript"></script>
 <![endif]-->
 
 <?php do_action( momtaz_format_hook( 'head' ) ); ?>

@@ -19,22 +19,22 @@ add_action( 'momtaz_settings_page_add_meta_boxes', 'momtaz_meta_box_theme_add_ab
  */
 function momtaz_meta_box_theme_add_about( $screen_ID ) {
 
-    // Get theme information.
-    $theme = wp_get_theme( get_template() );
+	// Get theme information.
+	$theme = wp_get_theme( get_template() );
 
-    // Adds the About box for the parent theme.
-    add_meta_box( 'momtaz-core-about-theme', sprintf( __( 'About %s', 'momtaz' ), $theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
+	// Adds the About box for the parent theme.
+	add_meta_box( 'momtaz-core-about-theme', sprintf( __( 'About %s', 'momtaz' ), $theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
 
-    // If the user is using a child theme, add an About box for it.
-    if ( is_child_theme() ) {
+	// If the user is using a child theme, add an About box for it.
+	if ( is_child_theme() ) {
 
-        // Get child theme info.
-        $child_theme = wp_get_theme( get_stylesheet() );
+		// Get child theme info.
+		$child_theme = wp_get_theme( get_stylesheet() );
 
-        // Adds the About box for the child theme.
-        add_meta_box( 'momtaz-core-about-child', sprintf( __( 'About %s', 'momtaz' ), $child_theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
+		// Adds the About box for the child theme.
+		add_meta_box( 'momtaz-core-about-child', sprintf( __( 'About %s', 'momtaz' ), $child_theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
 
-    } // end if
+	} // end if
 
 } // end momtaz_meta_box_theme_add_about()
 
@@ -49,36 +49,36 @@ function momtaz_meta_box_theme_add_about( $screen_ID ) {
  */
 function momtaz_meta_box_theme_display_about( $object, $box ) {
 
-    switch( $box['id'] ) {
+	switch( $box['id'] ) {
 
-        // Grab theme information for the parent theme.
-        case 'momtaz-core-about-theme':
-            $theme_data = wp_get_theme( get_template() );
-            break;
+		// Grab theme information for the parent theme.
+		case 'momtaz-core-about-theme':
+			$theme_data = wp_get_theme( get_template() );
+			break;
 
-        // Grab theme information for the child theme.
-        default:
-        case 'momtaz-core-about-child':
-            $theme_data = wp_get_theme( get_stylesheet() );
-            break;
+		// Grab theme information for the child theme.
+		default:
+		case 'momtaz-core-about-child':
+			$theme_data = wp_get_theme( get_stylesheet() );
+			break;
 
-    } // end Switch
+	} // end Switch
 
-    ?>
+	?>
 
-    <table class="form-table">
-        <tr>
-            <th><?php _e( 'Theme:', 'momtaz' ); ?></th>
-            <td><a href="<?php echo esc_url( $theme_data->display( 'ThemeURI' ) ); ?>"><?php echo $theme_data->display( 'Name' ); ?> <?php echo $theme_data->display( 'Version' ); ?></a></td>
-        </tr>
-        <tr>
-            <th><?php _e( 'Author:', 'momtaz' ); ?></th>
-            <td><?php echo $theme_data->display( 'Author' ); ?></td>
-        </tr>
-        <tr>
-            <th><?php _e( 'Description:', 'momtaz' ); ?></th>
-            <td><?php echo $theme_data->display( 'Description' ); ?></td>
-        </tr>
-    </table> <!-- .form-table -->
-    
+	<table class="form-table">
+		<tr>
+			<th><?php _e( 'Theme:', 'momtaz' ); ?></th>
+			<td><a href="<?php echo esc_url( $theme_data->display( 'ThemeURI' ) ); ?>"><?php echo $theme_data->display( 'Name' ); ?> <?php echo $theme_data->display( 'Version' ); ?></a></td>
+		</tr>
+		<tr>
+			<th><?php _e( 'Author:', 'momtaz' ); ?></th>
+			<td><?php echo $theme_data->display( 'Author' ); ?></td>
+		</tr>
+		<tr>
+			<th><?php _e( 'Description:', 'momtaz' ); ?></th>
+			<td><?php echo $theme_data->display( 'Description' ); ?></td>
+		</tr>
+	</table> <!-- .form-table -->
+	
 <?php } // end momtaz_meta_box_theme_display_about()
