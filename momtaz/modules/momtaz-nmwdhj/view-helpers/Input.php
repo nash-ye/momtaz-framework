@@ -1,61 +1,64 @@
 <?php
+namespace Nmwdhj\Views;
+use Nmwdhj\Elements\Element;
+
 /**
  * The Input elements view class.
  *
  * @since 1.0
  */
-class Momtaz_Nmwdhj_View_Input extends Momtaz_Nmwdhj_View {
+class Input extends View {
 
-    /**
-     * Check the element.
-     *
-     * @since 1.0
-     * @return boolean
-     */
-    public function check( Momtaz_Nmwdhj_Element $element ) {
+	/**
+	 * Check the element.
+	 *
+	 * @since 1.0
+	 * @return boolean
+	 */
+	public function check( Element $element ) {
 
-        // The 'type' attribute is required.
-        if ( ! $element->has_attr( 'type' ) )
-            return false;
+		// The 'type' attribute is required.
+		if ( ! $element->has_attr( 'type' ) )
+			return false;
 
-        return true;
+		return true;
 
-    } // end check()
+	} // end check()
 
-    /**
-     * Render the element view, and return the output.
-     *
-     * @since 1.0
-     * @return string
-     */
-    public function render( Momtaz_Nmwdhj_Element $element ) {
+	/**
+	 * Render the element view, and return the output.
+	 *
+	 * @since 1.0
+	 * @return string
+	 */
+	public function render( Element $element ) {
 
-        $value = '';
+		$value = '';
 
-        if ( ! $element->has_attr( 'value' ) ) {
+		if ( ! $element->has_attr( 'value' ) ) {
 
-            $value = strval( $element->get_value() );
+			$value = strval( $element->get_value() );
 
-            if ( ! empty( $value ) ) {
+			if ( ! empty( $value ) ) {
 
-                switch( strtolower( $element->get_attr( 'type' ) ) ) {
+				switch( strtolower( $element->get_attr( 'type' ) ) ) {
 
-                    case 'url':
-                        $value = ' value="' . esc_url( $value ) . '"';
-                        break;
+					case 'url':
+						$value = ' value="' . esc_url( $value ) . '"';
+						break;
 
-                    default:
-                        $value = ' value="' . esc_attr( $value ) . '"';
-                        break;
+					default:
+						$value = ' value="' . esc_attr( $value ) . '"';
+						break;
 
-                } // end switch
+				} // end switch
 
-            } // end if
+			} // end if
 
-        } // end if
+		} // end if
 
-        return '<input'. $element->get_atts_string() . $value .' />';
+		return '<input'. $element->get_atts_string() . $value .' />';
 
-    } // end render()
+	} // end render()
 
-} // end Class Momtaz_Nmwdhj_View_Input
+} // end Class Input

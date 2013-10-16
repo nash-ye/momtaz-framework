@@ -47,7 +47,7 @@ function momtaz_register_theme_modules() {
 		'path' => 'momtaz-nmwdhj/nmwdhj.php',
 		'settings' => array(
 			'is_loaded_callback' => function() {
-				return class_exists( 'Momtaz_Nmwdhj' );
+				return function_exists( 'Nmwdhj\create_element' );
 			},
 			'auto' => false,
 			'once' => true,
