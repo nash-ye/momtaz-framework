@@ -35,7 +35,7 @@ class Label extends Decorator {
 		$output = $this->get_element()->get_output();
 
 		// Check the label text.
-		if ( ! is_string( $label ) || empty( $label ) )
+		if ( empty( $label ) )
 			return $output;
 
 		// Get the label attributes.

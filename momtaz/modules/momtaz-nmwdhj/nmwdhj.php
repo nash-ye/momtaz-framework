@@ -5,7 +5,7 @@
  * Description: An API for creating forms elements via code.
  * Author: Nashwan Doaqan
  * Author URI: http://nashwan-d.com
- * Version: 1.2
+ * Version: 1.2.1
  *
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -192,7 +192,7 @@ function decorate_element( $key, Elements\Element &$element ) {
 	if ( ! Decorators\Manager::check_class( $decorator->class_name ) )
 		throw new Exception( 'invalid_decorator_class' );
 
-	$element = $decorator->class_name( $element );
+	$element = new $decorator->class_name( $element );
 	return $element;
 
 } // end decorate_element()

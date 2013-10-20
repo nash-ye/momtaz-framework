@@ -27,6 +27,23 @@ class Select extends Base {
 	protected $value_options = array();
 
 
+	/*** Magic Methods ********************************************************/
+
+	/**
+	 * The Select element constructor.
+	 *
+	 * @since 1.0
+	 */
+	public function __construct( $key = '', array $properties = null ) {
+
+		parent::__construct( $key, $properties );
+
+		if ( is_array( $properties ) && isset( $properties['value_options'] ) )
+			$this->set_value_options( $properties['value_options'] );
+
+	} // end __construct()
+
+
 	/*** Methods **************************************************************/
 
 	// Value Options

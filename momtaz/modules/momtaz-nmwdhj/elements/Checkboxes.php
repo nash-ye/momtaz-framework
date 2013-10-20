@@ -34,6 +34,9 @@ class Checkboxes extends Input {
 
 		parent::__construct( $key, $properties );
 
+		if ( is_array( $properties ) && isset( $properties['value_options'] ) )
+			$this->set_value_options( $properties['value_options'] );
+
 	} // end __construct()
 
 
