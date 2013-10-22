@@ -1,121 +1,112 @@
 <?php
+namespace Nmwdhj\Elements;
+
 /**
  * The Checkboxes element class.
  *
  * @since 1.0
  */
-class Momtaz_Nmwdhj_Element_Checkboxes extends Momtaz_Nmwdhj_Element_Input {
+class Checkboxes extends Input {
 
-    /*** Properties ***********************************************************/
+	/*** Properties ***********************************************************/
 
-    /**
-     * Default element key.
-     *
-     * @since 1.0
-     * @var string
-     */
-    protected $key = 'checkboxes';
-
-    /**
-     * Default element view key.
-     *
-     * @since 1.0
-     * @var string
-     */
-    protected $view_key = 'checkboxes';
+	/**
+	 * Default element key.
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	protected $key = 'checkboxes';
 
 
-    /*** Magic Methods ********************************************************/
+	/*** Magic Methods ********************************************************/
 
-    /**
-     * The Checkboxes element constructor.
-     *
-     * @since 1.0
-     */
-    public function __construct( $key, array $properties = null ) {
+	/**
+	 * The Checkboxes element constructor.
+	 *
+	 * @since 1.0
+	 */
+	public function __construct( $key = '', array $properties = null ) {
 
-        // Set the type attribute.
-        if ( ! $this->has_attr( 'type' ) )
-            $this->set_attr( 'type', 'checkbox' );
+		// Set the type attribute.
+		if ( ! $this->has_attr( 'type' ) )
+			$this->set_attr( 'type', 'checkbox' );
 
-        parent::__construct( $key, $properties );
+		parent::__construct( $key, $properties );
 
-    } // end __construct()
+		if ( is_array( $properties ) && isset( $properties['value_options'] ) )
+			$this->set_value_options( $properties['value_options'] );
+
+	} // end __construct()
 
 
-    /*** Methods **************************************************************/
+	/*** Methods **************************************************************/
 
-    // Value Options
+	// Value Options
 
-    /**
-     * Get the values and labels for the value options.
-     *
-     * @since 1.0
-     * @return array
-     */
-    public function get_value_options() {
-        return $this->value_options;
-    } // end get_value_options()
+	/**
+	 * Get the values and labels for the value options.
+	 *
+	 * @since 1.0
+	 * @return array
+	 */
+	public function get_value_options() {
+		return $this->value_options;
+	} // end get_value_options()
 
-    /**
-     * Ser the values and labels for the value options.
-     *
-     * @since 1.0
-     * @return Momtaz_Nmwdhj_Element_Checkboxes
-     */
-    public function set_value_options( $options, $append = false ) {
+	/**
+	 * Ser the values and labels for the value options.
+	 *
+	 * @since 1.0
+	 * @return Nmwdhj\Elements\Checkboxes
+	 */
+	public function set_value_options( $options, $append = false ) {
 
-        if ( is_array( $options ) ) {
+		if ( is_array( $options ) ) {
 
-            if ( $append ) {
+			if ( $append )
+				$options = array_merge( (array) $this->value_options, $options );
 
-                $this->value_options += $options;
+			$this->value_options = $options;
 
-            } else {
+		} // end if
 
-                $this->value_options = $options;
+		return $this;
 
-            } // end if
+	} // end set_value_options()
 
-        } // end if
+	/**
+	 * Remove all/specified value options.
+	 *
+	 * @since 1.0
+	 * @return Nmwdhj\Elements\Checkboxes
+	 */
+	public function remove_value_options( $options = '' ) {
 
-        return $this;
+		if ( is_array( $options ) && ! empty( $options ) ) {
 
-    } // end set_value_options()
+			foreach( $options as $option )
+				$this->remove_value_option( $option );
 
-    /**
-     * Remove all/specified value options.
-     *
-     * @since 1.0
-     * @return Momtaz_Nmwdhj_Element_Checkboxes
-     */
-    public function remove_value_options( $options = '' ) {
+		} else {
 
-        if ( is_array( $options ) && ! empty( $options ) ) {
+			$this->value_options = array();
 
-            foreach( $options as $option ) {
-                $this->remove_value_option( $option );
-            } // end foreach
+		} // end if
 
-        } else {
+		return $this;
 
-            $this->value_options = array();
+	} // end remove_value_options()
 
-        } // end if
+	/**
+	 * Remove a specified value option.
+	 *
+	 * @since 1.0
+	 * @return Nmwdhj\Elements\Checkboxes
+	 */
+	public function remove_value_option( $option ) {
+		unset( $this->value_options[$option] );
+		return $this;
+	} // end remove_value_option()
 
-        return $this;
-
-    } // end remove_value_options()
-
-    /**
-     * Remove a specified value option.
-     *
-     * @since 1.0
-     * @return Momtaz_Nmwdhj_Element_Checkboxes
-     */
-    public function remove_value_option( $option ) {
-        unset( $this->value_options[$option] );
-        return $this;
-    } // end remove_value_option()
-
-} // end Class Momtaz_Nmwdhj_Element_Checkboxes
+} // end Class Checkboxes

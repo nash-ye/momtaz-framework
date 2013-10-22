@@ -1,111 +1,116 @@
 <?php
+namespace Nmwdhj\Elements;
+
 /**
  * The Select element class.
  *
  * @since 1.0
  */
-class Momtaz_Nmwdhj_Element_Select extends Momtaz_Nmwdhj_SimpleElement {
+class Select extends Base {
 
-    /*** Properties ***********************************************************/
+	/*** Properties ***********************************************************/
 
-    /**
-     * Default element key.
-     *
-     * @since 1.0
-     * @var string
-     */
-    protected $key = 'select';
+	/**
+	 * Default element key.
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	protected $key = 'select';
 
-    /**
-     * Default element view key.
-     *
-     * @since 1.0
-     * @var string
-     */
-    protected $view_key = 'select';
-
-    /**
-     * Default value options.
-     *
-     * @since 1.0
-     * @var array
-     */
-    protected $value_options = array();
+	/**
+	 * Default value options.
+	 *
+	 * @since 1.0
+	 * @var array
+	 */
+	protected $value_options = array();
 
 
-    /*** Methods **************************************************************/
+	/*** Magic Methods ********************************************************/
 
-    // Value Options
+	/**
+	 * The Select element constructor.
+	 *
+	 * @since 1.0
+	 */
+	public function __construct( $key = '', array $properties = null ) {
 
-    /**
-     * Get the values and labels for the value options.
-     *
-     * @since 1.0
-     * @return array
-     */
-    public function get_value_options() {
-        return $this->value_options;
-    } // end get_value_options()
+		parent::__construct( $key, $properties );
 
-    /**
-     * Ser the values and labels for the value options.
-     *
-     * @since 1.0
-     * @return Momtaz_Nmwdhj_Element_Select
-     */
-    public function set_value_options( $options, $append = false ) {
+		if ( is_array( $properties ) && isset( $properties['value_options'] ) )
+			$this->set_value_options( $properties['value_options'] );
 
-        if ( is_array( $options ) ) {
+	} // end __construct()
 
-            if ( $append ) {
 
-                $this->value_options += $options;
+	/*** Methods **************************************************************/
 
-            } else {
+	// Value Options
 
-                $this->value_options = $options;
+	/**
+	 * Get the values and labels for the value options.
+	 *
+	 * @since 1.0
+	 * @return array
+	 */
+	public function get_value_options() {
+		return $this->value_options;
+	} // end get_value_options()
 
-            } // end if
+	/**
+	 * Ser the values and labels for the value options.
+	 *
+	 * @since 1.0
+	 * @return Nmwdhj\Elements\Select
+	 */
+	public function set_value_options( $options, $append = false ) {
 
-        } // end if
+		if ( is_array( $options ) ) {
 
-        return $this;
+			if ( $append )
+				$options = array_merge( (array) $this->value_options, $options );
 
-    } // end set_value_options()
+			$this->value_options = $options;
 
-    /**
-     * Remove all/specified value options.
-     *
-     * @since 1.0
-     * @return Momtaz_Nmwdhj_Element_Select
-     */
-    public function remove_value_options( $options = '' ) {
+		} // end if
 
-        if ( is_array( $options ) && ! empty( $options ) ) {
+		return $this;
 
-            foreach( $options as $option ) {
-                $this->remove_value_option( $option );
-            } // end foreach
+	} // end set_value_options()
 
-        } else {
+	/**
+	 * Remove all/specified value options.
+	 *
+	 * @since 1.0
+	 * @return Nmwdhj\Elements\Select
+	 */
+	public function remove_value_options( $options = '' ) {
 
-            $this->value_options = array();
+		if ( is_array( $options ) && ! empty( $options ) ) {
 
-        } // end if
+			foreach( $options as $option )
+				$this->remove_value_option( $option );
 
-        return $this;
+		} else {
 
-    } // end remove_value_options()
+			$this->value_options = array();
 
-    /**
-     * Remove a specified value option.
-     *
-     * @since 1.0
-     * @return Momtaz_Nmwdhj_Element_Select
-     */
-    public function remove_value_option( $option ) {
-        unset( $this->value_options[$option] );
-        return $this;
-    } // end remove_value_option()
+		} // end if
 
-} // end Class Momtaz_Nmwdhj_Element_Select
+		return $this;
+
+	} // end remove_value_options()
+
+	/**
+	 * Remove a specified value option.
+	 *
+	 * @since 1.0
+	 * @return Nmwdhj\Elements\Select
+	 */
+	public function remove_value_option( $option ) {
+		unset( $this->value_options[$option] );
+		return $this;
+	} // end remove_value_option()
+
+} // end Class Select

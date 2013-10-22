@@ -8,6 +8,12 @@ Just another light and simple theme framework!
 Changelog:
 ================
 
+1.1.1
+  - Update the sceeenshot image.
+  - Update Nmwdhj module to 1.2.1
+  - Update Get The Image module to 0.9
+  - Fix a PHP notice in `momtaz_load_textdomain_mofile()` function.
+
 1.1 Final
   - Add the momtaz.pot file.
   - Fix the indent tabs bugs.

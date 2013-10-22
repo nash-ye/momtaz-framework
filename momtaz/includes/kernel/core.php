@@ -115,7 +115,7 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
 		} // end Switch
 
-		if ( $textdomain['id'] === $domain ) {
+		if ( isset( $textdomain['id'] ) && $textdomain['id'] === $domain ) {
 
 			$path = trailingslashit( $textdomain['path'] ) . "{$domain}-{$locale}.mo";
 
