@@ -108,8 +108,9 @@ function momtaz_theme_settings_page() {
 
 	$screen = get_current_screen();
 
-	if ( 'theme-settings' !== $screen->parent_base )
+	if ( 'theme-settings' !== $screen->parent_base ) {
 		return;
+	}
 
 	do_action( momtaz_format_hook( 'before_settings_page' ) ); ?>
 
@@ -180,13 +181,15 @@ function momtaz_theme_settings_page() {
  */
 function momtaz_settings_page_action_handler() {
 
-	if ( empty( $_REQUEST['action'] ) )
+	if ( empty( $_REQUEST['action'] ) ) {
 		 return;
+	}
 
 	$action = sanitize_key( $_REQUEST['action'] );
 
-	if ( ! current_user_can( momtaz_settings_page_capability() ) )
+	if ( ! current_user_can( momtaz_settings_page_capability() ) ) {
 		return;
+	}
 
 	do_action( 'momtaz_settings_page_action_handler', $action );
 
@@ -206,8 +209,9 @@ function momtaz_load_settings_page_meta_boxes() {
    if ( is_array( $args[0] ) ) {
 
 		// Load the 'About' meta box.
-		if ( in_array( 'about', $args[0], true ) )
+		if ( in_array( 'about', $args[0], true ) ) {
 			require trailingslashit( MOMTAZ_ADMIN_DIR ) . 'meta-boxes/theme-about.php';
+		}
 
    } // end if
 
@@ -244,8 +248,9 @@ function momtaz_settings_page_load_scripts() {
 
 	$screen = get_current_screen();
 
-	if ( 'theme-settings' !== $screen->parent_base )
+	if ( 'theme-settings' !== $screen->parent_base ) {
 		return;
+	}
 
 	?>
 	<script type="text/javascript">

@@ -8,9 +8,9 @@
  * @subpackage Template
  */
 
-
-if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) )
+if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) ) {
 	return;
+}
 
 ?>
 
@@ -47,8 +47,11 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) )
 
 		if ( $post_tags ) {
 
-			if ( isset( $show_sep ) && $show_sep )
-				echo '<span class="sep">' . _x( ' | ', 'entry-meta-sep', 'momtaz' ) . '</span>'; ?>
+			if ( isset( $show_sep ) && $show_sep ) {
+				echo '<span class="sep">' . _x( ' | ', 'entry-meta-sep', 'momtaz' ) . '</span>';
+			}
+
+			?>
 
 			<span class="tag-links">
 

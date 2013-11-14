@@ -87,4 +87,4 @@ global $post; ?>
 
 <?php do_action( momtaz_format_hook( 'after_entry' ) ); ?>
 
-<?php comments_template( '/comments.php', true ); ?>
+<?php comments_template( '/comments.php', true );

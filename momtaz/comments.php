@@ -11,18 +11,20 @@
  */
 
 // Load's directly.
-if ( ! defined( 'ABSPATH' ) ) die();
+defined( 'ABSPATH' ) OR die();
 
 /*
  * If the visitor has not yet entered the post password if needed
  * will return early without loading the comments.
  */
-if ( post_password_required() )
+if ( post_password_required() ) {
 	return;
+}
 
 /* If no comments are given and comments/pings are closed, return. */
-if ( ! have_comments() && ! comments_open() && ! pings_open() )
+if ( ! have_comments() && ! comments_open() && ! pings_open() ) {
    return;
+}
 
 do_action( momtaz_format_hook( 'before_comments' ) ); ?>
 
@@ -39,5 +41,5 @@ do_action( momtaz_format_hook( 'before_comments' ) ); ?>
 		?>
 
 	</section> <!-- #comments -->
-	
+
 <?php do_action( momtaz_format_hook( 'after_comments' ) );

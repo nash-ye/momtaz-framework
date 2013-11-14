@@ -16,4 +16,4 @@
 
 	<?php edit_comment_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ); ?>
 
-<?php /* No closing. WordPress will know where to add it. */ ?>
+<?php /* No closing. WordPress will know where to add it. */
