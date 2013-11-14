@@ -126,8 +126,9 @@ class Momtaz_Image_Clipper {
 
 		$options = $this->get_clip_options();
 
-		if ( isset( $options[ $key ] ) )
+		if ( isset( $options[ $key ] ) ) {
 			return $options[ $key ];
+		}
 
 		return $default;
 
@@ -145,8 +146,9 @@ class Momtaz_Image_Clipper {
 
 			$img_path = $this->get_image_path();
 
-			if ( ! empty( $img_path ) )
+			if ( ! empty( $img_path ) ) {
 				return dirname( $img_path );
+			}
 
 		} // end if
 
@@ -196,8 +198,9 @@ class Momtaz_Image_Clipper {
 		// Get the image path.
 		$img_path = $this->get_image_path();
 
-		if ( empty( $img_path ) )
+		if ( empty( $img_path ) ) {
 			return;
+		}
 
 		// Get the clip directory.
 		$dir = $this->get_clip_directory();
@@ -223,8 +226,9 @@ class Momtaz_Image_Clipper {
 	 */
 	public function set_image_path( $path ) {
 
-		if ( ! empty( $path ) && file_exists( $path ) )
+		if ( ! empty( $path ) && file_exists( $path ) ) {
 			$this->image_path = $path;
+		}
 
 		return $this;
 
@@ -238,8 +242,9 @@ class Momtaz_Image_Clipper {
 	 */
 	public function guess_image_path( $path ) {
 
-		if ( empty( $path ) )
+		if ( empty( $path ) ) {
 			return $this;
+		}
 
 		if ( realpath( $path ) === $path ) {
 
@@ -291,8 +296,9 @@ class Momtaz_Image_Clipper {
 	 */
 	public function set_clip_directory( $path ) {
 
-		if ( ! empty( $path ) && is_dir( $path ) )
+		if ( ! empty( $path ) && is_dir( $path ) ) {
 			$this->clip_directory = $path;
+		}
 
 		return $this;
 
@@ -375,17 +381,21 @@ class Momtaz_Image_Clipper {
 
 			if ( ! empty( $align ) ) {
 
-				if ( strpos( $align, 't' ) !== false )
+				if ( strpos( $align, 't' ) !== false ) {
 					$src['y'] = 0;
+				}
 
-				if ( strpos( $align, 'b' ) !== false )
+				if ( strpos( $align, 'b' ) !== false ) {
 					$src['y'] = $img_h - $src['h'];
+				}
 
-				if ( strpos( $align, 'l' ) !== false )
+				if ( strpos( $align, 'l' ) !== false ) {
 					$src['x'] = 0;
+				}
 
-				if ( strpos( $align, 'r' ) !== false )
+				if ( strpos( $align, 'r' ) !== false ) {
 					$src['x'] = $img_w - $src['w'];
+				}
 
 			} // end if
 
@@ -407,27 +417,31 @@ class Momtaz_Image_Clipper {
 		$width = $this->get_clip_width();
 		$height = $this->get_clip_height();
 
-		if ( ! $width || ! $height )
+		if ( ! $width || ! $height ) {
 			return false;
+		}
 
 		$img_path = $this->get_image_path();
 
-		if ( ! $img_path )
+		if ( ! $img_path ) {
 			return false;
+		}
 
 		// Get the clip file path.
 		$clip_path = $this->get_clip_filepath();
 
-		if ( ! $clip_path )
+		if ( ! $clip_path ) {
 			return false;
+		}
 
 		if ( ! file_exists( $clip_path ) ) {
 
 			// Get the WP_Image_Editor instance.
 			$img_editor = wp_get_image_editor( $this->get_image_path() );
 
-			if ( is_wp_error( $img_editor ) )
+			if ( is_wp_error( $img_editor ) ) {
 				return $img_editor;
+			}
 
 			// Get the original image size
 			$image_size = $img_editor->get_size();
@@ -444,8 +458,9 @@ class Momtaz_Image_Clipper {
 			// Now let's save the image.
 			$saved = $img_editor->save( $clip_path );
 
-			if ( is_wp_error( $saved ) || ! is_array( $saved ) )
+			if ( is_wp_error( $saved ) || ! is_array( $saved ) ) {
 				return false;
+			}
 
 			$dest_img = array(
 				'path' => $saved['path'],

@@ -42,12 +42,11 @@ function momtaz_get_settings(){
  */
 function momtaz_update_settings( array $theme_settings ){
 
-	if ( ! update_option( momtaz_theme_settings_option(), $theme_settings ) )
+	if ( ! update_option( momtaz_theme_settings_option(), $theme_settings ) ) {
 		return false;
+	}
 
 	momtaz()->settings = $theme_settings;
-
-	// :)
 	return true;
 
 } // end momtaz_update_settings()
@@ -60,12 +59,11 @@ function momtaz_update_settings( array $theme_settings ){
  */
 function momtaz_delete_settings(){
 
-	if ( ! delete_option( momtaz_theme_settings_option() ) )
+	if ( ! delete_option( momtaz_theme_settings_option() ) ) {
 		return false;
+	}
 
 	unset( momtaz()->settings );
-
-	// :)
 	return true;
 
 } // end momtaz_delete_settings()
@@ -84,8 +82,9 @@ function momtaz_get_setting( $option_ID ) {
 
 		$theme_settings = momtaz_get_settings();
 
-		if ( isset( $theme_settings[ $option_ID ] ) )
+		if ( isset( $theme_settings[ $option_ID ] ) ) {
 			return $theme_settings[ $option_ID ];
+		}
 
 	} // end if
 
@@ -99,13 +98,15 @@ function momtaz_get_setting( $option_ID ) {
  */
 function momtaz_add_setting( $option_ID, $option_value ) {
 
-	if ( empty( $option_ID ) )
+	if ( empty( $option_ID ) ) {
 		return false;
+	}
 
 	$theme_settings = momtaz_get_settings();
 
-	if ( isset( $theme_settings[ $option_ID ] ) )
+	if ( isset( $theme_settings[ $option_ID ] ) ) {
 		return true;
+	}
 
 	$theme_settings[ $option_ID ] = $option_value;
 
@@ -121,11 +122,11 @@ function momtaz_add_setting( $option_ID, $option_value ) {
  */
 function momtaz_update_setting( $option_ID, $option_value ) {
 
-	if ( empty( $option_ID ) )
+	if ( empty( $option_ID ) ) {
 		return false;
+	}
 
 	$theme_settings = momtaz_get_settings();
-
 	$theme_settings[ $option_ID ] = $option_value;
 
 	return momtaz_update_settings( $theme_settings );
@@ -140,13 +141,15 @@ function momtaz_update_setting( $option_ID, $option_value ) {
  */
 function momtaz_delete_setting( $option_ID ) {
 
-	if ( empty( $option_ID ) )
+	if ( empty( $option_ID ) ) {
 		return false;
+	}
 
 	$theme_settings = momtaz_get_settings();
 
-	if ( ! isset( $theme_settings[ $option_ID ] ) )
+	if ( ! isset( $theme_settings[ $option_ID ] ) ) {
 		return true;
+	}
 
 	unset( $theme_settings[ $option_ID ] );
 

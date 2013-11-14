@@ -26,8 +26,9 @@ function momtaz_is_vaild_url( $url ) {
  */
 function momtaz_limit_characters( $text, $limit ) {
 
-	if ( mb_strlen( $text ) > $limit )
+	if ( mb_strlen( $text ) > $limit ) {
 		$text = mb_substr( $text, 0, $limit );
+	}
 
 	return $text;
 
@@ -55,8 +56,9 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 
    $output = '';
 
-   if ( empty( $atts ) )
+   if ( empty( $atts ) ) {
 		return $output;
+	}
 
    $args = wp_parse_args( $args, array(
 	   'after' => '',
@@ -70,10 +72,11 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 
 		if ( is_bool( $value ) ) {
 
-			if ( $value === true )
+			if ( $value === true ) {
 				 $value = $key;
-			else
+			} else {
 				 continue;
+			}
 
 		} elseif ( is_array( $value ) ) {
 
@@ -103,8 +106,9 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 
    } // end foreach
 
-	if ( ! empty( $output ) )
+	if ( ! empty( $output ) ) {
 		$output = $args['before'] . trim( $output ) . $args['after'];
+	}
 
    return $output;
 

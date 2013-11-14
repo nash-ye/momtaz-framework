@@ -32,8 +32,9 @@ function momtaz_get_context() {
 			$context = array();
 
 			/* Front page. */
-			if ( is_front_page() )
+			if ( is_front_page() ){
 				$context[] = 'home';
+			}
 
 			/* Blog page. */
 			if ( is_home() ) {
@@ -67,8 +68,9 @@ function momtaz_get_context() {
 
 					if ( ( $object = get_queried_object() ) ) {
 
-						if ( 'post_format' === $object->taxonomy )
+						if ( 'post_format' === $object->taxonomy ) {
 							$object->slug = str_replace( 'post-format-', '', $object->slug );
+						}
 
 						$context[] = "taxonomy-{$object->taxonomy}";
 						$context[] = "taxonomy-{$object->taxonomy}-" . sanitize_html_class( $object->slug, $object->term_id );
@@ -82,8 +84,9 @@ function momtaz_get_context() {
 
 					$post_type = get_post_type_object( user_trailingslashit( get_query_var( 'post_type' ) ) );
 
-					if ( ! empty( $post_type ) )
+					if ( ! empty( $post_type ) ) {
 						$context[] = "archive-{$post_type->name}";
+					}
 
 				}
 
@@ -103,12 +106,17 @@ function momtaz_get_context() {
 
 						$context[] = 'date';
 
-						if ( is_year() )
+						if ( is_year() ){
 							$context[] = 'year';
-						if ( is_month() )
+						}
+
+						if ( is_month() ) {
 							$context[] = 'month';
-						if ( is_day() )
+						}
+
+						if ( is_day() ) {
 							$context[] = 'day';
+						}
 
 					} // end if
 
@@ -160,8 +168,9 @@ function momtaz_get_post_context( $post = null ) {
 	$post = get_post( $post );
 
 	// Is the post exists?
-	if ( empty( $post ) )
+	if ( empty( $post ) ) {
 		 return false;
+	}
 
 	if ( ! isset( $context[$post->ID] ) ) {
 
@@ -193,8 +202,9 @@ function momtaz_get_post_context( $post = null ) {
 
 				$post_context[] = "author-{$post->post_author}";
 
-				if ( ! empty( $post->post_author ) && $post->post_author == $current_user_id )
+				if ( ! empty( $post->post_author ) && $post->post_author == $current_user_id ) {
 					$post_context[] = 'author-self';
+				}
 
 			} // end if
 
@@ -292,11 +302,13 @@ function momtaz_body_class( $classes ) {
 
 
 	/* Momtaz theme widgets detection. */
-	foreach ( array( 'primary', 'secondary', 'subsidiary' ) as $sidebar )
+	foreach ( array( 'primary', 'secondary', 'subsidiary' ) as $sidebar ) {
 		$classes[] = ( is_active_sidebar( $sidebar ) ) ? "sidebar-{$sidebar}-active" : "sidebar-{$sidebar}-inactive";
+	}
 
-	if ( in_array( 'sidebar-primary-inactive', $classes ) && in_array( 'sidebar-secondary-inactive', $classes ) && in_array( 'sidebar-subsidiary-inactive', $classes ) )
+	if ( in_array( 'sidebar-primary-inactive', $classes ) && in_array( 'sidebar-secondary-inactive', $classes ) && in_array( 'sidebar-subsidiary-inactive', $classes ) ) {
 		$classes[] = 'no-widgets';
+	}
 
 
 	return (array) apply_filters( 'momtaz_body_class', array_map( 'esc_attr', $classes ) );
@@ -340,8 +352,9 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 	// Get post object
 	$post = get_post( $post_id );
 
-	if ( empty( $post ) )
+	if ( empty( $post ) ) {
 		return $classes;
+	}
 
 	// hAtom compliance.
 	$classes[] = 'hentry';
@@ -389,8 +402,9 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 
 			if ( ! empty( $terms ) ) {
 
-				foreach( $terms as $term )
+				foreach( $terms as $term ) {
 					$classes[] = 'term-'. sanitize_html_class( $term->slug, $term->term_id );
+				}
 
 			} // end if
 
@@ -399,22 +413,26 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 	} // end-if
 
 	// Sticky posts.
-	if ( is_home() && ! is_paged() && is_sticky( $post->ID ) )
+	if ( is_home() && ! is_paged() && is_sticky( $post->ID ) ) {
 		$classes[] = 'sticky';
+	}
 
 	// Is this post protected by a password?
-	if ( post_password_required( $post ) )
+	if ( post_password_required( $post ) ) {
 		$classes[] = 'password-protected';
+	}
 
 	// Has a custom excerpt?
-	if ( has_excerpt( $post ) )
+	if ( has_excerpt( $post ) ) {
 		$classes[] = 'has-excerpt';
+	}
 
 	// Custom classes.
 	if ( ! empty( $class ) ) {
 
-		if ( ! is_array( $class ) )
+		if ( ! is_array( $class ) ) {
 			$class = preg_split( '#\s+#', $class );
+		}
 
 		$classes = array_merge( $classes, $class );
 
@@ -451,15 +469,15 @@ function momtaz_is_single( $post = false, $post_types = '' ) {
 		if ( ! empty( $post ) ) {
 
 			$post = (array) $post;
-
 			$post_obj = get_queried_object();
 
-			if ( in_array( $post_obj->ID, $post, true ) )
+			if ( in_array( $post_obj->ID, $post, true ) ){
 				$retval = true;
-			elseif ( in_array( $post_obj->post_title, $post, true ) )
+			} elseif ( in_array( $post_obj->post_title, $post, true ) ) {
 				$retval = true;
-			elseif ( in_array( $post_obj->post_name, $post, true ) )
+			} elseif ( in_array( $post_obj->post_name, $post, true ) ) {
 				$retval = true;
+			}
 
 		} else {
 

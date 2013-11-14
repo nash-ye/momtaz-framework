@@ -24,8 +24,9 @@ function momtaz_wp_title( $args = '' ) {
 
 	$title = wp_title( $args['separator'], false, $args['seplocation'] );
 
-	if ( ! $args['echo'] )
+	if ( ! $args['echo'] ) {
 		return $title;
+	}
 
 	echo $title;
 
@@ -42,8 +43,9 @@ function momtaz_filter_wp_title( $title, $sep ) {
 
 	global $paged, $page;
 
-	if ( is_feed() )
+	if ( is_feed() ) {
 		return $title;
+	}
 
 	// Add the site name.
 	$title .= get_bloginfo( 'name' );
@@ -51,12 +53,14 @@ function momtaz_filter_wp_title( $title, $sep ) {
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
 
-	if ( $site_description && ( is_home() || is_front_page() ) )
+	if ( $site_description && ( is_home() || is_front_page() ) ) {
 		$title = "$title $sep $site_description";
+	}
 
 	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 )
+	if ( $paged >= 2 || $page >= 2 ) {
 		$title = "$title $sep " . sprintf( __( 'Page %s', 'momtaz' ), max( $paged, $page ) );
+	}
 
 	return $title;
 
@@ -79,8 +83,9 @@ function momtaz_meta_generator() {
 	$generator = array_filter( array_unique( (array) $generator ) );
 
 	// If it is empty, return NULL.
-	if ( empty( $generator ) )
+	if ( empty( $generator ) ) {
 		return;
+	}
 
 	echo '<meta name="generator" content="' . esc_attr( implode( ',', $generator ) ) . '">' ."\n";
 
@@ -102,8 +107,9 @@ function momtaz_meta_designer() {
 	$designer = array_filter( array_unique( (array) $designer ) );
 
 	// If it is empty, return NULL.
-	if ( empty( $designer ) )
+	if ( empty( $designer ) ) {
 		return;
+	}
 
 	echo '<meta name="designer" content="' . esc_attr( implode( ',', $designer ) ) . '">' ."\n";
 
@@ -117,8 +123,9 @@ function momtaz_meta_designer() {
  */
 function momtaz_continue_reading_link( $post_id = 0 ) {
 
-	if ( empty( $post_id ) )
+	if ( empty( $post_id ) ) {
 		$post_id = get_the_ID();
+	}
 
 	$link = '<a href="' . esc_url( get_permalink( $post_id ) ) . '" class="more-link"><span>';
 	$link .= __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'momtaz' );

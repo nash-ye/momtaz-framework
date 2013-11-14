@@ -36,8 +36,9 @@ function momtaz_load_parent_theme_textdomain(){
 
 	$textdomain = momtaz_get_parent_theme_textdomain();
 
-	if ( empty( $textdomain['id'] ) )
+	if ( empty( $textdomain['id'] ) ) {
 		return false;
+	}
 
 	// Load the theme's translated strings.
 	return load_theme_textdomain( $textdomain['id'] );
@@ -80,8 +81,9 @@ function momtaz_load_child_theme_textdomain(){
 
 	$textdomain = momtaz_get_child_theme_textdomain();
 
-	if ( empty( $textdomain['id'] ) )
+	if ( empty( $textdomain['id'] ) ) {
 		return false;
+	}
 
 	return load_theme_textdomain( $textdomain['id'] );
 
@@ -119,8 +121,9 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
 			$path = trailingslashit( $textdomain['path'] ) . "{$domain}-{$locale}.mo";
 
-			if ( ( $path = locate_template( $path ) ) )
+			if ( ( $path = locate_template( $path ) ) ) {
 				$mofile = $path;
+			}
 
 			break; // Stop looping!
 

@@ -76,8 +76,9 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
 
 			$stylesheet['basename'] = str_replace( '.css', $dev_suffix, $stylesheet['basename'] );
 
-			if ( file_exists( trailingslashit( $stylesheet_dir ) . $stylesheet['basename'] ) )
+			if ( file_exists( trailingslashit( $stylesheet_dir ) . $stylesheet['basename'] ) ) {
 				 $stylesheet_uri = trailingslashit( $stylesheet['dirname'] ) . $stylesheet['basename'];
+			}
 
 		} // end foreach
 
@@ -95,8 +96,9 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
  */
  function momtaz_get_style_loader_tag( $stylesheet_uri, $atts = '' ){
 
-	if ( empty( $stylesheet_uri ) )
+	if ( empty( $stylesheet_uri ) ) {
 		return;
+	}
 
 	$atts = wp_parse_args( $atts, array(
 		'href' => $stylesheet_uri,
@@ -144,11 +146,13 @@ function momtaz_get_dev_stylesheet_suffixs() {
  */
 function momtaz_is_style_dev_mode() {
 
-	if ( defined( 'MOMTAZ_STYLE_DEV' ) && MOMTAZ_STYLE_DEV )
+	if ( defined( 'MOMTAZ_STYLE_DEV' ) && MOMTAZ_STYLE_DEV ) {
 		return true;
+	}
 
-	if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG )
+	if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
 		return true;
+	}
 
 	return false;
 

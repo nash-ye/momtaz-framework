@@ -59,8 +59,9 @@ function momtaz_child_theme_uri( $template_name = '' ){
 	// Remove the slash from the beginning of the string.
 	$template_name = ltrim( $template_name , '/' );
 
-	if ( ! empty( $template_name ) )
+	if ( ! empty( $template_name ) ) {
 		$template_uri = trailingslashit( $template_uri ) . $template_name;
+	}
 
 	return apply_filters( 'momtaz_child_theme_uri', $template_uri, $template_name );
 
@@ -80,8 +81,9 @@ function momtaz_parent_theme_uri( $template_name = '' ){
 	// Remove the slash from the beginning of the string.
 	$template_name = ltrim( $template_name, '/' );
 
-	if ( ! empty( $template_name ) )
+	if ( ! empty( $template_name ) ) {
 		$template_uri = trailingslashit( $template_uri ) . $template_name;
+	}
 
 	return apply_filters( 'momtaz_parent_theme_uri', $template_uri, $template_name );
 
@@ -102,8 +104,9 @@ function momtaz_locate_template_uri( $template_names ) {
 
 	foreach ( (array) $template_names as $template_name ) {
 
-		if ( empty( $template_name ) )
+		if ( empty( $template_name ) ) {
 			continue;
+		}
 
 		// Remove the slash from the beginning of the string.
 		$template_name = ltrim( $template_name, '/' );
@@ -111,8 +114,9 @@ function momtaz_locate_template_uri( $template_names ) {
 		// Loop through template stack
 		foreach ( momtaz_get_template_stack() as $template_stack ) {
 
-			if ( empty( $template_stack->path ) )
+			if ( empty( $template_stack->path ) ) {
 				continue;
+			}
 
 			if ( file_exists( trailingslashit( $template_stack->path ) . $template_name ) ){
 				$located = trailingslashit( $template_stack->uri ) . $template_name;
@@ -121,8 +125,9 @@ function momtaz_locate_template_uri( $template_names ) {
 
 		} // end foreach
 
-		if ( ! empty( $located ) )
+		if ( ! empty( $located ) ) {
 			break;
+		}
 
 	} // end foreach
 
@@ -146,15 +151,17 @@ function momtaz_context_template( $name, $slug = '', $load = true, $args = null 
 
 	foreach ( array_reverse( momtaz_get_context() ) as $value ) {
 
-		if ( ! empty( $slug ) )
+		if ( ! empty( $slug ) ) {
 			$context[] = "{$slug}-{$value}";
-		else
+		} else {
 			$context[] = "{$value}";
+		}
 
 	} // end foreach
 
-	if ( ! empty( $slug ) )
+	if ( ! empty( $slug ) ) {
 		$context[] = $slug;
+	}
 
 	return momtaz_template_part( $name, $context, $load, $args );
 
@@ -170,20 +177,23 @@ function momtaz_post_context_template( $name, $slug = '', $post = 0, $load = tru
 
 	$context = array();
 
-	if ( empty( $post ) )
+	if ( empty( $post ) ) {
 		$post = get_the_ID();
+	}
 
 	foreach ( array_reverse( momtaz_get_post_context( $post ) ) as $value ) {
 
-		if ( ! empty( $slug ) )
+		if ( ! empty( $slug ) ) {
 			$context[] = "{$slug}-{$value}";
-		else
+		} else {
 			$context[] = "{$value}";
+		}
 
 	} // end foreach
 
-	if ( ! empty( $slug ) )
+	if ( ! empty( $slug ) ) {
 		$context[] = $slug;
+	}
 
 	return momtaz_template_part( $name, $context, $load, $args );
 
@@ -199,8 +209,9 @@ function momtaz_template_part( $name, $context = '', $load = true, $args = null 
 
 	$template_names = array();
 
-	if ( empty( $name ) )
+	if ( empty( $name ) ) {
 		return false;
+	}
 
 	$is_dir = is_dir( momtaz_locate_template( $name, false ) );
 
@@ -210,10 +221,11 @@ function momtaz_template_part( $name, $context = '', $load = true, $args = null 
 
 		$slug = untrailingslashit( $slug );
 
-		if ( $is_dir )
+		if ( $is_dir ) {
 			$template_names[] = "{$name}/{$slug}.php";
-		else
+		} else {
 			$template_names[] = "{$name}-{$slug}.php";
+		}
 
 	} // end foreach
 
@@ -241,8 +253,9 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
 	foreach ( (array) $template_names as $template_name ) {
 
 		// Continue if template is empty
-		if ( empty( $template_name ) )
+		if ( empty( $template_name ) ) {
 			continue;
+		}
 
 		// Trim off any slashes from the template name
 		$template_name  = ltrim( $template_name, '/' );
@@ -250,8 +263,9 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
 		// Loop through template stack
 		foreach ( momtaz_get_template_stack() as $template_stack ) {
 
-			if ( empty( $template_stack->path ) )
+			if ( empty( $template_stack->path ) ) {
 				continue;
+			}
 
 			if ( file_exists( trailingslashit( $template_stack->path ) . $template_name ) ) {
 				$located = trailingslashit( $template_stack->path ) . $template_name;
@@ -260,14 +274,16 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
 
 		} // end foreach
 
-		if ( ! empty( $located ) )
+		if ( ! empty( $located ) ) {
 			break;
+		}
 
 	} // end foreach
 
 	// Maybe load the template if one was located
-	if ( $load && ! empty( $located ) )
+	if ( $load && ! empty( $located ) ) {
 		momtaz_load_template( $located, $load_once, $args );
+	}
 
 	return $located;
 
@@ -284,8 +300,9 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
  */
 function momtaz_load_template( $_template, $_load_once = true, $_args = null ) {
 
-	if ( empty( $_template ) )
+	if ( empty( $_template ) ) {
 		return;
+	}
 
 	$_load_once = (bool) $_load_once;
 
@@ -317,8 +334,9 @@ function momtaz_get_template_stack( $slug = '' ) {
 
 			$slug = sanitize_key( $slug );
 
-			if ( isset( $momtaz->template_stack[ $slug ] ) )
+			if ( isset( $momtaz->template_stack[ $slug ] ) ) {
 				$list = $momtaz->template_stack[ $slug ];
+			}
 
 		} // end if
 
@@ -347,8 +365,9 @@ function momtaz_register_template_stack( $stack ){
 
 	$stack->slug = sanitize_key( $stack->slug );
 
-	if ( empty( $stack->slug ) )
+	if ( empty( $stack->slug ) ) {
 		return false;
+	}
 
 	$momtaz->template_stack[$stack->slug] = $stack;
 
@@ -357,8 +376,9 @@ function momtaz_register_template_stack( $stack ){
 		$p1 = (int) $a->priority;
 		$p2 = (int) $b->priority;
 
-		if ( $p1 === $p2 )
+		if ( $p1 === $p2 ) {
 			return 0;
+		}
 
 		return ( $p1 > $p2 ) ? +1 : -1;
 
@@ -378,8 +398,9 @@ function momtaz_deregister_template_stack( $slug ){
 
 	$slug = sanitize_key( $slug );
 
-	if ( empty( $slug ) )
+	if ( empty( $slug ) ) {
 		return false;
+	}
 
 	unset( momtaz()->template_stack[$slug] );
 

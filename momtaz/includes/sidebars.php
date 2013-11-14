@@ -23,8 +23,9 @@ function momtaz_register_sidebars() {
 	$sidebars = get_theme_support( 'momtaz-core-sidebars' );
 
 	// If the theme doesn't add support for any sidebars, return.
-	if ( ! is_array( $sidebars[0] ) )
+	if ( ! is_array( $sidebars[0] ) ) {
 		return;
+	}
 
 	// Get the available core framework sidebars.
 	$core_sidebars = array (
@@ -62,14 +63,15 @@ function momtaz_register_sidebars() {
 	foreach ( $sidebars[0] as $sidebar ) {
 
 		// Make sure the given sidebar is one of the core sidebars.
-		if ( isset( $core_sidebars[$sidebar] ) ) {
+		if ( isset( $core_sidebars[ $sidebar ] ) ) {
 
 			// If no 'id' was given, use the $sidebar.
-			if ( ! isset( $core_sidebars[$sidebar]['id'] ) )
-				$core_sidebars[$sidebar]['id'] = $sidebar;
+			if ( ! isset( $core_sidebars[ $sidebar ]['id'] ) ) {
+				$core_sidebars[ $sidebar ]['id'] = $sidebar;
+			}
 
 			// Register the sidebar.
-			momtaz_register_sidebar( $core_sidebars[$sidebar] );
+			momtaz_register_sidebar( $core_sidebars[ $sidebar ] );
 
 		} // end if
 

@@ -35,8 +35,9 @@ final class Momtaz_Modules {
 
 			$modules = self::get();
 
-			if ( isset( $modules[ $slug ] ) )
+			if ( isset( $modules[ $slug ] ) ) {
 				$module = $modules[ $slug ];
+			}
 
 		} // end if
 
@@ -52,11 +53,9 @@ final class Momtaz_Modules {
 	 */
 	public static function get( array $args = null, $operator = 'AND' ) {
 
-		if ( empty( $args ) )
+		if ( empty( $args ) ) {
 			 return self::$modules;
-
-		if ( empty( $operator ) )
-			 $operator = 'AND';
+		}
 
 		$filtered = array();
 		$count = count( $args );
@@ -75,8 +74,9 @@ final class Momtaz_Modules {
 
 							$m_akey = wp_filter_object_list( array( $obj_prop ), $m_value, $operator );
 
-							if ( ! empty( $m_akey ) )
+							if ( ! empty( $m_akey ) ) {
 								$matched++;
+							}
 
 						} elseif ( $obj_prop == $m_value ) {
 							$matched++;
@@ -89,6 +89,7 @@ final class Momtaz_Modules {
 				$b = false;
 				switch( strtoupper( $operator ) ) {
 
+					default:
 					case 'AND':
 						$b = ( $matched == $count );
 						break;
@@ -103,8 +104,9 @@ final class Momtaz_Modules {
 
 				} // end Switch
 
-				if ( $b )
+				if ( $b ) {
 					$filtered[$key] = $obj;
+				}
 
 		} // end foreach
 
@@ -122,8 +124,9 @@ final class Momtaz_Modules {
 	 */
 	public static function register( $module ) {
 
-		if ( is_array( $module ) )
+		if ( is_array( $module ) ) {
 			$module = new Momtaz_Module( $module );
+		}
 
 		if ( $module instanceof Momtaz_Module ) {
 
@@ -150,11 +153,11 @@ final class Momtaz_Modules {
 
 		$slug = sanitize_key( $slug );
 
-		if ( empty( $slug ) )
+		if ( empty( $slug ) ) {
 			return false;
+		}
 
 		unset( self::$modules[ $slug ] );
-
 		return true;
 
 	} // end deregister()
@@ -175,8 +178,9 @@ final class Momtaz_Modules {
 
 				if ( $module instanceof Momtaz_Module ) {
 
-					if ( $module->load( $force ) )
+					if ( $module->load( $force ) ) {
 						$loaded_modules[] = $module->get_path();
+					}
 
 				} // end if
 
@@ -194,13 +198,15 @@ final class Momtaz_Modules {
 	 */
 	public static function load_module( $module, $force = false ) {
 
-		if ( is_string( $module ) )
+		if ( is_string( $module ) ) {
 			$module = self::get_by_slug( $module );
-		else if ( is_array( $module ) )
+		} elseif ( is_array( $module ) ) {
 			$module = self::get( $module, 'OR' );
+		}
 
-		if ( $module instanceof Momtaz_Module )
+		if ( $module instanceof Momtaz_Module ) {
 			return $module->load( $force );
+		}
 
 		return false;
 
@@ -216,8 +222,9 @@ final class Momtaz_Modules {
 	 */
 	public static function locate_module( $path ) {
 
-		if ( validate_file( $path ) != 0 )
+		if ( validate_file( $path ) != 0 ) {
 			 return false;
+		}
 
 		return locate_template( path_join( 'modules', $path ) );
 
@@ -310,8 +317,9 @@ final class Momtaz_Module implements ArrayAccess {
 
 		/*** Module Slug ******************************************************/
 
-		if ( empty( $module['slug'] ) )
+		if ( empty( $module['slug'] ) ) {
 			$module['slug'] = $this->get_name();
+		}
 
 		// Set the module slug.
 		$this->set_slug( $module['slug'] );
@@ -336,8 +344,9 @@ final class Momtaz_Module implements ArrayAccess {
 
 		foreach( $module as $property => $value ) {
 
-			if ( array_search( $property, $properties ) === false )
+			if ( array_search( $property, $properties ) === false ) {
 				 $module['metadata'][ $property ] = $value;
+			}
 
 		} // end foreach
 
@@ -389,13 +398,13 @@ final class Momtaz_Module implements ArrayAccess {
 	 */
 	public function get_metadata( $key = '' ) {
 
-		if ( empty( $key ) )
+		if ( empty( $key ) ) {
 			return $this->metadata;
+		}
 
-		if ( ! isset( $this->metadata[$key] ) )
-			return;
-
-		return $this->metadata[$key];
+		if ( isset( $this->metadata[$key] ) ) {
+			return $this->metadata[$key];
+		}
 
 	} // end get_metadata()
 
@@ -407,13 +416,13 @@ final class Momtaz_Module implements ArrayAccess {
 	 */
 	public function get_settings( $key = '' ) {
 
-		if ( empty( $key ) )
+		if ( empty( $key ) ) {
 			return $this->settings;
+		}
 
-		if ( ! isset( $this->settings[$key] ) )
-			return;
-
-		return $this->settings[$key];
+		if ( isset( $this->settings[$key] ) ) {
+			return $this->settings[$key];
+		}
 
 	} // end get_settings()
 
@@ -514,8 +523,9 @@ final class Momtaz_Module implements ArrayAccess {
 
 			$callback = $this->get_settings( 'is_loaded_callback' );
 
-			if ( is_callable( $callback ) )
+			if ( is_callable( $callback ) ) {
 				$this->statuses['loaded'] = (bool) call_user_func( $callback, $this );
+			}
 
 		} // end if
 
@@ -533,8 +543,9 @@ final class Momtaz_Module implements ArrayAccess {
 	 */
 	public function load( $force = false ) {
 
-		if ( ! $force && $this->get_settings( 'once' ) && $this->is_loaded() )
+		if ( ! $force && $this->get_settings( 'once' ) && $this->is_loaded() ) {
 			 return true;
+		}
 
 		if ( ( $path = Momtaz_Modules::locate_module( $this->get_path() ) ) ) {
 

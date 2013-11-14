@@ -57,8 +57,9 @@ final class Momtaz {
 	 */
 	private function define_constants() {
 
-		if ( ! defined( 'THEME_PREFIX' ) )
+		if ( ! defined( 'THEME_PREFIX' ) ) {
 			 define( 'THEME_PREFIX', 'momtaz' );
+		}
 
 		define( 'THEME_DIR', get_template_directory() );
 		define( 'THEME_URI', get_template_directory_uri() );
@@ -75,11 +76,13 @@ final class Momtaz {
 		define( 'MOMTAZ_INCLUDES_DIR', trailingslashit( THEME_DIR ) . 'includes' );
 		define( 'MOMTAZ_INCLUDES_URI', trailingslashit( THEME_URI ) . 'includes' );
 
-		if ( ! defined( 'MOMTAZ_CACHE_DIR' ) )
+		if ( ! defined( 'MOMTAZ_CACHE_DIR' ) ) {
 			define( 'MOMTAZ_CACHE_DIR', trailingslashit( THEME_DIR ) . 'cache' );
+		}
 
-		if ( ! defined( 'MOMTAZ_CACHE_URI' ) )
+		if ( ! defined( 'MOMTAZ_CACHE_URI' ) ) {
 			define( 'MOMTAZ_CACHE_URI', trailingslashit( THEME_URI ) . 'cache' );
+		}
 
 	} // end define_constents()
 
@@ -132,8 +135,8 @@ final class Momtaz {
 	 */
 	private function load_kernel() {
 
-		require MOMTAZ_INCLUDES_DIR . '/kernel/core.php';
-		require MOMTAZ_INCLUDES_DIR . '/kernel/modules.php';
+		require MOMTAZ_INCLUDES_DIR . '/core.php';
+		require MOMTAZ_INCLUDES_DIR . '/modules.php';
 
 	} // end load_kernel()
 
@@ -144,18 +147,18 @@ final class Momtaz {
 	 */
 	private function load_common() {
 
-		require MOMTAZ_INCLUDES_DIR . '/common/context.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/settings.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/formatting.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/comments.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/general.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/templates.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/scripts.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/styles.php';
-		require MOMTAZ_INCLUDES_DIR . '/common/media.php';
+		require MOMTAZ_INCLUDES_DIR . '/context.php';
+		require MOMTAZ_INCLUDES_DIR . '/settings.php';
+		require MOMTAZ_INCLUDES_DIR . '/formatting.php';
+		require MOMTAZ_INCLUDES_DIR . '/comments.php';
+		require MOMTAZ_INCLUDES_DIR . '/general.php';
+		require MOMTAZ_INCLUDES_DIR . '/templates.php';
+		require MOMTAZ_INCLUDES_DIR . '/scripts.php';
+		require MOMTAZ_INCLUDES_DIR . '/styles.php';
+		require MOMTAZ_INCLUDES_DIR . '/media.php';
 
 		// Sets up the default filters and actions.
-		require MOMTAZ_INCLUDES_DIR . '/common/filters.php';
+		require MOMTAZ_INCLUDES_DIR . '/filters.php';
 
 	} // end load_common()
 
@@ -166,8 +169,8 @@ final class Momtaz {
 	 */
 	private function load_features() {
 
-		require_if_theme_supports( 'momtaz-core-sidebars', MOMTAZ_INCLUDES_DIR . '/features/sidebars.php' );
-		require_if_theme_supports( 'momtaz-core-menus', MOMTAZ_INCLUDES_DIR . '/features/menus.php' );
+		require_if_theme_supports( 'momtaz-core-sidebars', MOMTAZ_INCLUDES_DIR . '/sidebars.php' );
+		require_if_theme_supports( 'momtaz-core-menus', MOMTAZ_INCLUDES_DIR . '/menus.php' );
 
 	} // end load_features()
 
@@ -181,7 +184,6 @@ final class Momtaz {
 		if ( is_admin() ) {
 
 			require MOMTAZ_ADMIN_DIR . '/admin.php';
-
 			require_if_theme_supports( 'momtaz-core-theme-settings', MOMTAZ_ADMIN_DIR . '/settings.php' );
 
 		} // end if
