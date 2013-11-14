@@ -41,7 +41,7 @@ function momtaz_register_menus() {
 
 	} // end if
 
-} // end momtaz_register_menus()
+}
 
 // Add the home menu item.
 add_filter( 'wp_page_menu_args', 'momtaz_page_menu_args' );
@@ -55,4 +55,4 @@ add_filter( 'wp_page_menu_args', 'momtaz_page_menu_args' );
 function momtaz_page_menu_args( $args ) {
 	$args['show_home'] = true;
 	return $args;
-} // end momtaz_page_menu_args()
+}

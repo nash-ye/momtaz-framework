@@ -65,7 +65,7 @@ function momtaz_settings_page_init() {
 
 	} // end if
 
-} // end momtaz_settings_page_init()
+}
 
 /**
  * Returns the required capability for viewing and saving theme settings.
@@ -75,7 +75,7 @@ function momtaz_settings_page_init() {
  */
 function momtaz_settings_page_capability() {
 	return apply_filters( 'momtaz_settings_page_capability', 'edit_theme_options' );
-} // end momtaz_settings_page_capability()
+}
 
 /**
  * Returns the theme settings page title .
@@ -85,7 +85,7 @@ function momtaz_settings_page_capability() {
  */
 function momtaz_get_settings_page_title() {
 	return apply_filters( 'momtaz_get_settings_page_title', esc_html__( 'Theme Settings', 'momtaz' ) );
-} // end momtaz_get_settings_page_title()
+}
 
 /**
  * Returns the theme settings page menu item title .
@@ -95,7 +95,7 @@ function momtaz_get_settings_page_title() {
  */
 function momtaz_get_settings_page_menu_title() {
 	return apply_filters( 'momtaz_get_settings_menu_title', wp_get_theme( get_stylesheet() )->get( 'Name' ) );
-} // end momtaz_get_settings_menu_title()
+}
 
 /**
  * Displays the theme settings page and calls do_meta_boxes() to allow additional settings
@@ -171,7 +171,7 @@ function momtaz_theme_settings_page() {
 
 	do_action( momtaz_format_hook( 'after_settings_page' ) );
 
-} // end momtaz_theme_settings_page()
+}
 
 /**
  * Provide a hook to handle the action request easily on the theme settings page.
@@ -193,7 +193,7 @@ function momtaz_settings_page_action_handler() {
 
 	do_action( 'momtaz_settings_page_action_handler', $action );
 
-} // end momtaz_settings_page_action_handler()
+}
 
 /**
  * Loads the meta boxes packaged with the framework on the theme settings page.  These meta boxes are
@@ -215,7 +215,7 @@ function momtaz_load_settings_page_meta_boxes() {
 
    } // end if
 
-} // end momtaz_load_settings_page_meta_boxes()
+}
 
 /**
  * Loads the required stylesheets for displaying the theme settings page in the WordPress admin.
@@ -225,7 +225,7 @@ function momtaz_load_settings_page_meta_boxes() {
  */
 function momtaz_settings_page_enqueue_styles() {
 	wp_enqueue_style( 'momtaz-core-admin' );
-} // end momtaz_settings_page_enqueue_styles()
+}
 
 /**
  * Loads the JavaScript files required for managing the meta boxes on the theme settings
@@ -236,7 +236,7 @@ function momtaz_settings_page_enqueue_styles() {
  */
 function momtaz_settings_page_enqueue_script() {
 	wp_enqueue_script( 'postbox' );
-} // end momtaz_settings_page_enqueue_script()
+}
 
 /**
  * Loads the JavaScript required for toggling the meta boxes on the theme settings page.
@@ -261,4 +261,5 @@ function momtaz_settings_page_load_scripts() {
 		});
 		//]]>
 	</script><?php
-} // end momtaz_settings_page_load_scripts()
+
+}

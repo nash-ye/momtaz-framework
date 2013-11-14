@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Display the current page title.
  *
@@ -7,7 +6,7 @@
  */
 function momtaz_title( $args = '' ) {
 	do_action( 'momtaz_title', $args );
-} // end momtaz_title()
+}
 
 /**
  * The default title callback using the wp_title() function.
@@ -30,7 +29,7 @@ function momtaz_wp_title( $args = '' ) {
 
 	echo $title;
 
-} // end momtaz_wp_title()
+}
 
 /**
  * Creates a nicely formatted and more specific title element text for output
@@ -64,7 +63,7 @@ function momtaz_filter_wp_title( $title, $sep ) {
 
 	return $title;
 
-} // end momtaz_filter_wp_title()
+}
 
 /**
  * Display the generator meta-tag.
@@ -89,7 +88,7 @@ function momtaz_meta_generator() {
 
 	echo '<meta name="generator" content="' . esc_attr( implode( ',', $generator ) ) . '">' ."\n";
 
-} // end momtaz_meta_generator()
+}
 
 /**
  * Display the designer meta-tag.
@@ -113,7 +112,7 @@ function momtaz_meta_designer() {
 
 	echo '<meta name="designer" content="' . esc_attr( implode( ',', $designer ) ) . '">' ."\n";
 
-} // end momtaz_meta_designer()
+}
 
 /**
  * Returns a "Continue Reading" link for excerpts.
@@ -133,4 +132,4 @@ function momtaz_continue_reading_link( $post_id = 0 ) {
 
 	return apply_filters( 'momtaz_continue_reading_link', $link, $post_id );
 
-} // end momtaz_continue_reading_link()
+}

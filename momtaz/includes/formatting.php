@@ -16,7 +16,7 @@
  */
 function momtaz_is_vaild_url( $url ) {
 	return (bool) filter_var( utf8_uri_encode( $url ), FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED + FILTER_FLAG_HOST_REQUIRED );
-} // end momtaz_is_vaild_url()
+}
 
 /**
  * Limit the view text characters .
@@ -32,7 +32,7 @@ function momtaz_limit_characters( $text, $limit ) {
 
 	return $text;
 
-} // end momtaz_limit_characters()
+}
 
 
 /*** HTML Helper Functions ****************************************************/
@@ -44,7 +44,7 @@ function momtaz_limit_characters( $text, $limit ) {
  */
 function momtaz_html_atts( array $atts, array $args = null ) {
 	echo momtaz_get_html_atts( $atts, $args );
-} // end momtaz_html_atts()
+}
 
 /**
  * A helper function to convert an associative array to HTML attributes list.
@@ -112,4 +112,4 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 
    return $output;
 
-} // end momtaz_get_html_atts()
+}

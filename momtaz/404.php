@@ -30,7 +30,7 @@ function momtaz_template_primary_content() { ?>
 
 	</article> <!-- .hentry --> <?php
 
-} // end momtaz_template_primary_content()
+}
 
 // Load the structure template.
 momtaz_context_template( 'structure' );

@@ -278,7 +278,7 @@ endif; // end class_exists() check
  */
 function momtaz() {
 	return Momtaz::instance();
-} // end momtaz()
+}
 
 // Fire it up!
 momtaz();

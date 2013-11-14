@@ -77,7 +77,7 @@ function momtaz_register_sidebars() {
 
 	} // end foreach
 
-} // end momtaz_register_sidebars()
+}
 
 /**
  * Register a single sidebar by the theme defaults and returns the ID.
@@ -103,4 +103,4 @@ function momtaz_register_sidebar( $args ) {
 	// Register the sidebar.
 	return register_sidebar( $args );
 
-} // end momtaz_register_sidebar()
+}

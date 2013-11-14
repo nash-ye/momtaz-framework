@@ -513,7 +513,7 @@ function momtaz_resize_image( $image_path, $width, $height, $crop = true ) {
 
 	return $the_clip;
 
-} // end momtaz_resize_image()
+}
 
 /**
  * Adjust the content width.
@@ -538,7 +538,7 @@ function momtaz_adjust_content_width() {
 
 	} // end if
 
-} // end momtaz_adjust_content_width()
+}
 
 /**
  * Function for setting the content width of a theme.  This does not check if a content width has been set; it
@@ -552,7 +552,7 @@ function momtaz_adjust_content_width() {
 function momtaz_set_content_width( $width ) {
 	global $content_width;
 	$content_width = absint( $width );
-} // end momtaz_set_content_width()
+}
 
 /**
  * Function for getting the theme's content width.
@@ -565,4 +565,4 @@ function momtaz_set_content_width( $width ) {
 function momtaz_get_content_width() {
 	global $content_width;
 	return $content_width;
-} // end momtaz_get_content_width()
+}

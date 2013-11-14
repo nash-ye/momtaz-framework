@@ -36,7 +36,7 @@ function momtaz_meta_box_theme_add_about( $screen_ID ) {
 
 	} // end if
 
-} // end momtaz_meta_box_theme_add_about()
+}
 
 /**
  * Creates an information meta box with no settings about the theme. The meta box will display
@@ -80,5 +80,5 @@ function momtaz_meta_box_theme_display_about( $object, $box ) {
 			<td><?php echo $theme_data->display( 'Description' ); ?></td>
 		</tr>
 	</table> <!-- .form-table -->
-	
-<?php } // end momtaz_meta_box_theme_display_about()
+
+<?php }

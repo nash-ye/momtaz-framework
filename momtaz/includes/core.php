@@ -133,7 +133,7 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
 	return $mofile;
 
-} // end momtaz_load_textdomain_mofile()
+}
 
 /**
  * Function for formatting a hook name if needed. It automatically adds the
@@ -145,4 +145,4 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
  */
 function momtaz_format_hook( $tag ) {
 	return THEME_PREFIX . "_{$tag}";
-} // end momtaz_format_hook()
+}

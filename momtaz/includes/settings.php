@@ -32,7 +32,7 @@ function momtaz_get_settings(){
 
 	return (array) $momtaz->settings;
 
-} // end momtaz_get_settings()
+}
 
 /**
  * Update the all theme settings.
@@ -49,7 +49,7 @@ function momtaz_update_settings( array $theme_settings ){
 	momtaz()->settings = $theme_settings;
 	return true;
 
-} // end momtaz_update_settings()
+}
 
 /**
  * Delete all theme settings.
@@ -66,7 +66,7 @@ function momtaz_delete_settings(){
 	unset( momtaz()->settings );
 	return true;
 
-} // end momtaz_delete_settings()
+}
 
 /**
  * Loads the Momtaz theme settings once and allows the input of the specific field the user would
@@ -88,7 +88,7 @@ function momtaz_get_setting( $option_ID ) {
 
 	} // end if
 
-} // end momtaz_get_setting()
+}
 
 /**
  * Add a new setting.
@@ -112,7 +112,7 @@ function momtaz_add_setting( $option_ID, $option_value ) {
 
 	return momtaz_update_settings( $theme_settings );
 
-} // end momtaz_add_setting()
+}
 
 /**
  * Update the value of an setting that was already added.
@@ -131,7 +131,7 @@ function momtaz_update_setting( $option_ID, $option_value ) {
 
 	return momtaz_update_settings( $theme_settings );
 
-} // end momtaz_update_setting()
+}
 
 /**
  * Delete the value of an setting that was already added.
@@ -147,15 +147,14 @@ function momtaz_delete_setting( $option_ID ) {
 
 	$theme_settings = momtaz_get_settings();
 
-	if ( ! isset( $theme_settings[ $option_ID ] ) ) {
-		return true;
+	if ( isset( $theme_settings[ $option_ID ] ) ) {
+		unset( $theme_settings[ $option_ID ] );
+		return momtaz_update_settings( $theme_settings );
 	}
 
-	unset( $theme_settings[ $option_ID ] );
+	return true;
 
-	return momtaz_update_settings( $theme_settings );
-
-} // end momtaz_delete_setting()
+}
 
 /**
  * Get the theme settings option name.
@@ -165,7 +164,7 @@ function momtaz_delete_setting( $option_ID ) {
  */
 function momtaz_theme_settings_option() {
 	return apply_filters( 'momtaz_theme_settings_option', momtaz_format_hook( 'theme_settings' ) );
-} // end momtaz_theme_settings_option()
+}
 
 /**
  * Get the default array of theme settings for use with the theme.
@@ -175,4 +174,4 @@ function momtaz_theme_settings_option() {
  */
 function momtaz_default_theme_settings() {
 	return (array) apply_filters( 'momtaz_default_theme_settings', array() );
-} // end momtaz_default_theme_settings()
+}

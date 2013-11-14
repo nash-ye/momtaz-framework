@@ -26,7 +26,7 @@ function momtaz_comments_callback( $comment, $args, $depth ) {
 	// Locate the template based on the $comment_type. Default to 'comment.php'.
 	momtaz_template_part( 'comment', get_comment_type( $comment->comment_ID ) );
 
-} // end momtaz_comments_callback()
+}
 
 /**
  * Filters the WordPress comment_form() function that was added in WordPress 3.0.  This allows
@@ -125,4 +125,4 @@ function momtaz_comment_form_args( $defaults ) {
 	$args = wp_parse_args( $args, $defaults );
 	return $args;
 
-} // end momtaz_comment_form_args()
+}

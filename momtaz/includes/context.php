@@ -149,7 +149,7 @@ function momtaz_get_context() {
 
 	return (array) apply_filters( 'momtaz_get_context', $context );
 
-} // end momtaz_get_context()
+}
 
 /**
  * Momtaz's post contextual function.  This allows code to be used more than once without running
@@ -233,7 +233,7 @@ function momtaz_get_post_context( $post = null ) {
 
 	return (array) apply_filters( 'momtaz_post_context', $context[$post->ID], $post );
 
-} // end momtaz_get_post_context()
+}
 
 /**
  * Display the classes for the body element.
@@ -313,7 +313,7 @@ function momtaz_body_class( $classes ) {
 
 	return (array) apply_filters( 'momtaz_body_class', array_map( 'esc_attr', $classes ) );
 
-} // end momtaz_body_class()
+}
 
 /**
  * Display the post class attribute.
@@ -334,7 +334,7 @@ function momtaz_post_class( $class = '', $post_id = 0 ) {
 
 	} // end if
 
-} // end momtaz_post_class()
+}
 
 /**
  * Creates a set of classes for each site entry upon display. Each entry is given the class of
@@ -449,7 +449,7 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 
 	return $classes;
 
-} // end momtaz_get_post_class()
+}
 
 /**
  * Is the query for an existing single post?
@@ -489,4 +489,4 @@ function momtaz_is_single( $post = false, $post_types = '' ) {
 
 	return $retval;
 
-} // end momtaz_is_single()
+}

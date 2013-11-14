@@ -21,7 +21,7 @@ function momtaz_admin_register_styles() {
 	// Register the core admin style.
 	wp_register_style( 'momtaz-core-admin', momtaz_theme_uri( 'content/styles/admin.css' ), false, Momtaz::VERSION );
 
-} // end momtaz_admin_register_styles()
+}
 
 /**
  * Some common checks to perform before save the meta data associated with a post.
@@ -62,7 +62,7 @@ function momtaz_verify_common_post_meta_box( $post, $args ){
 
 	return true;
 
-} // end momtaz_verify_common_post_meta_box()
+}
 
 /**
  * The common way to save the meta data associated with a post.
@@ -102,4 +102,4 @@ function momtaz_save_post_meta_array( $post_id, $meta ){
 
 	return true;
 
-} // end momtaz_save_post_meta_array()
+}

@@ -13,7 +13,7 @@
  */
 function momtaz_main_stylesheet() {
 	echo momtaz_get_style_loader_tag( momtaz_get_main_stylesheet_uri() );
-} // end momtaz_main_stylesheet()
+}
 
 /**
  * Get the main stylesheet URI.
@@ -30,7 +30,7 @@ function momtaz_get_main_stylesheet_uri() {
 				$stylesheet_uri
 			);
 
-} // end momtaz_get_main_stylesheet_uri()
+}
 
 /**
  * Display the localized stylesheet link tag.
@@ -39,7 +39,7 @@ function momtaz_get_main_stylesheet_uri() {
  */
 function momtaz_locale_stylesheet() {
 	echo momtaz_get_style_loader_tag( momtaz_get_locale_stylesheet_uri() );
-} // end momtaz_locale_stylesheet()
+}
 
 /**
  * Get the localized stylesheet URI.
@@ -56,7 +56,7 @@ function momtaz_get_locale_stylesheet_uri() {
 				$stylesheet_uri
 			);
 
-} // end momtaz_get_locale_stylesheet_uri()
+}
 
 /**
  * Get the development stylesheet URI when Style Development Mode is on.
@@ -86,7 +86,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
 
 	return $stylesheet_uri;
 
-} // end momtaz_get_dev_stylesheet_uri()
+}
 
 /**
  * Change the the type attribute when using LESS styles.
@@ -126,7 +126,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
 
 	return apply_filters( 'momtaz_get_style_loader_tag', $output, $atts );
 
- } // end momtaz_get_style_loader_tag()
+ }
 
 /**
  * Get the development stylesheet filename suffixs.
@@ -136,7 +136,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
  */
 function momtaz_get_dev_stylesheet_suffixs() {
 	return apply_filters( 'momtaz_get_dev_stylesheet_suffixs', array( '.less', '.dev.css' ) );
-} // end momtaz_get_dev_stylesheet_suffixs()
+}
 
 /**
  * Check if the Style Development Mode is on.
@@ -156,4 +156,4 @@ function momtaz_is_style_dev_mode() {
 
 	return false;
 
-} // end momtaz_is_style_dev_mode()
+}

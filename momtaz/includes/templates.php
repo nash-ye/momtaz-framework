@@ -43,7 +43,7 @@ function momtaz_theme_uri( $template_name = '' ){
 
 	return apply_filters( 'momtaz_theme_uri', $template_uri, $template_name );
 
-} // end momtaz_theme_uri()
+}
 
 /**
  * Retrieve the URI of a template file in the child theme.
@@ -65,7 +65,7 @@ function momtaz_child_theme_uri( $template_name = '' ){
 
 	return apply_filters( 'momtaz_child_theme_uri', $template_uri, $template_name );
 
-} // end momtaz_child_theme_uri()
+}
 
 /**
  * Retrieve the URI of a template file in the parent theme.
@@ -87,7 +87,7 @@ function momtaz_parent_theme_uri( $template_name = '' ){
 
 	return apply_filters( 'momtaz_parent_theme_uri', $template_uri, $template_name );
 
-} // end momtaz_parent_theme_uri()
+}
 
 /**
  * Retrieve the URI of the highest priority template file that exists.
@@ -133,7 +133,7 @@ function momtaz_locate_template_uri( $template_names ) {
 
 	return $located;
 
-} // end momtaz_locate_template_uri()
+}
 
 /*
  * Template Part Functions.
@@ -165,7 +165,7 @@ function momtaz_context_template( $name, $slug = '', $load = true, $args = null 
 
 	return momtaz_template_part( $name, $context, $load, $args );
 
-} // end momtaz_context_template()
+}
 
 /**
  * Looks for a template based on the momtaz_get_post_context() function. The function looks for
@@ -197,7 +197,7 @@ function momtaz_post_context_template( $name, $slug = '', $post = 0, $load = tru
 
 	return momtaz_template_part( $name, $context, $load, $args );
 
-} // end momtaz_post_context_template()
+}
 
 /**
  * A more powerfull version of get_template_part() funcation .
@@ -234,7 +234,7 @@ function momtaz_template_part( $name, $context = '', $load = true, $args = null 
 	// Locate the highest priority template file.
 	return momtaz_locate_template( $template_names, $load, false, $args );
 
-} // end momtaz_template_part()
+}
 
 /**
  * Retrieve the name of the highest priority template file that exists.
@@ -287,7 +287,7 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
 
 	return $located;
 
-} // end momtaz_locate_template()
+}
 
 /**
  * Require the template file with optional arguments.
@@ -308,7 +308,7 @@ function momtaz_load_template( $_template, $_load_once = true, $_args = null ) {
 
 	( $_load_once ) ? require_once( $_template ) : require( $_template );
 
-} // end momtaz_load_template()
+}
 
 /*
  * Template Stack Functions.
@@ -344,7 +344,7 @@ function momtaz_get_template_stack( $slug = '' ) {
 
 	return $list;
 
-} // end momtaz_get_template_stack()
+}
 
 /**
  * Register a template stack location.
@@ -386,7 +386,7 @@ function momtaz_register_template_stack( $stack ){
 
 	return true;
 
-} // end momtaz_register_template_stack()
+}
 
 /**
  * Deregister a template stack.
@@ -402,8 +402,7 @@ function momtaz_deregister_template_stack( $slug ){
 		return false;
 	}
 
-	unset( momtaz()->template_stack[$slug] );
-
+	unset( momtaz()->template_stack[ $slug ] );
 	return true;
 
-} // end momtaz_deregister_template_stack()
+}

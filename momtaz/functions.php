@@ -28,7 +28,7 @@ function momtaz_support_theme_features() {
 	add_theme_support( 'momtaz-core-sidebars', array( 'primary' ) );
 	add_theme_support( 'momtaz-core-theme-settings', array( 'about' ) );
 
-} // end momtaz_support_theme_features()
+}
 
 add_action( 'after_momtaz_setup', 'momtaz_register_theme_modules' );
 
@@ -82,7 +82,7 @@ function momtaz_register_theme_modules() {
 		),
 	) );
 
-} // end momtaz_register_theme_modules()
+}
 
 add_action( 'after_momtaz_setup', 'momtaz_register_theme_stacks' );
 
@@ -114,7 +114,7 @@ function momtaz_register_theme_stacks() {
 		'priority' => 10,
 	) );
 
-} // end momtaz_register_theme_stacks()
+}
 
 // Load the Momtaz Framework class file.
 require( trailingslashit( get_template_directory() ) . 'includes/momtaz.php' );
