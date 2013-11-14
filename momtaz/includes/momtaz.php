@@ -36,7 +36,7 @@ final class Momtaz {
 	 */
 	public function __clone() {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'momtaz' ), '1.0' );
-	} // end __clone()
+	}
 
 	/**
 	 * A dummy magic method to prevent Momtaz from being unserialized
@@ -45,7 +45,7 @@ final class Momtaz {
 	 */
 	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'momtaz' ), '1.0' );
-	} // end __wakeup()
+	}
 
 
 	/** Private Methods *******************************************************/
@@ -84,7 +84,7 @@ final class Momtaz {
 			define( 'MOMTAZ_CACHE_URI', trailingslashit( THEME_URI ) . 'cache' );
 		}
 
-	} // end define_constents()
+	}
 
 	/**
 	 * Load the theme's translated strings.
@@ -103,7 +103,7 @@ final class Momtaz {
 
 		} // end if
 
-	} // end load_l10n()
+	}
 
 	/**
 	 * Check Momtaz requirements.
@@ -126,7 +126,7 @@ final class Momtaz {
 
 		} // end if
 
-	} // end check_requirements()
+	}
 
 	/**
 	 * Load the Momtaz kernel files.
@@ -138,7 +138,7 @@ final class Momtaz {
 		require MOMTAZ_INCLUDES_DIR . '/core.php';
 		require MOMTAZ_INCLUDES_DIR . '/modules.php';
 
-	} // end load_kernel()
+	}
 
 	/**
 	 * Load the Momtaz common functions.
@@ -160,7 +160,7 @@ final class Momtaz {
 		// Sets up the default filters and actions.
 		require MOMTAZ_INCLUDES_DIR . '/filters.php';
 
-	} // end load_common()
+	}
 
 	/**
 	 * Load the supported features.
@@ -172,7 +172,7 @@ final class Momtaz {
 		require_if_theme_supports( 'momtaz-core-sidebars', MOMTAZ_INCLUDES_DIR . '/sidebars.php' );
 		require_if_theme_supports( 'momtaz-core-menus', MOMTAZ_INCLUDES_DIR . '/menus.php' );
 
-	} // end load_features()
+	}
 
 	/**
 	 * Load the admin functions.
@@ -188,7 +188,7 @@ final class Momtaz {
 
 		} // end if
 
-	} // end load_admin()
+	}
 
 	/**
 	 * Load the auto-load modules.
@@ -206,7 +206,7 @@ final class Momtaz {
 
 		Momtaz_Modules::load_modules( $autoload_modules );
 
-	} // end load_modules()
+	}
 
 
 	/** Singleton *************************************************************/
@@ -258,7 +258,7 @@ final class Momtaz {
 
 		return self::$instance;
 
-	} // end instance()
+	}
 
 } // end Class Momtaz
 
