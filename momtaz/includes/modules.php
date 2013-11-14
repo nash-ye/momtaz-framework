@@ -68,7 +68,7 @@ final class Momtaz_Modules {
 
 					if ( property_exists( $obj, $m_key ) ) {
 
-						$obj_prop = $obj[$m_key];
+						$obj_prop = $obj[ $m_key ];
 
 						if ( is_array( $obj_prop ) && is_array( $m_value ) ) {
 
@@ -105,7 +105,7 @@ final class Momtaz_Modules {
 				} // end Switch
 
 				if ( $b ) {
-					$filtered[$key] = $obj;
+					$filtered[ $key ] = $obj;
 				}
 
 		} // end foreach
@@ -402,8 +402,8 @@ final class Momtaz_Module implements ArrayAccess {
 			return $this->metadata;
 		}
 
-		if ( isset( $this->metadata[$key] ) ) {
-			return $this->metadata[$key];
+		if ( isset( $this->metadata[ $key ] ) ) {
+			return $this->metadata[ $key ];
 		}
 
 	} // end get_metadata()
@@ -420,8 +420,8 @@ final class Momtaz_Module implements ArrayAccess {
 			return $this->settings;
 		}
 
-		if ( isset( $this->settings[$key] ) ) {
-			return $this->settings[$key];
+		if ( isset( $this->settings[ $key ] ) ) {
+			return $this->settings[ $key ];
 		}
 
 	} // end get_settings()

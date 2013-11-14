@@ -333,7 +333,7 @@ class Momtaz_Image_Clipper {
 	 * @since 1.1
 	 */
 	public function set_clip_option( $key, $value ) {
-		$this->clip_options[$key] = $value;
+		$this->clip_options[ $key ] = $value;
 		return $this;
 	} // end set_clip_option()
 

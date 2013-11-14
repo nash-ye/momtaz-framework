@@ -369,7 +369,7 @@ function momtaz_register_template_stack( $stack ){
 		return false;
 	}
 
-	$momtaz->template_stack[$stack->slug] = $stack;
+	$momtaz->template_stack[ $stack->slug ] = $stack;
 
 	usort( $momtaz->template_stack, function( $a, $b ) {
 

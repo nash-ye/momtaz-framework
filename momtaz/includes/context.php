@@ -172,7 +172,7 @@ function momtaz_get_post_context( $post = null ) {
 		 return false;
 	}
 
-	if ( ! isset( $context[$post->ID] ) ) {
+	if ( ! isset( $context[ $post->ID ] ) ) {
 
 			$post_context = array();
 
@@ -227,11 +227,11 @@ function momtaz_get_post_context( $post = null ) {
 			} // end-if
 
 			// Cache the post context array.
-			$context[$post->ID] = array_map( 'esc_attr', $post_context );
+			$context[ $post->ID ] = array_map( 'esc_attr', $post_context );
 
 	} // end if
 
-	return (array) apply_filters( 'momtaz_post_context', $context[$post->ID], $post );
+	return (array) apply_filters( 'momtaz_post_context', $context[ $post->ID ], $post );
 
 }
 
