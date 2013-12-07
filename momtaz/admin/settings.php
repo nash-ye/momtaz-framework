@@ -7,259 +7,324 @@
  * @subpackage Admin
  */
 
-add_action( 'admin_menu', 'momtaz_settings_page_init' );
-
 /**
- * Initializes all the theme settings page functionality. This function is used to create the theme settings
- * page, then use that as a launchpad for specific actions that need to be tied to the settings page.
- *
- * @since 1.0
- * @return void
+ * @since 1.2
  */
-function momtaz_settings_page_init() {
+class Momtaz_Settings_Page {
 
-	// Get the theme prefix.
-	$prefix = THEME_PREFIX;
+	/*** Properties ***********************************************************/
 
-	// Register the theme setting.
-	register_setting(
-		"{$prefix}_theme_settings",	// Options group.
-		"{$prefix}_theme_settings"	// Database option.
-	);
+	/**
+	 * The page hook suffix.
+	 *
+	 * @var string
+	 * @since 1.2
+	 */
+	protected $screen_id;
 
-	// Create the theme settings page.
-	$settings_page = add_menu_page(
-		momtaz_get_settings_page_title(),		// Settings page name.
-		momtaz_get_settings_page_menu_title(),  // Menu item name.
-		momtaz_settings_page_capability(),		// Required capability.
-		'theme-settings',						// Screen name.
-		'momtaz_theme_settings_page'			// Callback function.
-	);
 
-	// Check if the settings page is being shown before running any functions for it.
-	if ( ! empty( $settings_page ) ) {
+	/*** Methods **************************************************************/
 
-		// Add the 'momtaz_load_settings_page' hook.
-		add_action( "load-{$settings_page}", function() {
-			do_action( 'momtaz_load_settings_page' );
-		} );
-
-		// Handle the action request in the settings page.
-		add_action( "load-{$settings_page}", 'momtaz_settings_page_action_handler' );
-
-		// Load the default theme meta-boxes for the settings page.
-		add_action( "load-{$settings_page}", 'momtaz_load_settings_page_meta_boxes' );
-
-		// Add the 'momtaz_settings_page_add_meta_boxes' hook.
-		add_action( "load-{$settings_page}", function() {
-			do_action( 'momtaz_settings_page_add_meta_boxes' );
-		} );
-
-		// Load the JavaScript and Stylehsheets needed for the theme settings.
-		add_action( "admin_print_styles-{$settings_page}", 'momtaz_settings_page_enqueue_styles'	);
-		add_action( "admin_print_scripts-{$settings_page}", 'momtaz_settings_page_enqueue_script'	);
-		add_action( "admin_head-{$settings_page}", 'momtaz_settings_page_load_scripts'				);
-
-		// Filter the settings page capability so that it recognizes the 'edit_theme_options' cap.
-		add_filter( "option_page_capability_{$prefix}_theme_settings", 'momtaz_settings_page_capability' );
-
-	} // end if
-
-}
-
-/**
- * Returns the required capability for viewing and saving theme settings.
- *
- * @return string
- * @since 1.0
- */
-function momtaz_settings_page_capability() {
-	return apply_filters( 'momtaz_settings_page_capability', 'edit_theme_options' );
-}
-
-/**
- * Returns the theme settings page title .
- *
- * @return string
- * @since 1.0
- */
-function momtaz_get_settings_page_title() {
-	return apply_filters( 'momtaz_get_settings_page_title', esc_html__( 'Theme Settings', 'momtaz' ) );
-}
-
-/**
- * Returns the theme settings page menu item title .
- *
- * @return string
- * @since 1.0
- */
-function momtaz_get_settings_page_menu_title() {
-	return apply_filters( 'momtaz_get_settings_menu_title', wp_get_theme( get_stylesheet() )->get( 'Name' ) );
-}
-
-/**
- * Displays the theme settings page and calls do_meta_boxes() to allow additional settings
- * meta boxes to be added to the page.
- *
- * @since 1.0
- * @return void
- */
-function momtaz_theme_settings_page() {
-
-	$screen = get_current_screen();
-
-	if ( 'theme-settings' !== $screen->parent_base ) {
-		return;
+	/**
+	 * @return void
+	 * @since 1.2
+	 */
+	public function __construct() {
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
 	}
 
-	do_action( momtaz_format_hook( 'before_settings_page' ) ); ?>
+	/**
+	 * @return void
+	 * @since 1.2
+	 */
+	public function admin_menu() {
 
-	<div class="wrap theme-settings">
+		if ( empty( $this->screen_id ) ) {
 
-		<?php screen_icon( 'themes' ) ?>
+			// Add the theme settings page.
+			$this->screen_id = add_menu_page(
+				$this->get_page_title(),				// Page title.
+				$this->get_menu_title(),				// Menu item title.
+				$this->get_capability(),				// User capability.
+				$this->get_menu_slug(),					// Screen name.
+				array( $this, 'page_content' )			// Callback function.
+			);
 
-		<h2>
-			<?php echo momtaz_get_settings_page_title(); ?>
-			<a href="<?php echo admin_url( 'customize.php' ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ); ?></a>
-		</h2>
+		} // end if
 
-		<?php settings_errors(); ?>
-
-		<?php do_action( momtaz_format_hook( 'open_settings_page' ) ); ?>
-
-		<div class="momtaz-core-settings-wrap">
-
-			<form action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
-
-				<p class="submit">
-
-					<?php do_action( momtaz_format_hook( 'settings_page_before_submit_button' ) ); ?>
-
-					<?php submit_button( esc_attr__( 'Update Settings', 'momtaz' ), 'primary', 'update', false ) ?>
-
-					<?php do_action( momtaz_format_hook( 'settings_page_after_submit_button' ) ); ?>
-
-				</p> <!-- .submit -->
-
-				<?php settings_fields( momtaz_format_hook( 'theme_settings' ) ); ?>
-				<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
-				<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
-
-				<div class="metabox-holder">
-
-					<div class="post-box-container column-1 normal">
-						<?php do_meta_boxes( $screen->id, 'normal', null ); ?>
-					</div> <!-- .column-1 -->
-
-					<div class="post-box-container column-2 side">
-						<?php do_meta_boxes( $screen->id, 'side', null ); ?>
-					</div> <!-- .column-2 -->
-
-					<div class="post-box-container column-3 advanced">
-						<?php do_meta_boxes( $screen->id, 'advanced', null ); ?>
-					</div> <!-- .column-3 -->
-
-				</div> <!-- .metabox-holder -->
-
-			</form> <!-- Form End -->
-
-			<?php do_action( momtaz_format_hook( 'close_settings_page' ) ); ?>
-
-		</div> <!-- .momtaz-core-settings-wrap -->
-
-	</div> <!-- .wrap --> <?php
-
-	do_action( momtaz_format_hook( 'after_settings_page' ) );
-
-}
-
-/**
- * Provide a hook to handle the action request easily on the theme settings page.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_settings_page_action_handler() {
-
-	if ( empty( $_REQUEST['action'] ) ) {
-		 return;
 	}
 
-	$action = sanitize_key( $_REQUEST['action'] );
+	/**
+	 * @return void
+	 * @since 1.2
+	 */
+	public function admin_init() {
 
-	if ( ! current_user_can( momtaz_settings_page_capability() ) ) {
-		return;
+		// Check if the settings page is being shown before running any functions for it.
+		if ( ! empty( $this->screen_id ) ) {
+
+			// Get the theme prefix.
+			$prefix = THEME_PREFIX;
+
+			// Register the theme setting.
+			register_setting(
+				"{$prefix}_theme_settings",	// Options group.
+				"{$prefix}_theme_settings"	// Database option.
+			);
+
+			add_action( "load-{$this->screen_id}", array( $this, 'load_page' ) );
+
+			// Load the needed styles and scripts for the theme settings page.
+			add_action( "admin_print_styles-{$this->screen_id}",	array( $this, 'enqueue_styles'	) );
+			add_action( "admin_print_scripts-{$this->screen_id}",	array( $this, 'enqueue_scripts' ) );
+			add_action( "admin_head-{$this->screen_id}",			array( $this, 'print_scripts'	) );
+
+			// Filter the settings page capability so that it recognizes the 'edit_theme_options' cap.
+			add_filter( "option_page_capability_{$prefix}_theme_settings", array( $this, 'get_capability' ) );
+
+		} // end if
+
 	}
 
-	do_action( 'momtaz_settings_page_action_handler', $action );
+	/**
+	 * @return void
+	 * @since 1.2
+	 */
+	public function load_page() {
 
-}
+		do_action( 'momtaz_load_settings_page' );
 
-/**
- * Loads the meta boxes packaged with the framework on the theme settings page.  These meta boxes are
- * merely loaded with this function.  Meta boxes are only loaded if the feature is supported by the theme.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_load_settings_page_meta_boxes() {
+		$this->action_handler();
+		$this->load_meta_boxes();
 
-   $args = get_theme_support( 'momtaz-core-theme-settings' );
+	}
 
-   if ( is_array( $args[0] ) ) {
+	/**
+	 * Returns the theme settings page title.
+	 *
+	 * @return string
+	 * @since 1.2
+	 */
+	public function get_page_title() {
+		$page_title = esc_html__( 'Theme Settings', 'momtaz' );
+		return apply_filters( 'momtaz_settings_page_title', $page_title );
+	}
 
-		// Load the 'About' meta box.
-		if ( in_array( 'about', $args[0], true ) ) {
-			require trailingslashit( MOMTAZ_ADMIN_DIR ) . 'meta-boxes/theme-about.php';
+	/**
+	 * Returns the theme settings page menu item title.
+	 *
+	 * @return string
+	 * @since 1.2
+	 */
+	public function get_menu_title() {
+		$menu_title = wp_get_theme( get_stylesheet() )->get( 'Name' );
+		return apply_filters( 'momtaz_settings_page_menu_title', $menu_title );
+	}
+
+	/**
+	 * Returns the theme settings page menu item slug.
+	 *
+	 * @return string
+	 * @since 1.2
+	 */
+	public function get_menu_slug() {
+		return apply_filters( 'momtaz_settings_page_menu_slug', 'theme-settings' );
+	}
+
+	/**
+	 * Returns the required capability for viewing and saving theme settings.
+	 *
+	 * @return string
+	 * @since 1.2
+	 */
+	public function get_capability() {
+		return apply_filters( 'momtaz_settings_page_capability', 'edit_theme_options' );
+	}
+
+	/**
+	 * Displays the theme settings page and calls do_meta_boxes() to allow additional settings
+	 * meta boxes to be added to the page.
+	 *
+	 * @return string
+	 * @since 1.2
+	 */
+	public function page_content() {
+
+		if ( ! current_user_can( $this->get_capability() ) ) {
+			return;
 		}
 
-   } // end if
+		do_action( momtaz_format_hook( 'before_settings_page' ) ); ?>
 
-}
+		<div class="wrap theme-settings">
 
-/**
- * Loads the required stylesheets for displaying the theme settings page in the WordPress admin.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_settings_page_enqueue_styles() {
-	wp_enqueue_style( 'momtaz-core-admin' );
-}
+			<?php screen_icon( 'themes' ) ?>
 
-/**
- * Loads the JavaScript files required for managing the meta boxes on the theme settings
- * page, which allows users to arrange the boxes to their liking.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_settings_page_enqueue_script() {
-	wp_enqueue_script( 'postbox' );
-}
+			<h2>
+				<?php echo $this->get_page_title(); ?>
+				<a href="<?php echo admin_url( 'customize.php' ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ); ?></a>
+			</h2>
 
-/**
- * Loads the JavaScript required for toggling the meta boxes on the theme settings page.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_settings_page_load_scripts() {
+			<?php settings_errors(); ?>
 
-	$screen = get_current_screen();
+			<?php do_action( momtaz_format_hook( 'open_settings_page' ) ); ?>
 
-	if ( 'theme-settings' !== $screen->parent_base ) {
-		return;
+			<div class="momtaz-core-settings-wrap">
+
+				<form action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
+
+					<p class="submit">
+
+						<?php do_action( momtaz_format_hook( 'settings_page_before_submit_button' ) ); ?>
+
+						<?php submit_button( esc_attr__( 'Update Settings', 'momtaz' ), 'primary', 'update', false ) ?>
+
+						<?php do_action( momtaz_format_hook( 'settings_page_after_submit_button' ) ); ?>
+
+					</p> <!-- .submit -->
+
+					<?php settings_fields( momtaz_format_hook( 'theme_settings' ) ); ?>
+					<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
+					<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
+
+					<div class="metabox-holder">
+
+						<div class="post-box-container column-1 normal">
+							<?php do_meta_boxes( NULL, 'normal', NULL ); ?>
+						</div> <!-- .column-1 -->
+
+						<div class="post-box-container column-2 side">
+							<?php do_meta_boxes( NULL, 'side', NULL ); ?>
+						</div> <!-- .column-2 -->
+
+						<div class="post-box-container column-3 advanced">
+							<?php do_meta_boxes( NULL, 'advanced', NULL ); ?>
+						</div> <!-- .column-3 -->
+
+					</div> <!-- .metabox-holder -->
+
+				</form> <!-- Form End -->
+
+				<?php do_action( momtaz_format_hook( 'close_settings_page' ) ); ?>
+
+			</div> <!-- .momtaz-core-settings-wrap -->
+
+		</div> <!-- .wrap --> <?php
+
+		do_action( momtaz_format_hook( 'after_settings_page' ) );
+
 	}
 
-	?>
-	<script type="text/javascript">
-		//<![CDATA[
-		jQuery(document).ready( function($) {
-			$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-			postboxes.add_postbox_toggles('<?php echo $screen->id; ?>');
-		});
-		//]]>
-	</script><?php
+	/**
+	 * Loads the meta boxes packaged with the framework on the theme settings page.  These meta boxes are
+	 * merely loaded with this function.  Meta boxes are only loaded if the feature is supported by the theme.
+	 *
+	 * @return void
+	 * @since 1.2
+	 */
+	public function load_meta_boxes() {
 
-}
+		$args = get_theme_support( 'momtaz-core-theme-settings' );
+
+		if ( is_array( $args[0] ) ) {
+
+			 // Load the 'About' meta box.
+			 if ( in_array( 'about', $args[0], true ) ) {
+				 require trailingslashit( MOMTAZ_ADMIN_DIR ) . 'meta-boxes/theme-about.php';
+			 }
+
+		} // end if
+
+		do_action( 'momtaz_settings_page_add_meta_boxes' );
+
+	}
+
+	/**
+	 * Provide a hook to handle the action request easily on the theme settings page.
+	 *
+	 * @return void
+	 * @since 1.2
+	 */
+	public function action_handler() {
+
+		if ( empty( $_REQUEST['action'] ) ) {
+			 return;
+		}
+
+		$action = sanitize_key( $_REQUEST['action'] );
+
+		if ( ! current_user_can( momtaz_settings_page_capability() ) ) {
+			return;
+		}
+
+		do_action( 'momtaz_settings_page_action_handler', $action );
+
+	}
+
+	/**
+	 * Loads the required stylesheets for displaying the theme settings page in the WordPress admin.
+	 *
+	 * @return void
+	 * @since 1.2
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style( 'momtaz-core-admin' );
+	}
+
+	/**
+	 * Loads the JavaScript files required for managing the meta boxes on the theme settings
+	 * page, which allows users to arrange the boxes to their liking.
+	 *
+	 * @return void
+	 * @since 1.2
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_script( 'postbox' );
+	}
+
+	/**
+	 * Loads the JavaScript required for toggling the meta boxes on the theme settings page.
+	 *
+	 * @return void
+	 * @since 1.2
+	 */
+	public function print_scripts() {
+
+		if ( ! $this->is_current_screen() ) {
+			return;
+		}
+
+		?>
+		<script type="text/javascript">
+			//<![CDATA[
+			jQuery(document).ready( function($) {
+				$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+				postboxes.add_postbox_toggles('<?php echo get_current_screen()->id; ?>');
+			});
+			//]]>
+		</script><?php
+
+	}
+
+	/**
+	 * Check if the current screen is the theme settings page.
+	 *
+	 * @return bool
+	 * @since 1.2
+	 */
+	public function is_current_screen() {
+
+		$current_scrren = get_current_screen();
+
+		if ( ! $current_scrren ) {
+			return false;
+		}
+
+		return ( $current_scrren->id === $this->screen_id );
+
+	}
+
+} // end class Momtaz_Settings_Page
+
+new Momtaz_Settings_Page();

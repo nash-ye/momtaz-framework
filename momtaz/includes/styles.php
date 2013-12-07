@@ -9,6 +9,7 @@
 /**
  * Display the main stylesheet link tag.
  *
+ * @return void
  * @since 1.1
  */
 function momtaz_main_stylesheet() {
@@ -18,23 +19,45 @@ function momtaz_main_stylesheet() {
 /**
  * Get the main stylesheet URI.
  *
+ * @return string
  * @since 1.1
  */
 function momtaz_get_main_stylesheet_uri() {
+	$stylesheet_uri = momtaz_get_dev_stylesheet_uri( get_stylesheet_uri() );
+	return apply_filters( 'momtaz_get_main_stylesheet_uri', $stylesheet_uri );
+}
 
-	$stylesheet_uri = get_stylesheet_uri();
-	$stylesheet_dir = get_stylesheet_directory();
+/**
+ * Display the current layout stylesheet link tag.
+ *
+ * @return void
+ * @since 1.2
+ */
+function momtaz_layout_stylesheet() {
+	echo momtaz_get_style_loader_tag( momtaz_get_layout_stylesheet_uri() );
+}
 
-	return apply_filters( 'momtaz_get_main_stylesheet_uri',
-				momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ),
-				$stylesheet_uri
-			);
+/**
+ * Get the current layout stylesheet URI.
+ *
+ * @return string
+ * @since 1.2
+ */
+function momtaz_get_layout_stylesheet_uri() {
+
+	if ( ( $layout = Momtaz_Layouts::get_current_layout() ) ) {
+
+		$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $layout->style_uri );
+		return apply_filters( 'momtaz_get_layout_stylesheet_uri', $stylesheet_uri );
+
+	} // end if
 
 }
 
 /**
  * Display the localized stylesheet link tag.
  *
+ * @return void
  * @since 1.1
  */
 function momtaz_locale_stylesheet() {
@@ -44,17 +67,15 @@ function momtaz_locale_stylesheet() {
 /**
  * Get the localized stylesheet URI.
  *
+ * @return string
  * @since 1.1
  */
 function momtaz_get_locale_stylesheet_uri() {
 
-	$stylesheet_dir = get_stylesheet_directory();
 	$stylesheet_uri = get_locale_stylesheet_uri();
+	$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $stylesheet_uri );
 
-	return apply_filters( 'momtaz_get_locale_stylesheet_uri',
-				momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ),
-				$stylesheet_uri
-			);
+	return apply_filters( 'momtaz_get_locale_stylesheet_uri', $stylesheet_uri );
 
 }
 
@@ -64,23 +85,26 @@ function momtaz_get_locale_stylesheet_uri() {
  * @return string
  * @since 1.0
  */
-function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
+function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 
 	if ( ! empty( $stylesheet_uri ) && momtaz_is_style_dev_mode() ) {
 
-		$stylesheet = pathinfo( $stylesheet_uri );
+		$pathinfo = pathinfo( parse_url( $stylesheet_uri, PHP_URL_PATH ) );
+		$stylesheet_dir = $_SERVER['DOCUMENT_ROOT'] . $pathinfo['dirname'];
 
-		$stylesheet['basename'] = ltrim( $stylesheet['basename'], '/' );
+		if ( is_dir( $stylesheet_dir ) ) {
 
-		foreach ( momtaz_get_dev_stylesheet_suffixs() as $dev_suffix ) {
+			foreach ( momtaz_get_dev_stylesheet_suffixs() as $dev_suffix ) {
 
-			$stylesheet['basename'] = str_replace( '.css', $dev_suffix, $stylesheet['basename'] );
+				$dev_basename = $pathinfo['filename'] . $dev_suffix;
 
-			if ( file_exists( trailingslashit( $stylesheet_dir ) . $stylesheet['basename'] ) ) {
-				 $stylesheet_uri = trailingslashit( $stylesheet['dirname'] ) . $stylesheet['basename'];
-			}
+				if ( file_exists( trailingslashit( $stylesheet_dir ) . $dev_basename ) ) {
+					 $stylesheet_uri = str_replace( $pathinfo['basename'], $dev_basename, $stylesheet_uri );
+				} // end if
 
-		} // end foreach
+			} // end foreach
+
+		} // end if
 
 	} // end if
 
@@ -89,7 +113,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri, $stylesheet_dir ) {
 }
 
 /**
- * Change the the type attribute when using LESS styles.
+ * Retrieve stylesheet link tag with the proper attributes.
  *
  * @return string
  * @since 1.0
@@ -145,15 +169,5 @@ function momtaz_get_dev_stylesheet_suffixs() {
  * @since 1.0
  */
 function momtaz_is_style_dev_mode() {
-
-	if ( defined( 'MOMTAZ_STYLE_DEV' ) && MOMTAZ_STYLE_DEV ) {
-		return true;
-	}
-
-	if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
-		return true;
-	}
-
-	return false;
-
+	return ( defined( 'MOMTAZ_STYLE_DEV' ) || defined( "SCRIPT_DEBUG" ) );
 }

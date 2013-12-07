@@ -155,6 +155,7 @@ final class Momtaz {
 		require MOMTAZ_INCLUDES_DIR . '/templates.php';
 		require MOMTAZ_INCLUDES_DIR . '/scripts.php';
 		require MOMTAZ_INCLUDES_DIR . '/styles.php';
+		require MOMTAZ_INCLUDES_DIR . '/layouts.php';
 		require MOMTAZ_INCLUDES_DIR . '/media.php';
 
 		// Sets up the default filters and actions.

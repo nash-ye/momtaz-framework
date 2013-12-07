@@ -11,8 +11,8 @@
 /**
  * Gets the parent theme textdomain ID and path.
  *
- * @since 1.1
  * @return array
+ * @since 1.1
  */
 function momtaz_get_parent_theme_textdomain(){
 
@@ -24,13 +24,13 @@ function momtaz_get_parent_theme_textdomain(){
 		'id' => $theme->get( 'TextDomain' ),
 	) );
 
-} // momtaz_get_parent_theme_textdomain()
+}
 
 /**
  * Loads the parent theme translation files.
  *
- * @since 1.1
  * @return bool
+ * @since 1.1
  */
 function momtaz_load_parent_theme_textdomain(){
 
@@ -43,13 +43,13 @@ function momtaz_load_parent_theme_textdomain(){
 	// Load the theme's translated strings.
 	return load_theme_textdomain( $textdomain['id'] );
 
-} // momtaz_load_parent_theme_textdomain()
+}
 
 /**
  * Gets the child theme textdomain ID and path.
  *
- * @since 1.1
  * @return array
+ * @since 1.1
  */
 function momtaz_get_child_theme_textdomain(){
 
@@ -69,13 +69,13 @@ function momtaz_get_child_theme_textdomain(){
 
 	return apply_filters( 'momtaz_get_child_theme_textdomain', $textdomain );
 
-} // momtaz_get_child_theme_textdomain()
+}
 
 /**
  * Loads the child theme translation files.
  *
- * @since 1.1
  * @return bool
+ * @since 1.1
  */
 function momtaz_load_child_theme_textdomain(){
 
@@ -87,7 +87,7 @@ function momtaz_load_child_theme_textdomain(){
 
 	return load_theme_textdomain( $textdomain['id'] );
 
-} // momtaz_load_child_theme_textdomain()
+}
 
 add_filter( 'load_textdomain_mofile', 'momtaz_load_textdomain_mofile', 10, 2 );
 
@@ -96,8 +96,8 @@ add_filter( 'load_textdomain_mofile', 'momtaz_load_textdomain_mofile', 10, 2 );
  * of the mofile for translations.  This allows child themes to have a folder called /languages with translations
  * of their parent theme so that the translations aren't lost on a parent theme upgrade.
  *
- * @since 1.0
  * @return string
+ * @since 1.0
  */
 function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
@@ -139,9 +139,9 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
  * Function for formatting a hook name if needed. It automatically adds the
  * theme's prefix to begining of the hook name.
  *
- * @since 1.0
- * @access public
  * @param string $tag The basic name of the hook (e.g., 'before_header').
+ * @return string
+ * @since 1.0
  */
 function momtaz_format_hook( $tag ) {
 	return THEME_PREFIX . "_{$tag}";

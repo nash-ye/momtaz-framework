@@ -1,17 +1,13 @@
 <?php
 /**
- * Functions file for loading scripts and styles.
+ * Media Functions.
  *
  * @package Momtaz
  * @subpackage Functions
  */
 
 /**
- * A utility class to generate the image thumbinals on-the-fly.
- *
- * <b>Important Note</b>
- * This class is still experimental, I recommended to use
- * the momtaz_resize_image() function.
+ * A utility class to crop/resize the images on-the-fly.
  *
  * @since 1.1
  */
@@ -24,7 +20,7 @@ class Momtaz_Image_Clipper {
 	/**
 	 * The image path.
 	 *
-	 * @return string
+	 * @var string
 	 * @since 1.1
 	 */
 	protected $image_path;
@@ -34,7 +30,7 @@ class Momtaz_Image_Clipper {
 	/**
 	 * The clip width.
 	 *
-	 * @return int
+	 * @var int
 	 * @since 1.1
 	 */
 	protected $clip_width;
@@ -42,7 +38,7 @@ class Momtaz_Image_Clipper {
 	/**
 	 * The clip height.
 	 *
-	 * @return int
+	 * @var int
 	 * @since 1.1
 	 */
 	protected $clip_height;
@@ -50,7 +46,7 @@ class Momtaz_Image_Clipper {
 	/**
 	 * The clip file name.
 	 *
-	 * @return string
+	 * @var string
 	 * @since 1.1
 	 */
 	protected $clip_filename;
@@ -58,7 +54,7 @@ class Momtaz_Image_Clipper {
 	/**
 	 * The clip directory path.
 	 *
-	 * @return string
+	 * @var string
 	 * @since 1.1
 	 */
 	protected $clip_directory;
@@ -66,7 +62,7 @@ class Momtaz_Image_Clipper {
 	/**
 	 * The clip options.
 	 *
-	 * @return array
+	 * @var array
 	 * @since 1.1
 	 */
 	protected $clip_options = array();
@@ -226,45 +222,21 @@ class Momtaz_Image_Clipper {
 	 */
 	public function set_image_path( $path ) {
 
-		if ( ! empty( $path ) && file_exists( $path ) ) {
+		if ( momtaz_is_self_hosted_url( $path ) ) {
+
+			// Parse the URL and return the possible path.
+			$path = ltrim( parse_url( $path, PHP_URL_PATH ), '/' );
+			$path = path_join( $_SERVER['DOCUMENT_ROOT'], $path );
+
+		} // end if
+
+		if ( file_exists( $path ) ) {
 			$this->image_path = $path;
 		}
 
 		return $this;
 
 	} // end set_image_path()
-
-	/**
-	 * Try to guess the image path.
-	 *
-	 * @return Momtaz_Image_Clipper
-	 * @since 1.1
-	 */
-	public function guess_image_path( $path ) {
-
-		if ( empty( $path ) ) {
-			return $this;
-		}
-
-		if ( realpath( $path ) === $path ) {
-
-			// Set the image path.
-			$this->set_image_path( $path );
-
-		} elseif ( momtaz_is_vaild_url( $path ) ) {
-
-			// Parse the URL and return the possible path.
-			$path = ltrim( parse_url( $path, PHP_URL_PATH ), '/' );
-			$path = path_join( $_SERVER['DOCUMENT_ROOT'], $path );
-
-			// Set the image path.
-			$this->set_image_path( $path );
-
-		} // end if
-
-		return $this;
-
-	} // end guess_image_path()
 
 	/**
 	 * Set the clip width.
@@ -296,7 +268,7 @@ class Momtaz_Image_Clipper {
 	 */
 	public function set_clip_directory( $path ) {
 
-		if ( ! empty( $path ) && is_dir( $path ) ) {
+		if ( is_dir( $path ) ) {
 			$this->clip_directory = $path;
 		}
 
@@ -498,7 +470,7 @@ function momtaz_resize_image( $image_path, $width, $height, $crop = true ) {
 	// Set the clipper properties and save the file.
 	$the_clip = $clipper->set_clip_directory( MOMTAZ_CACHE_DIR )
 						->set_clip_option( 'c', (bool) $crop )
-						->guess_image_path( $image_path )
+						->set_image_path( $image_path )
 						->set_clip_height( $height )
 						->set_clip_width( $width )
 						->save_the_clip();

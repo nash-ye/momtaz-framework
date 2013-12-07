@@ -181,17 +181,13 @@ function momtaz_get_post_context( $post = null ) {
 
 			// Post type
 			if ( ! empty( $post->post_type ) ){
-
 				$post_context[] = $post->post_type;
 				$post_context[] = 'type-' . $post->post_type;
-
 			} // end if
 
 			// Post status
 			if ( ! empty( $post->post_status ) ) {
-
 				$post_context[] = "status-{$post->post_status}";
-
 			} // end if
 
 			// Post author
@@ -215,11 +211,9 @@ function momtaz_get_post_context( $post = null ) {
 				$post_format = get_post_format( $post->ID );
 
 				if ( $post_format && ! is_wp_error( $post_format ) ) {
-
 					 $post_context[] = 'format-' . sanitize_html_class( $post_format );
 
 				} else {
-
 					 $post_context[] = 'format-standard';
 
 				} // end-if
@@ -301,17 +295,12 @@ function momtaz_body_class( $classes ) {
 	} // end foreach
 
 
-	/* Momtaz theme widgets detection. */
-	foreach ( array( 'primary', 'secondary', 'subsidiary' ) as $sidebar ) {
-		$classes[] = ( is_active_sidebar( $sidebar ) ) ? "sidebar-{$sidebar}-active" : "sidebar-{$sidebar}-inactive";
+	/* Momtaz Current Layout. */
+	if ( ( $current_layout = Momtaz_Layouts::get_current_layout() ) ) {
+		$classes[] = 'layout-' . trim( $current_layout->key );
 	}
 
-	if ( in_array( 'sidebar-primary-inactive', $classes ) && in_array( 'sidebar-secondary-inactive', $classes ) && in_array( 'sidebar-subsidiary-inactive', $classes ) ) {
-		$classes[] = 'no-widgets';
-	}
-
-
-	return (array) apply_filters( 'momtaz_body_class', array_map( 'esc_attr', $classes ) );
+	return (array) apply_filters( 'momtaz_body_class', $classes );
 
 }
 

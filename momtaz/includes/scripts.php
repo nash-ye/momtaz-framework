@@ -7,6 +7,34 @@
  */
 
 /**
+ * Get the framework's available scripts list.
+ *
+ * @return array
+ * @since 1.2
+ */
+function momtaz_get_scripts() {
+
+	$scripts = array();
+
+	// LessCSS preprocessor.
+	$scripts['less'] = array(
+		'src' => momtaz_theme_uri( 'content/scripts/less.js' ),
+		'version' => Momtaz::VERSION,
+	);
+
+	// theme drop-downs preprocessor.
+	$scripts['drop-downs'] = array(
+		'src' => momtaz_theme_uri( 'content/scripts/dropdowns.js' ),
+		'version' => Momtaz::VERSION,
+		'deps' => array( 'jquery' ),
+		'in_footer' => true,
+	);
+
+	return apply_filters( 'momtaz_get_scripts', $scripts );
+
+}
+
+/**
  * Registers JavaScript files for the framework.  This function merely registers scripts with WordPress using
  * the wp_register_script() function.  It does not load any script files on the site.  If a theme wants to register
  * its own custom scripts, it should do so on the 'wp_enqueue_scripts' hook.
@@ -20,11 +48,9 @@ function momtaz_register_scripts() {
 	wp_register_script( 'less', momtaz_theme_uri( 'content/scripts/less.js' ), false, Momtaz::VERSION );
 
 	// Register the drop-downs script.
-	if ( current_theme_supports( 'momtaz-core-drop-downs' ) ) {
-		 wp_register_script( 'drop-downs', momtaz_theme_uri( 'content/scripts/dropdowns.js' ), array( 'jquery' ), Momtaz::VERSION, true );
-	}
+	wp_register_script( 'drop-downs', momtaz_theme_uri( 'content/scripts/dropdowns.js' ), array( 'jquery' ), Momtaz::VERSION, true );
 
-} // end momtaz_register_scripts()
+}
 
 /**
  * Tells WordPress to load the scripts needed for the framework using the wp_enqueue_script() function.
@@ -46,4 +72,4 @@ function momtaz_enqueue_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-} // end momtaz_enqueue_scripts()
+}
