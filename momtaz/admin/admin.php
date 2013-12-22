@@ -13,8 +13,8 @@ add_action( 'admin_enqueue_scripts', 'momtaz_admin_register_styles' );
  * Registers the framework's 'admin.css' stylesheet file. The function does not load the stylesheet. It merely
  * registers it with WordPress.
  *
- * @since 1.0
  * @return void
+ * @since 1.0
  */
 function momtaz_admin_register_styles() {
 
@@ -26,8 +26,8 @@ function momtaz_admin_register_styles() {
 /**
  * Some common checks to perform before save the meta data associated with a post.
  *
+ * @return bool
  * @since 1.0
- * @return boolean
 */
 function momtaz_verify_common_post_meta_box( $post, $args ){
 
@@ -67,8 +67,8 @@ function momtaz_verify_common_post_meta_box( $post, $args ){
 /**
  * The common way to save the meta data associated with a post.
  *
+ * @return bool
  * @since 1.1
- * @return boolean
 */
 function momtaz_save_post_meta_array( $post_id, $meta ){
 

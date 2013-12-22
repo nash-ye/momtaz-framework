@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Momtaz 1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-15 13:43+0300\n"
+"POT-Creation-Date: 2013-12-22 20:59+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
 "Language-Team: Nahswan Doaqan <nashwan.doaqan@ymail.com>\n"
@@ -97,7 +97,7 @@ msgctxt "entry-meta-sep"
 msgid " | "
 msgstr ""
 
-#: ../../../momtaz/entry-footer.php:57
+#: ../../../momtaz/entry-footer.php:60
 #, php-format
 msgid "<span class=\"prep entry-utility-prep\">Tags:</span> %s"
 msgstr "<span class=\"prep entry-utility-prep\">الوسوم:</span> %s"
@@ -147,28 +147,28 @@ msgstr "عذراً، ولكن لا توجد نتائج للآرشيف الذي �
 msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
 msgstr "عذراً، لم يتم العثور على ماتبحث عنه. جرب مرة أخرى بإستخدام كلمات مختلفة."
 
-#: ../../../momtaz/loop-meta.php:69
+#: ../../../momtaz/loop-meta.php:70
 msgid "j F, Y"
 msgstr ""
 
-#: ../../../momtaz/loop-meta.php:72
+#: ../../../momtaz/loop-meta.php:73
 msgid "F Y"
 msgstr ""
 
-#: ../../../momtaz/loop-meta.php:75
+#: ../../../momtaz/loop-meta.php:76
 msgid "Y"
 msgstr ""
 
-#: ../../../momtaz/loop-meta.php:84
+#: ../../../momtaz/loop-meta.php:85
 msgid "You are browsing the site archives by date."
 msgstr "أنت تشاهد آرشيف الموقع بإستخدام التاريخ/الوقت."
 
-#: ../../../momtaz/loop-meta.php:118
+#: ../../../momtaz/loop-meta.php:119
 #, php-format
 msgid "You are browsing the search results for &quot;%1$s&quot;"
 msgstr "أنت تشاهد نتائج البحث عن &quot;%1$s&quot;"
 
-#: ../../../momtaz/loop-meta.php:145
+#: ../../../momtaz/loop-meta.php:146
 msgid "Archives"
 msgstr "الآرشيف"
 
@@ -206,15 +206,15 @@ msgstr "البحث عن:"
 msgid "Search"
 msgstr "بحث"
 
-#: ../../../momtaz/admin/settings.php:87
+#: ../../../momtaz/admin/settings.php:109
 msgid "Theme Settings"
 msgstr "إعدادات القالب"
 
-#: ../../../momtaz/admin/settings.php:123
+#: ../../../momtaz/admin/settings.php:165
 msgid "Customize"
 msgstr "تخصيص"
 
-#: ../../../momtaz/admin/settings.php:138
+#: ../../../momtaz/admin/settings.php:180
 msgid "Update Settings"
 msgstr "تحديث الإعدادات"
 
@@ -236,146 +236,150 @@ msgstr "المالك:"
 msgid "Description:"
 msgstr "الوصف:"
 
-#: ../../../momtaz/includes/momtaz.php:38
-#: ../../../momtaz/includes/momtaz.php:47
-msgid "Cheatin&#8217; huh?"
-msgstr "تغش، ها؟!"
-
-#: ../../../momtaz/includes/momtaz.php:121
-msgid "The current environment doesn't meet the Momtaz requirements.<br><b>The default theme will be activated automaticly.</b>"
-msgstr "البيئة الحالية لموقعك لا توفر أدنى متطلبات تشغيل القالب.<br> <b> سيتم تفعيل القالب الإفتراضي تلقائياً.</b>"
-
-#: ../../../momtaz/includes/common/comments.php:71
+#: ../../../momtaz/includes/comments.php:66
 msgid "Name"
 msgstr "الإسم"
 
-#: ../../../momtaz/includes/common/comments.php:84
+#: ../../../momtaz/includes/comments.php:75
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
-#: ../../../momtaz/includes/common/comments.php:93
+#: ../../../momtaz/includes/comments.php:83
 msgid "Website"
 msgstr "الموقع الإلكتروني"
 
-#: ../../../momtaz/includes/common/general.php:59
+#: ../../../momtaz/includes/general.php:61
 #, php-format
 msgid "Page %s"
 msgstr "الصفحة %s"
 
-#: ../../../momtaz/includes/common/general.php:124
+#: ../../../momtaz/includes/general.php:130
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "متابعة القراءة <span class=\"meta-nav\">&larr;</span>"
 
-#: ../../../momtaz/includes/features/menus.php:29
+#: ../../../momtaz/includes/layouts.php:16
+msgid "One-column, Fixed"
+msgstr "عمود واحد، ثابت"
+
+#: ../../../momtaz/includes/layouts.php:21
+msgid "One-column, Fluid"
+msgstr "عمود واحد، متمدد"
+
+#: ../../../momtaz/includes/layouts.php:25
+msgid "Two-column, Left, Fixed"
+msgstr "عمودين، يسار، ثابت"
+
+#: ../../../momtaz/includes/layouts.php:30
+msgid "Two-column, Left, Fluid"
+msgstr "عمودين، يسار، متمدد"
+
+#: ../../../momtaz/includes/layouts.php:34
+msgid "Two-column, Right, Fixed"
+msgstr "عمودين، يمين، ثابت"
+
+#: ../../../momtaz/includes/layouts.php:39
+msgid "Two-column, Right, Fluid"
+msgstr "عمودين، يمين، متمدد"
+
+#: ../../../momtaz/includes/layouts.php:43
+msgid "Three-column, Left, Fixed"
+msgstr "ثلاثة أعمدة، يسار، ثابت"
+
+#: ../../../momtaz/includes/layouts.php:48
+msgid "Three-column, Left, Fluid"
+msgstr "ثلاثة أعمدة، يسار، متمدد"
+
+#: ../../../momtaz/includes/layouts.php:52
+msgid "Three-column, Right, Fixed"
+msgstr "ثلاثة أعمدة، يمين، ثابت"
+
+#: ../../../momtaz/includes/layouts.php:57
+msgid "Three-column, Right, Fluid"
+msgstr "ثلاثة أعمدة، يمين، متمدد"
+
+#: ../../../momtaz/includes/menus.php:29
 msgctxt "nav menu location"
 msgid "Primary"
 msgstr "القائمة الأساسية"
 
-#: ../../../momtaz/includes/features/menus.php:33
+#: ../../../momtaz/includes/menus.php:30
 msgctxt "nav menu location"
 msgid "Secondary"
 msgstr "القائمة الثانوية"
 
-#: ../../../momtaz/includes/features/menus.php:37
+#: ../../../momtaz/includes/menus.php:31
 msgctxt "nav menu location"
 msgid "Subsidiary"
 msgstr "القائمة المساعدة"
 
-#: ../../../momtaz/includes/features/sidebars.php:33
+#: ../../../momtaz/includes/modules.php:440
+msgid "Invalid module slug."
+msgstr "اسم الموديل غير صالح."
+
+#: ../../../momtaz/includes/modules.php:474
+msgid "Invalid module path."
+msgstr "مسار الموديل غير صالح."
+
+#: ../../../momtaz/includes/momtaz.php:36
+#: ../../../momtaz/includes/momtaz.php:45
+msgid "Cheatin&#8217; huh?"
+msgstr "تغش، ها؟!"
+
+#: ../../../momtaz/includes/momtaz.php:113
+msgid "The current environment doesn't meet the Momtaz requirements.<br><b>The default theme will be activated automaticly.</b>"
+msgstr "البيئة الحالية لموقعك لا توفر أدنى متطلبات تشغيل القالب.<br> <b> سيتم تفعيل القالب الإفتراضي تلقائياً.</b>"
+
+#: ../../../momtaz/includes/sidebars.php:34
 msgctxt "sidebar"
 msgid "Primary"
 msgstr "أساسي"
 
-#: ../../../momtaz/includes/features/sidebars.php:34
+#: ../../../momtaz/includes/sidebars.php:35
 msgid "The main (primary) widget area."
 msgstr "القائمة الجانبية الأساسية."
 
-#: ../../../momtaz/includes/features/sidebars.php:37
+#: ../../../momtaz/includes/sidebars.php:38
 msgctxt "sidebar"
 msgid "Secondary"
 msgstr "ثانوي"
 
-#: ../../../momtaz/includes/features/sidebars.php:38
+#: ../../../momtaz/includes/sidebars.php:39
 msgid "The second most important widget area."
 msgstr "القائمة الجانبية الثانوية."
 
-#: ../../../momtaz/includes/features/sidebars.php:41
+#: ../../../momtaz/includes/sidebars.php:42
 msgctxt "sidebar"
 msgid "Subsidiary"
 msgstr "مساعد"
 
-#: ../../../momtaz/includes/features/sidebars.php:42
+#: ../../../momtaz/includes/sidebars.php:43
 msgid "Displayed within the site's footer area."
 msgstr "تعرض في تذبيل الموقع الإلكتروني."
 
-#: ../../../momtaz/includes/features/sidebars.php:45
+#: ../../../momtaz/includes/sidebars.php:46
 msgctxt "sidebar"
 msgid "Header"
 msgstr "ضمن الترويسة"
 
-#: ../../../momtaz/includes/features/sidebars.php:46
+#: ../../../momtaz/includes/sidebars.php:47
 msgid "Displayed within the site's header area."
 msgstr "تعرض في ترويسة الموقع الإلكتروني."
 
-#: ../../../momtaz/includes/features/sidebars.php:49
+#: ../../../momtaz/includes/sidebars.php:50
 msgctxt "sidebar"
 msgid "Before Entry"
 msgstr "قبل المحتوى"
 
-#: ../../../momtaz/includes/features/sidebars.php:50
+#: ../../../momtaz/includes/sidebars.php:51
 msgid "Loaded on singular post (page, attachment, etc.) views before the post title."
 msgstr "تحمل في صفحة الموضوع المفرد (صفحة، مرفق، ...الخ) تعرض قبل عنوان الموضوع."
 
-#: ../../../momtaz/includes/features/sidebars.php:53
+#: ../../../momtaz/includes/sidebars.php:54
 msgctxt "sidebar"
 msgid "After Entry"
 msgstr "بعد المحتوى"
 
-#: ../../../momtaz/includes/features/sidebars.php:54
+#: ../../../momtaz/includes/sidebars.php:55
 msgid "Loaded on singular post (page, attachment, etc.) views before the comments area."
 msgstr "تحمل في صفحة الموضوع المفرد (صفحة، مرفق، ...الخ) تعرض قبل منطقة التعليقات."
 
-#: ../../../momtaz/includes/kernel/modules.php:434
-msgid "Invalid module slug."
-msgstr ""
-
-#: ../../../momtaz/includes/kernel/modules.php:469
-msgid "Invalid module path."
-msgstr ""
-
-#~ msgid "Sticky"
-#~ msgstr "مثّبت"
-
-#~ msgid "Posts by %s"
-#~ msgstr "التدوينات بواسطة %s"
-#~ msgctxt "author-archive"
-
-#~ msgid "Author archive: %s"
-#~ msgstr "آرشيف الكاتب: %s"
-
-#~ msgid "Shortcodes"
-#~ msgstr "الأكواد المختصرة"
-
-#~ msgid "The registered shortcodes in your site:"
-#~ msgstr "الأكواد المختصرة المسجلة في الموقع:"
-
-#~ msgid "WordPress"
-#~ msgstr "ووردبريس"
-
-#~ msgid "Login"
-#~ msgstr "تسجيل الدخول"
-
-#~ msgid "Logout"
-#~ msgstr "تسجيل الخروج"
-
-#~ msgid "This page loaded in %1$s seconds with %2$s database queries."
-#~ msgstr "تم تحميل الصفحة خلال %1$s ثانية مع %2$s إستعلام."
-
-#~ msgid "<span class=\"%s\">Posted on:</span> %s"
-#~ msgstr "<span class=\"%s\">نشر في:</span> %s"
-
-#~ msgid "Pings (%d)"
-#~ msgstr "التنبيهات (%d)"
-
-#~ msgid "Hello"
-#~ msgstr "Hello"

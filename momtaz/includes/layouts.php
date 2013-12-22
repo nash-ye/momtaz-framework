@@ -1,14 +1,14 @@
 <?php
 
-add_action( 'momtaz_init', 'momtaz_create_initial_layouts' );
+add_action( 'momtaz_init', 'momtaz_register_core_layouts' );
 
 /**
- * Create the initial Momtaz layouts.
+ * Registers the the framework's default layouts.
  *
  * @return void
  * @since 1.2
  */
-function momtaz_create_initial_layouts() {
+function momtaz_register_core_layouts() {
 
 	// Get the available core layouts.
 	$core_layouts = array(
@@ -75,6 +75,57 @@ function momtaz_create_initial_layouts() {
 	    Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
 	}
 
+}
+
+add_action( 'momtaz_init', 'momtaz_adjust_content_width' );
+
+/**
+ * Adjust the content width, depending on the current layout.
+ *
+ * @return void
+ * @since 1.1
+ */
+function momtaz_adjust_content_width() {
+
+	if ( ! momtaz_get_content_width() ) {
+
+		// Get the current layout.
+		$layout = Momtaz_Layouts::get_current_layout();
+
+		// Set the WordPress content width.
+		if ( $layout && ! empty( $layout->content_width ) ) {
+			momtaz_set_content_width( $layout->content_width );
+		}
+
+	}
+
+}
+
+/**
+ * Function for setting the content width of a theme.  This does not check if a content width has been set; it
+ * simply overwrites whatever the content width is.
+ *
+ * @since 1.1
+ * @access public
+ * @global int $content_width The width for the theme's content area.
+ * @param int $width Numeric value of the width to set.
+ */
+function momtaz_set_content_width( $width ) {
+	global $content_width;
+	$content_width = absint( $width );
+}
+
+/**
+ * Function for getting the theme's content width.
+ *
+ * @since 1.1
+ * @access public
+ * @global int $content_width The width for the theme's content area.
+ * @return int $content_width
+ */
+function momtaz_get_content_width() {
+	global $content_width;
+	return $content_width;
 }
 
 /**
@@ -239,53 +290,4 @@ final class Momtaz_Layouts {
 	 */
 	private function __construct() {}
 
-}
-
-/**
- * Adjust the content width, depending on the current layout.
- *
- * @return void
- * @since 1.1
- */
-function momtaz_adjust_content_width() {
-
-	if ( ! momtaz_get_content_width() ) {
-
-		// Get the current layout.
-		$layout = Momtaz_Layouts::get_current_layout();
-
-		// Set the WordPress content width.
-		if ( $layout && ! empty( $layout->content_width ) ) {
-			momtaz_set_content_width( $layout->content_width );
-		}
-
-	}
-
-}
-
-/**
- * Function for setting the content width of a theme.  This does not check if a content width has been set; it
- * simply overwrites whatever the content width is.
- *
- * @since 1.1
- * @access public
- * @global int $content_width The width for the theme's content area.
- * @param int $width Numeric value of the width to set.
- */
-function momtaz_set_content_width( $width ) {
-	global $content_width;
-	$content_width = absint( $width );
-}
-
-/**
- * Function for getting the theme's content width.
- *
- * @since 1.1
- * @access public
- * @global int $content_width The width for the theme's content area.
- * @return int $content_width
- */
-function momtaz_get_content_width() {
-	global $content_width;
-	return $content_width;
 }

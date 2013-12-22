@@ -22,7 +22,6 @@ class Momtaz_Settings_Page {
 	 */
 	protected $screen_id;
 
-
 	/*** Methods **************************************************************/
 
 	/**

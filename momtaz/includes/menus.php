@@ -8,7 +8,6 @@
  * @subpackage Functions
  */
 
-// Register nav menus.
 add_action( 'init', 'momtaz_register_core_menus' );
 
 /**
@@ -50,7 +49,7 @@ function momtaz_register_core_menus() {
 }
 
 /**
- * Get the theme-supported core menus.
+ * Get the theme-supported Momtaz core menus.
  *
  * @return array
  * @since 1.2

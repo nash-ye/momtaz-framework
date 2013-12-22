@@ -22,9 +22,6 @@ add_filter( 'body_class', 'momtaz_body_class' );
 add_action( 'momtaz_title', 'momtaz_wp_title' );
 add_filter( 'wp_title', 'momtaz_filter_wp_title', 10, 2 );
 
-// Adjusts the global $content_width variable.
-add_action( 'template_redirect', 'momtaz_adjust_content_width' );
-
 // Filters the comment form default arguments.
 add_filter( 'comment_form_defaults', 'momtaz_comment_form_args' );
 
