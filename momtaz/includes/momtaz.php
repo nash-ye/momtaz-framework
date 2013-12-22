@@ -1,7 +1,5 @@
 <?php
 
-do_action( 'before_momtaz_load' );
-
 if ( ! class_exists( 'Momtaz' ) ) :
 
 /**
@@ -17,7 +15,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.2-alpha-1';
+	const VERSION = '1.2-alpha-2';
 
 
 	/** Magic Methods *********************************************************/
@@ -67,15 +65,6 @@ final class Momtaz {
 		define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
 		define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
 
-		define( 'MOMTAZ_ADMIN_DIR', trailingslashit( THEME_DIR ) . 'admin' );
-		define( 'MOMTAZ_ADMIN_URI', trailingslashit( THEME_URI ) . 'admin' );
-
-		define( 'MOMTAZ_CONTENT_DIR', trailingslashit( THEME_DIR ) . 'content' );
-		define( 'MOMTAZ_CONTENT_URI', trailingslashit( THEME_URI ) . 'content' );
-
-		define( 'MOMTAZ_INCLUDES_DIR', trailingslashit( THEME_DIR ) . 'includes' );
-		define( 'MOMTAZ_INCLUDES_URI', trailingslashit( THEME_URI ) . 'includes' );
-
 		if ( ! defined( 'MOMTAZ_CACHE_DIR' ) ) {
 			define( 'MOMTAZ_CACHE_DIR', trailingslashit( THEME_DIR ) . 'cache' );
 		}
@@ -101,7 +90,7 @@ final class Momtaz {
 			// Load child theme translation files.
 			momtaz_load_child_theme_textdomain();
 
-		} // end if
+		}
 
 	}
 
@@ -124,7 +113,7 @@ final class Momtaz {
 			wp_die( __( 'The current environment doesn\'t meet the Momtaz requirements.<br>'.
 					'<b>The default theme will be activated automaticly.</b>', 'momtaz' ) );
 
-		} // end if
+		}
 
 	}
 
@@ -135,59 +124,41 @@ final class Momtaz {
 	 */
 	private function load_kernel() {
 
-		require MOMTAZ_INCLUDES_DIR . '/core.php';
-		require MOMTAZ_INCLUDES_DIR . '/modules.php';
+		require self::path( 'includes/core.php' );
+		require self::path( 'includes/modules.php' );
 
 	}
 
 	/**
-	 * Load the Momtaz common functions.
+	 * Load the Momtaz framework functions.
 	 *
-	 * @since 1.1
+	 * @return void
+	 * @since 1.2
 	 */
-	private function load_common() {
+	private function load_framework() {
 
-		require MOMTAZ_INCLUDES_DIR . '/context.php';
-		require MOMTAZ_INCLUDES_DIR . '/settings.php';
-		require MOMTAZ_INCLUDES_DIR . '/formatting.php';
-		require MOMTAZ_INCLUDES_DIR . '/comments.php';
-		require MOMTAZ_INCLUDES_DIR . '/general.php';
-		require MOMTAZ_INCLUDES_DIR . '/templates.php';
-		require MOMTAZ_INCLUDES_DIR . '/scripts.php';
-		require MOMTAZ_INCLUDES_DIR . '/styles.php';
-		require MOMTAZ_INCLUDES_DIR . '/layouts.php';
-		require MOMTAZ_INCLUDES_DIR . '/media.php';
-
-		// Sets up the default filters and actions.
-		require MOMTAZ_INCLUDES_DIR . '/filters.php';
-
-	}
-
-	/**
-	 * Load the supported features.
-	 *
-	 * @since 1.0
-	 */
-	private function load_features() {
-
-		require_if_theme_supports( 'momtaz-core-sidebars', MOMTAZ_INCLUDES_DIR . '/sidebars.php' );
-		require_if_theme_supports( 'momtaz-core-menus', MOMTAZ_INCLUDES_DIR . '/menus.php' );
-
-	}
-
-	/**
-	 * Load the admin functions.
-	 *
-	 * @since 1.0
-	 */
-	private function load_admin() {
+		require self::path( 'includes/context.php'		);
+		require self::path( 'includes/settings.php'		);
+		require self::path( 'includes/formatting.php'	);
+		require self::path( 'includes/comments.php'		);
+		require self::path( 'includes/general.php'		);
+		require self::path( 'includes/templates.php'	);
+		require self::path( 'includes/layouts.php'		);
+		require self::path( 'includes/sidebars.php'		);
+		require self::path( 'includes/scripts.php'		);
+		require self::path( 'includes/styles.php'		);
+		require self::path( 'includes/menus.php'		);
+		require self::path( 'includes/media.php'		);
 
 		if ( is_admin() ) {
 
-			require MOMTAZ_ADMIN_DIR . '/admin.php';
-			require_if_theme_supports( 'momtaz-core-theme-settings', MOMTAZ_ADMIN_DIR . '/settings.php' );
+			require self::path( 'admin/admin.php'		);
+			require self::path( 'admin/settings.php'	);
 
-		} // end if
+		}
+
+		// Sets up the default filters and actions.
+		require self::path( 'includes/filters.php'		);
 
 	}
 
@@ -239,29 +210,37 @@ final class Momtaz {
 			// Check the Momtaz requirements.
 			self::$instance->check_requirements();
 
-			do_action( 'momtaz_setup' );
-
-			// Load the common functions.
-			self::$instance->load_common();
-
-			// Load the supported features.
-			self::$instance->load_features();
-
-			// Load the admin functions.
-			self::$instance->load_admin();
+			// Load the framework functions.
+			self::$instance->load_framework();
 
 			do_action( 'after_momtaz_setup' );
 
 			// Load the auto-load modules.
 			self::$instance->load_modules();
 
-		} // end if
+			do_action( 'momtaz_init' );
+
+		}
 
 		return self::$instance;
 
 	}
 
-} // end Class Momtaz
+	/**
+	 * Get the absolute system path to the Momtaz directory, or a file therein.
+	 *
+	 * @return string
+	 * @since 1.2
+	 */
+	public static function path( $path = '' ) {
+
+		$path = ltrim( $path, '/' );
+		$dir = get_template_directory();
+		return trailingslashit( $dir ) . $path;
+
+	}
+
+}
 
 endif; // end class_exists() check
 

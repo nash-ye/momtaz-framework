@@ -37,7 +37,7 @@ function momtaz_is_self_hosted_url( $url ) {
 
 		$retval = ( empty( $url_host ) || $url_host === $site_host );
 
-	} // end if
+	}
 
 	return apply_filters( 'momtaz_is_self_hosted_url', $retval, $url );
 
@@ -109,7 +109,7 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 
 			$value = implode( ' ', array_filter( $value ) );
 
-		} // end if
+		}
 
 		if ( $args['escape'] ) {
 
@@ -124,13 +124,13 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 					$value = esc_attr( $value );
 					break;
 
-			} // end switch
+			}
 
-		} // end if
+		}
 
 		$output .= $key . '="' . $value . '" ';
 
-   } // end foreach
+   }
 
 	if ( ! empty( $output ) ) {
 		$output = $args['before'] . trim( $output ) . $args['after'];

@@ -34,7 +34,7 @@ function momtaz_meta_box_theme_add_about( $screen_ID ) {
 		// Adds the About box for the child theme.
 		add_meta_box( 'momtaz-core-about-child', sprintf( __( 'About %s', 'momtaz' ), $child_theme->get( 'Name' ) ), 'momtaz_meta_box_theme_display_about', $screen_ID, 'side', 'high' );
 
-	} // end if
+	}
 
 }
 
@@ -62,7 +62,7 @@ function momtaz_meta_box_theme_display_about( $object, $box ) {
 			$theme_data = wp_get_theme( get_stylesheet() );
 			break;
 
-	} // end Switch
+	}
 
 	?>
 

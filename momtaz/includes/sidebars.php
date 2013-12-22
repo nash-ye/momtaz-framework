@@ -8,59 +8,58 @@
  * @subpackage Functions
  */
 
-// Register the theme sidebars.
-add_action( 'widgets_init', 'momtaz_register_sidebars' );
+// Register the core sidebars.
+add_action( 'widgets_init', 'momtaz_register_core_sidebars' );
 
 /**
  * Registers each widget area for the theme. This includes all of the asides
  * and the utility widget areas throughout the theme.
  *
- * @since 1.0
+ * @return void
+ * @since 1.2
  */
-function momtaz_register_sidebars() {
+function momtaz_register_core_sidebars() {
 
 	// Get the theme-supported sidebars.
-	$sidebars = get_theme_support( 'momtaz-core-sidebars' );
+	$sidebars = momtaz_get_supported_core_sidebars();
 
 	// If the theme doesn't add support for any sidebars, return.
-	if ( ! is_array( $sidebars[0] ) ) {
+	if ( empty( $sidebars ) ) {
 		return;
 	}
 
-	// Get the available core framework sidebars.
-	$core_sidebars = array (
-
-		'primary' => array (
+	// Get the available core sidebars.
+	$core_sidebars = array(
+		'primary' => array(
 			'name' => _x( 'Primary', 'sidebar', 'momtaz' ),
-			'description' => __( 'The main (primary) widget area.', 'momtaz' )
+			'description' => __( 'The main (primary) widget area.', 'momtaz' ),
 		),
-		'secondary' => array (
+		'secondary' => array(
 			'name' => _x( 'Secondary', 'sidebar', 'momtaz' ),
 			'description' => __( 'The second most important widget area.', 'momtaz' ),
 		),
-		'subsidiary' => array (
+		'subsidiary' => array(
 			'name' => _x( 'Subsidiary', 'sidebar', 'momtaz' ),
 			'description' => __( 'Displayed within the site\'s footer area.', 'momtaz' ),
 		),
-		'header' => array (
+		'header' => array(
 			'name' => _x( 'Header', 'sidebar', 'momtaz' ),
 			'description' => __( 'Displayed within the site\'s header area.', 'momtaz' ),
 		),
-		'before-entry' => array (
+		'before-entry' => array(
 			'name' => _x( 'Before Entry', 'sidebar', 'momtaz' ),
 			'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the post title.', 'momtaz' ),
 		),
-		'after-entry' => array (
+		'after-entry' => array(
 			'name' => _x( 'After Entry', 'sidebar', 'momtaz' ),
 			'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the comments area.', 'momtaz' ),
 		),
-
 	);
 
 	$core_sidebars = apply_filters( 'momtaz_core_sidebars', $core_sidebars );
 
 	// Loop through the supported sidebars.
-	foreach ( $sidebars[0] as $sidebar ) {
+	foreach ( $sidebars as $sidebar ) {
 
 		// Make sure the given sidebar is one of the core sidebars.
 		if ( isset( $core_sidebars[ $sidebar ] ) ) {
@@ -73,9 +72,28 @@ function momtaz_register_sidebars() {
 			// Register the sidebar.
 			momtaz_register_sidebar( $core_sidebars[ $sidebar ] );
 
-		} // end if
+		}
 
-	} // end foreach
+	}
+
+}
+
+/**
+ * Get the theme-supported core sidebars.
+ *
+ * @return array
+ * @since 1.2
+ */
+function momtaz_get_supported_core_sidebars() {
+
+	$sidebars = get_theme_support( 'momtaz-core-sidebars' );
+
+	if ( ! $sidebars || ! is_array( $sidebars ) ) {
+		return array();
+	}
+
+	$sidebars = reset( $sidebars );
+	return (array) $sidebars;
 
 }
 
@@ -83,6 +101,7 @@ function momtaz_register_sidebars() {
  * Register a single sidebar by the theme defaults and returns the ID.
  *
  * @see register_sidebar()
+ * @return string
  * @since 1.1
  */
 function momtaz_register_sidebar( $args ) {

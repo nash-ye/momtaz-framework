@@ -98,8 +98,8 @@ function momtaz_register_theme_stacks() {
 
 		// Register the child theme directory.
 		momtaz_register_template_stack( array(
-			'path' => CHILD_THEME_DIR,
-			'uri' => CHILD_THEME_URI,
+			'uri' => get_stylesheet_directory_uri(),
+			'path' => get_stylesheet_directory(),
 			'slug' => 'child-theme',
 			'priority' => 5,
 		) );
@@ -108,97 +108,10 @@ function momtaz_register_theme_stacks() {
 
 	// Register the parent theme directory.
 	momtaz_register_template_stack( array(
+		'uri' => get_template_directory_uri(),
+		'path' => get_template_directory(),
 		'slug' => 'parent-theme',
-		'path' => THEME_DIR,
-		'uri' => THEME_URI,
 		'priority' => 10,
-	) );
-
-}
-
-add_action( 'after_momtaz_setup', 'momtaz_register_theme_layouts' );
-
-/**
- * Register the default theme layouts.
- *
- * @return void
- * @since 1.2
- */
-function momtaz_register_theme_layouts() {
-
-	// Register the '1c-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/1c-fixed.css' ),
-		'title' => __( 'One-column, Fixed', 'momtaz' ),
-		'content_width' => 940,
-		'key' => '1c-fixed',
-	) );
-
-	// Register the '1c-fluid' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/1c-fluid.css' ),
-		'title' => __( 'One-column, Fluid', 'momtaz' ),
-		'key' => '1c-fluid',
-	) );
-
-	// Register the '2c-l-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/2c-l-fixed.css' ),
-		'title' => __( 'Two-column, Left, Fixed', 'momtaz' ),
-		'content_width' => 620,
-		'key' => '2c-l-fixed',
-	) );
-
-	// Register the '2c-r-fluid' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/2c-l-fluid.css' ),
-		'title' => __( 'Two-column, Left, Fluid', 'momtaz' ),
-		'key' => '2c-l-fluid',
-	) );
-
-	// Register the '2c-r-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/2c-r-fixed.css' ),
-		'title' => __( 'Two-column, Right, Fixed', 'momtaz' ),
-		'content_width' => 620,
-		'key' => '2c-r-fixed',
-	) );
-
-	// Register the '2c-r-fluid' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/2c-r-fluid.css' ),
-		'title' => __( 'Two-column, Right, Fluid', 'momtaz' ),
-		'key' => '2c-r-fluid',
-	) );
-
-	// Register the '3c-l-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/3c-l-fixed.css' ),
-		'title' => __( 'Three-column, Left, Fixed', 'momtaz' ),
-		'content_width' => 540,
-		'key' => '3c-l-fixed',
-	) );
-
-	// Register the '3c-l-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/3c-l-fluid.css' ),
-		'title' => __( 'Three-column, Left, Fluid', 'momtaz' ),
-		'key' => '3c-l-fluid',
-	) );
-
-	// Register the '3c-r-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/3c-r-fixed.css' ),
-		'title' => __( 'Three-column, Right, Fixed', 'momtaz' ),
-		'content_width' => 540,
-		'key' => '3c-r-fixed',
-	) );
-
-	// Register the '3c-r-fixed' layout.
-	Momtaz_Layouts::register( array(
-		'style_uri' => momtaz_parent_theme_uri( 'content/styles/layouts/3c-r-fluid.css' ),
-		'title' => __( 'Three-column, Right, Fluid', 'momtaz' ),
-		'key' => '3c-r-fluid',
 	) );
 
 }

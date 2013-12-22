@@ -28,7 +28,7 @@ function momtaz_get_settings(){
 				momtaz_default_theme_settings()
 			);
 
-	} // end if
+	}
 
 	return (array) $momtaz->settings;
 
@@ -86,7 +86,7 @@ function momtaz_get_setting( $option_ID ) {
 			return $theme_settings[ $option_ID ];
 		}
 
-	} // end if
+	}
 
 }
 

@@ -51,7 +51,7 @@ class Momtaz_Settings_Page {
 				array( $this, 'page_content' )			// Callback function.
 			);
 
-		} // end if
+		}
 
 	}
 
@@ -83,7 +83,7 @@ class Momtaz_Settings_Page {
 			// Filter the settings page capability so that it recognizes the 'edit_theme_options' cap.
 			add_filter( "option_page_capability_{$prefix}_theme_settings", array( $this, 'get_capability' ) );
 
-		} // end if
+		}
 
 	}
 
@@ -231,10 +231,10 @@ class Momtaz_Settings_Page {
 
 			 // Load the 'About' meta box.
 			 if ( in_array( 'about', $args[0], true ) ) {
-				 require trailingslashit( MOMTAZ_ADMIN_DIR ) . 'meta-boxes/theme-about.php';
+				 require self::path( 'admin/meta-boxes/theme-about.php' );
 			 }
 
-		} // end if
+		}
 
 		do_action( 'momtaz_settings_page_add_meta_boxes' );
 
@@ -325,6 +325,6 @@ class Momtaz_Settings_Page {
 
 	}
 
-} // end class Momtaz_Settings_Page
+}
 
 new Momtaz_Settings_Page();

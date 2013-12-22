@@ -80,7 +80,7 @@ class Momtaz_Image_Clipper {
 	 */
 	public function get_image_path() {
 		return $this->image_path;
-	} // end get_image_path()
+	}
 
 	/**
 	 * Get the clip width.
@@ -90,7 +90,7 @@ class Momtaz_Image_Clipper {
 	 */
 	public function get_clip_width() {
 		return (int) $this->clip_width;
-	} // end get_clip_width()
+	}
 
 	/**
 	 * Get the clip height.
@@ -100,7 +100,7 @@ class Momtaz_Image_Clipper {
 	 */
 	public function get_clip_height() {
 		return (int) $this->clip_height;
-	} // end get_clip_height()
+	}
 
 	/**
 	 * Get the clip options.
@@ -110,7 +110,7 @@ class Momtaz_Image_Clipper {
 	 */
 	public function get_clip_options() {
 		return (array) $this->clip_options;
-	} // end get_clip_options()
+	}
 
 	/**
 	 * Get a clip option value based on name of option.
@@ -128,7 +128,7 @@ class Momtaz_Image_Clipper {
 
 		return $default;
 
-	} // end get_clip_option()
+	}
 
 	/**
 	 * Get the clip directory path.
@@ -146,11 +146,11 @@ class Momtaz_Image_Clipper {
 				return dirname( $img_path );
 			}
 
-		} // end if
+		}
 
 		return $this->clip_directory;
 
-	} // end get_clip_directory()
+	}
 
 	/**
 	 * Get the clip file name.
@@ -175,13 +175,13 @@ class Momtaz_Image_Clipper {
 				// Return the hashed file name.
 				return md5( $img_path . $width . $height );
 
-			} // end if
+			}
 
-		} // end if
+		}
 
 		return $this->clip_filename;
 
-	} // end get_clip_filename()
+	}
 
 	/**
 	 * Get the clip absolute file path.
@@ -210,7 +210,7 @@ class Momtaz_Image_Clipper {
 		// Return the destination file path.
 		return trailingslashit( $dir ) . "{$name}.{$extension}";
 
-	} // end get_clip_filepath()
+	}
 
 	// Setters
 
@@ -228,7 +228,7 @@ class Momtaz_Image_Clipper {
 			$path = ltrim( parse_url( $path, PHP_URL_PATH ), '/' );
 			$path = path_join( $_SERVER['DOCUMENT_ROOT'], $path );
 
-		} // end if
+		}
 
 		if ( file_exists( $path ) ) {
 			$this->image_path = $path;
@@ -236,7 +236,7 @@ class Momtaz_Image_Clipper {
 
 		return $this;
 
-	} // end set_image_path()
+	}
 
 	/**
 	 * Set the clip width.
@@ -247,7 +247,7 @@ class Momtaz_Image_Clipper {
 	public function set_clip_width( $width ) {
 		$this->clip_width = abs( (int) $width );
 		return $this;
-	} // end set_clip_width()
+	}
 
 	/**
 	 * Set the clip height.
@@ -258,7 +258,7 @@ class Momtaz_Image_Clipper {
 	public function set_clip_height( $height ) {
 		$this->clip_height = abs( (int) $height );
 		return $this;
-	} // end set_clip_height()
+	}
 
 	/**
 	 * Set the clip directory path.
@@ -274,7 +274,7 @@ class Momtaz_Image_Clipper {
 
 		return $this;
 
-	} // end set_clip_directory()
+	}
 
 	/**
 	 * Set the clip file name.
@@ -285,7 +285,7 @@ class Momtaz_Image_Clipper {
 	public function set_clip_filename( $filename ) {
 		$this->clip_filename = $filename;
 		return $this;
-	} // end set_clip_filename()
+	}
 
 	/**
 	 * Set the clip options list.
@@ -296,7 +296,7 @@ class Momtaz_Image_Clipper {
 	public function set_clip_options( array $options ) {
 		$this->clip_options = $options;
 		return $this;
-	} // end set_clip_options()
+	}
 
 	/**
 	 * Set a clip option value.
@@ -307,7 +307,7 @@ class Momtaz_Image_Clipper {
 	public function set_clip_option( $key, $value ) {
 		$this->clip_options[ $key ] = $value;
 		return $this;
-	} // end set_clip_option()
+	}
 
 	// Processing
 
@@ -347,7 +347,7 @@ class Momtaz_Image_Clipper {
 				$src['h'] = round( $img_h / $cmp_y * $cmp_x );
 				$src['y'] = round( ( $img_h - ( $img_h / $cmp_y * $cmp_x ) ) / 2 );
 
-			} // end if
+			}
 
 			$align = $this->get_clip_option( 'a', 'c' );
 
@@ -369,13 +369,13 @@ class Momtaz_Image_Clipper {
 					$src['x'] = $img_w - $src['w'];
 				}
 
-			} // end if
+			}
 
-		} // end if
+		}
 
 		return $src;
 
-	} // end locate_the_point()
+	}
 
 	/**
 	 * Resize images dynamically using WP built-in functions.
@@ -448,13 +448,13 @@ class Momtaz_Image_Clipper {
 				'path' => $clip_path,
 			);
 
-		} // end if
+		}
 
 		return $dest_img;
 
-	} // end save_the_clip()
+	}
 
-} // end Class Momtaz_Image_Clipper
+}
 
 /**
  * Resize images dynamically using wp built-in functions.
@@ -481,60 +481,8 @@ function momtaz_resize_image( $image_path, $width, $height, $crop = true ) {
 		$the_clip['url'] = trailingslashit( MOMTAZ_CACHE_URI );
 		$the_clip['url'] .= wp_basename( $the_clip['path'] );
 
-	} // end if
+	}
 
 	return $the_clip;
 
-}
-
-/**
- * Adjust the content width.
- *
- * @return void
- * @since 1.1
- */
-function momtaz_adjust_content_width() {
-
-	if ( ! momtaz_get_content_width() ) {
-
-		if ( ! is_active_sidebar( 'primary' ) &&
-			 ! is_active_sidebar( 'secondary' ) ) {
-
-			momtaz_set_content_width( 940 );
-
-		} else {
-
-			momtaz_set_content_width( 620 );
-
-		} // end if
-
-	} // end if
-
-}
-
-/**
- * Function for setting the content width of a theme.  This does not check if a content width has been set; it
- * simply overwrites whatever the content width is.
- *
- * @since 1.1
- * @access public
- * @global int $content_width The width for the theme's content area.
- * @param int $width Numeric value of the width to set.
- */
-function momtaz_set_content_width( $width ) {
-	global $content_width;
-	$content_width = absint( $width );
-}
-
-/**
- * Function for getting the theme's content width.
- *
- * @since 1.1
- * @access public
- * @global int $content_width The width for the theme's content area.
- * @return int $content_width
- */
-function momtaz_get_content_width() {
-	global $content_width;
-	return $content_width;
 }

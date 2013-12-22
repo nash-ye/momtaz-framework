@@ -100,11 +100,11 @@ function momtaz_comment_form_args( $defaults ) {
 			$label .= '<span class="required">*</span>';
 			$field->set_label( $label );
 
-		} // end if
+		}
 
 		$field = $field->get_output();
 
-	} // end foreach
+	}
 
 	// Comment Text
 	$args['comment_field'] = Nmwdhj\create_element( 'textarea' )

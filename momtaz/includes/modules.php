@@ -39,11 +39,11 @@ final class Momtaz_Modules {
 				$module = $modules[ $slug ];
 			}
 
-		} // end if
+		}
 
 		return $module;
 
-	} // end get_by_slug()
+	}
 
 	/**
 	 * Retrieve a list of registered modules.
@@ -80,11 +80,11 @@ final class Momtaz_Modules {
 
 						} elseif ( $obj_prop == $m_value ) {
 							$matched++;
-						} // end if
+						}
 
-					} // end if
+					}
 
-				} // end foreach
+				}
 
 				$b = false;
 				switch( strtoupper( $operator ) ) {
@@ -102,17 +102,17 @@ final class Momtaz_Modules {
 						$b = ( $matched == 0 );
 						break;
 
-				} // end Switch
+				}
 
 				if ( $b ) {
 					$filtered[ $key ] = $obj;
 				}
 
-		} // end foreach
+		}
 
 		return $filtered;
 
-	} // end get()
+	}
 
 	// Register/Deregister
 
@@ -132,16 +132,13 @@ final class Momtaz_Modules {
 
 			// Register the module.
 			self::$modules[ $module->get_slug() ] = $module;
-
-			// Return true.
 			return true;
 
-		} // end if
+		}
 
-		// Return false.
 		return false;
 
-	} // end register()
+	}
 
 	/**
 	 * Remove a registered module.
@@ -160,7 +157,7 @@ final class Momtaz_Modules {
 		unset( self::$modules[ $slug ] );
 		return true;
 
-	} // end deregister()
+	}
 
 	// Loaders
 
@@ -174,21 +171,21 @@ final class Momtaz_Modules {
 
 		$loaded_modules = array();
 
-			foreach ( $modules as $module ) {
+		foreach ( $modules as $module ) {
 
-				if ( $module instanceof Momtaz_Module ) {
+			if ( $module instanceof Momtaz_Module ) {
 
-					if ( $module->load( $force ) ) {
-						$loaded_modules[] = $module->get_path();
-					}
+				if ( $module->load( $force ) ) {
+					$loaded_modules[] = $module->get_path();
+				}
 
-				} // end if
+			}
 
-			} // end foreach
+		}
 
 		return $loaded_modules;
 
-	} // end load_modules()
+	}
 
 	/**
 	 * Load a module.
@@ -210,7 +207,7 @@ final class Momtaz_Modules {
 
 		return false;
 
-	} // end load_module()
+	}
 
 	// Helpers
 
@@ -228,9 +225,9 @@ final class Momtaz_Modules {
 
 		return locate_template( path_join( 'modules', $path ) );
 
-	} // end locate_module()
+	}
 
-} // end Class Momtaz_Modules
+}
 
 /**
  * Momtaz Module.
@@ -348,12 +345,12 @@ final class Momtaz_Module implements ArrayAccess {
 				 $module['metadata'][ $property ] = $value;
 			}
 
-		} // end foreach
+		}
 
 		// Set the module meta-data.
 		$this->set_metadata( $module['metadata'] );
 
-	} // end __construct()
+	}
 
 
 	/*** Methods **************************************************************/
@@ -368,7 +365,7 @@ final class Momtaz_Module implements ArrayAccess {
 	 */
 	public function get_slug() {
 		return $this->slug;
-	} // end get_slug()
+	}
 
 	/**
 	 * Get the module name.
@@ -378,7 +375,7 @@ final class Momtaz_Module implements ArrayAccess {
 	 */
 	public function get_name() {
 		return $this->name;
-	} // end get_name()
+	}
 
 	/**
 	 * Get the module path.
@@ -388,7 +385,7 @@ final class Momtaz_Module implements ArrayAccess {
 	 */
 	public function get_path() {
 		return $this->path;
-	} // end get_path()
+	}
 
 	/**
 	 * Get the module metadata.
@@ -406,7 +403,7 @@ final class Momtaz_Module implements ArrayAccess {
 			return $this->metadata[ $key ];
 		}
 
-	} // end get_metadata()
+	}
 
 	/**
 	 * Get the module settings.
@@ -424,7 +421,7 @@ final class Momtaz_Module implements ArrayAccess {
 			return $this->settings[ $key ];
 		}
 
-	} // end get_settings()
+	}
 
 	// Setters
 
@@ -444,13 +441,12 @@ final class Momtaz_Module implements ArrayAccess {
 					'invalid-module-slug'
 				);
 
-		} // end if
+		}
 
 		$this->slug = $slug;
-
 		return $this;
 
-	} // end set_slug()
+	}
 
 	/**
 	 * Set the module name.
@@ -461,7 +457,7 @@ final class Momtaz_Module implements ArrayAccess {
 	public function set_name( $name ) {
 		$this->name = wp_kses_data( $name );
 		return $this;
-	} // end get_name()
+	}
 
 	/**
 	 * Get the module path.
@@ -479,13 +475,12 @@ final class Momtaz_Module implements ArrayAccess {
 					'invalid-module-path'
 				);
 
-		} // end if
+		}
 
 		$this->path = $path;
-
 		return $this;
 
-	} // end set_path()
+	}
 
 	/**
 	 * Set the module metadata.
@@ -496,7 +491,7 @@ final class Momtaz_Module implements ArrayAccess {
 	public function set_metadata( array $data ) {
 		$this->metadata = $data;
 		return $this;
-	} // end set_data()
+	}
 
 	/**
 	 * Set the module settings.
@@ -507,7 +502,7 @@ final class Momtaz_Module implements ArrayAccess {
 	public function set_settings( array $settings ) {
 		$this->settings = $settings;
 		return $this;
-	} // end set_settings()
+	}
 
 	// Checks
 
@@ -527,11 +522,11 @@ final class Momtaz_Module implements ArrayAccess {
 				$this->statuses['loaded'] = (bool) call_user_func( $callback, $this );
 			}
 
-		} // end if
+		}
 
 		return ( isset( $this->statuses['loaded'] ) && $this->statuses['loaded'] );
 
-	} // end is_loaded()
+	}
 
 	// Loaders
 
@@ -557,11 +552,11 @@ final class Momtaz_Module implements ArrayAccess {
 
 			return true;
 
-		} // end if
+		}
 
 		return false;
 
-	} // end load()
+	}
 
 
 	/*** ArrayAccess Implements ***********************************************/
@@ -585,17 +580,16 @@ final class Momtaz_Module implements ArrayAccess {
 			case 'metadata':
 				return $this->get_metadata();
 
-		} // end switch
+		}
 
-	} // end offsetGet()
+	}
 
 	public function offsetExists( $offset ) {
 
 		$properties = array_keys( get_class_vars( __CLASS__ ) );
-
 		return ( array_search( $offset, $properties ) !== false );
 
-	} // emd offsetExists()
+	}
 
 	public function offsetSet( $offset, $value ) {
 
@@ -616,15 +610,15 @@ final class Momtaz_Module implements ArrayAccess {
 			case 'metadata':
 				return $this->set_metadata( $value );
 
-		} // end switch
+		}
 
-	} // end offsetSet()
+	}
 
 	public function offsetUnset( $offset ) {
 		return false;
-	} // end offsetUnset()
+	}
 
-} // end Class Momtaz_Module
+}
 
 /**
  * The Momtaz module exception class.

@@ -1,0 +1,170 @@
+/* --------------------------------------------------------------
+
+   The Layouts
+
+   @since: 1.2
+
+-------------------------------------------------------------- */
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - The Grid System
+ * 2.0 - One-column
+ * 3.0 - Two-column
+ * 4.0 - Three-column
+ * 5.0 - Shared
+ * ----------------------------------------------------------------------------
+ */
+
+/**
+ * 1.0 The Grid System
+ * ----------------------------------------------------------------------------
+ */
+
+// Semantic.gs
+@import "grid.less";
+
+@columns: 12;
+@column-width: 60;
+@gutter-width: 20;
+
+body.layout-1c-fluid,
+body.layout-2c-l-fluid,
+body.layout-2c-r-fluid,
+body.layout-3c-l-fluid,
+body.layout-3c-r-fluid {
+    @total-width: 100%;
+}
+
+/**
+ * 2.0 One-column
+ * ----------------------------------------------------------------------------
+ */
+
+body.layout-1c-fixed,
+body.layout-1c-fluid {
+
+    #content {
+        .column( 12 );
+    }
+    #sidebar {
+        display:none;
+    }
+
+}
+
+/**
+ * 3.0 Two-column
+ * ----------------------------------------------------------------------------
+ */
+
+body.layout-2c-l-fixed,
+body.layout-2c-l-fluid,
+body.layout-2c-r-fixed,
+body.layout-2c-r-fluid {
+
+    #content {
+        .column( 8 );
+    }
+    #sidebar {
+        .column( 4 );
+    }
+
+}
+
+/**
+ * 4.0 Three-column
+ * ----------------------------------------------------------------------------
+ */
+
+body.layout-3c-l-fixed,
+body.layout-3c-l-fluid,
+body.layout-3c-r-fixed,
+body.layout-3c-r-fluid {
+
+    #content {
+        .column( 7 );
+    }
+    #sidebar {
+        .column( 5 );
+
+        #primary-sidebar {
+            .theWidth( 2.5, 5 );
+            margin: 0 5px;
+            float:right;
+        }
+        #secondary-sidebar {
+            .theWidth( 2.5, 5 );
+            margin: 0 5px;
+            float:left;
+        }
+
+    }
+
+}
+
+/**
+ * 5.0 Shared
+ * ----------------------------------------------------------------------------
+ */
+
+/*** Fixed Layouts ***/
+
+body.layout-1c-fixed,
+body.layout-2c-l-fixed,
+body.layout-2c-r-fixed,
+body.layout-3c-l-fixed,
+body.layout-3c-r-fixed {
+
+    #wrapper {
+        width: 960px;
+    }
+
+}
+
+/*** Fluid Layouts ***/
+
+body.layout-1c-fluid,
+body.layout-2c-l-fluid,
+body.layout-2c-r-fluid,
+body.layout-3c-l-fluid,
+body.layout-3c-r-fluid {
+
+    #wrapper {
+        width: 100%;
+    }
+
+}
+
+/*** Left Sidebar ***/
+
+body.layout-2c-l-fixed,
+body.layout-2c-l-fluid,
+body.layout-3c-l-fixed,
+body.layout-3c-l-fluid {
+
+    #content {
+        float:right;
+    }
+    #sidebar {
+        float:left;
+    }
+
+}
+
+/*** Right Sidebar ***/
+
+body.layout-2c-r-fixed,
+body.layout-2c-r-fluid,
+body.layout-3c-r-fixed,
+body.layout-3c-r-fluid {
+
+    #content {
+        float:left;
+    }
+    #sidebar {
+        float:right;
+    }
+
+}

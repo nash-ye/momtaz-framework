@@ -34,7 +34,6 @@ add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_scripts'  );
 
 // Theme Head tag.
 add_action( momtaz_format_hook( 'head' ), 'momtaz_main_stylesheet',		1   );
-add_action( momtaz_format_hook( 'head' ), 'momtaz_layout_stylesheet',   1   );
 add_action( momtaz_format_hook( 'head' ), 'momtaz_locale_stylesheet',   1   );
 add_action( momtaz_format_hook( 'head' ), 'momtaz_meta_generator',		10  );
 add_action( momtaz_format_hook( 'head' ), 'momtaz_meta_designer',		10  );

@@ -65,7 +65,7 @@ function momtaz_get_child_theme_textdomain(){
 		);
 
 
-	} // end if
+	}
 
 	return apply_filters( 'momtaz_get_child_theme_textdomain', $textdomain );
 
@@ -115,7 +115,7 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 				$textdomain = momtaz_get_child_theme_textdomain();
 				break;
 
-		} // end Switch
+		}
 
 		if ( isset( $textdomain['id'] ) && $textdomain['id'] === $domain ) {
 
@@ -127,9 +127,9 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
 
 			break; // Stop looping!
 
-		} // end if
+		}
 
-	} // end foreach
+	}
 
 	return $mofile;
 

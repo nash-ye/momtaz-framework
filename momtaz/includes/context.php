@@ -52,7 +52,7 @@ function momtaz_get_context() {
 					$object_id = get_queried_object_id();
 					$context[] = "{$object->post_type}-{$object_id}";
 
-				} // end if
+				}
 
 			}
 
@@ -75,7 +75,7 @@ function momtaz_get_context() {
 						$context[] = "taxonomy-{$object->taxonomy}";
 						$context[] = "taxonomy-{$object->taxonomy}-" . sanitize_html_class( $object->slug, $object->term_id );
 
-					} // end if
+					}
 
 				}
 
@@ -118,13 +118,13 @@ function momtaz_get_context() {
 							$context[] = 'day';
 						}
 
-					} // end if
+					}
 
 					if ( is_time() ) {
 						$context[] = 'time';
-					} // end if
+					}
 
-				} // end if
+				}
 
 			}
 
@@ -141,11 +141,11 @@ function momtaz_get_context() {
 			} else {
 				$context[] = 'other';
 
-			} // end if
+			}
 
 			$context = array_map( 'esc_attr', $context );
 
-	} // end if
+	}
 
 	return (array) apply_filters( 'momtaz_get_context', $context );
 
@@ -183,12 +183,12 @@ function momtaz_get_post_context( $post = null ) {
 			if ( ! empty( $post->post_type ) ){
 				$post_context[] = $post->post_type;
 				$post_context[] = 'type-' . $post->post_type;
-			} // end if
+			}
 
 			// Post status
 			if ( ! empty( $post->post_status ) ) {
 				$post_context[] = "status-{$post->post_status}";
-			} // end if
+			}
 
 			// Post author
 			if ( ! empty( $post->post_author ) ) {
@@ -202,7 +202,7 @@ function momtaz_get_post_context( $post = null ) {
 					$post_context[] = 'author-self';
 				}
 
-			} // end if
+			}
 
 			// Post formats
 			if ( current_theme_supports( 'post-formats' ) && post_type_supports( $post->post_type, 'post-formats' ) ) {
@@ -216,14 +216,14 @@ function momtaz_get_post_context( $post = null ) {
 				} else {
 					 $post_context[] = 'format-standard';
 
-				} // end-if
+				}
 
-			} // end-if
+			}
 
 			// Cache the post context array.
 			$context[ $post->ID ] = array_map( 'esc_attr', $post_context );
 
-	} // end if
+	}
 
 	return (array) apply_filters( 'momtaz_post_context', $context[ $post->ID ], $post );
 
@@ -236,6 +236,12 @@ function momtaz_get_post_context( $post = null ) {
  * @since 1.0
 */
 function momtaz_body_class( $classes ) {
+
+	/* Momtaz Current Layout. */
+	if ( ( $layout = Momtaz_Layouts::get_current_layout() ) ) {
+		$classes[] = 'layout-' . trim( $layout->id );
+	}
+
 
 	/* Date classes. */
 	$time = time() + ( get_option( 'gmt_offset' ) * 3600 );
@@ -255,9 +261,9 @@ function momtaz_body_class( $classes ) {
 		if ( $value ) {
 			$classes[] = 'browser-' . $key;
 			break;
-		} // end if
+		}
 
-	} // end foreach
+	}
 
 
 	// Register devices vars
@@ -274,9 +280,9 @@ function momtaz_body_class( $classes ) {
 		if ( $value ) {
 			$classes[] = 'device-' . $key;
 			break;
-		} // end if
+		}
 
-	} // end foreach
+	}
 
 
 	// Register systems vars
@@ -290,14 +296,8 @@ function momtaz_body_class( $classes ) {
 		if ( $value ) {
 			$classes[] = 'system-' . $key;
 			break;
-		} // end if
+		}
 
-	} // end foreach
-
-
-	/* Momtaz Current Layout. */
-	if ( ( $current_layout = Momtaz_Layouts::get_current_layout() ) ) {
-		$classes[] = 'layout-' . trim( $current_layout->key );
 	}
 
 	return (array) apply_filters( 'momtaz_body_class', $classes );
@@ -321,7 +321,7 @@ function momtaz_post_class( $class = '', $post_id = 0 ) {
 		// Output the class attribute.
 		echo 'class="' . esc_attr( implode( ' ', $classes ) ) . '"';
 
-	} // end if
+	}
 
 }
 
@@ -361,7 +361,7 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 		$classes[] = 'set-' . ++$post_alt;
 		$classes[] = ( $post_alt % 2 ) ? 'odd' : 'even alt';
 
-	} // end if
+	}
 
 	// Post publish date.
 	if ( ! empty( $post->post_date ) ) {
@@ -378,7 +378,7 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 		// Post Publish Date
 		$classes[] = 'pubdate-' . get_post_time( 'y-m-d', false, $post );
 
-	} // end if
+	}
 
 	// Post taxonomies
 	$obj_taxonomies = get_object_taxonomies( $post );
@@ -395,11 +395,11 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 					$classes[] = 'term-'. sanitize_html_class( $term->slug, $term->term_id );
 				}
 
-			} // end if
+			}
 
-		} // end-foreach
+		}
 
-	} // end-if
+	}
 
 	// Sticky posts.
 	if ( is_home() && ! is_paged() && is_sticky( $post->ID ) ) {
@@ -425,7 +425,7 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 
 		$classes = array_merge( $classes, $class );
 
-	} // end if
+	}
 
 	// Apply the WordPress filters.
 	$classes = apply_filters( 'post_class', $classes, $class, $post->ID );
@@ -472,9 +472,9 @@ function momtaz_is_single( $post = false, $post_types = '' ) {
 
 			$retval = true;
 
-		} // end if
+		}
 
-	} // end if
+	}
 
 	return $retval;
 

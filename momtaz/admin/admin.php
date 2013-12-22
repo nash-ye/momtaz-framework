@@ -48,7 +48,7 @@ function momtaz_verify_common_post_meta_box( $post, $args ){
 			return false;
 		}
 
-	} // end if
+	}
 
 	// Don't save if the user hasn't submitted the changes
 	if ( wp_is_post_autosave( $post ) || wp_is_post_revision( $post ) ) {
@@ -98,7 +98,7 @@ function momtaz_save_post_meta_array( $post_id, $meta ){
 			delete_post_meta( $post_id, $meta_key, $meta_value );
 		}
 
-	} // end foreach
+	}
 
 	return true;
 

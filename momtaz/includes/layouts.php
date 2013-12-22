@@ -1,136 +1,291 @@
 <?php
+
+add_action( 'momtaz_init', 'momtaz_create_initial_layouts' );
+
 /**
- * Momtaz Layouts Manager Class.
+ * Create the initial Momtaz layouts.
+ *
+ * @return void
+ * @since 1.2
+ */
+function momtaz_create_initial_layouts() {
+
+	// Get the available core layouts.
+	$core_layouts = array(
+		'1c-fixed' => array(
+			'name' => __( 'One-column, Fixed', 'momtaz' ),
+			'content_width' => 940,
+			'type' => 'fixed',
+		),
+		'1c-fluid' => array(
+			'name' => __( 'One-column, Fluid', 'momtaz' ),
+			'type' => 'fluid',
+		),
+		'2c-l-fixed' => array(
+			'name' => __( 'Two-column, Left, Fixed', 'momtaz' ),
+			'content_width' => 620,
+			'type' => 'fixed',
+		),
+		'2c-l-fluid' => array(
+			'name' => __( 'Two-column, Left, Fluid', 'momtaz' ),
+			'type' => 'fluid',
+		),
+		'2c-r-fixed' => array(
+			'name' => __( 'Two-column, Right, Fixed', 'momtaz' ),
+			'content_width' => 620,
+			'type' => 'fixed',
+		),
+		'2c-r-fluid' => array(
+			'name' => __( 'Two-column, Right, Fluid', 'momtaz' ),
+			'type' => 'fluid',
+		),
+		'3c-l-fixed' => array(
+			'name' => __( 'Three-column, Left, Fixed', 'momtaz' ),
+			'content_width' => 540,
+			'type' => 'fixed',
+		),
+		'3c-l-fluid' => array(
+			'name' => __( 'Three-column, Left, Fluid', 'momtaz' ),
+			'type' => 'fluid',
+		),
+		'3c-r-fixed' => array(
+			'name' => __( 'Three-column, Right, Fixed', 'momtaz' ),
+			'content_width' => 540,
+			'type' => 'fixed',
+		),
+		'3c-r-fluid' => array(
+			'name '=> __( 'Three-column, Right, Fluid', 'momtaz' ),
+			'type' => 'fluid',
+		),
+	);
+
+	$core_layouts = apply_filters( 'momtaz_core_layouts', $core_layouts );
+
+	foreach( $core_layouts as $id => $layout ) {
+
+		// Register the layout.
+		Momtaz_Layouts::register( $id, $layout );
+
+	}
+
+	// Set the current layout.
+	if ( is_rtl() ) {
+	    Momtaz_Layouts::set_current_layout( '2c-l-fixed' );
+	} else {
+	    Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
+	}
+
+}
+
+/**
+ * The Momtaz Layouts manager class.
  *
  * @since 1.2
  */
-class Momtaz_Layouts {
+final class Momtaz_Layouts {
 
 	/*** Properties ***********************************************************/
 
 	/**
-	 * The current layout key.
-	 *
-	 * @var string
-	 * @since 1.2
-	 */
-	protected static $current_layout;
-
-	/**
-	 * The Layouts List.
+	 * The layouts list.
 	 *
 	 * @var array
 	 * @since 1.2
 	 */
-	protected static $layouts = array();
-
+	private static $layouts = array();
 
 	/*** Methods **************************************************************/
 
-	// Getters
-
 	/**
-	 * Get a layout object by key.
+	 * Register a new layout in Momtaz.
 	 *
 	 * @return object
-	 * @since 1.1
+	 * @since 1.2
 	 */
-	public static function get_by_key( $key ) {
+	public static function register( $id, array $layout ) {
 
-		$key = sanitize_key( $key );
-
-		if ( isset( self::$layouts[ $key ] ) ) {
-			return self::$layouts[ $key ];
+		if ( ! $id || isset( self::$layouts[ $id ] ) ) {
+			return false;
 		}
+
+		$layout = (object) array_merge( array(
+			'content_width' => 0,
+			'name'	=> '',
+			'type'	=> '',
+		), $layout );
+
+		self::$layouts[ $id ] = $layout;
+		self::$layouts[ $id ]->id = $id;
+
+		return $layout;
 
 	}
 
 	/**
-	 * Get a layout object by key.
+	 * Deregister a layout from Momtaz.
 	 *
-	 * @return object
-	 * @since 1.1
+	 * @return bool
+	 * @since 1.2
+	 */
+	public static function deregister( $id ) {
+
+		if ( ! $id || ! isset( self::$layouts[ $id ] ) ) {
+			return false;
+		}
+
+		unset( self::$layouts[ $id ] );
+
+		return true;
+
+	}
+
+	/**
+	 * Check if the given $id match the current layout ID.
+	 *
+	 * @return bool
+	 * @since 1.2
+	 */
+	public static function is_current_layout( $id ) {
+
+		$layout = self::get_current_layout();
+
+		if ( empty( $layout ) ) {
+			return false;
+		}
+
+		return ( $layout->id === $id );
+
+	}
+
+	/**
+	 * Set the current layout, specified by the ID.
+	 *
+	 * @return bool
+	 * @since 1.2
+	 */
+	public static function set_current_layout( $id ) {
+
+		if ( ! $id || ! isset( self::$layouts[ $id ] ) ) {
+			return false;
+		}
+
+		foreach( self::get_layouts() as $layout ) {
+			unset( $layout->current );
+		}
+
+		self::$layouts[ $id ]->current = true;
+
+		return true;
+
+	}
+
+	/**
+	 * Get the current layout.
+	 *
+	 * @return object|null
+	 * @since 1.2
 	 */
 	public static function get_current_layout() {
-		return self::get_by_key( self::$current_layout );
+
+		foreach( self::get_layouts() as $layout ) {
+
+			if ( isset( $layout->current ) && $layout->current ) {
+				return $layout;
+			}
+
+		}
+
 	}
 
 	/**
-	 * Get the layouts list.
+	 * Get a layout data object, specified by the ID.
+	 *
+	 * @return object|null
+	 * @since 1.2
+	 */
+	public static function get_layout( $id ) {
+
+		if ( ! $id || ! isset( self::$layouts[ $id ] ) ) {
+			return;
+		}
+
+		return self::$layouts[ $id ];
+
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.2
+	 */
+	public static function is_exists( $id ) {
+		return isset( self::$layouts[ $id ] );
+	}
+
+	/**
+	 * Get all registered Momtaz layouts.
 	 *
 	 * @return array
 	 * @since 1.2
 	 */
-	public static function get( $args = '', $operator = 'AND' ) {
-		return wp_list_filter( self::$layouts, $args, $operator );
+	public static function get_layouts() {
+		return self::$layouts;
 	}
 
 	/**
-	 * Set the current layout key.
+	 * A dummy constructor.
 	 *
-	 * @return array
+	 * @return void
 	 * @since 1.2
 	 */
-	public static function set_current_layout( $key ) {
+	private function __construct() {}
 
-		$key = sanitize_key( $key );
+}
 
-		if ( ! self::get_by_key( $key ) ) {
-			return false;
+/**
+ * Adjust the content width, depending on the current layout.
+ *
+ * @return void
+ * @since 1.1
+ */
+function momtaz_adjust_content_width() {
+
+	if ( ! momtaz_get_content_width() ) {
+
+		// Get the current layout.
+		$layout = Momtaz_Layouts::get_current_layout();
+
+		// Set the WordPress content width.
+		if ( $layout && ! empty( $layout->content_width ) ) {
+			momtaz_set_content_width( $layout->content_width );
 		}
-
-		self::$current_layout = $key;
-
-		return true;
 
 	}
 
-	/**
-	 * Register a layout.
-	 *
-	 * @return bool
-	 * @since 1.2
-	 */
-	public static function register( array $args ) {
+}
 
-		$args = (object) wp_parse_args( $args, array(
-			'content_width' => 0,
-			'style_path' => '',
-			'style_uri' => '',
-			'title' => '',
-			'key' => '',
-		) );
+/**
+ * Function for setting the content width of a theme.  This does not check if a content width has been set; it
+ * simply overwrites whatever the content width is.
+ *
+ * @since 1.1
+ * @access public
+ * @global int $content_width The width for the theme's content area.
+ * @param int $width Numeric value of the width to set.
+ */
+function momtaz_set_content_width( $width ) {
+	global $content_width;
+	$content_width = absint( $width );
+}
 
-		$args->key = sanitize_key( $args->key );
-
-		if ( empty( $args->key ) ) {
-			return false;
-		}
-
-		self::$layouts[ $args->key ] = $args;
-
-		return true;
-
-	}
-
-	/**
-	 * Deregister a layout.
-	 *
-	 * @return bool
-	 * @since 1.2
-	 */
-	public static function deregister( $key ) {
-
-		$key = sanitize_key( $key );
-
-		if ( empty( $key ) ) {
-			return false;
-		}
-
-		unset( self::$layouts[ $key ] );
-
-		return true;
-
-	}
-
+/**
+ * Function for getting the theme's content width.
+ *
+ * @since 1.1
+ * @access public
+ * @global int $content_width The width for the theme's content area.
+ * @return int $content_width
+ */
+function momtaz_get_content_width() {
+	global $content_width;
+	return $content_width;
 }
