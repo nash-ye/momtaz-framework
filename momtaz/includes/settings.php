@@ -10,7 +10,7 @@
  */
 
 /**
- * Loads the Momtaz theme settings once . Momtaz theme settings are added with 'autoload'
+ * Loads all Momtaz theme settings once . Momtaz theme settings are added with 'autoload'
  * set to 'yes', so the settings are only loaded once on each page load.
  *
  * @since 1.0
@@ -35,9 +35,11 @@ function momtaz_get_settings(){
 }
 
 /**
- * Update the all theme settings.
+ * Update all theme settings.
  *
  * @since 1.0
+ * @param mixed[] $theme_settings An array of theme settings.
+ * @see momtaz_theme_settings_option() Get the name of theme settings option.
  * @return boolean
  */
 function momtaz_update_settings( array $theme_settings ){
@@ -69,11 +71,14 @@ function momtaz_delete_settings(){
 }
 
 /**
- * Loads the Momtaz theme settings once and allows the input of the specific field the user would
- * like to show.  Momtaz theme settings are added with 'autoload' set to 'yes', so the settings are
- * only loaded once on each page load.
+ * Get the value of a theme setting depending on its ID.
+ * 
+ * Get the value of a specific field 'setting' from the array of theme settings through
+ * passing the ID of this field to the function.
  *
  * @since 1.0
+ * @param string $option_ID the ID of the setting.
+ * @see momtaz_get_settings() Loads all Momtaz theme settings once.
  * @return mixed
  */
 function momtaz_get_setting( $option_ID ) {
@@ -91,9 +96,17 @@ function momtaz_get_setting( $option_ID ) {
 }
 
 /**
- * Add a new setting.
+ * Add a new setting to the array of theme settings.
  *
+ * Add a new theme setting if not previously added by passing the ID of the setting
+ * to the function as its first parameter and its value as the second parameter then,
+ * update the array of all theme settings with the new one.
+ * 
  * @since 1.0
+ * @param string $option_ID The ID of the new setting.
+ * @param mixed $option_value The value of the new setting.
+ * @see momtaz_get_settings() Loads all Momtaz theme settings once.
+ * @see momtaz_update_settings() Update all theme settings.
  * @return boolean
  */
 function momtaz_add_setting( $option_ID, $option_value ) {
@@ -115,9 +128,17 @@ function momtaz_add_setting( $option_ID, $option_value ) {
 }
 
 /**
- * Update the value of an setting that was already added.
+ * Update the value of a specific setting that was already added.
+ *
+ * Update the value of a previously added setting by passing the ID of the setting
+ * to the function as its first parameter and its new value as the second parameter then,
+ * update the array of all theme settings with the new one.
  *
  * @since 1.0
+ * @param string $option_ID The ID of the already added setting.
+ * @param mixed $option_value The new value of the already added setting.
+ * @see momtaz_get_settings() Loads all Momtaz theme settings once.
+ * @see momtaz_update_settings() Update all theme settings.
  * @return boolean
  */
 function momtaz_update_setting( $option_ID, $option_value ) {
@@ -137,6 +158,7 @@ function momtaz_update_setting( $option_ID, $option_value ) {
  * Delete the value of an setting that was already added.
  *
  * @since 1.0
+ * @param string $option_ID The ID of the already added setting.
  * @return boolean
  */
 function momtaz_delete_setting( $option_ID ) {
