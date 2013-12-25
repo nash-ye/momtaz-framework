@@ -25,9 +25,11 @@ function momtaz_get_settings(){
 		// Get the option and cache it.
 		$momtaz->settings = get_option(
 				momtaz_theme_settings_option(),
-				momtaz_default_theme_settings()
+				array()
 			);
-
+			
+		// Append the default values of the unsaved settings.
+		$momtaz->settings += momtaz_default_theme_settings();
 	}
 
 	return (array) $momtaz->settings;
