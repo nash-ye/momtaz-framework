@@ -2,8 +2,7 @@
 /**
  * Functions for dealing with theme settings on both the front end of the site and the admin.  This allows us
  * to set some default settings and make it easy for theme developers to quickly grab theme settings from
- * the database.  This file is only loaded if the theme adds support for the 'momtaz-core-theme-settings'
- * feature.
+ * the database.
  *
  * @package Momtaz
  * @subpackage Functions
@@ -27,7 +26,7 @@ function momtaz_get_settings(){
 				momtaz_theme_settings_option(),
 				array()
 			);
-			
+
 		// Append the default values of the unsaved settings.
 		$momtaz->settings += momtaz_default_theme_settings();
 	}
@@ -74,7 +73,7 @@ function momtaz_delete_settings(){
 
 /**
  * Get the value of a theme setting depending on its ID.
- * 
+ *
  * Get the value of a specific field 'setting' from the array of theme settings through
  * passing the ID of this field to the function.
  *
@@ -103,7 +102,7 @@ function momtaz_get_setting( $option_ID ) {
  * Add a new theme setting if not previously added by passing the ID of the setting
  * to the function as its first parameter and its value as the second parameter then,
  * update the array of all theme settings with the new one.
- * 
+ *
  * @since 1.0
  * @param string $option_ID The ID of the new setting.
  * @param mixed $option_value The value of the new setting.

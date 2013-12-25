@@ -155,18 +155,17 @@ final class Momtaz_Layouts {
 	 */
 	public static function register( $id, array $layout ) {
 
-		if ( ! $id || isset( self::$layouts[ $id ] ) ) {
+		if ( ! $id || self::is_exists( $id ) ) {
 			return false;
 		}
 
 		$layout = (object) array_merge( array(
 			'content_width' => 0,
-			'name'	=> '',
-			'type'	=> '',
-		), $layout );
+			'name'			=> '',
+			'type'			=> '',
+		), $layout, array( 'id' => $id ) );
 
 		self::$layouts[ $id ] = $layout;
-		self::$layouts[ $id ]->id = $id;
 
 		return $layout;
 
@@ -180,7 +179,7 @@ final class Momtaz_Layouts {
 	 */
 	public static function deregister( $id ) {
 
-		if ( ! $id || ! isset( self::$layouts[ $id ] ) ) {
+		if ( ! $id || ! self::is_exists( $id ) ) {
 			return false;
 		}
 
@@ -216,7 +215,7 @@ final class Momtaz_Layouts {
 	 */
 	public static function set_current_layout( $id ) {
 
-		if ( ! $id || ! isset( self::$layouts[ $id ] ) ) {
+		if ( ! $id || ! self::is_exists( $id ) ) {
 			return false;
 		}
 
@@ -256,7 +255,7 @@ final class Momtaz_Layouts {
 	 */
 	public static function get_layout( $id ) {
 
-		if ( ! $id || ! isset( self::$layouts[ $id ] ) ) {
+		if ( ! $id || ! self::is_exists( $id ) ) {
 			return;
 		}
 
