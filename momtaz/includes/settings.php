@@ -27,6 +27,9 @@ function momtaz_get_settings(){
 				momtaz_theme_settings_option(),
 				momtaz_default_theme_settings()
 			);
+			
+		// Append the default values of the unsaved settings.
+		$momtaz->settings = $momtaz->settings + momtaz_default_theme_settings();
 
 	}
 
