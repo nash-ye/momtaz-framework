@@ -159,8 +159,8 @@ function momtaz_update_setting( $option_ID, $option_value ) {
 /**
  * Delete a setting that was already added.
  *
- * Delete a setting and its value from the array of theme settings and then,
- * update the array.
+ * Delete a setting and its value from the array of theme settings by passing 
+ * its ID to the function and then, update all theme settings.
  *
  * @since 1.0
  * @param string $option_ID The ID of the already added setting.
