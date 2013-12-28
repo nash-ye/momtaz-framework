@@ -232,6 +232,11 @@ final class Momtaz {
 	/**
 	 * Get the absolute system path to the Momtaz directory, or a file therein.
 	 *
+	 * The function gets the absolute system path to the Momtaz directory with a trailing slash.
+	 * Also, gets the path to any file inside, by passing it to the function relative to the momtaz directory.
+	 *
+	 * @param string $path The path relative to the Momtaz directory.
+	 * @uses get_template_directory() Get system path to theme template directory.
 	 * @return string
 	 * @since 1.2
 	 */
