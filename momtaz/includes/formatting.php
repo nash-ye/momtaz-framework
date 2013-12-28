@@ -9,7 +9,7 @@
  */
 
 /**
- * URL Validation.
+ * Check the given URL for a valid structure.
  *
  * @param string URL to be validated
  * @return bool Validation result
@@ -22,7 +22,12 @@ function momtaz_is_vaild_url( $url ) {
 /**
  * Check if the given URL is vaild and self-hosted.
  *
- * @param string URL to be validated
+ * Check if the structure of a given URL is valid and the URL is a self hosted one. The 'momtaz_is_self_hosted_url'
+ * filter hook can be used to hook into this function if needed.
+ *
+ * @param string The URL to be validated.
+ * @uses momtaz_is_vaild_url() Check the given URL for a valid structure.
+ * @see get_site_url() Get the site URL in wordpress.
  * @return bool
  * @since 1.2
  */
@@ -65,8 +70,11 @@ function momtaz_limit_characters( $text, $limit ) {
 /*** HTML Helper Functions ****************************************************/
 
 /**
- * A helper function to output HTML attributes list.
+ * Output HTML attributes list.
  *
+ * @param array $atts An associative array of attributes and their values.
+ * @param array $args An array of arguments to be applied on the function output.
+ * @uses  momtaz_get_html_atts() Convert an associative array to HTML attributes list.
  * @since 1.0
  */
 function momtaz_html_atts( array $atts, array $args = null ) {
@@ -74,8 +82,13 @@ function momtaz_html_atts( array $atts, array $args = null ) {
 }
 
 /**
- * A helper function to convert an associative array to HTML attributes list.
+ * Convert an associative array to HTML attributes list.
  *
+ * Convert an associative array of attributes and their values 'attribute => value' To
+ * an inline list of HTML attributes.
+ *
+ * @param array $atts An associative array of attributes and their values.
+ * @param array $args An array of arguments to be applied on the function output.
  * @return string
  * @since 1.0
  */
