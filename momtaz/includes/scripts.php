@@ -7,10 +7,14 @@
  */
 
 /**
- * Registers JavaScript files for the framework.  This function merely registers scripts with WordPress using
- * the wp_register_script() function.  It does not load any script files on the site.  If a theme wants to register
- * its own custom scripts, it should do so on the 'wp_enqueue_scripts' hook.
+ * Registers JavaScript files for the framework. 
  *
+ * This function merely registers theme supported scripts with WordPress using the wp_register_script() function.  
+ * It does not load any script files on the site. If a theme wants to register its own custom scripts, it should 
+ * do so on the 'wp_enqueue_scripts' hook.
+ *
+ * @uses wp_register_script() Register a script in WordPress.
+ * @see momtaz_get_supported_core_scripts() Get the theme-supported core scripts.
  * @access private
  * @return void
  * @since 1.2
@@ -79,8 +83,14 @@ function momtaz_register_core_scripts() {
 }
 
 /**
- * Tells WordPress to load the scripts needed for the framework using the wp_enqueue_script() function.
+ * Load the registered theme supported scripts.
+ * 
+ * Get the theme supported core scripts and scripts needed for the framework and tell WordPress to 
+ * load them using the wp_enqueue_script() function. The function checks if the script is
+ * registered before loading it.
  *
+ * @uses wp_enqueue_script() Load a script in WordPress.
+ * @see momtaz_get_supported_core_scripts() Get the theme-supported core scripts.
  * @access private
  * @return void
  * @since 1.2
@@ -115,6 +125,10 @@ function momtaz_enqueue_core_scripts() {
 /**
  * Get the theme-supported core scripts.
  *
+ * Get an array of theme supported core scripts to be registered in WordPress via momtaz_register_core_scripts()
+ * and then, loaded via momtaz_enqueue_core_scripts().
+ *
+ * @uses get_theme_support() Get support of a certain theme feature.
  * @return array
  * @since 1.2
  */
