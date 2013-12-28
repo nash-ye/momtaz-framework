@@ -15,6 +15,8 @@ add_action( 'init', 'momtaz_register_core_menus' );
  * which is technically a location within the theme for a user-created menu to be shown.
  *
  * @uses register_nav_menu() Registers a nav menu with WordPress.
+ * @access private
+ * @return void
  * @since 1.2
  */
 function momtaz_register_core_menus() {
@@ -58,11 +60,10 @@ function momtaz_get_supported_core_menus() {
 
 	$menus = get_theme_support( 'momtaz-core-menus' );
 
-	if ( ! $menus || ! is_array( $menus ) ) {
-		return array();
+	if ( ! empty( $menus ) ) {
+		$menus = reset( $menus );
 	}
 
-	$menus = reset( $menus );
 	return (array) $menus;
 
 }

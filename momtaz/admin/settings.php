@@ -158,11 +158,9 @@ class Momtaz_Settings_Page {
 
 		<div class="wrap theme-settings">
 
-			<?php screen_icon( 'themes' ) ?>
-
 			<h2>
 				<?php echo $this->get_page_title(); ?>
-				<a href="<?php echo admin_url( 'customize.php' ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ); ?></a>
 			</h2>
 
 			<?php settings_errors(); ?>
@@ -171,7 +169,7 @@ class Momtaz_Settings_Page {
 
 			<div class="momtaz-core-settings-wrap">
 
-				<form action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
+				<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
 
 					<p class="submit">
 
@@ -230,7 +228,7 @@ class Momtaz_Settings_Page {
 
 			 // Load the 'About' meta box.
 			 if ( in_array( 'about', $args[0], true ) ) {
-				 require self::path( 'admin/meta-boxes/theme-about.php' );
+				 require Momtaz::path( 'admin/meta-boxes/theme-about.php' );
 			 }
 
 		}

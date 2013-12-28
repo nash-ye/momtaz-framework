@@ -1,10 +1,11 @@
 <?php
 
-add_action( 'momtaz_init', 'momtaz_register_core_layouts' );
+add_action( 'momtaz_init', 'momtaz_register_core_layouts', 10 );
 
 /**
  * Registers the the framework's default layouts.
  *
+ * @access private
  * @return void
  * @since 1.2
  */
@@ -68,24 +69,37 @@ function momtaz_register_core_layouts() {
 
 	}
 
-	// Set the current layout.
-	if ( is_rtl() ) {
-	    Momtaz_Layouts::set_current_layout( '2c-l-fixed' );
-	} else {
-	    Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
+}
+
+add_action( 'momtaz_init', 'momtaz_init_current_layout', 15 );
+
+/**
+ * @access private
+ * @return void
+ * @since 1.2
+ */
+function momtaz_init_current_layout() {
+
+	if ( ! Momtaz_Layouts::get_current_layout() ) {
+
+		if ( is_rtl() ) {
+			Momtaz_Layouts::set_current_layout( '2c-l-fixed' );
+		} else {
+			Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
+		}
+
 	}
 
 }
 
-add_action( 'momtaz_init', 'momtaz_adjust_content_width' );
+add_action( 'momtaz_init', 'momtaz_init_content_width', 20 );
 
 /**
- * Adjust the content width, depending on the current layout.
- *
+ * @access private
  * @return void
- * @since 1.1
+ * @since 1.2
  */
-function momtaz_adjust_content_width() {
+function momtaz_init_content_width() {
 
 	if ( ! momtaz_get_content_width() ) {
 

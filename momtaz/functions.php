@@ -23,10 +23,10 @@ function momtaz_support_theme_features() {
 	add_theme_support( 'automatic-feed-links' );
 
 	// Add support for the Momtaz features.
-	add_theme_support( 'momtaz-core-drop-downs' );
 	add_theme_support( 'momtaz-core-menus', array( 'primary' ) );
 	add_theme_support( 'momtaz-core-sidebars', array( 'primary' ) );
 	add_theme_support( 'momtaz-core-theme-settings', array( 'about' ) );
+	add_theme_support( 'momtaz-core-scripts', array( 'superfish', 'superfish.args' ) );
 
 }
 
@@ -104,7 +104,7 @@ function momtaz_register_theme_stacks() {
 			'priority' => 5,
 		) );
 
-	} // end if
+	}
 
 	// Register the parent theme directory.
 	momtaz_register_template_stack( array(

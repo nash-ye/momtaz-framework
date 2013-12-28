@@ -9,7 +9,7 @@
 /**
  * Table of Contents:
  *
- * 1.0 - The Grid System
+ * 1.0 - Semantic.gs
  * 2.0 - One-column
  * 3.0 - Two-column
  * 4.0 - Three-column
@@ -18,7 +18,7 @@
  */
 
 /**
- * 1.0 The Grid System
+ * 1.0 Semantic.gs
  * ----------------------------------------------------------------------------
  */
 
@@ -28,14 +28,7 @@
 @columns: 12;
 @column-width: 60;
 @gutter-width: 20;
-
-body.layout-1c-fluid,
-body.layout-2c-l-fluid,
-body.layout-2c-r-fluid,
-body.layout-3c-l-fluid,
-body.layout-3c-r-fluid {
-    @total-width: 100%;
-}
+//@total-width: 100%;
 
 /**
  * 2.0 One-column
@@ -91,11 +84,11 @@ body.layout-3c-r-fluid {
 
         #primary-sidebar {
             .theWidth( 2.5, 5 );
-            margin: 0 5px;
-            float:right;
         }
         #secondary-sidebar {
             .theWidth( 2.5, 5 );
+        }
+        #primary-sidebar, #secondary-sidebar {
             margin: 0 5px;
             float:left;
         }

@@ -15,6 +15,7 @@ add_action( 'widgets_init', 'momtaz_register_core_sidebars' );
  * Registers each widget area for the theme. This includes all of the asides
  * and the utility widget areas throughout the theme.
  *
+ * @access private
  * @return void
  * @since 1.2
  */
@@ -88,11 +89,10 @@ function momtaz_get_supported_core_sidebars() {
 
 	$sidebars = get_theme_support( 'momtaz-core-sidebars' );
 
-	if ( ! $sidebars || ! is_array( $sidebars ) ) {
-		return array();
+	if ( ! empty( $sidebars ) ) {
+		$sidebars = reset( $sidebars );
 	}
 
-	$sidebars = reset( $sidebars );
 	return (array) $sidebars;
 
 }

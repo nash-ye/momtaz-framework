@@ -15,7 +15,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.2-alpha-3';
+	const VERSION = '1.2-beta-1';
 
 
 	/** Magic Methods *********************************************************/
@@ -53,7 +53,7 @@ final class Momtaz {
 	 *
 	 * @since 1.0
 	 */
-	private function define_constants() {
+	private function constants() {
 
 		if ( ! defined( 'THEME_PREFIX' ) ) {
 			 define( 'THEME_PREFIX', 'momtaz' );
@@ -99,7 +99,7 @@ final class Momtaz {
 	 *
 	 * @since 1.0
 	 */
-	private function check_requirements() {
+	private function check_reqs() {
 
 		global $wp_version;
 
@@ -118,11 +118,11 @@ final class Momtaz {
 	}
 
 	/**
-	 * Load the Momtaz kernel files.
+	 * Load the Momtaz core files.
 	 *
 	 * @since 1.1
 	 */
-	private function load_kernel() {
+	private function load_core() {
 
 		require self::path( 'includes/core.php'			);
 		require self::path( 'includes/modules.php'		);
@@ -153,7 +153,10 @@ final class Momtaz {
 		if ( is_admin() ) {
 
 			require self::path( 'admin/admin.php'		);
-			require self::path( 'admin/settings.php'	);
+
+			if ( current_theme_supports( 'momtaz-core-theme-settings' ) ) {
+				require self::path( 'admin/settings.php' );
+			}
 
 		}
 
@@ -199,16 +202,16 @@ final class Momtaz {
 			do_action( 'before_momtaz_setup' );
 
 			// Define the constants.
-			self::$instance->define_constants();
+			self::$instance->constants();
 
-			// Load the kernel functions.
-			self::$instance->load_kernel();
+			// Load the core functions.
+			self::$instance->load_core();
 
 			// Load the theme translations.
 			self::$instance->load_l10n();
 
 			// Check the Momtaz requirements.
-			self::$instance->check_requirements();
+			self::$instance->check_reqs();
 
 			// Load the framework functions.
 			self::$instance->load_framework();
