@@ -19,7 +19,7 @@ add_action( 'widgets_init', 'momtaz_register_core_sidebars' );
  * area only. The 'momtaz_core_sidebars' filter hook can be used to hook into the default widget areas list.
  *
  * @see momtaz_get_supported_core_sidebars() Get the theme-supported core sidebars.
- * @see momtaz_register_sidebar() Register a single sidebar.
+ * @uses momtaz_register_sidebar() Register a single sidebar.
  * @access private
  * @return void
  * @since 1.2
@@ -113,7 +113,8 @@ function momtaz_get_supported_core_sidebars() {
  * filter hook can be used to hook into the default arguments array. The arguments of each sidebar can be set
  * separately by hooking into 'momtaz_core_sidebars'.
  * 
- * @see register_sidebar() Register a sidebar and return its ID in wordpress.
+ * @param mixed[] $args An array of sidebar arguments.
+ * @uses register_sidebar() Register a sidebar and return its ID in wordpress.
  * @see wp_parse_args() Merge an array of arguments with the default array in wordpress.
  * @return string
  * @since 1.1
