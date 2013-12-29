@@ -10,8 +10,9 @@
  * @since Momtaz Theme 1.0
  */
 
-if ( is_singular() )
+if ( is_singular() ) {
 	return;
+}
 
 if ( is_home() && ! is_front_page() ) : ?>
 

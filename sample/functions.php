@@ -13,4 +13,4 @@ function sample_before_momtaz_setup() {
 	// Define the theme prefix.
 	define( 'THEME_PREFIX', 'sample' );
 
-} // end sample_before_momtaz_setup()
+}

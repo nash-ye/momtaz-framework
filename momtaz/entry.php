@@ -50,4 +50,4 @@ global $post_num; ++$post_num; ?>
 
 </article> <!-- #post-<?php the_ID(); ?> -->
 
-<?php do_action( momtaz_format_hook( 'after_entry' ) ); ?>
+<?php do_action( momtaz_format_hook( 'after_entry' ) );

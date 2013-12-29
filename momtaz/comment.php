@@ -58,4 +58,4 @@ global $comment, $comment_depth, $max_depth; ?>
 
 	<?php do_action( momtaz_format_hook( 'after_comment' ) ); ?>
 
-<?php /* No closing. WordPress will know where to add it. */ ?>
+<?php /* No closing. WordPress will know where to add it. */

@@ -9,7 +9,7 @@
  * This program is based on Hybird - Loop Pagination 0.2.1
  * http://themehybrid.com/docs/tutorials/loop-pagination
  *
- * @version   0.1
+ * @version   0.2
  * @author    Justin Tadlock <justin@justintadlock.com>
  * @author    Nashwan Doaqan <nashwan.doaqan@ymail.com>
  * @copyright Copyright (c) 2013 - 2014, Nashwan Doaqan
@@ -29,22 +29,12 @@ function momtaz_loop_pagination( $args = '' ) {
 
     global $wp_query;
 
-    // Get the max number of pages.
-    $total = intval( $wp_query->max_num_pages );
-
-    // Get the current page number.
-    $current = max( 1, get_query_var('paged') );
-
-    // If there's not more than one page, return nothing.
-    if ( 1 >= $total )
-        return;
-
     // Merge the arguments input with the defaults.
     $args = wp_parse_args( $args, array(
         'base'         => '',
         'format'       => '',
-        'total'        => $total,
-        'current'      => $current,
+        'total'        => intval( $wp_query->max_num_pages ),
+        'current'      => max( 1, get_query_var( 'paged' ) ),
         'prev_next'    => true,
         'show_all'     => false,
         'end_size'     => 1,
@@ -61,24 +51,33 @@ function momtaz_loop_pagination( $args = '' ) {
     // Allow developers to overwrite the arguments with a filter.
     $args = apply_filters( 'momtaz_loop_pagination_args', $args );
 
+    // If there's not more than one page, return nothing.
+	if ( $args['total'] < 2 ) {
+        return;
+	}
+
     // Set the default paginated links base.
-    if ( empty( $args['base'] ) )
+	if ( empty( $args['base'] ) ) {
         $args['base'] = str_replace( 999999999, '%#%', get_pagenum_link( 999999999, true ) );
+	}
 
     // Don't allow the user to set this to an array.
-    if ( 'array' === $args['type'] )
+	if ( 'array' === $args['type'] ) {
         $args['type'] = 'plain';
+	}
 
     // Get the paginated links.
     $page_links = apply_filters( 'momtaz_loop_pagination', paginate_links( $args ), $args );
 
     // Wrap the paginated links with the $before and $after elements.
-    if ( ! empty( $page_links ) )
+	if ( ! empty( $page_links ) ) {
         $page_links = $args['before'] . $page_links . $args['after'];
+	}
 
     // Return the paginated links for use in themes.
-    if ( ! $args['echo'] )
+	if ( ! $args['echo'] ) {
         return $page_links;
+	}
 
     echo $page_links;
 

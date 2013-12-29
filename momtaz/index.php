@@ -20,7 +20,7 @@ function momtaz_template_primary_content() {
 	// Load the posts loop template.
 	momtaz_context_template( 'loop' );
 
-} // end momtaz_template_primary_content()
+}
 
 // Load the structure template.
 momtaz_context_template( 'structure' );
