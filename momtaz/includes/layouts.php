@@ -5,6 +5,12 @@ add_action( 'momtaz_init', 'momtaz_register_core_layouts', 10 );
 /**
  * Registers the the framework's default layouts.
  *
+ * Register the default layouts of Momtaz framework. The layouts are supplied as an associative
+ * array 'ID => args' then, the function uses Momtaz_Layouts::register() to register each of them.
+ * The default list contains the possible layouts needed, but still can be hooked into using 'momtaz_core_layouts'
+ * filter hook.
+ *
+ * @uses Momtaz_Layouts::register() Register a new layout in Momtaz.
  * @access private
  * @return void
  * @since 1.2
@@ -74,6 +80,14 @@ function momtaz_register_core_layouts() {
 add_action( 'momtaz_init', 'momtaz_init_current_layout', 15 );
 
 /**
+ * Initialize layouts support.
+ * 
+ * The function initializes layouts support by setting the current layout using
+ * Momtaz_Layouts::set_current_layout(), if not set. The '2c-l-fixed' layout
+ * is set as the default for rtl and '2c-r-fixed' layout for non-rtl.
+ * 
+ * @see Momtaz_Layouts::get_current_layout() Get the current layout.
+ * @uses Momtaz_Layouts::set_current_layout() Set the current layout.
  * @access private
  * @return void
  * @since 1.2
@@ -95,6 +109,14 @@ function momtaz_init_current_layout() {
 add_action( 'momtaz_init', 'momtaz_init_content_width', 20 );
 
 /**
+ * Initialize content width setting.
+ *
+ * This function checks if the content width is set by using momtaz_get_content_width(),
+ * and if not, it sets it to the content width of the current layout using momtaz_set_content_width().
+ *
+ * @uses momtaz_set_content_width() Setting the content width of a theme.
+ * @see Momtaz_Layouts::get_current_layout() Get the current layout.
+ * @see momtaz_get_content_width() Get the theme's content width.
  * @access private
  * @return void
  * @since 1.2
@@ -116,7 +138,9 @@ function momtaz_init_content_width() {
 }
 
 /**
- * Function for setting the content width of a theme.  This does not check if a content width has been set; it
+ * Setting the content width of a theme.  
+ *
+ * This function sets the content width of a theme without checking if it has been set, it
  * simply overwrites whatever the content width is.
  *
  * @since 1.1
@@ -130,7 +154,7 @@ function momtaz_set_content_width( $width ) {
 }
 
 /**
- * Function for getting the theme's content width.
+ * Getting the theme's content width.
  *
  * @since 1.1
  * @access public
@@ -164,6 +188,11 @@ final class Momtaz_Layouts {
 	/**
 	 * Register a new layout in Momtaz.
 	 *
+	 * Register the layout by adding it to the registered layouts array. The layout data
+	 * is added as an object.
+	 *
+	 * @param string $id The ID of the layout.
+	 * @param array $layout An array of the layout arguments.
 	 * @return object
 	 * @since 1.2
 	 */
@@ -188,6 +217,7 @@ final class Momtaz_Layouts {
 	/**
 	 * Deregister a layout from Momtaz.
 	 *
+	 * @param string $id The ID of the layout.
 	 * @return bool
 	 * @since 1.2
 	 */
@@ -206,6 +236,8 @@ final class Momtaz_Layouts {
 	/**
 	 * Check if the given $id match the current layout ID.
 	 *
+	 * @param string $id The ID of the layout.
+	 * @uses self::get_current_layout() Get the current layout.
 	 * @return bool
 	 * @since 1.2
 	 */
@@ -224,6 +256,9 @@ final class Momtaz_Layouts {
 	/**
 	 * Set the current layout, specified by the ID.
 	 *
+	 * @param string $id The ID of the layout.
+	 * @uses self::get_layouts() Get all registered Momtaz layouts.
+	 * @see self::is_exists() Check if a layout exists.
 	 * @return bool
 	 * @since 1.2
 	 */
@@ -244,8 +279,9 @@ final class Momtaz_Layouts {
 	}
 
 	/**
-	 * Get the current layout.
+	 * Get the current layout data object.
 	 *
+	 * @uses self::get_layouts() Get all registered Momtaz layouts.
 	 * @return object|null
 	 * @since 1.2
 	 */
@@ -264,6 +300,9 @@ final class Momtaz_Layouts {
 	/**
 	 * Get a layout data object, specified by the ID.
 	 *
+	 * @param string $id The ID of the layout to check.
+	 * @uses self::$layouts The array of all registered layouts.
+	 * @see self::is_exists() Check if a layout exists.
 	 * @return object|null
 	 * @since 1.2
 	 */
@@ -278,6 +317,10 @@ final class Momtaz_Layouts {
 	}
 
 	/**
+	 * Check if a layout exists.
+	 *
+	 * @param string $id The ID of the layout to check.
+	 * @uses self::$layouts The array of all registered layouts.
 	 * @return bool
 	 * @since 1.2
 	 */
@@ -286,8 +329,9 @@ final class Momtaz_Layouts {
 	}
 
 	/**
-	 * Get all registered Momtaz layouts.
+	 * Get all registered Momtaz layouts. It returns an array of objects for all registered layouts.
 	 *
+	 * @uses self::$layouts The array of registered layouts.
 	 * @return array
 	 * @since 1.2
 	 */
