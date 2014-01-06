@@ -109,10 +109,10 @@ function momtaz_get_supported_core_sidebars() {
 /**
  * Register a single sidebar.
  *
- * Register a single sidebar with theme default arguments and return its ID. The 'momtaz_get_sidebar_defaults' 
+ * Register a single sidebar with theme default arguments and return its ID. The 'momtaz_get_sidebar_defaults'
  * filter hook can be used to hook into the default arguments array. The arguments of each sidebar can be set
  * separately by hooking into 'momtaz_core_sidebars'.
- * 
+ *
  * @param mixed[] $args An array of sidebar arguments.
  * @uses register_sidebar() Register a sidebar and return its ID in wordpress.
  * @see wp_parse_args() Merge an array of arguments with the default array in wordpress.

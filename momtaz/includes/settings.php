@@ -158,7 +158,7 @@ function momtaz_update_setting( $option_ID, $option_value ) {
 /**
  * Delete a setting that was already added.
  *
- * Delete a setting and its value from the array of theme settings by passing 
+ * Delete a setting and its value from the array of theme settings by passing
  * its ID to the function and then, update all theme settings.
  *
  * @since 1.0
@@ -187,7 +187,7 @@ function momtaz_delete_setting( $option_ID ) {
 /**
  * Get the theme settings option name.
  *
- * Get the name of the option in which all theme settings are stored. By default the name is 
+ * Get the name of the option in which all theme settings are stored. By default the name is
  * 'theme_settings' preceded by the theme prefix_. It can be changed by using
  * 'momtaz_theme_settings_option' filter hook.
  *

@@ -23,7 +23,13 @@ function momtaz_main_stylesheet() {
  * @since 1.1
  */
 function momtaz_get_main_stylesheet_uri() {
-	$stylesheet_uri = momtaz_get_dev_stylesheet_uri( get_stylesheet_uri() );
+
+	$stylesheet_uri = get_stylesheet_uri();
+
+	if ( momtaz_is_style_debug() ) {
+		$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $stylesheet_uri );
+	}
+
 	return apply_filters( 'momtaz_get_main_stylesheet_uri', $stylesheet_uri );
 }
 
@@ -46,21 +52,24 @@ function momtaz_locale_stylesheet() {
 function momtaz_get_locale_stylesheet_uri() {
 
 	$stylesheet_uri = get_locale_stylesheet_uri();
-	$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $stylesheet_uri );
+
+	if ( momtaz_is_style_debug() ) {
+		$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $stylesheet_uri );
+	}
 
 	return apply_filters( 'momtaz_get_locale_stylesheet_uri', $stylesheet_uri );
 
 }
 
 /**
- * Get the development stylesheet URI when Style Development Mode is on.
+ * Get the possible development stylesheet URI.
  *
  * @return string
  * @since 1.0
  */
 function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 
-	if ( ! empty( $stylesheet_uri ) && momtaz_is_style_dev_mode() ) {
+	if ( ! empty( $stylesheet_uri ) ) {
 
 		$pathinfo = pathinfo( parse_url( $stylesheet_uri, PHP_URL_PATH ) );
 		$stylesheet_dir = $_SERVER['DOCUMENT_ROOT'] . $pathinfo['dirname'];
@@ -72,7 +81,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 				$dev_basename = $pathinfo['filename'] . $dev_suffix;
 
 				if ( file_exists( trailingslashit( $stylesheet_dir ) . $dev_basename ) ) {
-					 $stylesheet_uri = str_replace( $pathinfo['basename'], $dev_basename, $stylesheet_uri );
+					$stylesheet_uri = str_replace( $pathinfo['basename'], $dev_basename, $stylesheet_uri );
 				}
 
 			}
@@ -136,11 +145,12 @@ function momtaz_get_dev_stylesheet_suffixs() {
 }
 
 /**
- * Check if the Style Development Mode is on.
+ * Check the Style Debug status.
  *
- * @return boolean
- * @since 1.0
+ * @return bool
+ * @since 1.2.1
  */
-function momtaz_is_style_dev_mode() {
-	return ( defined( 'MOMTAZ_STYLE_DEV' ) || defined( "SCRIPT_DEBUG" ) );
+function momtaz_is_style_debug() {
+	$retvalue = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
+	return apply_filters( 'momtaz_is_style_debug', $retvalue );
 }

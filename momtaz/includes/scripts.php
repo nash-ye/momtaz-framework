@@ -7,10 +7,10 @@
  */
 
 /**
- * Registers JavaScript files for the framework. 
+ * Registers JavaScript files for the framework.
  *
- * This function merely registers theme supported scripts with WordPress using the wp_register_script() function.  
- * It does not load any script files on the site. If a theme wants to register its own custom scripts, it should 
+ * This function merely registers theme supported scripts with WordPress using the wp_register_script() function.
+ * It does not load any script files on the site. If a theme wants to register its own custom scripts, it should
  * do so on the 'wp_enqueue_scripts' hook.
  *
  * @uses wp_register_script() Register a script in WordPress.
@@ -21,7 +21,7 @@
  */
 function momtaz_register_core_scripts() {
 
-	if ( momtaz_is_style_dev_mode() ) {
+	if ( momtaz_is_style_debug() ) {
 
 		wp_register_script(
 			'LessCSS',
@@ -84,8 +84,8 @@ function momtaz_register_core_scripts() {
 
 /**
  * Load the registered theme supported scripts.
- * 
- * Get the theme supported core scripts and scripts needed for the framework and tell WordPress to 
+ *
+ * Get the theme supported core scripts and scripts needed for the framework and tell WordPress to
  * load them using the wp_enqueue_script() function. The function checks if the script is
  * registered before loading it.
  *
@@ -97,7 +97,7 @@ function momtaz_register_core_scripts() {
  */
 function momtaz_enqueue_core_scripts() {
 
-	if ( momtaz_is_style_dev_mode() ) {
+	if ( momtaz_is_style_debug() ) {
 		wp_enqueue_script( 'LessCSS' );
 	}
 
