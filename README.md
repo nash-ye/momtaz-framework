@@ -6,9 +6,11 @@ Changelog:
 ================
 
 1.2.1
-  - Update less.js to 1.6.0
-  - Fix: PHP Fatal Error on PHP 5.2.
+  - Fix: PHP Fatal Errors on PHP 5.2
+  - Enhancement: Update less.js to 1.6.0
+  - Enhancement: Update html5shiv.js to 3.7.0
   - Fix: Style Debug is active when SCRIPT_DEBUG is FALSE.
+  - Enhancement: Loosening the context keys for the Home & Front pages.
 
 1.2
   - NEW: Momtaz Layouts Manager.
