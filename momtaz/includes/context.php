@@ -31,14 +31,14 @@ function momtaz_get_context() {
 
 			$context = array();
 
-			/* Front page. */
-			if ( is_front_page() ){
+			/* Home page. */
+			if ( is_home() ) {
 				$context[] = 'home';
 			}
 
-			/* Blog page. */
-			if ( is_home() ) {
-				$context[] = 'blog';
+			/* Front page. */
+			if ( is_front_page() ){
+				$context[] = 'front';
 			}
 
 			/* Singular views. */
