@@ -94,37 +94,37 @@ function momtaz_html_atts( array $atts, array $args = null ) {
  */
 function momtaz_get_html_atts( array $atts, array $args = null ) {
 
-   $output = '';
+	$output = '';
 
-   if ( empty( $atts ) ) {
+	if ( empty( $atts ) ) {
 		return $output;
-	}
+	 }
 
-   $args = wp_parse_args( $args, array(
-	   'after' => '',
-	   'before' => ' ',
-	   'escape' => true,
-   ) );
+	$args = wp_parse_args( $args, array(
+		'after' => '',
+		'before' => ' ',
+		'escape' => true,
+	) );
 
-   foreach ( $atts as $key => $value ) {
+	foreach ( $atts as $key => $value ) {
 
-	   $key = strtolower( $key );
+		$key = strtolower( $key );
 
-		if ( is_bool( $value ) ) {
+		 if ( is_bool( $value ) ) {
 
 			if ( $value === true ) {
-				 $value = $key;
+				$value = $key;
 			} else {
-				 continue;
+				continue;
 			}
 
-		} elseif ( is_array( $value ) ) {
+		 } elseif ( is_array( $value ) ) {
 
 			$value = implode( ' ', array_filter( $value ) );
 
-		}
+		 }
 
-		if ( $args['escape'] ) {
+		 if ( $args['escape'] ) {
 
 			switch( $key ) {
 
@@ -139,16 +139,16 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 
 			}
 
-		}
+		 }
 
 		$output .= $key . '="' . $value . '" ';
 
-   }
+	 }
 
-	if ( ! empty( $output ) ) {
+	 if ( ! empty( $output ) ) {
 		$output = $args['before'] . trim( $output ) . $args['after'];
-	}
+	 }
 
-   return $output;
+	return $output;
 
 }

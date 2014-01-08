@@ -15,30 +15,30 @@
 // If the query found some posts .
 if ( have_posts() ) {
 
-    // Load the loop-meta template.
-    momtaz_template_part( 'loop-meta' );
+	// Load the loop-meta template.
+	momtaz_template_part( 'loop-meta' );
 
-    // @hook: Before the posts loop.
-    do_action( momtaz_format_hook( 'before_loop' ) );
+	// @hook: Before the posts loop.
+	do_action( momtaz_format_hook( 'before_loop' ) );
 
-    // Loop through the query posts.
-    while ( have_posts() ) { the_post();
+	// Loop through the query posts.
+	while ( have_posts() ) { the_post();
 
-        // Load the entry template.
-        momtaz_post_context_template( 'entry' );
+		// Load the entry template.
+		momtaz_post_context_template( 'entry' );
 
-    } // end while
+	} // end while
 
-    // @hook: After the posts loop.
-    do_action( momtaz_format_hook( 'after_loop' ) );
+	// @hook: After the posts loop.
+	do_action( momtaz_format_hook( 'after_loop' ) );
 
-    // Load the loop-nav template.
-    momtaz_template_part( 'loop-nav' );
+	// Load the loop-nav template.
+	momtaz_template_part( 'loop-nav' );
 
 // The query failed or there is not any post
 } else {
 
-    // Loop Error Template
-    momtaz_template_part( 'loop-error' );
+	// Loop Error Template
+	momtaz_template_part( 'loop-error' );
 
 } // end if

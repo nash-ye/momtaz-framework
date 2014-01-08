@@ -132,7 +132,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 
 	return apply_filters( 'momtaz_get_style_loader_tag', $output, $atts );
 
- }
+}
 
 /**
  * Get the development stylesheet filename suffixs.

@@ -226,10 +226,10 @@ class Momtaz_Settings_Page {
 
 		if ( is_array( $args[0] ) ) {
 
-			 // Load the 'About' meta box.
-			 if ( in_array( 'about', $args[0], true ) ) {
-				 require Momtaz::path( 'admin/meta-boxes/theme-about.php' );
-			 }
+			// Load the 'About' meta box.
+			if ( in_array( 'about', $args[0], true ) ) {
+			   require Momtaz::path( 'admin/meta-boxes/theme-about.php' );
+			}
 
 		}
 
