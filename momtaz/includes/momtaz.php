@@ -15,7 +15,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.2.1-alpha';
+	const VERSION = '1.2.1';
 
 
 	/** Magic Methods *********************************************************/
