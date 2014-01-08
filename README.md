@@ -5,6 +5,13 @@ Just another light and simple theme framework!
 Changelog:
 ================
 
+1.2.1
+  - Fix: PHP Fatal Errors on PHP 5.2
+  - Enhancement: Update less.js to 1.6.0
+  - Enhancement: Update html5shiv.js to 3.7.0
+  - Fix: Style Debug is active when SCRIPT_DEBUG is FALSE.
+  - Enhancement: Loosening the context keys for the Home & Front pages.
+
 1.2
   - NEW: Momtaz Layouts Manager.
   - Enhancement: Momtaz Loop Pagination 0.2
@@ -15,6 +22,12 @@ Changelog:
   - NEW: New public functions: momtaz_is_self_hosted_url(), momtaz_get_supported_core_menus(), momtaz_get_supported_core_sidebars(), momtaz_get_supported_core_scripts() and Momtaz::path().
   - NEW: New theme feature: 'momtaz-core-scripts` which allow the child-theme developers to register the needed-only Momtaz core scripts easily.
 ...etc
+
+1.1.1
+  - Update the sceeenshot image.
+  - Update Nmwdhj module to 1.2.1
+  - Update Get The Image module to 0.9
+  - Fix a PHP notice in `momtaz_load_textdomain_mofile()` function.
 
 1.1
   - Public version.

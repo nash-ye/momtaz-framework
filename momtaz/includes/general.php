@@ -1,5 +1,12 @@
 <?php
 /**
+ * General Functions.
+ *
+ * @package Momtaz
+ * @subpackage Functions
+ */
+
+/**
  * Display the current page title.
  *
  * @since 1.0

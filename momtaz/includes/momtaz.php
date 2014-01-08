@@ -15,7 +15,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.2';
+	const VERSION = '1.2.1';
 
 
 	/** Magic Methods *********************************************************/
@@ -125,7 +125,6 @@ final class Momtaz {
 	private function load_core() {
 
 		require self::path( 'includes/core.php'			);
-		require self::path( 'includes/modules.php'		);
 
 	}
 
@@ -137,6 +136,7 @@ final class Momtaz {
 	 */
 	private function load_framework() {
 
+		require self::path( 'includes/modules.php'		);
 		require self::path( 'includes/context.php'		);
 		require self::path( 'includes/settings.php'		);
 		require self::path( 'includes/formatting.php'	);

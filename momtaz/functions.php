@@ -20,6 +20,7 @@ add_action( 'before_momtaz_setup', 'momtaz_support_theme_features' );
 function momtaz_support_theme_features() {
 
 	// Add support for WordPress features.
+	add_theme_support( 'html5' );
 	add_theme_support( 'automatic-feed-links' );
 
 	// Add support for the Momtaz features.
@@ -40,47 +41,50 @@ add_action( 'after_momtaz_setup', 'momtaz_register_theme_modules' );
  */
 function momtaz_register_theme_modules() {
 
-	// Register the 'Momtaz Nmwdhj' module.
-	Momtaz_Modules::register( array(
-		'slug' => 'momtaz-nmwdhj',
-		'name' => 'Momtaz Nmwdhj',
-		'path' => 'momtaz-nmwdhj/nmwdhj.php',
-		'settings' => array(
-			'is_loaded_callback' => function() {
-				return function_exists( 'Nmwdhj\create_element' );
-			},
-			'auto' => false,
-			'once' => true,
-		),
-	) );
+	if ( ! function_exists( 'Nmwdhj\create_element' ) ) {
 
-	// Register the 'Get The Image' module.
-	Momtaz_Modules::register( array(
-		'slug' => 'get-the-image',
-		'name' => 'Get The Image',
-		'path' => 'get-the-image/get-the-image.php',
-		'settings' => array(
-			'is_loaded_callback' => function() {
-				return function_exists( 'get_the_image' );
-			},
-			'auto' => true,
-			'once' => true,
-		),
-	) );
+		// Register the 'Momtaz Nmwdhj' module.
+		Momtaz_Modules::register( array(
+			'slug' => 'momtaz-nmwdhj',
+			'name' => 'Momtaz Nmwdhj',
+			'path' => 'momtaz-nmwdhj/nmwdhj.php',
+			'settings' => array(
+				'auto' => false,
+				'once' => true,
+			),
+		) );
 
-	// Register the 'Loop Pagination' module.
-	Momtaz_Modules::register( array(
-		'slug' => 'loop-pagination',
-		'name' => 'Loop Pagination',
-		'path' => 'loop-pagination/loop-pagination.php',
-		'settings' => array(
-			'is_loaded_callback' => function() {
-				return function_exists( 'loop_pagination' );
-			},
-			'auto' => false,
-			'once' => true,
-		),
-	) );
+	}
+
+	if ( ! function_exists( 'get_the_image' ) ) {
+
+		// Register the 'Get The Image' module.
+		Momtaz_Modules::register( array(
+			'slug' => 'get-the-image',
+			'name' => 'Get The Image',
+			'path' => 'get-the-image/get-the-image.php',
+			'settings' => array(
+				'auto' => true,
+				'once' => true,
+			),
+		) );
+
+	}
+
+	if ( ! function_exists( 'loop_pagination' ) ) {
+
+		// Register the 'Loop Pagination' module.
+		Momtaz_Modules::register( array(
+			'slug' => 'loop-pagination',
+			'name' => 'Loop Pagination',
+			'path' => 'loop-pagination/loop-pagination.php',
+			'settings' => array(
+				'auto' => false,
+				'once' => true,
+			),
+		) );
+
+	}
 
 }
 

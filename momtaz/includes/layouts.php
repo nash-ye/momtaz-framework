@@ -81,11 +81,11 @@ add_action( 'momtaz_init', 'momtaz_init_current_layout', 15 );
 
 /**
  * Initialize layouts support.
- * 
+ *
  * The function initializes layouts support by setting the current layout using
  * Momtaz_Layouts::set_current_layout(), if not set. The '2c-l-fixed' layout
  * is set as the default for rtl and '2c-r-fixed' layout for non-rtl.
- * 
+ *
  * @see Momtaz_Layouts::get_current_layout() Get the current layout.
  * @uses Momtaz_Layouts::set_current_layout() Set the current layout.
  * @access private
@@ -138,7 +138,7 @@ function momtaz_init_content_width() {
 }
 
 /**
- * Setting the content width of a theme.  
+ * Setting the content width of a theme.
  *
  * This function sets the content width of a theme without checking if it has been set, it
  * simply overwrites whatever the content width is.

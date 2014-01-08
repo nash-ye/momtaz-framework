@@ -13,7 +13,7 @@ add_action( 'init', 'momtaz_register_core_menus' );
 /**
  * Registers the the framework's default menus.
  *
- * Registers default menus to be used as locations within the theme for user created menus to be shown. 
+ * Registers default menus to be used as locations within the theme for user created menus to be shown.
  * By default, the framework registers the 'primary' menu only. The 'momtaz_core_menus' filter hook can
  * be used to hook into the array of default menus.
  *
@@ -59,7 +59,7 @@ function momtaz_register_core_menus() {
  *
  * Get the array of the menus supported by the theme to register each one of them as a ready to use location
  * within the theme via momtaz_register_core_menus().
- * 
+ *
  * @see momtaz_register_core_menus() Registers the the framework's default menus.
  * @uses get_theme_support() Get support of a certain theme feature.
  * @return array
