@@ -86,7 +86,6 @@ add_action( 'momtaz_init', 'momtaz_init_current_layout', 15 );
  * Momtaz_Layouts::set_current_layout(), if not set. The '2c-l-fixed' layout
  * is set as the default for rtl and '2c-r-fixed' layout for non-rtl.
  *
- * @see Momtaz_Layouts::get_current_layout() Get the current layout.
  * @uses Momtaz_Layouts::set_current_layout() Set the current layout.
  * @access private
  * @return void
@@ -114,9 +113,9 @@ add_action( 'momtaz_init', 'momtaz_init_content_width', 20 );
  * This function checks if the content width is set by using momtaz_get_content_width(),
  * and if not, it sets it to the content width of the current layout using momtaz_set_content_width().
  *
- * @uses momtaz_set_content_width() Setting the content width of a theme.
- * @see Momtaz_Layouts::get_current_layout() Get the current layout.
- * @see momtaz_get_content_width() Get the theme's content width.
+ * @uses Momtaz_Layouts::get_current_layout() Get the current theme layout.
+ * @uses momtaz_set_content_width() Setting the theme's content width.
+ * @uses momtaz_get_content_width() Get the theme's content width.
  * @access private
  * @return void
  * @since 1.2
@@ -193,7 +192,7 @@ final class Momtaz_Layouts {
 	 *
 	 * @param string $id The ID of the layout.
 	 * @param array $layout An array of the layout arguments.
-	 * @return object
+	 * @return object|bool
 	 * @since 1.2
 	 */
 	public static function register( $id, array $layout ) {
@@ -206,7 +205,9 @@ final class Momtaz_Layouts {
 			'content_width' => 0,
 			'name'			=> '',
 			'type'			=> '',
-		), $layout, array( 'id' => $id ) );
+		), $layout );
+
+		$layout->id = $id; // Store the ID.
 
 		self::$layouts[ $id ] = $layout;
 
@@ -257,8 +258,8 @@ final class Momtaz_Layouts {
 	 * Set the current layout, specified by the ID.
 	 *
 	 * @param string $id The ID of the layout.
-	 * @uses self::get_layouts() Get all registered Momtaz layouts.
-	 * @see self::is_exists() Check if a layout exists.
+	 * @uses self::get_layouts() Get all the registered layouts.
+	 * @uses self::is_exists() Check if a layout exists.
 	 * @return bool
 	 * @since 1.2
 	 */
@@ -302,7 +303,7 @@ final class Momtaz_Layouts {
 	 *
 	 * @param string $id The ID of the layout to check.
 	 * @uses self::$layouts The array of all registered layouts.
-	 * @see self::is_exists() Check if a layout exists.
+	 * @uses self::is_exists() Check if a layout exists.
 	 * @return object|null
 	 * @since 1.2
 	 */
@@ -320,7 +321,6 @@ final class Momtaz_Layouts {
 	 * Check if a layout exists.
 	 *
 	 * @param string $id The ID of the layout to check.
-	 * @uses self::$layouts The array of all registered layouts.
 	 * @return bool
 	 * @since 1.2
 	 */

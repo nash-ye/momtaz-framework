@@ -18,6 +18,7 @@ function momtaz_title( $args = '' ) {
 /**
  * The default title callback using the wp_title() function.
  *
+ * @return void
  * @since 1.0
  */
 function momtaz_wp_title( $args = '' ) {
@@ -54,7 +55,7 @@ function momtaz_filter_wp_title( $title, $sep ) {
 	}
 
 	// Add the site name.
-	$title .= get_bloginfo( 'name' );
+	$title .= get_bloginfo( 'name', 'display' );
 
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
@@ -75,6 +76,7 @@ function momtaz_filter_wp_title( $title, $sep ) {
 /**
  * Display the generator meta-tag.
  *
+ * @return void
  * @since 1.1
 */
 function momtaz_meta_generator() {
@@ -93,7 +95,7 @@ function momtaz_meta_generator() {
 		return;
 	}
 
-	echo '<meta name="generator" content="' . esc_attr( implode( ',', $generator ) ) . '">' ."\n";
+	echo '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $generator ) ) ) . '>' ."\n";
 
 }
 
@@ -117,17 +119,27 @@ function momtaz_meta_designer() {
 		return;
 	}
 
-	echo '<meta name="designer" content="' . esc_attr( implode( ',', $designer ) ) . '">' ."\n";
+	echo '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $designer ) ) ) . '>' ."\n";
 
+}
+
+/**
+ * Displays a "Continue Reading" link for excerpts.
+ *
+ * @return void
+ * @since 1.3
+ */
+function momtaz_continue_reading_link( $post_id = 0 ) {
+	echo momtaz_get_continue_reading_link( $post_id );
 }
 
 /**
  * Returns a "Continue Reading" link for excerpts.
  *
  * @return string
- * @since 1.0
+ * @since 1.3
  */
-function momtaz_continue_reading_link( $post_id = 0 ) {
+function momtaz_get_continue_reading_link( $post_id = 0 ) {
 
 	if ( empty( $post_id ) ) {
 		$post_id = get_the_ID();
@@ -137,6 +149,7 @@ function momtaz_continue_reading_link( $post_id = 0 ) {
 	$link .= __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'momtaz' );
 	$link .= '</span></a>';
 
-	return apply_filters( 'momtaz_continue_reading_link', $link, $post_id );
+	$link = apply_filters( 'momtaz_continue_reading_link', $link, $post_id );
+	return $link;
 
 }

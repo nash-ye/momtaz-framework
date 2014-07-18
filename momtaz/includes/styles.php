@@ -30,7 +30,9 @@ function momtaz_get_main_stylesheet_uri() {
 		$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $stylesheet_uri );
 	}
 
-	return apply_filters( 'momtaz_get_main_stylesheet_uri', $stylesheet_uri );
+	$stylesheet_uri = apply_filters( 'momtaz_get_main_stylesheet_uri', $stylesheet_uri );
+	return $stylesheet_uri;
+
 }
 
 /**
@@ -57,7 +59,8 @@ function momtaz_get_locale_stylesheet_uri() {
 		$stylesheet_uri = momtaz_get_dev_stylesheet_uri( $stylesheet_uri );
 	}
 
-	return apply_filters( 'momtaz_get_locale_stylesheet_uri', $stylesheet_uri );
+	$stylesheet_uri = apply_filters( 'momtaz_get_locale_stylesheet_uri', $stylesheet_uri );
+	return $stylesheet_uri;
 
 }
 
@@ -108,7 +111,6 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 
 	$atts = wp_parse_args( $atts, array(
 		'href' => $stylesheet_uri,
-		'type' => 'text/css',
 		'media' => 'all',
 	) );
 
@@ -129,8 +131,8 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 	}
 
 	$output = '<link' . momtaz_get_html_atts( $atts ) . ' />' . "\n";
-
-	return apply_filters( 'momtaz_get_style_loader_tag', $output, $atts );
+	$output = apply_filters( 'momtaz_get_style_loader_tag', $output, $atts );
+	return $output;
 
 }
 
@@ -151,6 +153,5 @@ function momtaz_get_dev_stylesheet_suffixs() {
  * @since 1.2.1
  */
 function momtaz_is_style_debug() {
-	$retvalue = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
-	return apply_filters( 'momtaz_is_style_debug', $retvalue );
+	return apply_filters( 'momtaz_is_style_debug', defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
 }

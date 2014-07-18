@@ -1,7 +1,4 @@
 <?php
-
-if ( ! class_exists( 'Momtaz' ) ) :
-
 /**
  * Momtaz main class.
  *
@@ -15,7 +12,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.3-alpha';
+	const VERSION = '1.3-alpha-1';
 
 
 	/** Magic Methods *********************************************************/
@@ -142,6 +139,7 @@ final class Momtaz {
 		require self::path( 'includes/formatting.php'	);
 		require self::path( 'includes/comments.php'		);
 		require self::path( 'includes/general.php'		);
+		require self::path( 'includes/stacks.php'		);
 		require self::path( 'includes/templates.php'	);
 		require self::path( 'includes/layouts.php'		);
 		require self::path( 'includes/sidebars.php'		);
@@ -186,8 +184,6 @@ final class Momtaz {
 
 	/** Singleton *************************************************************/
 
-	private static $instance;
-
 	/**
 	 * Main Momtaz Instance
 	 *
@@ -195,37 +191,39 @@ final class Momtaz {
 	 */
 	public static function instance() {
 
-		if ( ! isset( self::$instance ) ) {
+		static $instance = NULL;
 
-			self::$instance = new Momtaz;
+		if ( is_null( $instance ) ) {
+
+			$instance = new Momtaz;
 
 			do_action( 'before_momtaz_setup' );
 
 			// Define the constants.
-			self::$instance->constants();
+			$instance->constants();
 
 			// Load the core functions.
-			self::$instance->load_core();
+			$instance->load_core();
 
 			// Load the theme translations.
-			self::$instance->load_l10n();
+			$instance->load_l10n();
 
 			// Check the Momtaz requirements.
-			self::$instance->check_reqs();
+			$instance->check_reqs();
 
 			// Load the framework functions.
-			self::$instance->load_framework();
+			$instance->load_framework();
 
 			do_action( 'after_momtaz_setup' );
 
 			// Load the auto-load modules.
-			self::$instance->load_modules();
+			$instance->load_modules();
 
 			do_action( 'momtaz_init' );
 
 		}
 
-		return self::$instance;
+		return $instance;
 
 	}
 
@@ -250,8 +248,6 @@ final class Momtaz {
 
 }
 
-endif; // end class_exists() check
-
 /**
  * The main function responsible for returning the one true Momtaz Instance
  * to functions everywhere.
@@ -261,8 +257,8 @@ endif; // end class_exists() check
  *
  * Example: <?php $momtaz = momtaz(); ?>
  *
- * @since 1.0
  * @return The one true Momtaz Instance
+ * @since 1.0
  */
 function momtaz() {
 	return Momtaz::instance();

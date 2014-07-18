@@ -41,7 +41,7 @@ add_action( 'after_momtaz_setup', 'momtaz_register_theme_modules' );
  */
 function momtaz_register_theme_modules() {
 
-	if ( ! function_exists( 'Nmwdhj\create_element' ) ) {
+	if ( ! defined( 'Nmwdhj\VERSION' ) ) {
 
 		// Register the 'Momtaz Nmwdhj' module.
 		Momtaz_Modules::register( array(
@@ -49,7 +49,7 @@ function momtaz_register_theme_modules() {
 			'name' => 'Momtaz Nmwdhj',
 			'path' => 'momtaz-nmwdhj/nmwdhj.php',
 			'settings' => array(
-				'auto' => false,
+				'auto' => true,
 				'once' => true,
 			),
 		) );
@@ -85,38 +85,6 @@ function momtaz_register_theme_modules() {
 		) );
 
 	}
-
-}
-
-add_action( 'after_momtaz_setup', 'momtaz_register_theme_stacks' );
-
-/**
- * Register the default theme template stack.
- *
- * @return void
- * @since 1.1
- */
-function momtaz_register_theme_stacks() {
-
-	if ( is_child_theme() ) {
-
-		// Register the child theme directory.
-		momtaz_register_template_stack( array(
-			'uri' => get_stylesheet_directory_uri(),
-			'path' => get_stylesheet_directory(),
-			'slug' => 'child-theme',
-			'priority' => 5,
-		) );
-
-	}
-
-	// Register the parent theme directory.
-	momtaz_register_template_stack( array(
-		'uri' => get_template_directory_uri(),
-		'path' => get_template_directory(),
-		'slug' => 'parent-theme',
-		'priority' => 10,
-	) );
 
 }
 

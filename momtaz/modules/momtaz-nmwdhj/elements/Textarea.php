@@ -6,14 +6,17 @@ namespace Nmwdhj\Elements;
  *
  * @since 1.0
  */
-class Textarea extends Base {
+class Textarea extends Element {
 
 	/**
-	 * Default element key.
+	 * Get the element output.
 	 *
-	 * @since 1.0
-	 * @var string
+	 * @return string
+	 * @since 1.3
 	 */
-	protected $key = 'textarea';
+	public function get_output() {
+		$view = new \Nmwdhj\Views\Textarea();
+		return $view( $this );
+	}
 
-} // end Class Textarea
+}

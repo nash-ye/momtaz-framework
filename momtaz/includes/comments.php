@@ -34,7 +34,7 @@ function momtaz_comments_callback( $comment, $args, $depth ) {
  * users to build custom comment forms by filtering 'comment_form_defaults' in their child theme.
  *
  * @since 1.0
- * @param array $args The default comment form arguments.
+ * @param array $defaults The default comment form arguments.
  * @return array $args The filtered comment form arguments.
  */
 function momtaz_comment_form_args( $defaults ) {
@@ -53,73 +53,77 @@ function momtaz_comment_form_args( $defaults ) {
 
 	/*** Comment Form Fields **************************************************/
 
-	// Load the Momtaz Nmwdhj module.
-	Momtaz_Modules::load_module( 'momtaz-nmwdhj' );
+	$args['fields'] = Nmwdhj\create_elements( array(
 
-	// Commenter Name
-	$args['fields']['author'] = Nmwdhj\create_element( 'input_text' )
-			->set_value( $commenter['comment_author'] )
-			->set_attr( 'required', (bool) $required )
-			->set_NID( 'author' );
+		'author' => array(
+			'atts'	=> array( 'required' => (bool) $required ),
+			'value' => $commenter['comment_author'],
+			'label' => __( 'Name', 'momtaz' ),
+			'type'	=> 'input_text',
+			'nid'	=> 'author',
+		),
 
-	Nmwdhj\decorate_element( 'label', $args['fields']['author'] )
-			->set_label( __( 'Name', 'momtaz' ) );
+		'email'	=> array(
+			'atts'	=> array( 'required' => (bool) $required ),
+			'value' => $commenter['comment_author_email'],
+			'label'	=> __( 'Email', 'momtaz' ),
+			'type'	=> 'input_email',
+			'nid'	=> 'email',
+		),
 
-	// Commenter Email
-	$args['fields']['email'] = Nmwdhj\create_element( 'input_email' )
-			->set_value( $commenter['comment_author_email'] )
-			->set_attr( 'required', (bool) $required )
-			->set_NID( 'email' );
+		'url'	=> array(
+			'value' => $commenter['comment_author_url'],
+			'label' => __( 'Website', 'momtaz' ),
+			'type'	=> 'input_url',
+			'nid'	=> 'url',
+		),
 
-	Nmwdhj\decorate_element( 'label', $args['fields']['email'] )
-			->set_label( __( 'Email', 'momtaz' ) );
-
-	// Commenter URL
-	$args['fields']['url'] = Nmwdhj\create_element( 'input_url' )
-			->set_value( $commenter['comment_author_url'] )
-			->set_NID( 'url' );
-
-	Nmwdhj\decorate_element( 'label', $args['fields']['url'] )
-			->set_label( __( 'Website', 'momtaz' ) );
+	) );
 
 	// Shared
-	foreach ( $args['fields'] as &$field ) {
+	foreach ( $args['fields'] as $k => $e ) {
 
-		$field
-				->set_label_attr( 'class', 'form-label' )
-				->set_atts( array(
-					'class' => 'form-field regular-textbox',
-					'size' => 40,
-				) );
+		if ( $e->get_attr( 'required' ) ) {
 
-		Nmwdhj\decorate_element( 'tag', $field )
-				->set_wrapper_attr( 'class', 'form-section layout-columned' );
+			$label = $e->get_option( 'label' );
 
-		if ( $field->has_attr( 'required' ) && ( $label = $field->get_label() ) ) {
-
-			$label .= '<span class="required">*</span>';
-			$field->set_label( $label );
+			if ( ! empty( $label ) ) {
+				$label .= '<span class="required">*</span>';
+				$e->set_option( 'label', $label );
+			}
 
 		}
 
-		$field = $field->get_output();
+		$e->set_options( array(
+			'wrapper_atts'	=> array( 'class' => 'form-section layout-columned' ),
+			'label_atts'	=> array( 'class' => 'form-label' ),
+			'wrapper'		=> 'div',
+		), true );
+
+		$e->set_atts( array(
+			'class' => 'form-field regular-textbox',
+			'size'	=> 40,
+		) );
+
+		$args['fields'][ $k ] = $e->get_output();
 
 	}
 
 	// Comment Text
-	$args['comment_field'] = Nmwdhj\create_element( 'textarea' )
-			->set_NID( 'comment' )
-			->set_atts( array(
-				'class' => 'form-field large-textbox',
-				'required' => true,
-				'rows' => 10,
-				'cols' => 60,
-			) );
-
-	Nmwdhj\decorate_element( 'tag', $args['comment_field'] )
-			->set_wrapper_attr( 'class', 'form-section layout-full' );
-
-	$args['comment_field'] = $args['comment_field']->get_output();
+	$args['comment_field'] = Nmwdhj\create_element( array(
+		'type'			=> 'textarea',
+		'nid'			=> 'comment',
+		'atts'			=> array(
+			'class'			=> 'form-field large-textbox',
+			'required'		=> true,
+			'rows'			=> 10,
+			'cols'			=> 60,
+		),
+		'wrapper'		=> 'div',
+		'wrapper_atts'	=> array(
+			'class'			=> 'form-section layout-full',
+		),
+	) )->get_output();
 
 
 	$args = wp_parse_args( $args, $defaults );

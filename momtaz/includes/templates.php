@@ -19,29 +19,22 @@
  * @return string
  * @since 1.0
  */
-function momtaz_theme_uri( $template_name = '' ){
+function momtaz_theme_uri( $name = '' ){
 
-	// Get the child theme URL.
-	$template_uri = get_stylesheet_directory_uri();
+	$name = ltrim( $name, '/' );
 
-	// Remove the slash from the beginning of the string.
-	$template_name = ltrim( $template_name, '/' );
+	// If the file exists in the stylesheet (child theme) directory.
+	if ( file_exists( trailingslashit( get_stylesheet_directory() ) . $name ) ) {
+		$uri = momtaz_child_theme_uri( $name );
 
-	if ( ! empty( $template_name ) ) {
-
-		// If the file exists in the stylesheet (child theme) directory.
-		if ( file_exists( trailingslashit( get_stylesheet_directory() ) . $template_name ) ) {
-			$template_uri = momtaz_child_theme_uri( $template_name );
-
-		// No matter the file exists or not in the template (parent theme) directory.
-		} else {
-			$template_uri = momtaz_parent_theme_uri( $template_name );
-
-		}
+	// No matter the file exists or not in the template (parent theme) directory.
+	} else {
+		$uri = momtaz_parent_theme_uri( $name );
 
 	}
 
-	return apply_filters( 'momtaz_theme_uri', $template_uri, $template_name );
+	$uri = apply_filters( 'momtaz_theme_uri', $uri, $name );
+	return $uri;
 
 }
 
@@ -51,19 +44,17 @@ function momtaz_theme_uri( $template_name = '' ){
  * @return string
  * @since 1.0
  */
-function momtaz_child_theme_uri( $template_name = '' ){
+function momtaz_child_theme_uri( $name = '' ){
 
-	// Get the child theme URI.
-	$template_uri = get_stylesheet_directory_uri();
+	$name = ltrim( $name, '/' );
+	$uri = get_stylesheet_directory_uri();
 
-	// Remove the slash from the beginning of the string.
-	$template_name = ltrim( $template_name, '/' );
-
-	if ( ! empty( $template_name ) ) {
-		$template_uri = trailingslashit( $template_uri ) . $template_name;
+	if ( ! empty( $name ) ) {
+		$uri = trailingslashit( $uri ) . $name;
 	}
 
-	return apply_filters( 'momtaz_child_theme_uri', $template_uri, $template_name );
+	$uri = apply_filters( 'momtaz_child_theme_uri', $uri, $name );
+	return $uri;
 
 }
 
@@ -73,19 +64,17 @@ function momtaz_child_theme_uri( $template_name = '' ){
  * @return string
  * @since 1.0
  */
-function momtaz_parent_theme_uri( $template_name = '' ){
+function momtaz_parent_theme_uri( $name = '' ){
 
-	// Get parent theme URI.
-	$template_uri = get_template_directory_uri();
+	$name = ltrim( $name, '/' );
+	$uri = get_template_directory_uri();
 
-	// Remove the slash from the beginning of the string.
-	$template_name = ltrim( $template_name, '/' );
-
-	if ( ! empty( $template_name ) ) {
-		$template_uri = trailingslashit( $template_uri ) . $template_name;
+	if ( ! empty( $name ) ) {
+		$uri = trailingslashit( $uri ) . $name;
 	}
 
-	return apply_filters( 'momtaz_parent_theme_uri', $template_uri, $template_name );
+	$uri = apply_filters( 'momtaz_parent_theme_uri', $uri, $name );
+	return $uri;
 
 }
 
@@ -112,7 +101,7 @@ function momtaz_locate_template_uri( $template_names ) {
 		$template_name = ltrim( $template_name, '/' );
 
 		// Loop through template stack
-		foreach ( momtaz_get_template_stack() as $template_stack ) {
+		foreach ( Momtaz_Stacks::get() as $template_stack ) {
 
 			if ( empty( $template_stack->path ) ) {
 				continue;
@@ -261,7 +250,7 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
 		$template_name  = ltrim( $template_name, '/' );
 
 		// Loop through template stack
-		foreach ( momtaz_get_template_stack() as $template_stack ) {
+		foreach ( Momtaz_Stacks::get() as $template_stack ) {
 
 			if ( empty( $template_stack->path ) ) {
 				continue;
@@ -307,102 +296,5 @@ function momtaz_load_template( $_template, $_load_once = true, $_args = null ) {
 	$_load_once = (bool) $_load_once;
 
 	( $_load_once ) ? require_once( $_template ) : require( $_template );
-
-}
-
-/*
- * Template Stack Functions.
- -----------------------------------------------------------------------------*/
-
-/**
- * Get the template stack list.
- *
- * @return array
- * @since 1.1
- */
-function momtaz_get_template_stack( $slug = '' ) {
-
-	$list = array();
-	$momtaz = momtaz();
-
-	if ( isset( $momtaz->template_stack ) ) {
-
-		if ( empty( $slug ) ) {
-			$list = $momtaz->template_stack;
-
-		} else {
-
-			$slug = sanitize_key( $slug );
-
-			if ( isset( $momtaz->template_stack[ $slug ] ) ) {
-				$list = $momtaz->template_stack[ $slug ];
-			}
-
-		}
-
-	}
-
-	return $list;
-
-}
-
-/**
- * Register a template stack location.
- *
- * @return bool
- * @since 1.1
- */
-function momtaz_register_template_stack( $stack ){
-
-	$momtaz = momtaz();
-
-	$stack = (object) wp_parse_args( $stack, array(
-		'priority' => 10,
-		'slug' => '',
-		'path' => '',
-		'uri' => '',
-	 ) );
-
-	$stack->slug = sanitize_key( $stack->slug );
-
-	if ( empty( $stack->slug ) ) {
-		return false;
-	}
-
-	$momtaz->template_stack[ $stack->slug ] = $stack;
-
-	usort( $momtaz->template_stack, function( $a, $b ) {
-
-		$p1 = (int) $a->priority;
-		$p2 = (int) $b->priority;
-
-		if ( $p1 === $p2 ) {
-			return 0;
-		}
-
-		return ( $p1 > $p2 ) ? +1 : -1;
-
-	} );
-
-	return true;
-
-}
-
-/**
- * Deregister a template stack.
- *
- * @return bool
- * @since 1.1
- */
-function momtaz_deregister_template_stack( $slug ){
-
-	$slug = sanitize_key( $slug );
-
-	if ( empty( $slug ) ) {
-		return false;
-	}
-
-	unset( momtaz()->template_stack[ $slug ] );
-	return true;
 
 }

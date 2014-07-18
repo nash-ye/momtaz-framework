@@ -27,7 +27,7 @@ function momtaz_is_vaild_url( $url ) {
  *
  * @param string The URL to be validated.
  * @uses momtaz_is_vaild_url() Check the given URL for a valid structure.
- * @see get_site_url() Get the site URL in wordpress.
+ * @uses get_site_url() Get the site URL.
  * @return bool
  * @since 1.2
  */
@@ -44,7 +44,8 @@ function momtaz_is_self_hosted_url( $url ) {
 
 	}
 
-	return apply_filters( 'momtaz_is_self_hosted_url', $retval, $url );
+	$retval = apply_filters( 'momtaz_is_self_hosted_url', $retval, $url );
+	return $retval;
 
 }
 
@@ -52,7 +53,7 @@ function momtaz_is_self_hosted_url( $url ) {
  * Limit the view text characters .
  *
  * @param mixed Text to be evaluated
- * @param integer Maximum number of characters to be viewed
+ * @param int Maximum number of characters to be viewed
  * @return string
  * @since 1.0
  */
@@ -100,11 +101,11 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 		return $output;
 	 }
 
-	$args = wp_parse_args( $args, array(
+	$args = array_merge( array(
 		'after' => '',
 		'before' => ' ',
 		'escape' => true,
-	) );
+	), (array) $args );
 
 	foreach ( $atts as $key => $value ) {
 

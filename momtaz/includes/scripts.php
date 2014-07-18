@@ -13,8 +13,8 @@
  * It does not load any script files on the site. If a theme wants to register its own custom scripts, it should
  * do so on the 'wp_enqueue_scripts' hook.
  *
+ * @uses momtaz_get_supported_core_scripts() Get the supported core scripts.
  * @uses wp_register_script() Register a script in WordPress.
- * @see momtaz_get_supported_core_scripts() Get the theme-supported core scripts.
  * @access private
  * @return void
  * @since 1.2
@@ -24,7 +24,7 @@ function momtaz_register_core_scripts() {
 	if ( momtaz_is_style_debug() ) {
 
 		wp_register_script(
-			'LessCSS',
+			'less',
 			momtaz_theme_uri( 'content/scripts/less.js' ),
 			array(),
 			Momtaz::VERSION
@@ -89,8 +89,8 @@ function momtaz_register_core_scripts() {
  * load them using the wp_enqueue_script() function. The function checks if the script is
  * registered before loading it.
  *
+ * @uses momtaz_get_supported_core_scripts() Get the supported core scripts.
  * @uses wp_enqueue_script() Load a script in WordPress.
- * @see momtaz_get_supported_core_scripts() Get the theme-supported core scripts.
  * @access private
  * @return void
  * @since 1.2
@@ -98,7 +98,7 @@ function momtaz_register_core_scripts() {
 function momtaz_enqueue_core_scripts() {
 
 	if ( momtaz_is_style_debug() ) {
-		wp_enqueue_script( 'LessCSS' );
+		wp_enqueue_script( 'less' );
 	}
 
 	// Get the theme-supported scripts.
@@ -123,7 +123,7 @@ function momtaz_enqueue_core_scripts() {
 }
 
 /**
- * Get the theme-supported core scripts.
+ * Get the supported core scripts.
  *
  * Get an array of theme supported core scripts to be registered in WordPress via momtaz_register_core_scripts()
  * and then, loaded via momtaz_enqueue_core_scripts().

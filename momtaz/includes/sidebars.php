@@ -18,7 +18,7 @@ add_action( 'widgets_init', 'momtaz_register_core_sidebars' );
  * and the utility widget areas throughout the theme. By default, the framework registers the 'primary' widget
  * area only. The 'momtaz_core_sidebars' filter hook can be used to hook into the default widget areas list.
  *
- * @see momtaz_get_supported_core_sidebars() Get the theme-supported core sidebars.
+ * @uses momtaz_get_supported_core_sidebars() Get the supported core sidebars.
  * @uses momtaz_register_sidebar() Register a single sidebar.
  * @access private
  * @return void
@@ -85,7 +85,7 @@ function momtaz_register_core_sidebars() {
 }
 
 /**
- * Get the theme-supported core sidebars.
+ * Get the supported core sidebars.
  *
  * Get the list of theme-supported sidebars to register each one of them via momtaz_register_core_sidebars()
  * as a ready to use widget area.
@@ -113,9 +113,9 @@ function momtaz_get_supported_core_sidebars() {
  * filter hook can be used to hook into the default arguments array. The arguments of each sidebar can be set
  * separately by hooking into 'momtaz_core_sidebars'.
  *
- * @param mixed[] $args An array of sidebar arguments.
+ * @param array $args An array of sidebar arguments.
  * @uses register_sidebar() Register a sidebar and return its ID in wordpress.
- * @see wp_parse_args() Merge an array of arguments with the default array in wordpress.
+ * @uses wp_parse_args() Merge an array of arguments with the default array in wordpress.
  * @return string
  * @since 1.1
  */

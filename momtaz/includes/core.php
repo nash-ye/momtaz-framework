@@ -64,10 +64,10 @@ function momtaz_get_child_theme_textdomain(){
 			'id' => $theme->get( 'TextDomain' ),
 		);
 
-
 	}
 
-	return apply_filters( 'momtaz_get_child_theme_textdomain', $textdomain );
+	$textdomain = apply_filters( 'momtaz_child_theme_textdomain', $textdomain );
+	return $textdomain;
 
 }
 
