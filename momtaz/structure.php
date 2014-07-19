@@ -7,46 +7,40 @@
  * @since Momtaz Theme 1.1
  */
 
-momtaz_template_part( 'head' ); ?>
+momtaz_template_part( 'head' );
 
-<body <?php body_class(); ?>>
+	momtaz_struct_markup( 'body', '<body%atts%>' );
 
-    <?php do_action( momtaz_format_hook( 'before_wrapper' ) ); ?>
+		do_action( momtaz_format_hook( 'before_wrapper' ) );
 
-    <div id="wrapper" class="hfeed">
+		momtaz_struct_markup( 'wrapper', '<div%atts%>' );
 
-        <?php get_header(); ?>
+			get_header();
 
-        <?php do_action( momtaz_format_hook( 'before_container' ) ); ?>
+			do_action( momtaz_format_hook( 'before_container' ) );
 
-        <div id="container">
+			momtaz_struct_markup( 'container', '<div%atts%>' );
 
-            <div id="content" role="main">
+				momtaz_struct_markup( 'content', '<div%atts%>' );
 
-                <?php do_action( momtaz_format_hook( 'before_primary_content' ) ); ?>
+					do_action( momtaz_format_hook( 'content' ) );
 
-                <section id="primary-content">
+				momtaz_struct_markup( 'content', '</div> <!-- #content -->' );
 
-                    <?php do_action( momtaz_format_hook( 'primary_content' ) ); ?>
+				get_sidebar();
 
-                </section><!-- #primary-content -->
+			momtaz_struct_markup( 'container', '</div> <!-- #container -->' );
 
-                <?php do_action( momtaz_format_hook( 'after_primary_content' ) ); ?>
+			do_action( momtaz_format_hook( 'after_container' ) );
 
-            </div> <!-- #content -->
+			get_footer();
 
-            <?php get_sidebar(); ?>
+		momtaz_struct_markup( 'wrapper', '</div> <!-- #wrapper -->' );
 
-         </div> <!-- #container -->
+		do_action( momtaz_format_hook( 'after_wrapper' ) );
 
-         <?php do_action( momtaz_format_hook( 'after_container' ) ); ?>
+		wp_footer();
 
-         <?php get_footer(); ?>
+	momtaz_struct_markup( 'body', '</body> <!-- body -->' );
 
-    </div> <!-- #wrapper -->
-
-    <?php do_action( momtaz_format_hook( 'after_wrapper' ) ); ?>
-
-<?php wp_footer(); ?>
-</body> <!-- body -->
-</html> <!-- html -->
+momtaz_struct_markup( 'html', '</html> <!-- html -->' );

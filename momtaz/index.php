@@ -7,18 +7,19 @@
  * @since Momtaz Theme 1.0
  */
 
-add_action( momtaz_format_hook( 'primary_content' ), 'momtaz_template_primary_content' );
+add_action( momtaz_format_hook( 'content' ), 'momtaz_template_content' );
 
 /**
- * Outputs the current template primary content.
+ * Outputs the current template content.
  *
  * @return void
- * @since 1.1
+ * @since 1.3
  */
-function momtaz_template_primary_content() {
+function momtaz_template_content() { ?>
 
-	// Load the posts loop template.
-	momtaz_context_template( 'loop' );
+	<section id="primary-content">
+		<?php momtaz_context_template( 'loop' ); ?>
+	</section> <!-- #primary-content --><?php
 
 }
 
