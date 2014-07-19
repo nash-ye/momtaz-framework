@@ -94,7 +94,7 @@ final class Momtaz_Stacks {
 
 		self::$stacks[ $id ] = $stack;
 
-		usort( self::$stacks, function( $a, $b ) {
+		uasort( self::$stacks, function( $a, $b ) {
 
 			$p1 = (int) $a->priority;
 			$p2 = (int) $b->priority;
