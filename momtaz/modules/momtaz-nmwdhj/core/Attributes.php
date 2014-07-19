@@ -1,6 +1,8 @@
 <?php
 namespace Nmwdhj\Attributes;
 
+use Nmwdhj\EventManager;
+
 /**
  * The attributes class.
  *
@@ -11,12 +13,20 @@ class Attributes {
 	/*** Properties ***********************************************************/
 
 	/**
+	 * Attributes Event Manager.
+	 *
+	 * @var Nmwdhj\EventManager
+	 * @since 1.3
+	 */
+	protected $dispatcher;
+
+	/**
 	 * Attributes list.
 	 *
-	 * @since 1.0
 	 * @var Nmwdhj\Attributes\Attribute[]
+	 * @since 1.0
 	 */
-	protected $attributes;
+	protected $atts = array();
 
 
 	/*** Magic Methods ********************************************************/
@@ -26,15 +36,12 @@ class Attributes {
 	 *
 	 * @since 1.0
 	 */
-	public function __construct( $atts = null ) {
-
-		// Reset the attributes.
-		$this->reset_atts();
+	public function __construct( $atts = NULL ) {
 
 		// Set the attributes.
 		$this->set_atts( $atts );
 
-	} // end __construct()
+	}
 
 
 	/*** Methods **************************************************************/
@@ -44,196 +51,255 @@ class Attributes {
 	/**
 	 * Get all the attributes array.
 	 *
-	 * @since 1.0
 	 * @return Nmwdhj\Attributes\Attribute[]
+	 * @since 1.0
 	 */
 	public function get_atts() {
-		return $this->attributes;
-	} // end get_atts()
+		return $this->atts;
+	}
 
 	/**
 	 * Get an attribute object.
 	 *
+	 * @return Nmwdhj\Attributes\Attribute|NULL
 	 * @since 1.1
-	 * @return Nmwdhj\Attributes\Attribute
 	 */
 	public function get_attr_obj( $key ) {
 
 		$key = strtolower( $key );
 
-		if ( isset( $this->attributes[ $key ] ) )
-			return $this->attributes[ $key ];
+		if ( isset( $this->atts[ $key ] ) ) {
+			return $this->atts[ $key ];
+		}
 
-	} // end get_attr_obj()
+	}
 
 	/**
 	 * Get an attribute value.
 	 *
-	 * @since 1.0
 	 * @return string
+	 * @since 1.0
 	 */
 	public function get_attr( $key, $def = '' ) {
 
 		$obj = $this->get_attr_obj( $key );
 
-		if ( ! $obj && is_scalar( $def ) )
-			return (string) $def;
+		if ( ! $obj && is_scalar( $def ) ) {
+			return $def;
+		}
 
 		return $obj->get_value();
 
-	} // end get_attr()
+	}
 
 	// Checks
 
 	/**
 	 * Check for an attribute existence.
 	 *
+	 * @return bool
 	 * @since 1.0
-	 * @return boolean
 	 */
 	public function has_attr( $key ) {
 
-		if ( $key instanceof Attribute )
-			$key = $key->get_key();
+		if ( is_array( $key ) ) {
 
-		if ( ! $this->get_attr_obj( $key ) )
-			return false;
+			foreach( $key as $value ) {
+
+				if ( ! $this->has_attr( $value ) ) {
+					return false;
+				}
+
+			}
+
+		} else {
+
+			if ( $key instanceof Attribute ) {
+				$key = $key->get_key();
+			}
+
+			if ( ! $this->get_attr_obj( $key ) ) {
+				return false;
+			}
+
+		}
 
 		return true;
 
-	} // end has_attr()
+	}
 
 	// Setters
 
 	/**
 	 * Set many attributes at once.
 	 *
-	 * @since 1.0
 	 * @return Nmwdhj\Attributes\Attributes
+	 * @since 1.0
 	 */
 	public function set_atts( $atts, $override = true ) {
 
-		if ( $atts instanceof Attributes )
+		if ( $atts instanceof Attributes ) {
 			$atts = $atts->get_atts();
+		}
 
 		if ( is_array( $atts ) ) {
 
-			foreach( $atts as $key => $value )
+			foreach( $atts as $key => $value ) {
 				$this->set_attr( $key, $value, $override );
+			}
 
-		} // end if
+			$this->get_dispatcher()->trigger( 'set_atts',
+				$atts, $override
+			);
+
+		}
 
 		return $this;
 
-	} // end set_atts()
+	}
 
 	/**
 	 * Set an attribute value.
 	 *
-	 * @since 1.0
 	 * @return Nmwdhj\Attributes\Attributes
+	 * @since 1.0
 	 */
 	public function set_attr( $key, $value, $override = true ) {
 
 		$key = strtolower( $key );
 
-		if ( $override || ! $this->has_attr( $key ) )
-			$this->attributes[$key] = \Nmwdhj\create_attr_obj( $key, $value );
+		if ( $override || ! $this->has_attr( $key ) ) {
+
+			$this->atts[ $key ] = \Nmwdhj\create_attr_obj( $key, $value );
+
+			$this->get_dispatcher()->trigger( 'set_attr',
+				$key, $value, $override
+			);
+
+		}
 
 		return $this;
 
-	} // end set_attr()
+	}
 
 	// Remove
 
 	/**
 	 * Remove many attributes at once.
 	 *
-	 * @since 1.0
 	 * @return Nmwdhj\Attributes\Attributes
+	 * @since 1.0
 	 */
 	public function remove_atts( $keys ) {
 
-		if ( $keys instanceof Attributes )
+		if ( $keys instanceof Attributes ) {
 			$keys = array_keys( $keys->get_atts() );
+		}
 
 		if ( is_array( $keys ) ) {
 
-			foreach( $keys as $key )
+			foreach( $keys as $key ) {
 				$this->remove_attr( $key );
+			}
 
-		} // end if
+			$this->get_dispatcher()->trigger( 'remove_atts', $keys );
+
+		}
 
 		return $this;
 
-	} // end remove_atts()
+	}
 
 	/**
 	 * Remove an attribute.
 	 *
-	 * @since 1.0
 	 * @return Nmwdhj\Attributes\Attributes
+	 * @since 1.0
 	 */
 	public function remove_attr( $key ) {
 
 		$key = strtolower( $key );
+		unset( $this->atts[ $key ] );
 
-		if ( is_array( $this->attributes ) )
-			unset( $this->attributes[ $key ] );
+		$this->get_dispatcher()->trigger( 'remove_attr', $key );
 
 		return $this;
 
-	} // end remove_attr()
+	}
 
-	// Reset
+	// Event Manager
 
 	/**
-	 * Reset the attributes array.
+	 * Set the Dispatcher (EventManager).
 	 *
-	 * @since 1.0
 	 * @return Nmwdhj\Attributes\Attributes
+	 * @since 1.3
 	 */
-	public function reset_atts() {
-		$this->attributes = array();
+	public function set_dispatcher( EventManager $dispatcher ) {
+		$this->dispatcher = $dispatcher;
 		return $this;
-	} // end reset_atts()
+	}
+
+	/**
+	 * Get the Dispatcher (EventManager).
+	 *
+	 * @return Nmwdhj\EventManager
+	 * @since 1.3
+	 */
+	public function get_dispatcher() {
+
+		if ( is_null( $this->dispatcher ) ) {
+			$this->dispatcher = new EventManager();
+		}
+
+		return $this->dispatcher;
+
+	}
 
 	// Converters
 
 	/**
 	 * Convert the attributes array to string.
 	 *
-	 * @since 1.0
 	 * @return string
+	 * @since 1.0
 	 */
-	public function to_string( array $args = null ) {
+	public function to_string( array $args = NULL ) {
 
 		$output = '';
 		$atts = $this->get_atts();
 
-		if ( count( $atts ) === 0 )
+		if ( count( $atts ) === 0 ) {
 			return $output;
+		}
 
-		$args = wp_parse_args( $args, array(
+		$args = array_merge( array(
 			'before' => ' ',
 			'after' => '',
-		) );
+		), (array) $args );
 
 		$atts = array_map( 'strval', $atts );
 		$output = trim( implode( ' ', $atts ) );
 
-		if ( empty( $output ) )
+		if ( empty( $output ) ) {
 			return $output;
+		}
 
 		return $args['before'] . $output . $args['after'];
 
-	} // end to_string()
+	}
 
+	/**
+	 * Convert the attributes array to string.
+	 *
+	 * @return string
+	 * @since 1.0
+	 */
 	public function __toString() {
 		return $this->to_string();
-	} // end __toString()
+	}
 
-} // end Attributes
+}
 
 
 /**
@@ -246,28 +312,28 @@ interface Attribute {
 	/**
 	 * Get the attribute key.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	public function get_key();
 
 	/**
 	 * Get the attribute value.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	public function get_value();
 
 	/**
 	 * Get the attribute output.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	public function __toString();
 
-} // end Interface Attribute
+}
 
 /**
  * The simple attribute class.
@@ -281,16 +347,16 @@ class SimpleAttribute implements Attribute {
 	/**
 	 * The attribute key.
 	 *
-	 * @since 1.1
 	 * @var string
+	 * @since 1.1
 	 */
 	protected $key;
 
 	/**
 	 * The attribute value.
 	 *
-	 * @since 1.1
 	 * @var mixed
+	 * @since 1.1
 	 */
 	protected $value;
 
@@ -310,7 +376,7 @@ class SimpleAttribute implements Attribute {
 		// Set the attribute value.
 		$this->set_value( $value );
 
-	} // end __construct()
+	}
 
 
 	/*** Methods **************************************************************/
@@ -320,52 +386,52 @@ class SimpleAttribute implements Attribute {
 	/**
 	 * Get the attribute key.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	public function get_key() {
 		return $this->key;
-	} // end get_key()
+	}
 
 	/**
 	 * Get the attribute value.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	public function get_value() {
 		return $this->value;
-	} // end get_value()
+	}
 
 	// Setters
 
 	/**
 	 * Set the attribute key.
 	 *
-	 * @since 1.1
 	 * @return Nmwdhj\Attributes\SimpleAttribute
+	 * @since 1.1
 	 */
 	protected function set_key( $key ) {
 		$this->key = $key;
 		return $this;
-	} // end set_key()
+	}
 
 	/**
 	 * Set the attribute value.
 	 *
-	 * @since 1.1
 	 * @return Nmwdhj\Attributes\SimpleAttribute
+	 * @since 1.1
 	 */
-	public function set_value( $value ) {
+	protected function set_value( $value ) {
 		$this->value = $value;
 		return $this;
-	} // end set_value()
+	}
 
 	/**
 	 * Get the attribute output.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	public function __toString(){
 
@@ -379,18 +445,19 @@ class SimpleAttribute implements Attribute {
 
 		if ( ! empty( $key ) && $value !== false ) {
 
-			if ( $value === true )
+			if ( $value === true ) {
 				$value = $key;
+			}
 
-			 $output = $key . '="' . esc_attr( $value ) . '"';
+			$output = $key . '="' . esc_attr( $value ) . '"';
 
-		} // end if
+		}
 
 		return $output;
 
-	} // end __toString()
+	}
 
-} // end Class SimpleAttribute
+}
 
 /**
  * The CSS classes attribute.
@@ -404,8 +471,8 @@ class ClassAttribute extends SimpleAttribute {
 	/**
 	 * Get the classes list.
 	 *
-	 * @since 1.1
 	 * @return string|array
+	 * @since 1.1
 	 */
 	public function get_value( $type = 'string' ) {
 
@@ -426,20 +493,19 @@ class ClassAttribute extends SimpleAttribute {
 
 				break;
 
-		} // end switch
+		}
 
-		// Return the classes list.
 		return $this->value;
 
-	} // end get_value()
+	}
 
 	// Checks
 
 	/**
+	 * [Need Description]
 	 *
-	 *
+	 * @return bool
 	 * @since 1.1
-	 * @return boolean
 	 */
 	public function has_classes( $classes ) {
 
@@ -447,22 +513,23 @@ class ClassAttribute extends SimpleAttribute {
 
 		if ( $classes ) {
 
-			if ( in_array( $classes, $this->get_value( 'array' ) ) )
+			if ( in_array( $classes, $this->get_value( 'array' ) ) ) {
 				return true;
+			}
 
-		} // end if
+		}
 
 		return false;
 
-	} // end has_classes()
+	}
 
 	// Setters
 
 	/**
 	 * Adds many classes at once.
 	 *
-	 * @since 1.1
 	 * @return Nmwdhj\Attributes\ClassAttribute
+	 * @since 1.1
 	 */
 	public function add_classes( $classes ) {
 
@@ -473,17 +540,17 @@ class ClassAttribute extends SimpleAttribute {
 			$classes = array_merge( $this->get_value( 'array' ), $classes );
 			$this->set_value( array_unique( $classes ) );
 
-		} // end if
+		}
 
 		return $this;
 
-	} // end add_classes()
+	}
 
 	/**
 	 * Removes many classes at once.
 	 *
-	 * @since 1.1
 	 * @return Nmwdhj\Attributes\ClassAttribute
+	 * @since 1.1
 	 */
 	public function remove_classes( $classes ) {
 
@@ -494,19 +561,19 @@ class ClassAttribute extends SimpleAttribute {
 			$classes = array_diff( $this->get_value( 'array' ), $classes );
 			$this->set_value( $classes );
 
-		} // end if
+		}
 
 		return $this;
 
-	} // end remove_classes()
+	}
 
 	// Helpers
 
 	/**
 	 * Convert the classes list to an array.
 	 *
-	 * @since 1.1
 	 * @return array
+	 * @since 1.1
 	 */
 	protected function explode_classes( $value ) {
 
@@ -518,18 +585,19 @@ class ClassAttribute extends SimpleAttribute {
 
 		} elseif ( ! is_array( $value ) ) {
 			$value = array();
+		}
 
-		} // end if
+		$value = array_map( 'strtolower', $value );
 
-		return array_map( 'strtolower', $value );
+		return $value;
 
-	} // end explode_classes()
+	}
 
 	/**
 	 * Convert the classes list to a string.
 	 *
-	 * @since 1.1
 	 * @return string
+	 * @since 1.1
 	 */
 	protected function implode_classes( $value ) {
 
@@ -541,11 +609,10 @@ class ClassAttribute extends SimpleAttribute {
 
 		} else {
 			$value = (string) $value;
+		}
 
-		} // end if
+		$value = strtolower( $value );
 
-		return strtolower( $value );
+		return $value;
 
-	} // end implode_classes()
-
-} // end Class ClassAttribute
+	}}
