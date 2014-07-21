@@ -1,20 +1,12 @@
 <?php
 /**
- * The template for displaying the footer.
+ * Footer Template
  *
  * @package Momtaz
  * @subpackage Template
  * @since Momtaz Theme 1.0
  */
-?>
-<div id="footer-container">
 
-	<?php do_action( momtaz_format_hook( 'before_footer' ) ); ?>
-
-	<footer id="footer" role="contentinfo">
-		<?php do_action( momtaz_format_hook( 'footer' ) ); ?>
-	</footer> <!-- #footer -->
-
-	<?php do_action( momtaz_format_hook( 'after_footer' ) ); ?>
-
-</div> <!-- #footer-container -->
+wp_footer();
+momtaz_struct_markup( 'body', '</body> <!-- body -->' );
+momtaz_struct_markup( 'root', '</html> <!-- html -->' );

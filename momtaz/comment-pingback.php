@@ -8,9 +8,8 @@
  * @subpackage Template
  * @since Momtaz Theme 1.1
  */
-?>
 
-<li id="comment-<?php comment_ID() ?>" <?php comment_class(); ?>>
+momtaz_struct_markup( 'comment', '<li%atts%>' ) ?>
 
 	<small><?php _e( 'Pingback:', 'momtaz' ); ?></small> <?php comment_author_link(); ?>
 

@@ -232,7 +232,7 @@ function momtaz_get_post_context( $post = null ) {
 /**
  * Display the classes for the body element.
  *
- * @param string|array $class One or more classes to add to the class list.
+ * @param array $classes One or more classes to add to the class list.
  * @since 1.0
 */
 function momtaz_body_class( $classes ) {

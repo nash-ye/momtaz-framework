@@ -11,7 +11,7 @@ global $post_num; ++$post_num; ?>
 
 <?php do_action( momtaz_format_hook( 'before_entry' ) ); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php momtaz_post_class( 'loop-entry' ); ?>>
+<?php momtaz_struct_markup( 'entry', '<article%atts%>' ) ?>
 
 	<?php momtaz_template_part( 'entry-header' ); ?>
 
@@ -48,6 +48,6 @@ global $post_num; ++$post_num; ?>
 
 	<?php momtaz_template_part( 'entry-footer' ); ?>
 
-</article> <!-- #post-<?php the_ID(); ?> -->
+<?php momtaz_struct_markup( 'entry', '</article> <!-- .hentry -->' ) ?>
 
 <?php do_action( momtaz_format_hook( 'after_entry' ) );

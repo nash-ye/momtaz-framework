@@ -2,36 +2,33 @@
 /**
  * Header Template
  *
- * The header template is generally used on every page of your site. Nearly all other
- * templates call it somewhere near the top of the file.
- *
  * @package Momtaz
  * @subpackage Template
  * @since Momtaz Theme 1.0
  */
 ?>
-<div id="header-container">
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<!-- Momtaz Head -->
+<meta charset="<?php bloginfo( 'charset' ); ?>" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title><?php momtaz_title(); ?></title>
 
-	<?php do_action( momtaz_format_hook( 'before_header' ) ); ?>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+<link rel="profile" href="http://gmpg.org/xfn/11" />
 
-	<header id="header" role="banner">
+<!--[if lt IE 9]>
+	<script src="<?php echo esc_url( momtaz_theme_uri( 'content/scripts/html5shiv.js' ) ); ?>"></script>
+<![endif]-->
 
-		<hgroup id="branding">
+<?php do_action( momtaz_format_hook( 'head' ) ); ?>
+<!-- end Momtaz Head -->
 
-			<h1 id="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-			</h1> <!-- #site-title -->
+<!-- WP Head -->
+<?php wp_head(); ?>
+<!-- end WP Head -->
+</head>
 
-			<h2 id="site-description">
-				<?php bloginfo( 'description' ); ?>
-			</h2> <!-- #site-description -->
-
-		</hgroup> <!-- #branding -->
-
-	</header> <!-- #header -->
-
-	<?php do_action( momtaz_format_hook( 'after_header' ) ); ?>
-
-	<?php momtaz_template_part( 'menu', 'primary' ); ?>
-
-</div> <!-- #header-container -->
+<?php momtaz_struct_markup( 'body', '<body%atts%>' ); ?>

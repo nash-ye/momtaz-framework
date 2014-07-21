@@ -11,9 +11,9 @@
  * @since Momtaz Theme 1.1
  */
 
-global $comment, $comment_depth, $max_depth; ?>
+global $comment, $comment_depth, $max_depth;
 
-<li id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
+momtaz_struct_markup( 'comment', '<li%atts%>' ) ?>
 
 	<?php do_action( momtaz_format_hook( 'before_comment' ) ); ?>
 
