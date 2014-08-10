@@ -8,11 +8,10 @@
  * @subpackage Template
  * @since Momtaz Theme 1.1
  */
+?>
+<li<?php momtaz_atts( 'comment' ) ?>>
 
-momtaz_struct_markup( 'comment', '<li%atts%>' ) ?>
-
-	<small><?php _e( 'Trackback:', 'momtaz' ); ?></small> <?php comment_author_link(); ?>
-
-	<?php edit_comment_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ); ?>
+	<small><?php _e( 'Trackback:', 'momtaz' ) ?></small> <?php comment_author_link() ?>
+	<?php edit_comment_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ) ?>
 
 <?php /* No closing. WordPress will know where to add it. */

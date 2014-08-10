@@ -1,6 +1,6 @@
 <?php
 
-add_filter( 'momtaz_struct_atts-body', 'momtaz_struct_atts_body' );
+add_filter( 'momtaz_atts-body', 'momtaz_atts_body' );
 
 /**
  * Add attributes for the body element.
@@ -8,17 +8,19 @@ add_filter( 'momtaz_struct_atts-body', 'momtaz_struct_atts_body' );
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_body( $atts ) {
+function momtaz_atts_body( $atts ) {
 
-	if ( ! isset( $atts['class'] ) ) {
-		$atts['class'] = get_body_class();
-	}
+	$atts['class']		= get_body_class();
+
+	// HTML5 Microdata.
+	$atts['itemscope']	= 'itemscope';
+	$atts['itemtype']	= 'http://schema.org/WebPage';
 
 	return $atts;
 
 }
 
-add_filter( 'momtaz_struct_atts-header', 'momtaz_struct_atts_header' );
+add_filter( 'momtaz_atts-header', 'momtaz_atts_header' );
 
 /**
  * Add attributes for the header element.
@@ -26,83 +28,102 @@ add_filter( 'momtaz_struct_atts-header', 'momtaz_struct_atts_header' );
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_header( $atts ) {
+function momtaz_atts_header( $atts ) {
 
-	if ( ! isset( $atts['id'] ) ) {
-		$atts['id'] = 'header';
-	}
+	$atts['role']		= 'banner';
 
-	if ( ! isset( $atts['role'] ) ) {
-		$atts['role'] = 'banner';
-	}
+	// HTML5 Microdata.
+	$atts['itemscope']	= 'itemscope';
+	$atts['itemtype']	= 'http://schema.org/WPHeader';
 
 	return $atts;
 
 }
 
-add_filter( 'momtaz_struct_atts-wrapper', 'momtaz_struct_atts_wrapper' );
+add_filter( 'momtaz_atts-site-title', 'momtaz_atts_site_title' );
 
 /**
- * Add attributes for the wrapper element.
+ * Add attributes for the site-title element.
  *
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_wrapper( $atts ) {
+function momtaz_atts_site_title( $atts ) {
 
-	if ( ! isset( $atts['id'] ) ) {
-		$atts['id'] = 'wrapper';
-	}
-
-	if ( ! isset( $atts['class'] ) ) {
-		$atts['class'] = 'hfeed';
-	}
+	// HTML5 Microdata
+	$atts['itemprop'] = 'headline';
 
 	return $atts;
 
 }
 
-add_filter( 'momtaz_struct_atts-container', 'momtaz_struct_atts_container' );
+add_filter( 'momtaz_atts-site-description', 'momtaz_atts_site_description' );
 
 /**
- * Add attributes for the container element.
+ * Add attributes for the site-description element.
  *
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_container( $atts ) {
+function momtaz_atts_site_description( $atts ) {
 
-	if ( ! isset( $atts['id'] ) ) {
-		$atts['id'] = 'container';
-	}
+	// HTML5 Microdata
+	$atts['itemprop'] = 'description';
 
 	return $atts;
 
 }
 
-add_filter( 'momtaz_struct_atts-content', 'momtaz_struct_atts_content' );
+add_filter( 'momtaz_atts-nav-primary', 'momtaz_atts_nav' );
+add_filter( 'momtaz_atts-nav-comments', 'momtaz_atts_nav' );
 
 /**
- * Add attributes for the main content element.
+ * Add attributes for the nav-menus elements.
  *
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_content( $atts ) {
+function momtaz_atts_nav( $atts ) {
 
-	if ( ! isset( $atts['id'] ) ) {
-		$atts['id'] = 'content';
-	}
+	$atts['role']		= 'navigation';
 
-	if ( ! isset( $atts['role'] ) ) {
-		$atts['role'] = 'main';
+	// HTML5 Microdata
+	$atts['itemscope']	= 'itemscope';
+	$atts['itemtype']	= 'http://schema.org/SiteNavigationElement';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-content', 'momtaz_atts_content' );
+
+/**
+ * Add attributes for the content element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_content( $atts ) {
+
+	$atts['role'] = 'main';
+
+	// HTML5 Microdata
+	$atts['itemprop'] = 'mainContentOfPage';
+
+	if ( is_search() ) {
+		$atts['itemscope']	= 'itemscope';
+		$atts['itemtype']	= 'http://schema.org/SearchResultsPage';
+
+	} elseif ( is_singular( 'post' ) || is_archive() || is_home() ) {
+		$atts['itemscope']	= 'itemscope';
+		$atts['itemtype']	= 'http://schema.org/Blog';
 	}
 
 	return $atts;
 
 }
 
-add_filter( 'momtaz_struct_atts-entry', 'momtaz_struct_atts_entry' );
+add_filter( 'momtaz_atts-entry', 'momtaz_atts_entry' );
 
 /**
  * Add attributes for the entry element.
@@ -110,7 +131,7 @@ add_filter( 'momtaz_struct_atts-entry', 'momtaz_struct_atts_entry' );
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_entry( $atts ) {
+function momtaz_atts_entry( $atts ) {
 
 	$post_id = get_the_ID();
 
@@ -118,19 +139,97 @@ function momtaz_struct_atts_entry( $atts ) {
 		return $atts;
 	}
 
-	if ( ! isset( $atts['id'] ) ) {
-		$atts['id']	= "post-{$post_id}";
+	// Get the post type.
+	$post_type = get_post_type( $post_id );
+
+	$atts['id']	= "post-{$post_id}";
+	
+	if ( ! isset( $atts['class'] ) ) {
+		$atts['class'] = '';
 	}
 
-	if ( ! isset( $atts['class'] ) ) {
-		$atts['class'] = momtaz_get_post_class();
+	$atts['class'] = momtaz_get_post_class( $atts['class'] );
+
+	// HTML5 Microdata
+	$atts['itemscope'] = 'itemscope';
+
+	// Blog posts microdata
+	if ( 'post' === $post_type ) {
+
+		$atts['itemtype'] = 'http://schema.org/BlogPosting';
+
+		if ( is_main_query() ) {
+			$atts['itemprop'] = 'blogPost';
+		}
+
+	} elseif ( 'attachment' === $post_type ) {
+
+		if ( wp_attachment_is_image( $post_id ) ) {
+			$atts['itemtype'] = 'http://schema.org/ImageObject';
+		}
+
+	} else {
+
+		$atts['itemtype']  = 'http://schema.org/CreativeWork';
+
 	}
 
 	return $atts;
 
 }
 
-add_filter( 'momtaz_struct_atts-comment', 'momtaz_struct_atts_comment' );
+add_filter( 'momtaz_atts-entry-title', 'momtaz_atts_entry_title' );
+
+/**
+ * Add attributes for the entry title element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_entry_title( $atts ) {
+
+	// HTML5 Microdata
+	$atts['itemprop'] = 'headline';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-entry-content', 'momtaz_atts_entry_content' );
+
+/**
+ * Add attributes for the entry content element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_entry_content( $atts ) {
+
+	// HTML5 Microdata
+	$atts['itemprop'] = 'text';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-entry-summary', 'momtaz_atts_entry_summary' );
+
+/**
+ * Add attributes for the entry summary element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_entry_summary( $atts ) {
+
+	// HTML5 Microdata
+	$atts['itemprop'] = 'description';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-comment', 'momtaz_atts_comment' );
 
 /**
  * Add attributes for the comment element.
@@ -138,7 +237,7 @@ add_filter( 'momtaz_struct_atts-comment', 'momtaz_struct_atts_comment' );
  * @return array
  * @since 1.3
  */
-function momtaz_struct_atts_comment( $atts ) {
+function momtaz_atts_comment( $atts ) {
 
 	$comment_id = get_comment_ID();
 
@@ -146,13 +245,70 @@ function momtaz_struct_atts_comment( $atts ) {
 		return $atts;
 	}
 
-	if ( ! isset( $atts['id'] ) ) {
-		$atts['id']	= "comment-{$comment_id}";
-	}
+	$atts['id']	= "comment-{$comment_id}";
+	$atts['class'] = get_comment_class();
 
-	if ( ! isset( $atts['class'] ) ) {
-		$atts['class'] = get_comment_class();
-	}
+	// HTML5 Microdata
+	$atts['itemprop']  = 'comment';
+	$atts['itemscope'] = 'itemscope';
+	$atts['itemtype']  = 'http://schema.org/UserComments';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-comment-content', 'momtaz_atts_comment_content' );
+
+/**
+ * Add attributes for the comment content element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_comment_content( $atts ) {
+
+	// HTML5 Microdata
+	$atts['itemprop'] = 'commentText';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-sidebar', 'momtaz_atts_sidebar' );
+
+/**
+ * Add attributes for the sidebar element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_sidebar( $atts ) {
+
+	$atts['role'] = 'complementary';
+
+	// HTML5 Microdata
+	$atts['itemscope'] = 'itemscope';
+	$atts['itemtype']  = 'http://schema.org/WPSideBar';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-footer', 'momtaz_atts_footer' );
+
+/**
+ * Add attributes for the footer element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_footer( $atts ) {
+
+	$atts['role'] = 'contentinfo';
+
+	// HTML5 Microdata
+	$atts['itemscope'] = 'itemscope';
+	$atts['itemtype']  = 'http://schema.org/WPFooter';
 
 	return $atts;
 
@@ -163,27 +319,47 @@ function momtaz_struct_atts_comment( $atts ) {
  *
  * @since 1.3
  */
-function momtaz_struct_markup( $context, $markup = '', array $atts = array() ) {
-	echo momtaz_get_struct_markup( $context, $markup, $atts );
+function momtaz_markup( $context, $markup = '', array $atts = array() ) {
+	echo momtaz_get_markup( $context, $markup, $atts );
 }
 
 /**
  * Get the structural element HTML markup.
  *
+ * @return string
  * @since 1.3
  */
-function momtaz_get_struct_markup( $context, $markup = '', array $atts = array() ) {
+function momtaz_get_markup( $context, $markup = '', array $atts = array() ) {
 
-	$output = $markup = apply_filters( "momtaz_struct_markup-{$context}", $markup );
+	$markup = apply_filters( "momtaz_markup-{$context}", $markup );
 
 	if ( ! empty( $markup ) && strpos( $markup, '%atts%' ) !== FALSE ) {
-		$atts = (array) apply_filters( "momtaz_struct_atts-{$context}", $atts );
-		$output = str_replace( '%atts%', momtaz_get_html_atts( $atts ), $markup );
+		$atts = momtaz_get_atts( $context, $atts );
+		$markup = str_replace( '%atts%', $atts, $markup );
 	}
 
-	$output = apply_filters( "momtaz_struct_output-{$context}", $output, $markup, $atts );
-	return $output;
+	return $markup;
 
+}
+
+/**
+ * Output the structural element HTML markup.
+ *
+ * @since 1.3
+ */
+function momtaz_atts( $context, array $atts = array() ) {
+	echo momtaz_get_atts( $context, $atts );
+}
+
+/**
+ * Get the structural element HTML markup.
+ *
+ * @return string
+ * @since 1.3
+ */
+function momtaz_get_atts( $context, array $atts = array() ) {
+	$atts = (array) apply_filters( "momtaz_atts-{$context}", $atts );
+	return momtaz_get_html_atts( $atts );
 }
 
 /**

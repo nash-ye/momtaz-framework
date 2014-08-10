@@ -88,5 +88,22 @@ function momtaz_register_theme_modules() {
 
 }
 
+add_action( 'after_setup_theme', 'momtaz_theme_setup' );
+
+/**
+ * Setup the framework's theme.
+ * 
+ * @return void
+ * @since 1.3
+ */
+function momtaz_theme_setup() {
+
+	Momtaz_Zones::add_callback( 'head', 'momtaz_main_stylesheet' );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_locale_stylesheet' );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_meta_generator' );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_meta_designer' );
+
+}
+
 // Load the Momtaz Framework class file.
 require( trailingslashit( get_template_directory() ) . 'includes/momtaz.php' );

@@ -7,34 +7,32 @@
  * @since Momtaz Theme 1.1
  */
 
-get_header();
+momtaz_template_header();
 
-	do_action( momtaz_format_hook( 'before_wrapper' ) );
+	Momtaz_Zones::call( 'wrapper:before' ) ?>
 
-	momtaz_struct_markup( 'wrapper', '<div%atts%>' );
+	<div<?php momtaz_atts( 'wrapper', array( 'id' => 'wrapper', 'class' => 'hfeed' ) ) ?>>
 
-		get_header( 'main' );
+		<?php momtaz_template_header( 'main' ) ?>
 
-		do_action( momtaz_format_hook( 'before_container' ) );
+		<?php Momtaz_Zones::call( 'container:before' ) ?>
 
-		momtaz_struct_markup( 'container', '<div%atts%>' );
+		<div<?php momtaz_atts( 'container', array( 'id' => 'container' ) ) ?>>
 
-			momtaz_struct_markup( 'content', '<div%atts%>' );
+			<div<?php momtaz_atts( 'content', array( 'id' => 'content' ) ) ?>>
+				<?php Momtaz_Zones::call( 'content' ) ?>
+			</div> <!-- #content -->
 
-				do_action( momtaz_format_hook( 'content' ) );
+			<?php momtaz_template_sidebar() ?>
 
-			momtaz_struct_markup( 'content', '</div> <!-- #content -->' );
+		</div> <!-- #container -->
 
-			get_sidebar();
+		<?php Momtaz_Zones::call( 'container:after' ) ?>
 
-		momtaz_struct_markup( 'container', '</div> <!-- #container -->' );
+		<?php momtaz_template_footer( 'main' ) ?>
 
-		do_action( momtaz_format_hook( 'after_container' ) );
+	</div> <!-- #wrapper --><?php
 
-		get_footer( 'main' );
+	Momtaz_Zones::call( 'wrapper:after' );
 
-	momtaz_struct_markup( 'wrapper', '</div> <!-- #wrapper -->' );
-
-	do_action( momtaz_format_hook( 'after_wrapper' ) );
-
-get_footer();
+momtaz_template_footer();

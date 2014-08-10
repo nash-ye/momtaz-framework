@@ -1,7 +1,5 @@
 <?php
 
-add_action( 'momtaz_init', 'momtaz_register_core_layouts', 10 );
-
 /**
  * Registers the the framework's default layouts.
  *
@@ -77,21 +75,20 @@ function momtaz_register_core_layouts() {
 
 }
 
-add_action( 'momtaz_init', 'momtaz_init_current_layout', 15 );
-
 /**
- * Initialize layouts support.
+ * Ajust the current theme layout.
  *
- * The function initializes layouts support by setting the current layout using
- * Momtaz_Layouts::set_current_layout(), if not set. The '2c-l-fixed' layout
- * is set as the default for rtl and '2c-r-fixed' layout for non-rtl.
+ * This function sets the proper theme-layout and content-width, if not set. 
+ * The '2c-l-fixed' layout is set as the default for RTL 
+ * and '2c-r-fixed' layout for LTR.
  *
  * @uses Momtaz_Layouts::set_current_layout() Set the current layout.
+ * @uses momtaz_set_content_width() Set the content width.
  * @access private
  * @return void
- * @since 1.2
+ * @since 1.3
  */
-function momtaz_init_current_layout() {
+function momtaz_ajust_current_layout() {
 
 	if ( ! Momtaz_Layouts::get_current_layout() ) {
 
@@ -102,25 +99,6 @@ function momtaz_init_current_layout() {
 		}
 
 	}
-
-}
-
-add_action( 'momtaz_init', 'momtaz_init_content_width', 20 );
-
-/**
- * Initialize content width setting.
- *
- * This function checks if the content width is set by using momtaz_get_content_width(),
- * and if not, it sets it to the content width of the current layout using momtaz_set_content_width().
- *
- * @uses Momtaz_Layouts::get_current_layout() Get the current theme layout.
- * @uses momtaz_set_content_width() Setting the theme's content width.
- * @uses momtaz_get_content_width() Get the theme's content width.
- * @access private
- * @return void
- * @since 1.2
- */
-function momtaz_init_content_width() {
 
 	if ( ! momtaz_get_content_width() ) {
 

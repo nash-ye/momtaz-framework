@@ -154,62 +154,52 @@ class Momtaz_Settings_Page {
 			return;
 		}
 
-		do_action( momtaz_format_hook( 'before_settings_page' ) ); ?>
+		Momtaz_Zones::call( 'settings_page:before' ) ?>
 
 		<div class="wrap theme-settings">
 
 			<h2>
-				<?php echo $this->get_page_title(); ?>
-				<a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ); ?></a>
+				<?php echo $this->get_page_title() ?>
+				<a href="<?php echo esc_url( admin_url( 'customize.php' ) ) ?>" class="add-new-h2"><?php esc_html_e( 'Customize', 'momtaz' ) ?></a>
 			</h2>
 
-			<?php settings_errors(); ?>
-
-			<?php do_action( momtaz_format_hook( 'open_settings_page' ) ); ?>
+			<?php settings_errors() ?>
 
 			<div class="momtaz-core-settings-wrap">
 
-				<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
+				<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ) ?>">
 
 					<p class="submit">
-
-						<?php do_action( momtaz_format_hook( 'settings_page_before_submit_button' ) ); ?>
-
 						<?php submit_button( esc_attr__( 'Update Settings', 'momtaz' ), 'primary', 'update', false ) ?>
-
-						<?php do_action( momtaz_format_hook( 'settings_page_after_submit_button' ) ); ?>
-
 					</p> <!-- .submit -->
 
-					<?php settings_fields( momtaz_format_hook( 'theme_settings' ) ); ?>
-					<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
-					<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
+					<?php settings_fields( momtaz_format_hook( 'theme_settings' ) ) ?>
+					<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ) ?>
+					<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ) ?>
 
 					<div class="metabox-holder">
 
 						<div class="post-box-container column-1 normal">
-							<?php do_meta_boxes( NULL, 'normal', NULL ); ?>
+							<?php do_meta_boxes( NULL, 'normal', NULL ) ?>
 						</div> <!-- .column-1 -->
 
 						<div class="post-box-container column-2 side">
-							<?php do_meta_boxes( NULL, 'side', NULL ); ?>
+							<?php do_meta_boxes( NULL, 'side', NULL ) ?>
 						</div> <!-- .column-2 -->
 
 						<div class="post-box-container column-3 advanced">
-							<?php do_meta_boxes( NULL, 'advanced', NULL ); ?>
+							<?php do_meta_boxes( NULL, 'advanced', NULL ) ?>
 						</div> <!-- .column-3 -->
 
 					</div> <!-- .metabox-holder -->
 
 				</form> <!-- Form End -->
 
-				<?php do_action( momtaz_format_hook( 'close_settings_page' ) ); ?>
-
 			</div> <!-- .momtaz-core-settings-wrap -->
 
 		</div> <!-- .wrap --> <?php
 
-		do_action( momtaz_format_hook( 'after_settings_page' ) );
+		Momtaz_Zones::call( 'settings_page:after' );
 
 	}
 
@@ -297,7 +287,7 @@ class Momtaz_Settings_Page {
 			//<![CDATA[
 			jQuery(document).ready( function($) {
 				$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-				postboxes.add_postbox_toggles('<?php echo get_current_screen()->id; ?>');
+				postboxes.add_postbox_toggles('<?php echo get_current_screen()->id ?>');
 			});
 			//]]>
 		</script><?php

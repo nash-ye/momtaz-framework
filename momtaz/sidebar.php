@@ -10,18 +10,18 @@
  * @since Momtaz Theme 1.1
  */
 
-if ( is_active_sidebar( 'primary' ) ) : ?>
+if ( is_active_sidebar( 'primary' ) ) { ?>
 
-    <div id="sidebar" role="complementary">
+	<div<?php momtaz_atts( 'sidebar', array( 'id' => 'sidebar' ) ) ?>>
 
-        <?php do_action( momtaz_format_hook( 'before_primary_sidebar' ) ); ?>
+		<?php Momtaz_Zones::call( 'primary_sidebar:before' ) ?>
 
-        <div id="primary-sidebar" class="widget-area">
-                <?php dynamic_sidebar( 'primary' ); ?>
-        </div> <!-- #primary-sidebar -->
+			<div id="primary-sidebar" class="widget-area">
+				<?php dynamic_sidebar( 'primary' ) ?>
+			</div> <!-- #primary-sidebar -->
 
-        <?php do_action( momtaz_format_hook( 'after_primary_sidebar' ) ); ?>
+		<?php Momtaz_Zones::call( 'primary_sidebar:after' ) ?>
 
-    </div> <!-- #sidebar -->
+	</div><?php
 
-<?php endif;
+}

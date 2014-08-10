@@ -330,9 +330,10 @@ function momtaz_post_class( $class = '', $post_id = 0 ) {
  * 'hentry'. Posts are given category, tag, and author classes. Alternate post classes of odd,
  * even, and alt are added.
  *
- * @since 1.1
  * @param string|array $class One or more classes to add to the class list.
  * @param int $post_id An optional post ID.
+ * @return array
+ * @since 1.1
  */
 function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 
@@ -355,7 +356,7 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 	$classes = array_merge( $classes, (array) $context );
 
 	// Post alt class.
-	if ( ! momtaz_is_single( $post ) ) {
+	if ( ! momtaz_is_the_single( $post ) ) {
 
 		static $post_alt = 0;
 		$classes[] = 'set-' . ++$post_alt;
@@ -441,15 +442,15 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 }
 
 /**
- * Is the query for an existing single post?
+ * Is the given post is the main single post?
  * Works for any post type, including attachments and pages
  *
  * @param mixed $post Post ID, title, slug, or array of such.
  * @param mixed $post_types Optional. Post Type or array of Post Types
  * @return boolean
- * @since 1.1
+ * @since 1.3
  */
-function momtaz_is_single( $post = false, $post_types = '' ) {
+function momtaz_is_the_single( $post = false, $post_types = '' ) {
 
 	$retval = false;
 

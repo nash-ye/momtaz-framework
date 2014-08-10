@@ -12,7 +12,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.3-alpha-3';
+	const VERSION = '1.3-alpha-4';
 
 
 	/** Magic Methods *********************************************************/
@@ -256,7 +256,7 @@ final class Momtaz {
  * Use this function like you would a global variable, except without needing
  * to declare the global.
  *
- * Example: <?php $momtaz = momtaz(); ?>
+ * Example: <?php $momtaz = momtaz() ?>
  *
  * @return The one true Momtaz Instance
  * @since 1.0

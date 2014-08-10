@@ -14,7 +14,7 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) ) {
 
 ?>
 
-<footer class="entry-meta entry-footer">
+<footer<?php momtaz_atts( 'entry-footer', array( 'class' => 'entry-meta entry-footer' ) ) ?>>
 
 	<?php
 
@@ -71,4 +71,4 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) ) {
 
 	?>
 
-</footer> <!-- .entry-footer -->
+</footer>

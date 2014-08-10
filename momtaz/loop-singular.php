@@ -12,22 +12,22 @@
  * @since Momtaz Theme 1.1
  */
 
-// If the query found some posts .
+// If the query found some posts.
 if ( have_posts() ) {
 
-	// @hook: Before the posts loop.
-	do_action( momtaz_format_hook( 'before_loop' ) );
+	// Before Loop Zone.
+	Momtaz_Zones::call( 'loop:before' );
 
 	// Loop through the query posts.
-	while ( have_posts() ) { the_post();
+	while ( have_posts() ) {
 
-		// Load the entry-singular template.
+		the_post(); // Setup the current post.
 		momtaz_post_context_template( 'entry', 'singular' );
 
 	} // end while
 
-	// @hook: After the posts loop.
-	do_action( momtaz_format_hook( 'after_loop' ) );
+	// After Loop Zone.
+	Momtaz_Zones::call( 'loop:after' );
 
 // The query failed or there is not any post
 } else {

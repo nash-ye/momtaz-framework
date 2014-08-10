@@ -6,29 +6,25 @@
  * @subpackage Template
  * @since Momtaz Theme 1.3
  */
-?>
-<div id="header-container">
 
-	<?php do_action( momtaz_format_hook( 'before_header' ) ); ?>
+Momtaz_Zones::call( 'header:before' ) ?>
 
-	<?php momtaz_struct_markup( 'header', '<header%atts%>' ); ?>
+<header<?php momtaz_atts( 'header', array( 'id' => 'header' ) ) ?>>
 
-		<hgroup id="branding">
+	<hgroup<?php momtaz_atts( 'branding', array( 'id' => 'branding' ) ) ?>>
 
-			<h1 id="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-			</h1> <!-- #site-title -->
+		<h1<?php momtaz_atts( 'site-title', array( 'id' => 'site-title' ) ) ?>>
+			<a href="<?php echo esc_url( home_url( '/' ) ) ?>" rel="home"><?php bloginfo( 'name' ) ?></a>
+		</h1> <!-- #site-title -->
 
-			<h2 id="site-description">
-				<?php bloginfo( 'description' ); ?>
-			</h2> <!-- #site-description -->
+		<h2<?php momtaz_atts( 'site-description', array( 'id' => 'site-description' ) ) ?>>
+			<?php bloginfo( 'description' ) ?>
+		</h2> <!-- #site-description -->
 
-		</hgroup> <!-- #branding -->
+	</hgroup> <!-- #branding -->
 
-	<?php momtaz_struct_markup( 'header', '</header> <!-- #header -->' ); ?>
+</header><?php
 
-	<?php do_action( momtaz_format_hook( 'after_header' ) ); ?>
+Momtaz_Zones::call( 'header:after' );
 
-	<?php momtaz_template_part( 'menu', 'primary' ); ?>
-
-</div> <!-- #header-container -->
+momtaz_template_part( 'menu', 'primary' );

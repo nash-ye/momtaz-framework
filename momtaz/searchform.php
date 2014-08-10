@@ -9,9 +9,9 @@
  * @since Momtaz Theme 1.0
  */
 
-static $search_num = 0; ++$search_num; ?>
+static $search_num = 0; ++$search_num ?>
 
-<div id="<?php echo "search-form-container-{$search_num}"; ?>" class="search-form-container">
+<div id="search-form-container-<?php echo $search_num ?>" class="search-form-container">
 
 	<?php
 

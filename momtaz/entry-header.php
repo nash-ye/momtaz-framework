@@ -7,19 +7,19 @@
  * @since Momtaz Theme 1.0
  */
 ?>
-<header class="entry-header">
+<header<?php momtaz_atts( 'entry-header', array( 'class' => 'entry-header' ) ) ?>>
 
-	<?php if ( momtaz_is_single( get_the_ID() ) ) : ?>
+	<?php if ( momtaz_is_the_single( get_the_ID() ) ) : ?>
 
-		<h1 class="entry-title"><?php the_title(); ?></h1>
+		<h1<?php momtaz_atts( 'entry-title', array( 'class' => 'entry-title' ) ) ?>><?php the_title() ?></h1>
 
 	<?php else: ?>
 
-		<h1 class="entry-title">
-			<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+		<h1<?php momtaz_atts( 'entry-title', array( 'class' => 'entry-title' ) ) ?>>
+			<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title() ?></a>
 		</h1>
 
-	<?php endif; ?>
+	<?php endif ?>
 
 	<div class="entry-meta">
 
@@ -44,7 +44,7 @@
 
 			<?php if ( 'post' === get_post_type() && is_multi_author() ) : ?>
 
-				<span class="sep"><?php _ex( ' | ', 'entry-meta-sep', 'momtaz' ); ?></span>
+				<span class="sep"><?php _ex( ' | ', 'entry-meta-sep', 'momtaz' ) ?></span>
 
 				<span class="by-author">
 
@@ -63,19 +63,19 @@
 
 				</span> <!-- .by-author -->
 
-			<?php endif; ?>
+			<?php endif ?>
 
-			<?php if ( ! momtaz_is_single( get_the_ID() ) && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+			<?php if ( ! momtaz_is_the_single( get_the_ID() ) && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
 					<?php if ( $show_sep ) { echo '<span class="sep">'. _x( ' | ', 'entry-meta-sep', 'momtaz' ) .'</span>'; } ?>
 
 					<span class="comments-link">
-						<?php comments_popup_link( '<span class="leave-reply">'. __( 'Leave a comment', 'momtaz' ) .'</span>' , __( '1 Comment', 'momtaz' ), __( '<b>%</b> Comments', 'momtaz' ) ); ?>
+						<?php comments_popup_link( '<span class="leave-reply">'. __( 'Leave a comment', 'momtaz' ) .'</span>' , __( '1 Comment', 'momtaz' ), __( '<b>%</b> Comments', 'momtaz' ) ) ?>
 					</span> <!-- .comments-links -->
 
-			<?php endif; ?>
+			<?php endif ?>
 
-			<?php edit_post_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'momtaz' ), '<span class="edit-link">', '</span>' ) ?>
 
 	</div> <!-- .entry-meta -->
 

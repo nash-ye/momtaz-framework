@@ -139,7 +139,7 @@ function momtaz_load_textdomain_mofile( $mofile, $domain ) {
  * Function for formatting a hook name if needed. It automatically adds the
  * theme's prefix to begining of the hook name.
  *
- * @param string $tag The basic name of the hook (e.g., 'before_header').
+ * @param string $tag The basic name of the hook.
  * @return string
  * @since 1.0
  */

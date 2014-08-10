@@ -10,36 +10,36 @@
  * @since Momtaz Theme 1.0
  */
 
-if ( is_attachment() ) : ?>
+if ( is_attachment() ) { ?>
 
-		<nav class="navigation">
-			<?php previous_post_link( '%link', '<span class="previous">' . __( '&laquo; Return to entry', 'momtaz' ) . '</span>' ); ?>
-		</nav> <!-- .navigation -->
+	<nav class="navigation post-navigatio" role="navigation">
+		<?php previous_post_link( '%link', '<span class="previous">' . __( '&laquo; Return to entry', 'momtaz' ) . '</span>' ) ?>
+	</nav> <!-- .navigation -->
 
-<?php elseif ( is_singular( 'post' ) ) : ?>
+<?php } elseif ( is_singular( 'post' ) ) { ?>
 
-		<nav class="navigation post-navigation" role="navigation">
+	<nav class="navigation post-navigation" role="navigation">
 
-			<?php previous_post_link( '%link', '<span class="previous">' . __( '&laquo; Previous', 'momtaz' ) . '</span>' ); ?>
-			<?php next_post_link( '%link', '<span class="next">' . __( 'Next &raquo;', 'momtaz' ) . '</span>' ); ?>
+		<?php previous_post_link( '%link', '<span class="previous">' . __( '&laquo; Previous', 'momtaz' ) . '</span>' ) ?>
+		<?php next_post_link( '%link', '<span class="next">' . __( 'Next &raquo;', 'momtaz' ) . '</span>' ) ?>
 
-		</nav> <!-- .post-navigation -->
+	</nav> <!-- .post-navigation -->
 
-<?php elseif ( ! is_singular() ) :
+<?php } elseif ( ! is_singular() ) {
 
-		global $wp_query;
+	global $wp_query;
 
-		if ( function_exists( 'loop_pagination' ) ) {
+	if ( function_exists( 'loop_pagination' ) ) {
 
-			loop_pagination(); // Display the loop pagination.
+		loop_pagination(); // Display the loop pagination.
 
-		} elseif ( $wp_query->max_num_pages > 1 ) { ?>
+	} elseif ( $wp_query->max_num_pages > 1 ) { ?>
 
-			<nav class="navigation loop-navigation">
-				<span class="previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older', 'momtaz' ) ); ?></span>
-				<span class="next"><?php previous_posts_link( __( 'Newer <span class="meta-nav">&rarr;</span>', 'momtaz' ) ); ?></span>
-			</nav> <!-- .loop-navigation --> <?php
+		<nav class="navigation loop-navigation" role="navigation">
+			<span class="previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older', 'momtaz' ) ) ?></span>
+			<span class="next"><?php previous_posts_link( __( 'Newer <span class="meta-nav">&rarr;</span>', 'momtaz' ) ) ?></span>
+		</nav> <!-- .loop-navigation --> <?php
 
-		} // end if
+	} // end if
 
-endif;
+} // end if

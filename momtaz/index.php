@@ -7,7 +7,7 @@
  * @since Momtaz Theme 1.0
  */
 
-add_action( momtaz_format_hook( 'content' ), 'momtaz_template_content' );
+Momtaz_Zones::add_callback( 'content', 'momtaz_template_content' );
 
 /**
  * Outputs the current template content.
@@ -18,7 +18,7 @@ add_action( momtaz_format_hook( 'content' ), 'momtaz_template_content' );
 function momtaz_template_content() { ?>
 
 	<section id="primary-content">
-		<?php momtaz_context_template( 'loop' ); ?>
+		<?php momtaz_context_template( 'loop' ) ?>
 	</section> <!-- #primary-content --><?php
 
 }

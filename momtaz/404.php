@@ -7,7 +7,7 @@
  * @since Momtaz Theme 1.0
  */
 
-add_action( momtaz_format_hook( 'content' ), 'momtaz_template_content' );
+Momtaz_Zones::add_callback( 'content', 'momtaz_template_content' );
 
 /**
  * Outputs the current template content.
@@ -19,18 +19,18 @@ function momtaz_template_content() { ?>
 
 	<section id="primary-content">
 
-		<article id="post-0" class="hentry not-found error-404">
+		<article<?php momtaz_atts( 'entry', array( 'id' => 'post-0', 'class' => 'hentry not-found error-404' ) ) ?>>
 
-			<header class="entry-header">
-				<h1 class="entry-title"><?php _e( 'Not found', 'momtaz' ); ?></h1>
-			</header> <!-- .entry-header -->
+			<header<?php momtaz_atts( 'entry-header', array( 'class' => 'entry-header' ) ) ?>>
+				<h1<?php momtaz_atts( 'entry-title', array( 'class' => 'entry-title' ) ) ?>><?php _e( 'Not found', 'momtaz' ) ?></h1>
+			</header>
 
-			<div class="entry-content">
-				<p class="error"><?php _e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'momtaz' ); ?></p>
-				<?php get_search_form(); ?>
-			</div> <!-- .entry-content -->
+			<div<?php momtaz_atts( 'entry-content', array( 'class' => 'entry-content' ) ) ?>>
+				<p class="error"><?php _e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'momtaz' ) ?></p>
+				<?php get_search_form() ?>
+			</div>
 
-		</article> <!-- .hentry -->
+		</article>
 
 	</section> <!-- #primary-content --><?php
 

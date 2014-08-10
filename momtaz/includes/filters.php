@@ -26,11 +26,11 @@ add_filter( 'wp_title', 'momtaz_filter_wp_title', 10, 2 );
 add_filter( 'comment_form_defaults', 'momtaz_comment_form_args' );
 
 // Theme scripts.
-add_action( 'wp_enqueue_scripts', 'momtaz_register_core_scripts',	10 );
-add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_scripts',	10 );
+add_action( 'wp_enqueue_scripts', 'momtaz_register_core_scripts'	);
+add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_scripts'		);
 
-// Theme Head tag.
-add_action( momtaz_format_hook( 'head' ), 'momtaz_main_stylesheet',		1   );
-add_action( momtaz_format_hook( 'head' ), 'momtaz_locale_stylesheet',   1   );
-add_action( momtaz_format_hook( 'head' ), 'momtaz_meta_generator',		10  );
-add_action( momtaz_format_hook( 'head' ), 'momtaz_meta_designer',		10  );
+// Momtaz Init
+add_action( 'momtaz_init', 'momtaz_register_core_stacks'	);
+add_action( 'momtaz_init', 'momtaz_register_core_zones'		);
+add_action( 'momtaz_init', 'momtaz_register_core_layouts'	);
+add_action( 'momtaz_init', 'momtaz_ajust_current_layout'	);
