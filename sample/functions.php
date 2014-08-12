@@ -26,9 +26,9 @@ add_action( 'after_momtaz_setup', 'sample_after_momtaz_setup' );
 function sample_after_momtaz_setup() {
 
 	/*
-	 * You might use this function to configure 
+	 * You might use this function to configure
 	 * Momtaz settings like Layout, Stacks...etc
-	 * 
+	 *
 	 * Remove this comment, and write your code!
 	 */
 

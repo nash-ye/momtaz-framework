@@ -46,13 +46,13 @@
 
 				<span class="sep"><?php _ex( ' | ', 'entry-meta-sep', 'momtaz' ) ?></span>
 
-				<span class="by-author">
+				<span<?php momtaz_atts( 'entry-author', array( 'class' => 'vcard entry-author' ) ) ?>>
 
 					<?php
 
 						printf( __( '<span class="prep entry-utility-prep">By:</span> %s', 'momtaz' ),
-							sprintf( '<span class="vcard author"><a class="url fn n" href="%1$s" rel="author">%2$s</a></span>',
-								esc_url( get_author_posts_url ( get_the_author_meta( 'ID' ) ) ) ,
+							sprintf( '<a class="url fn n" href="%1$s" rel="author">%2$s</a>',
+								esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 								esc_html( get_the_author() )
 							) // sprintf()
 						);

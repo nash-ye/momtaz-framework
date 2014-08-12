@@ -143,7 +143,7 @@ function momtaz_atts_entry( $atts ) {
 	$post_type = get_post_type( $post_id );
 
 	$atts['id']	= "post-{$post_id}";
-	
+
 	if ( ! isset( $atts['class'] ) ) {
 		$atts['class'] = '';
 	}
@@ -252,6 +252,63 @@ function momtaz_atts_comment( $atts ) {
 	$atts['itemprop']  = 'comment';
 	$atts['itemscope'] = 'itemscope';
 	$atts['itemtype']  = 'http://schema.org/UserComments';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-comment-author', 'momtaz_atts_comment_author' );
+
+/**
+ * Add attributes for the comment author element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_comment_author( $atts ) {
+
+	// HTML5 Microdata
+	$atts['itemprop']	= 'creator';
+	$atts['itemscope']	= 'itemscope';
+	$atts['itemtype']	= 'http://schema.org/Person';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-comment-time', 'momtaz_atts_comment_time' );
+
+/**
+ * Add attributes for the comment time element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_comment_time( $atts ) {
+
+	$atts['datetime']	= get_comment_date( 'c' );
+
+	// HTML5 Microdata
+	$atts['itemprop']	= 'commentTime';
+
+	return $atts;
+
+}
+
+add_filter( 'momtaz_atts-comment-permalink', 'momtaz_atts_comment_permalink' );
+
+/**
+ * Add attributes for the comment permalink element.
+ *
+ * @return array
+ * @since 1.3
+ */
+function momtaz_atts_comment_permalink( $atts ) {
+
+	$atts['href']		= get_comment_link();
+
+	// HTML5 Microdata
+	$atts['itemprop']	= 'url';
 
 	return $atts;
 

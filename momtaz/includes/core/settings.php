@@ -194,7 +194,9 @@ function momtaz_delete_setting( $option_ID ) {
  * @since 1.0
  */
 function momtaz_theme_settings_option() {
-	return apply_filters( 'momtaz_theme_settings_option', momtaz_format_hook( 'theme_settings' ) );
+	$option = momtaz_format_hook( 'theme_settings' ); // The option name.
+	$option = apply_filters( 'momtaz_theme_settings_option', $option );
+	return $option;
 }
 
 /**

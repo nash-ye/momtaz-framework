@@ -20,8 +20,10 @@ add_action( 'before_momtaz_setup', 'momtaz_support_theme_features' );
 function momtaz_support_theme_features() {
 
 	// Add support for WordPress features.
-	add_theme_support( 'html5' );
 	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+	) );
 
 	// Add support for the Momtaz features.
 	add_theme_support( 'momtaz-core-menus', array( 'primary' ) );
@@ -92,7 +94,7 @@ add_action( 'after_setup_theme', 'momtaz_theme_setup' );
 
 /**
  * Setup the framework's theme.
- * 
+ *
  * @return void
  * @since 1.3
  */

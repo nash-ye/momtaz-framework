@@ -1,12 +1,4 @@
 <?php
-/*
- * The menus functions deal with registering nav menus within WordPress for the core framework.  Theme
- * developers may use the default menu(s) provided by the framework within their own themes, decide not
- * to use them, or register additional menus.
- *
- * @package Momtaz
- * @subpackage Functions
- */
 
 add_action( 'init', 'momtaz_register_core_menus' );
 

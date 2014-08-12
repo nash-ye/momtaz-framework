@@ -21,20 +21,15 @@ global $comment, $comment_depth, $max_depth ?>
 
 			<header<?php momtaz_atts( 'comment-header', array( 'class' => 'comment-header' ) ) ?>>
 
-				<div class="vcard comment-author">
+				<div<?php momtaz_atts( 'comment-author', array( 'class' => 'vcard comment-author' ) ) ?>>
 
-					<div class="comment-author-avatar">
-						<?php echo get_avatar( $comment, 38 ) ?>
-					</div> <!-- .comment-author-avatar -->
-
-					<div class="comment-author-data">
-						<span class="fn comment-author-link"><?php comment_author_link() ?></span>
-					</div> <!-- .comment-author-data -->
+					<?php echo get_avatar( $comment, 38 ) ?>
+					<span class="fn"><?php comment_author_link() ?></span>
 
 				</div> <!-- .comment-author -->
 
 				<div class="comment-datetime">
-				   <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><time datetime="<?php echo esc_attr( get_comment_date('c') ) ?>"><?php printf( _x( '%1s @ %2s', 'comment-datetime', 'momtaz' ), get_comment_date(), get_comment_time() );  ?></time></a>
+					<a<?php momtaz_atts( 'comment-permalink' ) ?>><time<?php momtaz_atts( 'comment-time' ) ?>><?php printf( _x( '%1s @ %2s', 'comment-datetime', 'momtaz' ), get_comment_date(), get_comment_time() ) ?></time></a>
 				</div> <!-- .comment-datetime -->
 
 			</header>

@@ -1,10 +1,4 @@
 <?php
-/*
- * Templates Functions.
- *
- * @package Momtaz
- * @subpackage Functions
- */
 
 /*
  * Template URI Functions.

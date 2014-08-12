@@ -19,26 +19,26 @@ global $post_num; ++$post_num;
 
 		<?php Momtaz_Zones::call( 'entry_content:before' ) ?>
 
-			<?php
+		<?php
 
-				if ( function_exists( 'get_the_image' ) ) {
+			if ( function_exists( 'get_the_image' ) ) {
 
-					get_the_image( array(
-						'before'		=> '<div class="entry-thumbnail">',
-						'after'			=> '</div><!-- .entry-thumbnail -->',
-						'image_class'	=> 'thumbnail',
-						'scan'			=> true,
-						'height'		=> 150,
-						'width'			=> 150,
-					) );
+				get_the_image( array(
+					'before'		=> '<div class="entry-thumbnail">',
+					'after'			=> '</div><!-- .entry-thumbnail -->',
+					'image_class'	=> 'thumbnail',
+					'scan'			=> true,
+					'height'		=> 150,
+					'width'			=> 150,
+				) );
 
-				} // end if
+			} // end if
 
-			?>
+		?>
 
-			<div<?php momtaz_atts( 'entry-summary', array( 'class' => 'entry-summary' ) ) ?>>
-				<?php the_excerpt() ?>
-			</div> <!-- .entry-summary -->
+		<div<?php momtaz_atts( 'entry-summary', array( 'class' => 'entry-summary' ) ) ?>>
+			<?php the_excerpt() ?>
+		</div> <!-- .entry-summary -->
 
 		<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'momtaz' ) . '</span>', 'after' => '</div>' ) ) ?>
 

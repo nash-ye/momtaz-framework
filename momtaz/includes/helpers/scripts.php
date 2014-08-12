@@ -1,10 +1,4 @@
 <?php
-/**
- * Functions file for loading theme scripts.
- *
- * @package Momtaz
- * @subpackage Functions
- */
 
 /**
  * Registers JavaScript files for the framework.

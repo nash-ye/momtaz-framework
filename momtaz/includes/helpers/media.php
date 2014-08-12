@@ -1,10 +1,4 @@
 <?php
-/**
- * Media Functions.
- *
- * @package Momtaz
- * @subpackage Functions
- */
 
 /**
  * A utility class to crop/resize the images on-the-fly.

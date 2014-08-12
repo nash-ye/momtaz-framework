@@ -78,8 +78,8 @@ function momtaz_register_core_layouts() {
 /**
  * Ajust the current theme layout.
  *
- * This function sets the proper theme-layout and content-width, if not set. 
- * The '2c-l-fixed' layout is set as the default for RTL 
+ * This function sets the proper theme-layout and content-width, if not set.
+ * The '2c-l-fixed' layout is set as the default for RTL
  * and '2c-r-fixed' layout for LTR.
  *
  * @uses Momtaz_Layouts::set_current_layout() Set the current layout.
@@ -88,7 +88,7 @@ function momtaz_register_core_layouts() {
  * @return void
  * @since 1.3
  */
-function momtaz_ajust_current_layout() {
+function momtaz_adjust_current_layout() {
 
 	if ( ! Momtaz_Layouts::get_current_layout() ) {
 

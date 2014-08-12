@@ -750,30 +750,25 @@ textarea {
             display: inline-block;
 
             .comment-author {
-                display:inline;
+                display:inline-block;
                 margin-bottom :1em;
-
-                img.avatar {
-                    margin: 0 5px;
-                    background: #fff;
-                    display: inline-block;
-                    border: 1px solid #eee;
-
-                    // Mixins
-                    .drop-shadow;
-                    .rounded ( 50% );
-                }
-
-            }
-
-            .comment-author-data {
-                display:inline;
-                line-height: 44px;
 
                 .fn {
                     margin:0 5px;
                     font-size: 16px;
+                    line-height: 44px;
                 }
+
+                img.avatar {
+                    margin: 0 5px;
+                    background: #fff;
+                    border: 1px solid #eee;
+
+                    // Mixins
+                    .drop-shadow;
+                    .rounded( 50% );
+                }
+
             }
 
             .comment-datetime {

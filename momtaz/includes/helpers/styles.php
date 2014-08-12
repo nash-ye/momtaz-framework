@@ -1,10 +1,4 @@
 <?php
-/**
- * Functions file for loading styles.
- *
- * @package Momtaz
- * @subpackage Functions
- */
 
 /**
  * Display the main stylesheet link tag.

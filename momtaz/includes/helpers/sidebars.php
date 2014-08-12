@@ -1,12 +1,4 @@
 <?php
-/**
- * Sets up the default framework sidebars if the theme supports them.  By default, the framework
- * registers six sidebars.  Themes may choose to use or not use these sidebars, create new sidebars, or
- * unregister individual sidebars.  A theme must register support for 'momtaz-core-sidebars' to use them.
- *
- * @package Momtaz
- * @subpackage Functions
- */
 
 // Register the core sidebars.
 add_action( 'widgets_init', 'momtaz_register_core_sidebars' );
