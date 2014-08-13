@@ -615,4 +615,6 @@ class ClassAttribute extends SimpleAttribute {
 
 		return $value;
 
-	}}
+	}
+
+}

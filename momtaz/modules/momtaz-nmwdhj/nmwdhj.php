@@ -5,7 +5,7 @@
  * Description: An API for creating forms elements via code.
  * Author: Nashwan Doaqan
  * Author URI: http://nashwan-d.com
- * Version: 1.3
+ * Version: 1.3.1
  *
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,7 @@
 namespace Nmwdhj;
 
 // Nmwdhj Version.
-const VERSION = '1.3';
+const VERSION = '1.3.1';
 
 /**** Loaders *****************************************************************/
 

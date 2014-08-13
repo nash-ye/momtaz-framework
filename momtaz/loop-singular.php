@@ -15,24 +15,26 @@
 // If the query found some posts.
 if ( have_posts() ) {
 
-	// Before Loop Zone.
+	// Template Zone: Before Loop
 	Momtaz_Zones::call( 'loop:before' );
 
 	// Loop through the query posts.
 	while ( have_posts() ) {
 
 		the_post(); // Setup the current post.
-		momtaz_post_context_template( 'entry', 'singular' );
 
-	} // end while
+		// Template: entry-singular,php
+		momtaz_template_part( 'entry', 'singular' );
 
-	// After Loop Zone.
+	}
+
+	// Template Zone: After Loop
 	Momtaz_Zones::call( 'loop:after' );
 
 // The query failed or there is not any post
 } else {
 
-	// Loop Error Template
+	// Template: loop-error.php
 	momtaz_template_part( 'loop-error' );
 
-} // end if
+}

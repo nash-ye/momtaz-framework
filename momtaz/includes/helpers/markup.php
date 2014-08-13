@@ -10,7 +10,11 @@ add_filter( 'momtaz_atts-body', 'momtaz_atts_body' );
  */
 function momtaz_atts_body( $atts ) {
 
-	$atts['class']		= get_body_class();
+	if ( ! isset( $atts['class'] ) ) {
+		$atts['class']	= get_body_class();
+	} else {
+		$atts['class']	= get_body_class( $atts['class'] );
+	}
 
 	// HTML5 Microdata.
 	$atts['itemscope']	= 'itemscope';
@@ -133,36 +137,35 @@ add_filter( 'momtaz_atts-entry', 'momtaz_atts_entry' );
  */
 function momtaz_atts_entry( $atts ) {
 
-	$post_id = get_the_ID();
+	$post = get_post();
 
-	if ( empty( $post_id ) ) {
+	if ( empty( $post ) ) {
 		return $atts;
 	}
 
-	// Get the post type.
-	$post_type = get_post_type( $post_id );
+	$post_id = get_the_ID();
 
 	$atts['id']	= "post-{$post_id}";
 
 	if ( ! isset( $atts['class'] ) ) {
-		$atts['class'] = '';
+		$atts['class'] = momtaz_get_post_class();
+	} else {
+		$atts['class'] = momtaz_get_post_class( $atts['class'] );
 	}
-
-	$atts['class'] = momtaz_get_post_class( $atts['class'] );
 
 	// HTML5 Microdata
 	$atts['itemscope'] = 'itemscope';
 
 	// Blog posts microdata
-	if ( 'post' === $post_type ) {
+	if ( 'post' === $post->post_type ) {
 
 		$atts['itemtype'] = 'http://schema.org/BlogPosting';
 
-		if ( is_main_query() ) {
+		if ( momtaz_is_the_single( $post_id ) ) {
 			$atts['itemprop'] = 'blogPost';
 		}
 
-	} elseif ( 'attachment' === $post_type ) {
+	} elseif ( 'attachment' === $post->post_type ) {
 
 		if ( wp_attachment_is_image( $post_id ) ) {
 			$atts['itemtype'] = 'http://schema.org/ImageObject';

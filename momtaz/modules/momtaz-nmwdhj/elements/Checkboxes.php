@@ -8,6 +8,17 @@ namespace Nmwdhj\Elements;
  */
 class Checkboxes extends Input {
 
+	/*** Properties ***********************************************************/
+
+	/**
+	 * Default value options.
+	 *
+	 * @var array
+	 * @since 1.3.1
+	 */
+	protected $value_options = array();
+
+
 	/*** Magic Methods ********************************************************/
 
 	/**

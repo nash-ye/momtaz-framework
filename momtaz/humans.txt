@@ -2,17 +2,19 @@
 Founding Developer: Nashwan Doaqan
 Site: http://nashwan-d.com
 Location: Ta'izz, Yemen
-
-Lead Developer: Xeriab Nabil
-Location: Sana'a, Yemen
-
+\
 Core Contributor: Aboelabbas Shahwan‎‏
 Site: http://wphawy.com
 Location: Zagazig, Egypt
 
 /* THANKS */
 Rasheed Bydousi (http://rasheed-bydousi.com)
-Justin Tadlock (http://justintadlock.com)
+
+/* Projects */
+Hybrid Theme, Genesis Theme,
+Normalize.CSS, Semantic.gs,
+HTML5 Shiv, Less.js,
+jQuery, Superfish
 
 /* META */
-Last update: 2013/12/28
+Last update: 2014/8/13

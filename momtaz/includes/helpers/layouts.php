@@ -114,6 +114,25 @@ function momtaz_adjust_current_layout() {
 
 }
 
+add_filter( 'body_class', 'momtaz_current_layout_body_class' );
+
+/**
+ * Add the current layout class to the body element.
+ *
+ * @param array $classes The body classes list.
+ * @since 1.3
+*/
+function momtaz_current_layout_body_class( $classes ) {
+
+	// Current theme layout class.
+	if ( ( $layout = Momtaz_Layouts::get_current_layout() ) ) {
+		$classes[] = 'layout-' . trim( $layout->id );
+	}
+
+	return $classes;
+
+}
+
 /**
  * Setting the content width of a theme.
  *

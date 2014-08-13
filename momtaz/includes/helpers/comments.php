@@ -20,6 +20,8 @@ function momtaz_comments_callback( $comment, $args, $depth ) {
 
 }
 
+add_filter( 'comment_form_defaults', 'momtaz_comment_form_args' );
+
 /**
  * Filters the WordPress comment_form() function that was added in WordPress 3.0.  This allows
  * the theme to preserve some backwards compatibility with its old comment form.  It also allows

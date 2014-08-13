@@ -3,14 +3,17 @@
 /**
  * Display the current page title.
  *
+ * @return void
  * @since 1.0
  */
 function momtaz_title( $args = '' ) {
 	do_action( 'momtaz_title', $args );
 }
 
+add_action( 'momtaz_title', 'momtaz_wp_title' );
+
 /**
- * The default title callback using the wp_title() function.
+ * Outputs the page title using the wp_title() function.
  *
  * @return void
  * @since 1.0
@@ -32,6 +35,8 @@ function momtaz_wp_title( $args = '' ) {
 	echo $title;
 
 }
+
+add_filter( 'wp_title', 'momtaz_filter_wp_title', 10, 2 );
 
 /**
  * Creates a nicely formatted and more specific title element text for output
@@ -68,12 +73,22 @@ function momtaz_filter_wp_title( $title, $sep ) {
 }
 
 /**
- * Display the generator meta tag.
+ * Outputs the generator meta tag.
  *
  * @return void
  * @since 1.1
 */
 function momtaz_meta_generator() {
+	echo momtaz_get_meta_generator();
+}
+
+/**
+ * Returns the generator meta tag.
+ *
+ * @return string
+ * @since 1.3
+*/
+function momtaz_get_meta_generator() {
 
 	$generator = array( 'WordPress' );
 
@@ -89,17 +104,27 @@ function momtaz_meta_generator() {
 		return;
 	}
 
-	echo '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $generator ) ) ) . '>' ."\n";
+	return '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $generator ) ) ) . '>' ."\n";
 
 }
 
 /**
- * Display the designer meta tag.
+ * Outputs the designer meta tag.
  *
  * @return void
  * @since 1.1
 */
 function momtaz_meta_designer() {
+	echo momtaz_get_meta_designer();
+}
+
+/**
+ * Returns the designer meta tag.
+ *
+ * @return string
+ * @since 1.3
+*/
+function momtaz_get_meta_designer() {
 
 	// Get the current theme author name.
 	$designer = wp_get_theme( get_stylesheet() )->get( 'Author' );
@@ -113,81 +138,147 @@ function momtaz_meta_designer() {
 		return;
 	}
 
-	echo '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $designer ) ) ) . '>' ."\n";
+	return '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $designer ) ) ) . '>' ."\n";
 
 }
 
 /**
- * Display the classes for the body element.
+ * Outputs a link back to the site.
  *
- * @param array $classes One or more classes to add to the class list.
- * @since 1.0
-*/
-function momtaz_filter_body_class( $classes ) {
+ * @return void
+ * @since 1.3
+ */
+function momtaz_site_link( array $args = array() ) {
+	echo momtaz_get_site_link( $args );
+}
 
-	/* Momtaz Current Layout. */
-	if ( ( $layout = Momtaz_Layouts::get_current_layout() ) ) {
-		$classes[] = 'layout-' . trim( $layout->id );
+/**
+ * Returns a link back to the site.
+ *
+ * @return string
+ * @since 1.3
+ */
+function momtaz_get_site_link( array $args = array() ) {
+
+	$args = array_merge( array(
+		'text'	=> get_bloginfo( 'name', 'display' ),
+		'atts'	=> array(
+			'href'	=> home_url( '/' ),
+			'class' => 'site-link',
+			'rel'	=> 'home',
+		),
+	), $args );
+
+	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
+	return apply_filters( 'momtaz_get_site_link', $link, $args );
+
+}
+
+/**
+ * Outputs a link back to WordPress.org.
+ *
+ * @return void
+ * @since 1.3
+ */
+function momtaz_wp_link( array $args = array() ) {
+	echo momtaz_get_wp_link( $args );
+}
+
+/**
+ * Returns a link back to WordPress.org.
+ *
+ * @return string
+ * @since 1.3
+ */
+function momtaz_get_wp_link( array $args = array() ) {
+
+	$args = array_merge( array(
+		'text'	=> __( 'WordPress', 'momtaz' ),
+		'atts'	=> array(
+			'href'	=> 'http://wordpress.org',
+			'class' => 'wp-link',
+		),
+	), $args );
+
+	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
+	return apply_filters( 'momtaz_get_wp_link', $link, $args );
+
+}
+
+/**
+ * Outputs a link back to a theme URI.
+ *
+ * @return void
+ * @since 1.3
+ */
+function momtaz_theme_link( $theme, array $args = array() ) {
+	echo momtaz_get_theme_link( $theme, $args );
+}
+
+/**
+ * Returns a link back to a theme URI.
+ *
+ * @return string
+ * @since 1.3
+ */
+function momtaz_get_theme_link( $theme, array $args = array() ) {
+
+	if ( is_string( $theme ) ) {
+		$theme = wp_get_theme( $theme );
 	}
 
-
-	/* Date classes. */
-	$time = time() + ( get_option( 'gmt_offset' ) * 3600 );
-	$classes[] = strtolower( gmdate( '\yY \mm \dd \hH l', $time ) );
-
-
-	/* Check if the current theme is a parent or child theme. */
-	$classes[] = ( is_child_theme() ? 'child-theme' : 'parent-theme' );
-
-
-	// Get the global browsers vars.
-	global $is_lynx, $is_gecko, $is_IE , $is_opera, $is_NS4, $is_safari, $is_chrome;
-
-	/* Browser Detection Loop. */
-	foreach ( array( 'gecko' => $is_gecko, 'opera' => $is_opera, 'lynx' => $is_lynx, 'ns4' => $is_NS4, 'safari' => $is_safari, 'chrome' => $is_chrome, 'ie' => $is_IE ) as $key => $value ) {
-
-		if ( $value ) {
-			$classes[] = 'browser-' . $key;
-			break;
-		}
-
+	if ( empty( $theme ) || ! $theme->exists() ) {
+		return;
 	}
 
+	$args = array_merge( array(
+		'text'	=> $theme->display( 'Name', FALSE ),
+		'atts'	=> array(
+			'href'	=> $theme->get( 'ThemeURI' ),
+			'class' => 'theme-link',
+		),
+	), $args );
 
-	// Register devices vars
-	global $is_iphone;
-	$is_ipod = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'iPod' );
-	$is_ipad = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'iPad' );
-	$is_android = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'Android' );
-	$is_palmpre = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'webOS' );
-	$is_blackberry = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'BlackBerry' );
+	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
+	return apply_filters( 'momtaz_get_theme_link', $link, $theme, $args );
 
-	/* Devices Detection Loop. */
-	foreach ( array( 'ipod' => $is_ipod, 'ipad' => $is_ipad, 'android' => $is_android, 'webos' => $is_palmpre, 'blackberry' => $is_blackberry , 'iphone' => $is_iphone ) as $key => $value ) {
+}
 
-		if ( $value ) {
-			$classes[] = 'device-' . $key;
-			break;
-		}
+/**
+ * Outputs a link back to a theme author URI.
+ *
+ * @return void
+ * @since 1.3
+ */
+function momtaz_theme_author_link( $theme, array $args = array() ) {
+	echo momtaz_get_theme_author_link( $theme, $args );
+}
 
+/**
+ * Returns a link back to a theme author URI.
+ *
+ * @return string
+ * @since 1.3
+ */
+function momtaz_get_theme_author_link( $theme, array $args = array() ) {
+
+	if ( is_string( $theme ) ) {
+		$theme = wp_get_theme( $theme );
 	}
 
-
-	// Register systems vars
-	$is_Mac = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'Mac' );
-	$is_Windows = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'Win' );
-	$is_Linux = (bool) strpos( $_SERVER['HTTP_USER_AGENT'], 'Linux' );
-
-	/* Systems Detection Loop. */
-	foreach ( array( 'windows' => $is_Windows, 'linux' => $is_Linux, 'mac' => $is_Mac ) as $key => $value ) {
-
-		if ( $value ) {
-			$classes[] = 'system-' . $key;
-			break;
-		}
-
+	if ( empty( $theme ) || ! $theme->exists() ) {
+		return;
 	}
 
-	return (array) apply_filters( 'momtaz_body_class', $classes );
+	$args = array_merge( array(
+		'text'	=> $theme->display( 'Author', FALSE ),
+		'atts'	=> array(
+			'href'	=> $theme->get( 'AuthorURI' ),
+			'class' => 'theme-author-link',
+		),
+	), $args );
+
+	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
+	return apply_filters( 'momtaz_get_theme_author_link', $link, $theme, $args );
 
 }

@@ -187,38 +187,6 @@ function momtaz_context_template( $name, $slug = '', $load = true, $_args = null
 }
 
 /**
- * Looks for a template based on the momtaz_get_post_context() function. The function looks for
- * templates based on the context of the post data.
- *
- * @since 1.0
- */
-function momtaz_post_context_template( $name, $slug = '', $post = 0, $load = true, $_args = null ) {
-
-	$context = array();
-
-	if ( empty( $post ) ) {
-		$post = get_the_ID();
-	}
-
-	foreach ( array_reverse( momtaz_get_post_context( $post ) ) as $value ) {
-
-		if ( ! empty( $slug ) ) {
-			$context[] = "{$slug}-{$value}";
-		} else {
-			$context[] = "{$value}";
-		}
-
-	}
-
-	if ( ! empty( $slug ) ) {
-		$context[] = $slug;
-	}
-
-	return momtaz_template_part( $name, $context, $load, $_args );
-
-}
-
-/**
  * A more powerfull version of get_template_part() funcation.
  *
  * @see get_template_part()
@@ -286,8 +254,10 @@ function momtaz_locate_template( $template_names, $load = false, $load_once = tr
 				continue;
 			}
 
-			if ( file_exists( trailingslashit( $template_stack->path ) . $template_name ) ) {
-				$located = trailingslashit( $template_stack->path ) . $template_name;
+			$stack_path = trailingslashit( $template_stack->path );
+
+			if ( file_exists( $stack_path . $template_name ) ) {
+				$located = $stack_path . $template_name;
 				break;
 			}
 
@@ -355,7 +325,7 @@ final class Momtaz_Zones {
 	/*** Methods **************************************************************/
 
 	/**
-	 * Get the template zones list.
+	 * Returns the template zones list.
 	 *
 	 * @return array
 	 * @since 1.3
@@ -376,6 +346,8 @@ final class Momtaz_Zones {
 	}
 
 	/**
+	 * Hooks a new callback on to a specific template-zone.
+	 *
 	 * @return void
 	 * @since 1.3
 	 */
@@ -390,6 +362,8 @@ final class Momtaz_Zones {
 	}
 
 	/**
+	 * Removes a callback from a specified template-zone.
+	 *
 	 * @return void
 	 * @since 1.3
 	 */
@@ -404,7 +378,7 @@ final class Momtaz_Zones {
 	}
 
 	/**
-	 * Call the functions hooked on the template-zone action hook.
+	 * Call the callbacks hooked on a specified template-zone.
 	 *
 	 * @return void
 	 * @since 1.3
@@ -592,7 +566,7 @@ final class Momtaz_Stacks {
 	/*** Methods **************************************************************/
 
 	/**
-	 * Get the template stacks list.
+	 * Returns the template stacks list.
 	 *
 	 * @return array|object
 	 * @since 1.3

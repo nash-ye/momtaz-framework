@@ -92,8 +92,17 @@ h6 {
     margin: 2.33em 0;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: inherit;
+    color: #000;
     display: block;
+    font-family: inherit;
+    a {
+        color: #000;
+        &:visited { color: #000; }
+        &:hover, &:focus, &:active {
+            color: #646464;
+            text-decoration: none;
+        }
+    }
 }
 
 /*** Lists ***/
@@ -212,16 +221,16 @@ td {
 /*** Links ***/
 
 a {
-    color: #000;
+    color: #1982D1;
     text-decoration: none;
-}
-
-a:hover,
-a:focus,
-a:active {
-    text-decoration: underline;
-    color: #646464;
-    outline: 0;
+    &:visited {
+        color: #6919D2;
+        text-decoration: none;
+    }
+    &:hover, &:focus, &:active {
+        text-decoration: underline;
+        outline: 0;
+    }
 }
 
 /**
@@ -373,6 +382,14 @@ textarea {
 
     // Mixins
     .drop-shadow( 0px, 0px, 4px, 0.3 );
+    
+    a {
+        color: #000;
+        &:visited {
+            color: #646464;
+        }
+    }
+    
 }
 .form-section {
 
@@ -380,7 +397,7 @@ textarea {
     .clearfix;
 
     width: 100%;
-    display:block;
+    display: block;
     margin-bottom: 10px;
 
     &.layout-columned {
@@ -465,12 +482,6 @@ textarea {
     #site-title {
         margin: 0;
         font-size:32px;
-
-        a:hover,
-        a:active,
-        a:focus {
-            text-decoration: none;
-        }
     }
 
     #site-description {
@@ -548,11 +559,10 @@ textarea {
         hyphens: auto;
     }
     a {
-        padding: 2px;
-        color: #1982D1;
         text-decoration: underline;
-        &:hover {
-            text-shadow:0 1px 0 #eee;
+        &:hover,
+        &:focus,
+        &:active {
             text-decoration: none;
         }
     }
@@ -611,10 +621,6 @@ textarea {
         background: #F9F9F9;
         margin: 10px 0 5px 0;
         border: 1px solid #eee;
-
-        a {
-            text-shadow:0 1px 0 #fff;
-        }
     }
 
 }
@@ -885,6 +891,9 @@ textarea {
 
 #footer {
     clear: both;
+    .site-credits {
+        text-align: center;
+    }
 }
 
 /**

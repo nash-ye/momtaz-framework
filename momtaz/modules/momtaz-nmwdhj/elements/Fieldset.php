@@ -1,6 +1,8 @@
 <?php
 namespace Nmwdhj\Elements;
 
+use Nmwdhj\Exception;
+
 /**
  * The Fieldset element class
  *
@@ -67,6 +69,7 @@ class Fieldset extends Element {
 	 * Add an element
 	 *
 	 * @return Nmwdhj\Elements\Fieldset
+	 * @throws Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function add( $element, array $args = NULL ) {
@@ -92,6 +95,7 @@ class Fieldset extends Element {
 	 * Set/change the priority of an element
 	 *
 	 * @return Nmwdhj\Elements\Fieldset
+	 * @throws Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function set_priority( $key, $priority ) {
@@ -109,6 +113,7 @@ class Fieldset extends Element {
 	 * Remove a named element
 	 *
 	 * @return Nmwdhj\Elements\Fieldset
+	 * @throws Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function remove( $key ) {
@@ -126,6 +131,7 @@ class Fieldset extends Element {
 	 * Retrieve a named element
 	 *
 	 * @return Nmwdhj\Elements\Element
+	 * @throws Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function get( $key ) {

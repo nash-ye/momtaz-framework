@@ -80,7 +80,7 @@ class Select extends View {
 			}
 
 			if ( isset( $option['options'] ) && is_array( $option['options'] ) ) {
-				$content .= $this->render_optgroup( $option ) . "\n";
+				$content .= $this->render_optgroup( $option, $value ) . "\n";
 				continue;
 			}
 
@@ -111,7 +111,7 @@ class Select extends View {
 	 * @return string
 	 * @since 1.0
 	 */
-	public function render_optgroup( array $optgroup ) {
+	public function render_optgroup( array $optgroup, $value ) {
 
 		$optgroup = array_merge( array(
 			'options' => array(),
@@ -125,7 +125,7 @@ class Select extends View {
 			$optgroup['atts']->set_attr( 'label', $optgroup['label'] );
 		}
 
-		return '<optgroup' . strval( $optgroup['atts'] ) . '>' . $this->render_options( $optgroup['options'] ) . '</optgroup>';
+		return '<optgroup' . strval( $optgroup['atts'] ) . '>' . $this->render_options( $optgroup['options'], $value ) . '</optgroup>';
 
 	}
 
