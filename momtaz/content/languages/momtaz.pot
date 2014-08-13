@@ -1,384 +1,520 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Momtaz 1.2\n"
+"Project-Id-Version: Momtaz 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-22 20:59+0300\n"
-"PO-Revision-Date: 2013-12-22 20:59+0300\n"
-"Last-Translator: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
+"POT-Creation-Date: 2014-08-13 15:04+0300\n"
+"PO-Revision-Date: 2014-08-13 15:04+0300\n"
+"Last-Translator: \n"
 "Language-Team: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__;_n:1,2;_n_noop:1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;esc_attr_x:1,2c;esc_html_x:1,2c;esc_html__;esc_html_e\n"
+"X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__;_n:1,2;_n_noop:1,2;"
+"_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;esc_attr_x:1,2c;esc_html_x:1,2c;"
+"esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: YEMEN\n"
-"X-Poedit-SearchPath-0: ../../../momtaz\n"
+"X-Generator: Poedit 1.6.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ../..\n"
+"X-Poedit-SearchPathExcluded-0: ../../modules\n"
 
-#: ../../../momtaz/404.php:23
+#: ../../404.php:25
 msgid "Not found"
 msgstr ""
 
-#: ../../../momtaz/404.php:27
-msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+#: ../../404.php:29
+msgid ""
+"Apologies, but the page you requested could not be found. Perhaps searching "
+"will help."
 msgstr ""
 
-#: ../../../momtaz/comment-pingback.php:15
+#: ../../comment-pingback.php:14
 msgid "Pingback:"
 msgstr ""
 
-#: ../../../momtaz/comment-pingback.php:17
-#: ../../../momtaz/comment-trackback.php:17
-#: ../../../momtaz/comment.php:43
-#: ../../../momtaz/entry-header.php:78
+#: ../../comment-pingback.php:15 ../../comment-trackback.php:15
+#: ../../comment.php:38 ../../entry-header.php:78
 msgid "Edit"
 msgstr ""
 
-#: ../../../momtaz/comment-trackback.php:15
+#: ../../comment-trackback.php:14
 msgid "Trackback:"
 msgstr ""
 
-#: ../../../momtaz/comment.php:37
+#: ../../comment.php:32
 #, php-format
 msgctxt "comment-datetime"
 msgid "%1s @ %2s"
 msgstr ""
 
-#: ../../../momtaz/comment.php:44
+#: ../../comment.php:39
 msgid "Reply <span>&darr;</span>"
 msgstr ""
 
-#: ../../../momtaz/comment.php:50
+#: ../../comment.php:45
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: ../../../momtaz/comments-loop.php:20
+#: ../../comments-loop.php:20
 #, php-format
 msgid "Comments (%d)"
 msgstr ""
 
-#: ../../../momtaz/comments-loop.php:47
+#: ../../comments-loop.php:47
 #, php-format
 msgid "Pingbacks and Trackbacks (%d)"
 msgstr ""
 
-#: ../../../momtaz/comments-loop.php:68
+#: ../../comments-loop.php:68
 msgid "Comments are closed."
 msgstr ""
 
-#: ../../../momtaz/comments-nav.php:14
+#: ../../comments-nav.php:14
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: ../../../momtaz/comments-nav.php:15
+#: ../../comments-nav.php:15
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: ../../../momtaz/entry-footer.php:23
+#: ../../entry-footer.php:23
 msgctxt "categories-list"
 msgid " , "
 msgstr ""
 
-#: ../../../momtaz/entry-footer.php:31
+#: ../../entry-footer.php:31
 #, php-format
 msgid "<span class=\"prep entry-utility-prep\">Categories:</span> %s"
 msgstr ""
 
-#: ../../../momtaz/entry-footer.php:46
+#: ../../entry-footer.php:46
 msgctxt "tags-list"
 msgid " , "
 msgstr ""
 
-#: ../../../momtaz/entry-footer.php:51
-#: ../../../momtaz/entry-header.php:47
-#: ../../../momtaz/entry-header.php:70
+#: ../../entry-footer.php:51 ../../entry-header.php:47
+#: ../../entry-header.php:70
 msgctxt "entry-meta-sep"
 msgid " | "
 msgstr ""
 
-#: ../../../momtaz/entry-footer.php:60
+#: ../../entry-footer.php:60
 #, php-format
 msgid "<span class=\"prep entry-utility-prep\">Tags:</span> %s"
 msgstr ""
 
-#: ../../../momtaz/entry-header.php:30
+#: ../../entry-header.php:30
 #, php-format
 msgid "<span class=\"prep entry-utility-prep\">On:</span> %s"
 msgstr ""
 
-#: ../../../momtaz/entry-header.php:53
+#: ../../entry-header.php:53
 #, php-format
 msgid "<span class=\"prep entry-utility-prep\">By:</span> %s"
 msgstr ""
 
-#: ../../../momtaz/entry-header.php:73
+#: ../../entry-header.php:73
 msgid "Leave a comment"
 msgstr ""
 
-#: ../../../momtaz/entry-header.php:73
+#: ../../entry-header.php:73
 msgid "1 Comment"
 msgstr ""
 
-#: ../../../momtaz/entry-header.php:73
+#: ../../entry-header.php:73
 msgid "<b>%</b> Comments"
 msgstr ""
 
-#: ../../../momtaz/entry-singular.php:65
+#: ../../entry-singular.php:65
 #, php-format
 msgid "Download &quot;%s&quot;"
 msgstr ""
 
-#: ../../../momtaz/entry-singular.php:78
-#: ../../../momtaz/entry.php:43
+#: ../../entry-singular.php:78 ../../entry.php:43
 msgid "Pages:"
 msgstr ""
 
-#: ../../../momtaz/loop-error.php:16
-#: ../../../momtaz/loop-error.php:32
-msgid "Nothing Found"
-msgstr ""
-
-#: ../../../momtaz/loop-error.php:20
-msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
-msgstr ""
-
-#: ../../../momtaz/loop-error.php:37
-msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
-msgstr ""
-
-#: ../../../momtaz/loop-meta.php:70
-msgid "j F, Y"
-msgstr ""
-
-#: ../../../momtaz/loop-meta.php:73
-msgid "F Y"
-msgstr ""
-
-#: ../../../momtaz/loop-meta.php:76
-msgid "Y"
-msgstr ""
-
-#: ../../../momtaz/loop-meta.php:85
-msgid "You are browsing the site archives by date."
-msgstr ""
-
-#: ../../../momtaz/loop-meta.php:119
+#: ../../footer-main.php:13
 #, php-format
-msgid "You are browsing the search results for &quot;%1$s&quot;"
+msgid "Proudly powered by %1$s and %2$s Theme"
 msgstr ""
 
-#: ../../../momtaz/loop-meta.php:146
-msgid "Archives"
-msgstr ""
-
-#: ../../../momtaz/loop-nav.php:16
-msgid "&laquo; Return to entry"
-msgstr ""
-
-#: ../../../momtaz/loop-nav.php:23
-msgid "&laquo; Previous"
-msgstr ""
-
-#: ../../../momtaz/loop-nav.php:24
-msgid "Next &raquo;"
-msgstr ""
-
-#: ../../../momtaz/loop-nav.php:39
-msgid "<span class=\"meta-nav\">&larr;</span> Older"
-msgstr ""
-
-#: ../../../momtaz/loop-nav.php:40
-msgid "Newer <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: ../../../momtaz/searchform.php:28
-msgctxt "placeholder"
-msgid "Search this site..."
-msgstr ""
-
-#: ../../../momtaz/searchform.php:29
-msgctxt "label"
-msgid "Search for:"
-msgstr ""
-
-#: ../../../momtaz/searchform.php:40
-msgid "Search"
-msgstr ""
-
-#: ../../../momtaz/admin/settings.php:109
+#: ../../includes/admin/settings.php:109
 msgid "Theme Settings"
 msgstr ""
 
-#: ../../../momtaz/admin/settings.php:165
+#: ../../includes/admin/settings.php:163
 msgid "Customize"
 msgstr ""
 
-#: ../../../momtaz/admin/settings.php:180
+#: ../../includes/admin/settings.php:173
 msgid "Update Settings"
 msgstr ""
 
-#: ../../../momtaz/admin/meta-boxes/theme-about.php:26
-#: ../../../momtaz/admin/meta-boxes/theme-about.php:35
+#: ../../includes/admin/settings.php:332 ../../includes/admin/settings.php:341
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: ../../../momtaz/admin/meta-boxes/theme-about.php:71
+#: ../../includes/admin/settings.php:377
 msgid "Theme:"
 msgstr ""
 
-#: ../../../momtaz/admin/meta-boxes/theme-about.php:75
+#: ../../includes/admin/settings.php:381
 msgid "Author:"
 msgstr ""
 
-#: ../../../momtaz/admin/meta-boxes/theme-about.php:79
+#: ../../includes/admin/settings.php:385
 msgid "Description:"
 msgstr ""
 
-#: ../../../momtaz/includes/comments.php:66
+#: ../../includes/core/modules.php:440
+msgid "Invalid module slug."
+msgstr ""
+
+#: ../../includes/core/modules.php:474
+msgid "Invalid module path."
+msgstr ""
+
+#: ../../includes/helpers/comments.php:55
 msgid "Name"
 msgstr ""
 
-#: ../../../momtaz/includes/comments.php:75
+#: ../../includes/helpers/comments.php:63
 msgid "Email"
 msgstr ""
 
-#: ../../../momtaz/includes/comments.php:83
+#: ../../includes/helpers/comments.php:70
 msgid "Website"
 msgstr ""
 
-#: ../../../momtaz/includes/general.php:61
+#: ../../includes/helpers/entries.php:199
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../../includes/helpers/general.php:68
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: ../../../momtaz/includes/general.php:130
-msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+#: ../../includes/helpers/general.php:196
+msgid "WordPress"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:16
+#: ../../includes/helpers/layouts.php:21
 msgid "One-column, Fixed"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:21
+#: ../../includes/helpers/layouts.php:26
 msgid "One-column, Fluid"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:25
+#: ../../includes/helpers/layouts.php:30
 msgid "Two-column, Left, Fixed"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:30
+#: ../../includes/helpers/layouts.php:35
 msgid "Two-column, Left, Fluid"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:34
+#: ../../includes/helpers/layouts.php:39
 msgid "Two-column, Right, Fixed"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:39
+#: ../../includes/helpers/layouts.php:44
 msgid "Two-column, Right, Fluid"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:43
+#: ../../includes/helpers/layouts.php:48
 msgid "Three-column, Left, Fixed"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:48
+#: ../../includes/helpers/layouts.php:53
 msgid "Three-column, Left, Fluid"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:52
+#: ../../includes/helpers/layouts.php:57
 msgid "Three-column, Right, Fixed"
 msgstr ""
 
-#: ../../../momtaz/includes/layouts.php:57
+#: ../../includes/helpers/layouts.php:62
 msgid "Three-column, Right, Fluid"
 msgstr ""
 
-#: ../../../momtaz/includes/menus.php:29
+#: ../../includes/helpers/nav-menus.php:27
 msgctxt "nav menu location"
 msgid "Primary"
 msgstr ""
 
-#: ../../../momtaz/includes/menus.php:30
+#: ../../includes/helpers/nav-menus.php:28
 msgctxt "nav menu location"
 msgid "Secondary"
 msgstr ""
 
-#: ../../../momtaz/includes/menus.php:31
+#: ../../includes/helpers/nav-menus.php:29
 msgctxt "nav menu location"
 msgid "Subsidiary"
 msgstr ""
 
-#: ../../../momtaz/includes/modules.php:440
-msgid "Invalid module slug."
-msgstr ""
-
-#: ../../../momtaz/includes/modules.php:474
-msgid "Invalid module path."
-msgstr ""
-
-#: ../../../momtaz/includes/momtaz.php:36
-#: ../../../momtaz/includes/momtaz.php:45
-msgid "Cheatin&#8217; huh?"
-msgstr ""
-
-#: ../../../momtaz/includes/momtaz.php:113
-msgid "The current environment doesn't meet the Momtaz requirements.<br><b>The default theme will be activated automaticly.</b>"
-msgstr ""
-
-#: ../../../momtaz/includes/sidebars.php:34
+#: ../../includes/helpers/sidebars.php:32
 msgctxt "sidebar"
 msgid "Primary"
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:35
+#: ../../includes/helpers/sidebars.php:33
 msgid "The main (primary) widget area."
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:38
+#: ../../includes/helpers/sidebars.php:36
 msgctxt "sidebar"
 msgid "Secondary"
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:39
+#: ../../includes/helpers/sidebars.php:37
 msgid "The second most important widget area."
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:42
+#: ../../includes/helpers/sidebars.php:40
 msgctxt "sidebar"
 msgid "Subsidiary"
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:43
+#: ../../includes/helpers/sidebars.php:41
 msgid "Displayed within the site's footer area."
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:46
+#: ../../includes/helpers/sidebars.php:44
 msgctxt "sidebar"
 msgid "Header"
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:47
+#: ../../includes/helpers/sidebars.php:45
 msgid "Displayed within the site's header area."
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:50
+#: ../../includes/helpers/sidebars.php:48
 msgctxt "sidebar"
 msgid "Before Entry"
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:51
-msgid "Loaded on singular post (page, attachment, etc.) views before the post title."
+#: ../../includes/helpers/sidebars.php:49
+msgid ""
+"Loaded on singular post (page, attachment, etc.) views before the post title."
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:54
+#: ../../includes/helpers/sidebars.php:52
 msgctxt "sidebar"
 msgid "After Entry"
 msgstr ""
 
-#: ../../../momtaz/includes/sidebars.php:55
-msgid "Loaded on singular post (page, attachment, etc.) views before the comments area."
+#: ../../includes/helpers/sidebars.php:53
+msgid ""
+"Loaded on singular post (page, attachment, etc.) views before the comments "
+"area."
 msgstr ""
 
+#: ../../includes/helpers/template.php:470
+msgid "Before Wrapper"
+msgstr ""
+
+#: ../../includes/helpers/template.php:471
+msgid "After Wrapper"
+msgstr ""
+
+#: ../../includes/helpers/template.php:473
+msgid "Before Container"
+msgstr ""
+
+#: ../../includes/helpers/template.php:474
+msgid "After Container"
+msgstr ""
+
+#: ../../includes/helpers/template.php:476
+msgid "Inside Content"
+msgstr ""
+
+#: ../../includes/helpers/template.php:480
+msgid "Inside Head"
+msgstr ""
+
+#: ../../includes/helpers/template.php:481
+msgid "Before Header"
+msgstr ""
+
+#: ../../includes/helpers/template.php:482
+msgid "After Header"
+msgstr ""
+
+#: ../../includes/helpers/template.php:486
+msgid "Before Loop"
+msgstr ""
+
+#: ../../includes/helpers/template.php:487
+msgid "After Loop"
+msgstr ""
+
+#: ../../includes/helpers/template.php:489
+msgid "Before Entry"
+msgstr ""
+
+#: ../../includes/helpers/template.php:490
+msgid "After Entry"
+msgstr ""
+
+#: ../../includes/helpers/template.php:492
+msgid "Before Entry Content"
+msgstr ""
+
+#: ../../includes/helpers/template.php:493
+msgid "After Entry Content"
+msgstr ""
+
+#: ../../includes/helpers/template.php:497
+msgid "Before Comments"
+msgstr ""
+
+#: ../../includes/helpers/template.php:498
+msgid "After Comments"
+msgstr ""
+
+#: ../../includes/helpers/template.php:500
+msgid "Before Comment"
+msgstr ""
+
+#: ../../includes/helpers/template.php:501
+msgid "After Comment"
+msgstr ""
+
+#: ../../includes/helpers/template.php:503
+msgid "Before Comments List"
+msgstr ""
+
+#: ../../includes/helpers/template.php:504
+msgid "After Comments List"
+msgstr ""
+
+#: ../../includes/helpers/template.php:506
+msgid "Before Pings List"
+msgstr ""
+
+#: ../../includes/helpers/template.php:507
+msgid "After Pings List"
+msgstr ""
+
+#: ../../includes/helpers/template.php:511
+msgid "Before Primary Menu"
+msgstr ""
+
+#: ../../includes/helpers/template.php:512
+msgid "After Primary Menu"
+msgstr ""
+
+#: ../../includes/helpers/template.php:516
+msgid "Before Primary Sidebar"
+msgstr ""
+
+#: ../../includes/helpers/template.php:517
+msgid "After Primary Sidebar"
+msgstr ""
+
+#: ../../includes/helpers/template.php:521
+msgid "Before Footer"
+msgstr ""
+
+#: ../../includes/helpers/template.php:522
+msgid "After Footer"
+msgstr ""
+
+#: ../../includes/helpers/template.php:526
+msgid "Before Settings Page"
+msgstr ""
+
+#: ../../includes/helpers/template.php:527
+msgid "After Settings Page"
+msgstr ""
+
+#: ../../includes/momtaz.php:33 ../../includes/momtaz.php:42
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: ../../includes/momtaz.php:110
+msgid ""
+"The current environment doesn't meet the Momtaz requirements.<br><b>The "
+"default theme will be activated automaticly.</b>"
+msgstr ""
+
+#: ../../loop-error.php:16 ../../loop-error.php:31
+msgid "Nothing Found"
+msgstr ""
+
+#: ../../loop-error.php:20
+msgid ""
+"Apologies, but no results were found for the requested archive. Perhaps "
+"searching will help find a related post."
+msgstr ""
+
+#: ../../loop-error.php:35
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: ../../loop-meta.php:70
+msgid "j F, Y"
+msgstr ""
+
+#: ../../loop-meta.php:73
+msgid "F Y"
+msgstr ""
+
+#: ../../loop-meta.php:76
+msgid "Y"
+msgstr ""
+
+#: ../../loop-meta.php:85
+msgid "You are browsing the site archives by date."
+msgstr ""
+
+#: ../../loop-meta.php:119
+#, php-format
+msgid "You are browsing the search results for &quot;%1$s&quot;"
+msgstr ""
+
+#: ../../loop-meta.php:146
+msgid "Archives"
+msgstr ""
+
+#: ../../loop-nav.php:16
+msgid "&laquo; Return to entry"
+msgstr ""
+
+#: ../../loop-nav.php:23
+msgid "&laquo; Previous"
+msgstr ""
+
+#: ../../loop-nav.php:24
+msgid "Next &raquo;"
+msgstr ""
+
+#: ../../loop-nav.php:39
+msgid "<span class=\"meta-nav\">&larr;</span> Older"
+msgstr ""
+
+#: ../../loop-nav.php:40
+msgid "Newer <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: ../../searchform.php:34
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: ../../searchform.php:35
+msgctxt "placeholder"
+msgid "Search this site..."
+msgstr ""
+
+#: ../../searchform.php:40
+msgid "Search"
+msgstr ""

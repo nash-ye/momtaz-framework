@@ -5,6 +5,14 @@ Just another light and simple theme framework!
 Changelog:
 ================
 
+1.3
+  - NEW: Introduce the Zones API.
+  - NEW: Add support for HTML5 Microdata. 
+  - NEW: Introduce more helpers functions.
+  - Enhancement: Better directories and templates structure.
+  - Enhancement: Update the framework modules, scripts, third-party styles.
+    ...etc
+
 1.2.1
   - Fix: PHP Fatal Errors on PHP 5.2
   - Enhancement: Update less.js to 1.6.0
