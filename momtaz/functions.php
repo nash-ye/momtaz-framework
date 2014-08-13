@@ -20,8 +20,10 @@ add_action( 'before_momtaz_setup', 'momtaz_support_theme_features' );
 function momtaz_support_theme_features() {
 
 	// Add support for WordPress features.
-	add_theme_support( 'html5' );
 	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+	) );
 
 	// Add support for the Momtaz features.
 	add_theme_support( 'momtaz-core-menus', array( 'primary' ) );
@@ -41,7 +43,7 @@ add_action( 'after_momtaz_setup', 'momtaz_register_theme_modules' );
  */
 function momtaz_register_theme_modules() {
 
-	if ( ! function_exists( 'Nmwdhj\create_element' ) ) {
+	if ( ! defined( 'Nmwdhj\VERSION' ) ) {
 
 		// Register the 'Momtaz Nmwdhj' module.
 		Momtaz_Modules::register( array(
@@ -49,7 +51,7 @@ function momtaz_register_theme_modules() {
 			'name' => 'Momtaz Nmwdhj',
 			'path' => 'momtaz-nmwdhj/nmwdhj.php',
 			'settings' => array(
-				'auto' => false,
+				'auto' => true,
 				'once' => true,
 			),
 		) );
@@ -88,35 +90,20 @@ function momtaz_register_theme_modules() {
 
 }
 
-add_action( 'after_momtaz_setup', 'momtaz_register_theme_stacks' );
+add_action( 'after_setup_theme', 'momtaz_theme_setup' );
 
 /**
- * Register the default theme template stack.
+ * Setup the framework's theme.
  *
  * @return void
- * @since 1.1
+ * @since 1.3
  */
-function momtaz_register_theme_stacks() {
+function momtaz_theme_setup() {
 
-	if ( is_child_theme() ) {
-
-		// Register the child theme directory.
-		momtaz_register_template_stack( array(
-			'uri' => get_stylesheet_directory_uri(),
-			'path' => get_stylesheet_directory(),
-			'slug' => 'child-theme',
-			'priority' => 5,
-		) );
-
-	}
-
-	// Register the parent theme directory.
-	momtaz_register_template_stack( array(
-		'uri' => get_template_directory_uri(),
-		'path' => get_template_directory(),
-		'slug' => 'parent-theme',
-		'priority' => 10,
-	) );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_main_stylesheet' );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_locale_stylesheet' );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_meta_generator' );
+	Momtaz_Zones::add_callback( 'head', 'momtaz_meta_designer' );
 
 }
 

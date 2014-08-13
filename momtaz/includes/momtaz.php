@@ -1,7 +1,4 @@
 <?php
-
-if ( ! class_exists( 'Momtaz' ) ) :
-
 /**
  * Momtaz main class.
  *
@@ -15,7 +12,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.2.1';
+	const VERSION = '1.3';
 
 
 	/** Magic Methods *********************************************************/
@@ -124,7 +121,10 @@ final class Momtaz {
 	 */
 	private function load_core() {
 
-		require self::path( 'includes/core.php'			);
+		require self::path( 'includes/core/i18n.php'			);
+		require self::path( 'includes/core/context.php'			);
+		require self::path( 'includes/core/modules.php'			);
+		require self::path( 'includes/core/settings.php'		);
 
 	}
 
@@ -136,32 +136,58 @@ final class Momtaz {
 	 */
 	private function load_framework() {
 
-		require self::path( 'includes/modules.php'		);
-		require self::path( 'includes/context.php'		);
-		require self::path( 'includes/settings.php'		);
-		require self::path( 'includes/formatting.php'	);
-		require self::path( 'includes/comments.php'		);
-		require self::path( 'includes/general.php'		);
-		require self::path( 'includes/templates.php'	);
-		require self::path( 'includes/layouts.php'		);
-		require self::path( 'includes/sidebars.php'		);
-		require self::path( 'includes/scripts.php'		);
-		require self::path( 'includes/styles.php'		);
-		require self::path( 'includes/menus.php'		);
-		require self::path( 'includes/media.php'		);
+		// Helpers
+		require self::path( 'includes/helpers/url.php'			);
+		require self::path( 'includes/helpers/text.php'			);
+		require self::path( 'includes/helpers/markup.php'		);
+		require self::path( 'includes/helpers/general.php'		);
+		require self::path( 'includes/helpers/template.php'		);
+		require self::path( 'includes/helpers/layouts.php'		);
+		require self::path( 'includes/helpers/sidebars.php'		);
+		require self::path( 'includes/helpers/nav-menus.php'	);
+		require self::path( 'includes/helpers/styles.php'		);
+		require self::path( 'includes/helpers/scripts.php'		);
+		require self::path( 'includes/helpers/media.php'		);
+		require self::path( 'includes/helpers/entries.php'		);
+		require self::path( 'includes/helpers/comments.php'		);
 
 		if ( is_admin() ) {
 
-			require self::path( 'admin/admin.php'		);
+			require self::path( 'includes/admin/admin.php' );
 
 			if ( current_theme_supports( 'momtaz-core-theme-settings' ) ) {
-				require self::path( 'admin/settings.php' );
+				require self::path( 'includes/admin/settings.php' );
 			}
 
 		}
 
-		// Sets up the default filters and actions.
-		require self::path( 'includes/filters.php'		);
+	}
+
+	/**
+	 * Load the framework's default filters.
+	 *
+	 * @return void
+	 * @since 1.3
+	 */
+	private function default_filters() {
+
+		// Remove the not needed WP tags.
+		remove_action( 'wp_head', 'wp_generator' );
+		remove_action( 'wp_head', 'locale_stylesheet' );
+
+		// Make shortcodes aware on some WP Filters.
+		add_filter( 'widget_text', 'do_shortcode' );
+		add_filter( 'term_description', 'do_shortcode' );
+
+		// Momtaz Init
+		add_action( 'momtaz_init', 'momtaz_register_core_stacks'	);
+		add_action( 'momtaz_init', 'momtaz_register_core_zones'		);
+		add_action( 'momtaz_init', 'momtaz_register_core_layouts'	);
+		add_action( 'momtaz_init', 'momtaz_adjust_current_layout'	);
+
+		// Theme scripts.
+		add_action( 'wp_enqueue_scripts', 'momtaz_register_core_scripts'	);
+		add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_scripts'		);
 
 	}
 
@@ -186,8 +212,6 @@ final class Momtaz {
 
 	/** Singleton *************************************************************/
 
-	private static $instance;
-
 	/**
 	 * Main Momtaz Instance
 	 *
@@ -195,37 +219,42 @@ final class Momtaz {
 	 */
 	public static function instance() {
 
-		if ( ! isset( self::$instance ) ) {
+		static $instance = NULL;
 
-			self::$instance = new Momtaz;
+		if ( is_null( $instance ) ) {
+
+			$instance = new Momtaz;
 
 			do_action( 'before_momtaz_setup' );
 
 			// Define the constants.
-			self::$instance->constants();
+			$instance->constants();
 
 			// Load the core functions.
-			self::$instance->load_core();
+			$instance->load_core();
 
 			// Load the theme translations.
-			self::$instance->load_l10n();
+			$instance->load_l10n();
 
 			// Check the Momtaz requirements.
-			self::$instance->check_reqs();
+			$instance->check_reqs();
 
 			// Load the framework functions.
-			self::$instance->load_framework();
+			$instance->load_framework();
+
+			// Load the default filters.
+			$instance->default_filters();
 
 			do_action( 'after_momtaz_setup' );
 
 			// Load the auto-load modules.
-			self::$instance->load_modules();
+			$instance->load_modules();
 
 			do_action( 'momtaz_init' );
 
 		}
 
-		return self::$instance;
+		return $instance;
 
 	}
 
@@ -250,8 +279,6 @@ final class Momtaz {
 
 }
 
-endif; // end class_exists() check
-
 /**
  * The main function responsible for returning the one true Momtaz Instance
  * to functions everywhere.
@@ -259,10 +286,10 @@ endif; // end class_exists() check
  * Use this function like you would a global variable, except without needing
  * to declare the global.
  *
- * Example: <?php $momtaz = momtaz(); ?>
+ * Example: <?php $momtaz = momtaz() ?>
  *
- * @since 1.0
  * @return The one true Momtaz Instance
+ * @since 1.0
  */
 function momtaz() {
 	return Momtaz::instance();

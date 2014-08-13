@@ -7,46 +7,32 @@
  * @since Momtaz Theme 1.1
  */
 
-momtaz_template_part( 'head' ); ?>
+momtaz_template_header();
 
-<body <?php body_class(); ?>>
+	Momtaz_Zones::call( 'wrapper:before' ) ?>
 
-    <?php do_action( momtaz_format_hook( 'before_wrapper' ) ); ?>
+	<div<?php momtaz_atts( 'wrapper', array( 'id' => 'wrapper', 'class' => 'hfeed' ) ) ?>>
 
-    <div id="wrapper" class="hfeed">
+		<?php momtaz_template_header( 'main' ) ?>
 
-        <?php get_header(); ?>
+		<?php Momtaz_Zones::call( 'container:before' ) ?>
 
-        <?php do_action( momtaz_format_hook( 'before_container' ) ); ?>
+		<div<?php momtaz_atts( 'container', array( 'id' => 'container' ) ) ?>>
 
-        <div id="container">
+			<div<?php momtaz_atts( 'content', array( 'id' => 'content' ) ) ?>>
+				<?php Momtaz_Zones::call( 'content' ) ?>
+			</div> <!-- #content -->
 
-            <div id="content" role="main">
+			<?php momtaz_template_sidebar() ?>
 
-                <?php do_action( momtaz_format_hook( 'before_primary_content' ) ); ?>
+		</div> <!-- #container -->
 
-                <section id="primary-content">
+		<?php Momtaz_Zones::call( 'container:after' ) ?>
 
-                    <?php do_action( momtaz_format_hook( 'primary_content' ) ); ?>
+		<?php momtaz_template_footer( 'main' ) ?>
 
-                </section><!-- #primary-content -->
+	</div> <!-- #wrapper --><?php
 
-                <?php do_action( momtaz_format_hook( 'after_primary_content' ) ); ?>
+	Momtaz_Zones::call( 'wrapper:after' );
 
-            </div> <!-- #content -->
-
-            <?php get_sidebar(); ?>
-
-         </div> <!-- #container -->
-
-         <?php do_action( momtaz_format_hook( 'after_container' ) ); ?>
-
-         <?php get_footer(); ?>
-
-    </div> <!-- #wrapper -->
-
-    <?php do_action( momtaz_format_hook( 'after_wrapper' ) ); ?>
-
-<?php wp_footer(); ?>
-</body> <!-- body -->
-</html> <!-- html -->
+momtaz_template_footer();

@@ -9,41 +9,40 @@
  * @since Momtaz Theme 1.0
  */
 
-static $search_num = 0; ++$search_num; ?>
+static $search_num = 0; ++$search_num ?>
 
-<div id="<?php echo "search-form-container-{$search_num}"; ?>" class="search-form-container">
+<div id="search-form-container-<?php echo $search_num ?>" class="search-form-container">
 
-	<?php do_action( momtaz_format_hook( 'before_search_form' ) ); ?>
+	<?php
 
-	<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="search-form" role="search">
+		Nmwdhj\create_element( array(
+			'type'		=> 'form',
+			'atts'		=> array(
+				'method'	=> 'GET',
+				'role'		=> 'search',
+				'class'		=> 'search-form',
+				'action'	=> home_url( '/' ),
+			),
+			'elements'	=> array(
+				'search'	=> array(
+					'name'		=> 's',
+					'type'		=> 'input_search',
+					'value'		=> get_search_query(),
+					'atts'		=> array(
+						'required'		=> true,
+						'class'			=> 'search-text',
+						'title'			=> _x( 'Search for:', 'label', 'momtaz' ),
+						'placeholder'	=> _x( 'Search this site...', 'placeholder', 'momtaz' ),
+					),
+				),
+				'submit'	=> array(
+					'type'		=> 'input_submit',
+					'value'		=> __( 'Search', 'momtaz' ),
+					'atts'		=> array( 'class' => 'search-submit' ),
+				),
+			),
+		) )->output();
 
-		<?php
-
-			// Load the Momtaz Nmwdhj module.
-			Momtaz_Modules::load_module( 'momtaz-nmwdhj' );
-
-			// Create and output the search text input.
-			Nmwdhj\create_element( 'input_search' )
-				->set_atts( array(
-					'placeholder' => _x( 'Search this site...', 'placeholder', 'momtaz' ),
-					'title' => _x( 'Search for:', 'label', 'momtaz' ),
-					'class' => 'search-text',
-					'required' => true,
-				  ) )
-				->set_value( get_search_query( false ) )
-				->set_name( 's' )
-				->output();
-
-			// Create and output the search submit button.
-			Nmwdhj\create_element( 'input_submit' )
-				->set_atts( array( 'class' => 'search-submit' ) )
-				->set_value( __( 'Search', 'momtaz' ) )
-				->output();
-
-		?>
-
-	</form> <!-- .search-form -->
-
-	<?php do_action( momtaz_format_hook( 'after_search_form' ) ); ?>
+	?>
 
 </div> <!-- .search-form-container -->

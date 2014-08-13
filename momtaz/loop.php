@@ -12,33 +12,35 @@
  * @since Momtaz Theme 1.0
  */
 
-// If the query found some posts .
+// If the query found some posts.
 if ( have_posts() ) {
 
-    // Load the loop-meta template.
-    momtaz_template_part( 'loop-meta' );
+	// Template: loop-meta.php
+	momtaz_template_part( 'loop-meta' );
 
-    // @hook: Before the posts loop.
-    do_action( momtaz_format_hook( 'before_loop' ) );
+	// Template Zone: Before Loop
+	Momtaz_Zones::call( 'loop:before' );
 
-    // Loop through the query posts.
-    while ( have_posts() ) { the_post();
+	// Loop through the query posts.
+	while ( have_posts() ) {
 
-        // Load the entry template.
-        momtaz_post_context_template( 'entry' );
+		the_post(); // Setup the current post.
 
-    } // end while
+		// Template: entry,php
+		momtaz_template_part( 'entry' );
 
-    // @hook: After the posts loop.
-    do_action( momtaz_format_hook( 'after_loop' ) );
+	}
 
-    // Load the loop-nav template.
-    momtaz_template_part( 'loop-nav' );
+	// Template Zone: After Loop
+	Momtaz_Zones::call( 'loop:after' );
 
-// The query failed or there is not any post
+	// Template: loop-nav.php
+	momtaz_template_part( 'loop-nav' );
+
+// The query failed or there is not any post.
 } else {
 
-    // Loop Error Template
-    momtaz_template_part( 'loop-error' );
+	// Template: loop-error.php
+	momtaz_template_part( 'loop-error' );
 
-} // end if
+}

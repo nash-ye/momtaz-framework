@@ -6,14 +6,17 @@ namespace Nmwdhj\Elements;
  *
  * @since 1.0
  */
-class WP_Editor extends Base {
+class WP_Editor extends Element {
 
 	/**
-	 * Default element key.
+	 * Get the element output.
 	 *
-	 * @since 1.0
-	 * @var string
+	 * @return string
+	 * @since 1.3
 	 */
-	protected $key = 'wp_editor';
+	public function get_output() {
+		$view = new \Nmwdhj\Views\WP_Editor();
+		return $view( $this );
+	}
 
-} // end Class WP_Editor
+}

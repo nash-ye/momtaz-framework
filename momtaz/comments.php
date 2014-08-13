@@ -26,7 +26,7 @@ if ( ! have_comments() && ! comments_open() && ! pings_open() ) {
    return;
 }
 
-do_action( momtaz_format_hook( 'before_comments' ) ); ?>
+Momtaz_Zones::call( 'comments:before' ) ?>
 
 	<section id="comments" class="comments-area">
 
@@ -42,4 +42,4 @@ do_action( momtaz_format_hook( 'before_comments' ) ); ?>
 
 	</section> <!-- #comments -->
 
-<?php do_action( momtaz_format_hook( 'after_comments' ) );
+<?php Momtaz_Zones::call( 'comments:after' );

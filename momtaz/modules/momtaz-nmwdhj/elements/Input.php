@@ -6,31 +6,25 @@ namespace Nmwdhj\Elements;
  *
  * @since 1.0
  */
-class Input extends Base {
+class Input extends Element {
 
-	/*** Properties ***********************************************************/
-
-	/**
-	 * Default element key.
-	 *
-	 * @since 1.0
-	 * @var string
-	 */
-	protected $key = 'input';
-
-
-	/*** Magic Methods ********************************************************/
+	// Configurations
 
 	/**
-	 * The Input element constructor.
+	 * Configure the element
 	 *
-	 * @since 1.0
+	 * @return Nmwdhj\Elements\Input
+	 * @since 1.3
 	 */
-	public function __construct( $key = '', array $properties = null ) {
+	public function configure( $args ) {
 
-		if ( ! $this->has_attr( 'type' ) ) {
+		if ( is_string( $args ) ) {
+			$args = array( 'type' => $args );
+		}
 
-			switch( strtolower( $key ) ) {
+		if ( ! empty( $args['type'] ) ) {
+
+			switch( $args['type'] ) {
 
 				case 'input_url';
 					$this->set_attr( 'type', 'url' );
@@ -100,38 +94,58 @@ class Input extends Base {
 					$this->set_attr( 'type', 'text' );
 					break;
 
-			} // end switch
+			}
 
-		} // end if
+		}
 
-		parent::__construct( $key, $properties );
+		parent::configure( $args );
 
-	} // end __construct()
+	}
 
-
-	/*** Methods **************************************************************/
+	// Value
 
 	/**
-	 * Set an attribute value.
+	 * Get the element value.
 	 *
+	 * @return mixed
 	 * @since 1.0
-	 * @return Nmwdhj\Elements\Input
 	 */
-	public function set_attr( $key, $value ) {
+	public function get_value() {
 
-		if ( strcasecmp( $key, 'type' ) === 0 ) {
+		if ( ! $this->has_attr( 'value' ) ) {
 
-			if ( strcasecmp( $this->get_key(), 'input' ) !== 0 ) {
+			$callback = $this->get_option( 'value_cb', array() );
 
-				if ( $this->has_attr( 'type' ) )
-					return $this;
+			if ( is_array( $callback ) && ! empty( $callback ) ) {
+				$this->set_value( call_user_func_array( $callback['name'], $callback['args'] ) );
+			}
 
-			} // end if
+		}
 
-		} // end if
+		return $this->get_attr( 'value' );
 
-		return parent::set_attr( $key, $value );
+	}
 
-	} // end set_attr()
+	/**
+	 * Set the element value.
+	 *
+	 * @return Nmwdhj\Elements\Input
+	 * @since 1.3
+	 */
+	public function set_value( $value ) {
+		$this->set_attr( 'value', $value );
+		return $this;
+	}
 
-} // end Class Input
+	/**
+	 * Get the element output.
+	 *
+	 * @return string
+	 * @since 1.3
+	 */
+	public function get_output() {
+		$view = new \Nmwdhj\Views\Input();
+		return $view( $this );
+	}
+
+}

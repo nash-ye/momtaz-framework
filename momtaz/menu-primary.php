@@ -9,14 +9,23 @@
  * @since Momtaz Theme 1.0
  */
 
-if ( has_nav_menu( 'primary' ) ) : ?>
+if ( has_nav_menu( 'primary' ) ) {
 
-    <?php do_action( momtaz_format_hook( 'before_primary_menu' ) ); ?>
+	Momtaz_Zones::call( 'primary_menu:before' ) ?>
 
-    <nav id="primary-menu" class="menu-container" role="navigation">
-        <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu dropdown' ) ); ?>
-    </nav> <!-- #primary-menu -->
+	<nav<?php momtaz_atts( 'nav-primary', array( 'id' => 'primary-menu', 'class' => 'menu-container' ) ) ?>>
 
-    <?php do_action( momtaz_format_hook( 'after_primary_menu' ) ); ?>
+		<?php
 
-<?php endif;
+			wp_nav_menu( array(
+				'theme_location' => 'primary',
+				'menu_class' => 'nav-menu dropdown'
+			) )
+
+		?>
+
+	</nav><?php
+
+    Momtaz_Zones::call( 'primary_menu:after' );
+
+}

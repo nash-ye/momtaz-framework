@@ -7,47 +7,47 @@
  * @since Momtaz Theme 1.1
  */
 
-global $post_num; ++$post_num; ?>
+global $post_num; ++$post_num;
 
-<?php do_action( momtaz_format_hook( 'before_entry' ) ); ?>
+ Momtaz_Zones::call( 'entry:before' ) ?>
 
-<article id="post-<?php the_ID(); ?>" <?php momtaz_post_class( 'loop-entry' ); ?>>
+<article<?php momtaz_atts( 'entry', array( 'class' => 'loop-entry' ) ) ?>>
 
-	<?php momtaz_template_part( 'entry-header' ); ?>
+	<?php momtaz_template_part( 'entry-header' ) ?>
 
 	<div class="entry-body">
 
-		<?php do_action( momtaz_format_hook( 'before_entry_content' ) ); ?>
+		<?php Momtaz_Zones::call( 'entry_content:before' ) ?>
 
-			<?php
+		<?php
 
-				if ( function_exists( 'get_the_image' ) ) {
+			if ( function_exists( 'get_the_image' ) ) {
 
-					get_the_image( array(
-						'before' => '<div class="entry-thumbnail">',
-						'after' => '</div><!-- .entry-thumbnail -->',
-						'image_class' => 'thumbnail',
-						'image_scan' => true,
-						'height' => 150,
-						'width' => 150,
-					) );
+				get_the_image( array(
+					'before'		=> '<div class="entry-thumbnail">',
+					'after'			=> '</div><!-- .entry-thumbnail -->',
+					'image_class'	=> 'thumbnail',
+					'scan'			=> true,
+					'height'		=> 150,
+					'width'			=> 150,
+				) );
 
-				} // end if
+			} // end if
 
-			?>
+		?>
 
-			<div class="entry-summary">
-				<?php the_excerpt(); ?>
-			</div> <!-- .entry-summary -->
+		<div<?php momtaz_atts( 'entry-summary', array( 'class' => 'entry-summary' ) ) ?>>
+			<?php the_excerpt() ?>
+		</div> <!-- .entry-summary -->
 
-		<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'momtaz' ) . '</span>', 'after' => '</div>' ) ); ?>
+		<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'momtaz' ) . '</span>', 'after' => '</div>' ) ) ?>
 
-		<?php do_action( momtaz_format_hook( 'after_entry_content' ) ); ?>
+		<?php Momtaz_Zones::call( 'entry_content:after' ) ?>
 
 	</div> <!-- .entry-body -->
 
-	<?php momtaz_template_part( 'entry-footer' ); ?>
+	<?php momtaz_template_part( 'entry-footer' ) ?>
 
-</article> <!-- #post-<?php the_ID(); ?> -->
+</article><?php
 
-<?php do_action( momtaz_format_hook( 'after_entry' ) );
+Momtaz_Zones::call( 'entry:after' );
