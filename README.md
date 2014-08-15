@@ -1,44 +1,27 @@
-Momtaz-Framework
-================
-Just another light and simple theme framework!
-
-Changelog:
+Momtaz Framework
 ================
 
-1.3
-  - NEW: Introduce the Zones API.
-  - NEW: Add support for HTML5 Microdata. 
-  - NEW: Introduce more helpers functions.
-  - Enhancement: Better directories and templates structure.
-  - Enhancement: Update the framework modules, scripts, third-party styles.
-    ...etc
+A free and light WordPress theme framework. It's secure, SEO friendly and highly customizable, designed for intermediate and advanced developers.
 
-1.2.1
-  - Fix: PHP Fatal Errors on PHP 5.2
-  - Enhancement: Update less.js to 1.6.0
-  - Enhancement: Update html5shiv.js to 3.7.0
-  - Fix: Style Debug is active when SCRIPT_DEBUG is FALSE.
-  - Enhancement: Loosening the context keys for the Home & Front pages.
+The Main Features:
+------------------
 
-1.2
-  - NEW: Momtaz Layouts Manager.
-  - Enhancement: Momtaz Loop Pagination 0.2
-  - Enhancement: Better Directory Structure.
-  - Enhancement: Re-code the theme-settings page.
-  - Enhancement: Remove the buggy 'Supersubs Menu' jQuery plugin.
-  - NEW: Add a new action hook `momtaz_init` which load after Momtaz setup.
-  - NEW: New public functions: momtaz_is_self_hosted_url(), momtaz_get_supported_core_menus(), momtaz_get_supported_core_sidebars(), momtaz_get_supported_core_scripts() and Momtaz::path().
-  - NEW: New theme feature: 'momtaz-core-scripts` which allow the child-theme developers to register the needed-only Momtaz core scripts easily.
-...etc
+ - **Customizable:** Momtaz offers dozens of hooks and smart templating structure, which make you 100% in control!
 
-1.1.1
-  - Update the sceeenshot image.
-  - Update Nmwdhj module to 1.2.1
-  - Update Get The Image module to 0.9
-  - Fix a PHP notice in `momtaz_load_textdomain_mofile()` function.
+ - **WP Compatible:** Momtaz is up-to-date framework, follows the WordPress standards and supports the core features like: Sidebars, Custom Menus, Threaded Comments..etc
 
-1.1
-  - Public version.
+ - **SEO Friendly:** You’ll be pleasantly surprised by mostly clean and optimized code, Momtaz comes with semantic HTML5 markup and addition support for Scheme.org Microdata.
 
-1.0
-  - Private version.
+ - **Bundled Modules:**
+    
+     - **Nmwdhj:** An API for creating, editing and rendering forms programmatically. To create individual form elements in the meta boxes, front-end...etc
+    
+     - **Get The Image:** An easy-to-use image script for adding things such as thumbnail, slider, gallery, and feature images.
+    
+     - **Loop Pagination:** A WordPress script for creating paginated links on archive-type pages.
+
+ - **Helper Functions:** Momtaz comes with dozens of helper functions, to make the development process easier and more fun than ever!
+
+ - **Advanced Styling:** Momtaz is using Less to make CSS that is more maintainable, themable and extendable.
+
+ - **Translation Friendly.**
