@@ -12,7 +12,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.3';
+	const VERSION = '1.3-alpha-1';
 
 
 	/** Magic Methods *********************************************************/
@@ -121,10 +121,10 @@ final class Momtaz {
 	 */
 	private function load_core() {
 
-		require self::path( 'includes/core/i18n.php'			);
-		require self::path( 'includes/core/context.php'			);
-		require self::path( 'includes/core/modules.php'			);
-		require self::path( 'includes/core/settings.php'		);
+		require self::path( 'includes/core/i18n.php'            );
+		require self::path( 'includes/core/context.php'         );
+		require self::path( 'includes/core/modules.php'         );
+		require self::path( 'includes/core/settings.php'        );
 
 	}
 
@@ -137,19 +137,19 @@ final class Momtaz {
 	private function load_framework() {
 
 		// Helpers
-		require self::path( 'includes/helpers/url.php'			);
-		require self::path( 'includes/helpers/text.php'			);
-		require self::path( 'includes/helpers/markup.php'		);
-		require self::path( 'includes/helpers/general.php'		);
-		require self::path( 'includes/helpers/template.php'		);
-		require self::path( 'includes/helpers/layouts.php'		);
-		require self::path( 'includes/helpers/sidebars.php'		);
-		require self::path( 'includes/helpers/nav-menus.php'	);
-		require self::path( 'includes/helpers/styles.php'		);
-		require self::path( 'includes/helpers/scripts.php'		);
-		require self::path( 'includes/helpers/media.php'		);
-		require self::path( 'includes/helpers/entries.php'		);
-		require self::path( 'includes/helpers/comments.php'		);
+		require self::path( 'includes/helpers/url.php'          );
+		require self::path( 'includes/helpers/text.php'         );
+		require self::path( 'includes/helpers/markup.php'       );
+		require self::path( 'includes/helpers/general.php'      );
+		require self::path( 'includes/helpers/template.php'     );
+		require self::path( 'includes/helpers/layouts.php'      );
+		require self::path( 'includes/helpers/sidebars.php'     );
+		require self::path( 'includes/helpers/nav-menus.php'    );
+		require self::path( 'includes/helpers/styles.php'       );
+		require self::path( 'includes/helpers/scripts.php'      );
+		require self::path( 'includes/helpers/media.php'        );
+		require self::path( 'includes/helpers/entries.php'      );
+		require self::path( 'includes/helpers/comments.php'     );
 
 		if ( is_admin() ) {
 
@@ -172,22 +172,22 @@ final class Momtaz {
 	private function default_filters() {
 
 		// Remove the not needed WP tags.
-		remove_action( 'wp_head', 'wp_generator' );
+		remove_action( 'wp_head', 'wp_generator'      );
 		remove_action( 'wp_head', 'locale_stylesheet' );
 
 		// Make shortcodes aware on some WP Filters.
-		add_filter( 'widget_text', 'do_shortcode' );
+		add_filter( 'widget_text', 'do_shortcode'      );
 		add_filter( 'term_description', 'do_shortcode' );
 
 		// Momtaz Init
-		add_action( 'momtaz_init', 'momtaz_register_core_stacks'	);
-		add_action( 'momtaz_init', 'momtaz_register_core_zones'		);
-		add_action( 'momtaz_init', 'momtaz_register_core_layouts'	);
-		add_action( 'momtaz_init', 'momtaz_adjust_current_layout'	);
+		add_action( 'momtaz_init', 'momtaz_register_core_stacks'   );
+		add_action( 'momtaz_init', 'momtaz_register_core_zones'    );
+		add_action( 'momtaz_init', 'momtaz_register_core_layouts'  );
+		add_action( 'momtaz_init', 'momtaz_adjust_current_layout'  );
 
 		// Theme scripts.
-		add_action( 'wp_enqueue_scripts', 'momtaz_register_core_scripts'	);
-		add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_scripts'		);
+		add_action( 'wp_enqueue_scripts', 'momtaz_register_core_scripts' );
+		add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_scripts'  );
 
 	}
 

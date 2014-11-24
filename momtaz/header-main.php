@@ -11,7 +11,7 @@ Momtaz_Zones::call( 'header:before' ) ?>
 
 <header<?php momtaz_atts( 'header', array( 'id' => 'header' ) ) ?>>
 
-	<hgroup<?php momtaz_atts( 'branding', array( 'id' => 'branding' ) ) ?>>
+	<div<?php momtaz_atts( 'branding', array( 'id' => 'branding' ) ) ?>>
 
 		<h1<?php momtaz_atts( 'site-title', array( 'id' => 'site-title' ) ) ?>>
 			<a href="<?php echo esc_url( home_url( '/' ) ) ?>" rel="home"><?php bloginfo( 'name' ) ?></a>
@@ -21,7 +21,7 @@ Momtaz_Zones::call( 'header:before' ) ?>
 			<?php bloginfo( 'description' ) ?>
 		</h2> <!-- #site-description -->
 
-	</hgroup> <!-- #branding -->
+	</div> <!-- #branding -->
 
 </header><?php
 

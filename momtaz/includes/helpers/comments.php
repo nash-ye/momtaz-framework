@@ -50,26 +50,26 @@ function momtaz_comment_form_args( $defaults ) {
 	$args['fields'] = Nmwdhj\create_elements( array(
 
 		'author' => array(
-			'atts'	=> array( 'required' => (bool) $required ),
+			'atts'  => array( 'required' => (bool) $required ),
 			'value' => $commenter['comment_author'],
 			'label' => __( 'Name', 'momtaz' ),
-			'type'	=> 'input_text',
-			'nid'	=> 'author',
+			'type'  => 'input_text',
+			'nid'   => 'author',
 		),
 
 		'email'	=> array(
-			'atts'	=> array( 'required' => (bool) $required ),
+			'atts'  => array( 'required' => (bool) $required ),
 			'value' => $commenter['comment_author_email'],
-			'label'	=> __( 'Email', 'momtaz' ),
-			'type'	=> 'input_email',
-			'nid'	=> 'email',
+			'label' => __( 'Email', 'momtaz' ),
+			'type'  => 'input_email',
+			'nid'   => 'email',
 		),
 
 		'url'	=> array(
 			'value' => $commenter['comment_author_url'],
 			'label' => __( 'Website', 'momtaz' ),
-			'type'	=> 'input_url',
-			'nid'	=> 'url',
+			'type'  => 'input_url',
+			'nid'   => 'url',
 		),
 
 	) );
@@ -89,14 +89,14 @@ function momtaz_comment_form_args( $defaults ) {
 		}
 
 		$e->set_options( array(
-			'wrapper_atts'	=> array( 'class' => 'form-section layout-columned' ),
-			'label_atts'	=> array( 'class' => 'form-label' ),
-			'wrapper'		=> 'div',
+			'wrapper_atts'  => array( 'class' => 'form-section layout-columned' ),
+			'label_atts'    => array( 'class' => 'form-label' ),
+			'wrapper'       => 'div',
 		), true );
 
 		$e->set_atts( array(
 			'class' => 'form-field regular-textbox',
-			'size'	=> 40,
+			'size'  => 40,
 		) );
 
 		$args['fields'][ $k ] = $e->get_output();
@@ -105,17 +105,17 @@ function momtaz_comment_form_args( $defaults ) {
 
 	// Comment Text
 	$args['comment_field'] = Nmwdhj\create_element( array(
-		'type'			=> 'textarea',
-		'nid'			=> 'comment',
-		'atts'			=> array(
-			'class'			=> 'form-field large-textbox',
-			'required'		=> true,
-			'rows'			=> 10,
-			'cols'			=> 60,
+		'type'          => 'textarea',
+		'nid'           => 'comment',
+		'atts'          => array(
+			'class'        => 'form-field large-textbox',
+			'required'     => true,
+			'rows'         => 10,
+			'cols'         => 60,
 		),
-		'wrapper'		=> 'div',
-		'wrapper_atts'	=> array(
-			'class'			=> 'form-section layout-full',
+		'wrapper'       => 'div',
+		'wrapper_atts'  => array(
+			'class'        => 'form-section layout-full',
 		),
 	) )->get_output();
 

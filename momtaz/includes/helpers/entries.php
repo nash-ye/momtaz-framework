@@ -179,8 +179,8 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
  * @return void
  * @since 1.3
  */
-function momtaz_continue_reading_link( $post_id = 0 ) {
-	echo momtaz_get_continue_reading_link( $post_id );
+function momtaz_continue_reading_link( $post_id = 0, array $args = array() ) {
+	echo momtaz_get_continue_reading_link( $post_id, $args );
 }
 
 /**
@@ -189,17 +189,21 @@ function momtaz_continue_reading_link( $post_id = 0 ) {
  * @return string
  * @since 1.3
  */
-function momtaz_get_continue_reading_link( $post_id = 0 ) {
+function momtaz_get_continue_reading_link( $post_id = 0, array $args = array() ) {
 
 	if ( empty( $post_id ) ) {
 		$post_id = get_the_ID();
 	}
 
-	$link = '<a href="' . esc_url( get_permalink( $post_id ) ) . '" class="more-link"><span>';
-	$link .= __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'momtaz' );
-	$link .= '</span></a>';
+	$args = array_merge( array(
+		'text'  => __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'momtaz' ),
+		'atts'  => array(
+			'href'  => get_permalink( $post_id ),
+			'class' => 'more-link',
+		),
+	), $args );
 
-	$link = apply_filters( 'momtaz_continue_reading_link', $link, $post_id );
-	return $link;
+	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
+	return apply_filters( 'momtaz_continue_reading_link', $link, $post_id, $args );
 
 }

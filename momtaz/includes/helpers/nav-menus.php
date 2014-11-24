@@ -24,8 +24,8 @@ function momtaz_register_core_menus() {
 	}
 
 	$core_menus = array(
-		'primary' => _x( 'Primary', 'nav menu location', 'momtaz' ),
-		'secondary' => _x( 'Secondary', 'nav menu location', 'momtaz' ),
+		'primary'    => _x( 'Primary', 'nav menu location', 'momtaz' ),
+		'secondary'  => _x( 'Secondary', 'nav menu location', 'momtaz' ),
 		'subsidiary' => _x( 'Subsidiary', 'nav menu location', 'momtaz' ),
 	);
 
@@ -69,7 +69,6 @@ function momtaz_get_supported_core_menus() {
 
 }
 
-// Add the home menu item.
 add_filter( 'wp_page_menu_args', 'momtaz_page_menu_args' );
 
 /**

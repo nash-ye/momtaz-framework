@@ -406,8 +406,8 @@ final class Momtaz_Zones {
 		}
 
 		$zone = (object) array_merge( array(
-			'title'			=> '',
-			'description'	=> '',
+			'title'         => '',
+			'description'   => '',
 		), $zone );
 
 		$zone->id = $id; // Store the ID.
@@ -467,64 +467,64 @@ function momtaz_register_core_zones() {
 
 		/*** Structure Template Zones *****************************************/
 
-		'wrapper:before'			=> __( 'Before Wrapper', 'momtaz' ),
-		'wrapper:after'				=> __( 'After Wrapper', 'momtaz' ),
+		'wrapper:before'            => __( 'Before Wrapper', 'momtaz' ),
+		'wrapper:after'             => __( 'After Wrapper', 'momtaz' ),
 
-		'container:before'			=> __( 'Before Container', 'momtaz' ),
-		'container:after'			=> __( 'After Container', 'momtaz' ),
+		'container:before'          => __( 'Before Container', 'momtaz' ),
+		'container:after'           => __( 'After Container', 'momtaz' ),
 
-		'content'					=> __( 'Inside Content', 'momtaz' ),
+		'content'                   => __( 'Inside Content', 'momtaz' ),
 
 		/*** Header Template Zones ********************************************/
 
-		'head'						=> __( 'Inside Head', 'momtaz' ),
-		'header:before'				=> __( 'Before Header', 'momtaz' ),
-		'header:after'				=> __( 'After Header', 'momtaz' ),
+		'head'                      => __( 'Inside Head', 'momtaz' ),
+		'header:before'             => __( 'Before Header', 'momtaz' ),
+		'header:after'              => __( 'After Header', 'momtaz' ),
 
 		/*** Loop Template Zones **********************************************/
 
-		'loop:before'				=> __( 'Before Loop', 'momtaz' ),
-		'loop:after'				=> __( 'After Loop', 'momtaz' ),
+		'loop:before'               => __( 'Before Loop', 'momtaz' ),
+		'loop:after'                => __( 'After Loop', 'momtaz' ),
 
-		'entry:before'				=> __( 'Before Entry', 'momtaz' ),
-		'entry:after'				=> __( 'After Entry', 'momtaz' ),
+		'entry:before'              => __( 'Before Entry', 'momtaz' ),
+		'entry:after'               => __( 'After Entry', 'momtaz' ),
 
-		'entry_content:before'		=> __( 'Before Entry Content', 'momtaz' ),
-		'entry_content:after'		=> __( 'After Entry Content', 'momtaz' ),
+		'entry_content:before'      => __( 'Before Entry Content', 'momtaz' ),
+		'entry_content:after'       => __( 'After Entry Content', 'momtaz' ),
 
 		/*** Comments Template Zones ******************************************/
 
-		'comments:before'			=> __( 'Before Comments', 'momtaz' ),
-		'comments:after'			=> __( 'After Comments', 'momtaz' ),
+		'comments:before'           => __( 'Before Comments', 'momtaz' ),
+		'comments:after'            => __( 'After Comments', 'momtaz' ),
 
-		'comment:before'			=> __( 'Before Comment', 'momtaz' ),
-		'comment:after'				=> __( 'After Comment', 'momtaz' ),
+		'comment:before'            => __( 'Before Comment', 'momtaz' ),
+		'comment:after'             => __( 'After Comment', 'momtaz' ),
 
-		'comments_list:before'		=> __( 'Before Comments List', 'momtaz' ),
-		'comments_list:after'		=> __( 'After Comments List', 'momtaz' ),
+		'comments_list:before'      => __( 'Before Comments List', 'momtaz' ),
+		'comments_list:after'       => __( 'After Comments List', 'momtaz' ),
 
-		'pings_list:before'			=> __( 'Before Pings List', 'momtaz' ),
-		'pings_list:after'			=> __( 'After Pings List', 'momtaz' ),
+		'pings_list:before'         => __( 'Before Pings List', 'momtaz' ),
+		'pings_list:after'          => __( 'After Pings List', 'momtaz' ),
 
 		/*** Menu Template Zones **********************************************/
 
-		'primary_menu:before'		=> __( 'Before Primary Menu', 'momtaz' ),
-		'primary_menu:after'		=> __( 'After Primary Menu', 'momtaz' ),
+		'primary_menu:before'       => __( 'Before Primary Menu', 'momtaz' ),
+		'primary_menu:after'        => __( 'After Primary Menu', 'momtaz' ),
 
 		/*** Sidebar Template Zones *******************************************/
 
-		'primary_sidebar:before'	=> __( 'Before Primary Sidebar', 'momtaz' ),
-		'primary_sidebar:after'		=> __( 'After Primary Sidebar', 'momtaz' ),
+		'primary_sidebar:before'    => __( 'Before Primary Sidebar', 'momtaz' ),
+		'primary_sidebar:after'     => __( 'After Primary Sidebar', 'momtaz' ),
 
 		/*** Footer Template Zones ********************************************/
 
-		'footer:before'				=> __( 'Before Footer', 'momtaz' ),
-		'footer:after'				=> __( 'After Footer', 'momtaz' ),
+		'footer:before'             => __( 'Before Footer', 'momtaz' ),
+		'footer:after'              => __( 'After Footer', 'momtaz' ),
 
 		/*** Theme Settings Page Zones ****************************************/
 
-		'settings_page:before'		=> __( 'Before Settings Page', 'momtaz' ),
-		'settings_page:after'		=> __( 'After Settings Page', 'momtaz' ),
+		'settings_page:before'      => __( 'Before Settings Page', 'momtaz' ),
+		'settings_page:after'       => __( 'After Settings Page', 'momtaz' ),
 
 	);
 
@@ -599,9 +599,9 @@ final class Momtaz_Stacks {
 		}
 
 		$stack = (object) array_merge( array(
-			'priority'	=> 10,
-			'path'		=> '',
-			'uri'		=> '',
+			'priority'  => 10,
+			'path'      => '',
+			'uri'       => '',
 		), $stack );
 
 		$stack->id = $id; // Store the ID.

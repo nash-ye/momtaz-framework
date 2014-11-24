@@ -29,28 +29,28 @@ function momtaz_register_core_sidebars() {
 	// Get the available core sidebars.
 	$core_sidebars = array(
 		'primary' => array(
-			'name' => _x( 'Primary', 'sidebar', 'momtaz' ),
-			'description' => __( 'The main (primary) widget area.', 'momtaz' ),
+			'name'         => _x( 'Primary', 'sidebar', 'momtaz' ),
+			'description'  => __( 'The main (primary) widget area.', 'momtaz' ),
 		),
 		'secondary' => array(
-			'name' => _x( 'Secondary', 'sidebar', 'momtaz' ),
-			'description' => __( 'The second most important widget area.', 'momtaz' ),
+			'name'         => _x( 'Secondary', 'sidebar', 'momtaz' ),
+			'description'  => __( 'The second most important widget area.', 'momtaz' ),
 		),
 		'subsidiary' => array(
-			'name' => _x( 'Subsidiary', 'sidebar', 'momtaz' ),
-			'description' => __( 'Displayed within the site\'s footer area.', 'momtaz' ),
+			'name'         => _x( 'Subsidiary', 'sidebar', 'momtaz' ),
+			'description'  => __( 'Displayed within the site\'s footer area.', 'momtaz' ),
 		),
 		'header' => array(
-			'name' => _x( 'Header', 'sidebar', 'momtaz' ),
-			'description' => __( 'Displayed within the site\'s header area.', 'momtaz' ),
+			'name'         => _x( 'Header', 'sidebar', 'momtaz' ),
+			'description'  => __( 'Displayed within the site\'s header area.', 'momtaz' ),
 		),
 		'before-entry' => array(
-			'name' => _x( 'Before Entry', 'sidebar', 'momtaz' ),
-			'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the post title.', 'momtaz' ),
+			'name'         => _x( 'Before Entry', 'sidebar', 'momtaz' ),
+			'description'  => __( 'Loaded on singular post (page, attachment, etc.) views before the post title.', 'momtaz' ),
 		),
 		'after-entry' => array(
-			'name' => _x( 'After Entry', 'sidebar', 'momtaz' ),
-			'description' => __( 'Loaded on singular post (page, attachment, etc.) views before the comments area.', 'momtaz' ),
+			'name'         => _x( 'After Entry', 'sidebar', 'momtaz' ),
+			'description'  => __( 'Loaded on singular post (page, attachment, etc.) views before the comments area.', 'momtaz' ),
 		),
 	);
 
@@ -114,14 +114,12 @@ function momtaz_get_supported_core_sidebars() {
 function momtaz_register_sidebar( $args ) {
 
 	// Set up some default sidebar arguments.
-	$defaults = array(
+	$defaults = apply_filters( 'momtaz_get_sidebar_defaults', array(
 		'before_widget' => '<aside id="%1$s" class="widget-container %2$s widget-%2$s"><div class="widget-wrap widget-inside">',
-		'after_widget' => '</div></aside>',
-		'before_title' => '<header class="widget-header"><h1 class="widget-title">',
-		'after_title' => '</h1></header>',
-	);
-
-	$defaults = apply_filters( 'momtaz_get_sidebar_defaults', $defaults );
+		'after_widget'  => '</div></aside>',
+		'before_title'  => '<header class="widget-header"><h1 class="widget-title">',
+		'after_title'   => '</h1></header>',
+	) );
 
 	// Parse the sidebar arguments and defaults.
 	$args = wp_parse_args( $args, $defaults );

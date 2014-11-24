@@ -138,7 +138,7 @@ function momtaz_get_meta_designer() {
 		return;
 	}
 
-	return '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $designer ) ) ) . '>' ."\n";
+	return '<meta' . momtaz_get_html_atts( array( 'name' => 'designer', 'content' => implode( ',', $designer ) ) ) . '>' ."\n";
 
 }
 
@@ -161,11 +161,11 @@ function momtaz_site_link( array $args = array() ) {
 function momtaz_get_site_link( array $args = array() ) {
 
 	$args = array_merge( array(
-		'text'	=> get_bloginfo( 'name', 'display' ),
-		'atts'	=> array(
-			'href'	=> home_url( '/' ),
+		'text'  => get_bloginfo( 'name', 'display' ),
+		'atts'  => array(
+			'href'  => home_url( '/' ),
 			'class' => 'site-link',
-			'rel'	=> 'home',
+			'rel'   => 'home',
 		),
 	), $args );
 
@@ -193,9 +193,9 @@ function momtaz_wp_link( array $args = array() ) {
 function momtaz_get_wp_link( array $args = array() ) {
 
 	$args = array_merge( array(
-		'text'	=> __( 'WordPress', 'momtaz' ),
-		'atts'	=> array(
-			'href'	=> 'http://wordpress.org',
+		'text'  => __( 'WordPress', 'momtaz' ),
+		'atts'  => array(
+			'href'  => 'http://wordpress.org',
 			'class' => 'wp-link',
 		),
 	), $args );
@@ -232,9 +232,9 @@ function momtaz_get_theme_link( $theme, array $args = array() ) {
 	}
 
 	$args = array_merge( array(
-		'text'	=> $theme->display( 'Name', FALSE ),
-		'atts'	=> array(
-			'href'	=> $theme->get( 'ThemeURI' ),
+		'text'  => $theme->display( 'Name', FALSE ),
+		'atts'  => array(
+			'href'  => $theme->get( 'ThemeURI' ),
 			'class' => 'theme-link',
 		),
 	), $args );
@@ -271,9 +271,9 @@ function momtaz_get_theme_author_link( $theme, array $args = array() ) {
 	}
 
 	$args = array_merge( array(
-		'text'	=> $theme->display( 'Author', FALSE ),
-		'atts'	=> array(
-			'href'	=> $theme->get( 'AuthorURI' ),
+		'text'  => $theme->display( 'Author', FALSE ),
+		'atts'  => array(
+			'href'  => $theme->get( 'AuthorURI' ),
 			'class' => 'theme-author-link',
 		),
 	), $args );

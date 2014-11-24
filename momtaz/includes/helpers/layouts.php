@@ -200,8 +200,8 @@ final class Momtaz_Layouts {
 
 		$layout = (object) array_merge( array(
 			'content_width' => 0,
-			'name'			=> '',
-			'type'			=> '',
+			'name'          => '',
+			'type'          => '',
 		), $layout );
 
 		$layout->id = $id; // Store the ID.

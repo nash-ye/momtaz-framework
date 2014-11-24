@@ -104,7 +104,7 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
 	}
 
 	$atts = wp_parse_args( $atts, array(
-		'href' => $stylesheet_uri,
+		'href'  => $stylesheet_uri,
 		'media' => 'all',
 	) );
 

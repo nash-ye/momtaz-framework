@@ -34,14 +34,14 @@ function momtaz_register_core_scripts() {
 
 	$core_scripts = array(
 		'superfish' => array(
-			'src'			=> momtaz_theme_uri( 'content/scripts/superfish.js' ),
-			'deps'			=> array( 'jquery' ),
-			'ver'			=> Momtaz::VERSION,
+			'src'   => momtaz_theme_uri( 'content/scripts/superfish.js' ),
+			'deps'  => array( 'jquery' ),
+			'ver'   => Momtaz::VERSION,
 		),
 		'superfish.args' => array(
-			'src'			=> momtaz_theme_uri( 'content/scripts/superfish.args.js' ),
-			'deps'			=> array( 'jquery', 'superfish' ),
-			'ver'			=> Momtaz::VERSION,
+			'src'   => momtaz_theme_uri( 'content/scripts/superfish.args.js' ),
+			'deps'  => array( 'jquery', 'superfish' ),
+			'ver'   => Momtaz::VERSION,
 		),
 	);
 
@@ -54,9 +54,9 @@ function momtaz_register_core_scripts() {
 		if ( in_array( $key, $scripts ) ) {
 
 			$args = array_merge( array(
-				'handle'	=> $key,
-				'src'		=> false,
-				'deps'		=> array(),
+				'handle'    => $key,
+				'src'       => false,
+				'deps'      => array(),
 				'ver'		=> false,
 				'in_footer' => true,
 			), $args );

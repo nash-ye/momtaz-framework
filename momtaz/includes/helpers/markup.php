@@ -11,14 +11,13 @@ add_filter( 'momtaz_atts-body', 'momtaz_atts_body' );
 function momtaz_atts_body( $atts ) {
 
 	if ( ! isset( $atts['class'] ) ) {
-		$atts['class']	= get_body_class();
+		$atts['class']  = get_body_class();
 	} else {
-		$atts['class']	= get_body_class( $atts['class'] );
+		$atts['class']  = get_body_class( $atts['class'] );
 	}
 
-	// HTML5 Microdata.
-	$atts['itemscope']	= 'itemscope';
-	$atts['itemtype']	= 'http://schema.org/WebPage';
+	$atts['itemscope']  = 'itemscope';
+	$atts['itemtype']   = 'http://schema.org/WebPage';
 
 	return $atts;
 
@@ -34,11 +33,9 @@ add_filter( 'momtaz_atts-header', 'momtaz_atts_header' );
  */
 function momtaz_atts_header( $atts ) {
 
-	$atts['role']		= 'banner';
-
-	// HTML5 Microdata.
-	$atts['itemscope']	= 'itemscope';
-	$atts['itemtype']	= 'http://schema.org/WPHeader';
+	$atts['role']       = 'banner';
+	$atts['itemscope']  = 'itemscope';
+	$atts['itemtype']   = 'http://schema.org/WPHeader';
 
 	return $atts;
 
@@ -54,7 +51,6 @@ add_filter( 'momtaz_atts-site-title', 'momtaz_atts_site_title' );
  */
 function momtaz_atts_site_title( $atts ) {
 
-	// HTML5 Microdata
 	$atts['itemprop'] = 'headline';
 
 	return $atts;
@@ -71,7 +67,6 @@ add_filter( 'momtaz_atts-site-description', 'momtaz_atts_site_description' );
  */
 function momtaz_atts_site_description( $atts ) {
 
-	// HTML5 Microdata
 	$atts['itemprop'] = 'description';
 
 	return $atts;
@@ -89,11 +84,9 @@ add_filter( 'momtaz_atts-nav-comments', 'momtaz_atts_nav' );
  */
 function momtaz_atts_nav( $atts ) {
 
-	$atts['role']		= 'navigation';
-
-	// HTML5 Microdata
-	$atts['itemscope']	= 'itemscope';
-	$atts['itemtype']	= 'http://schema.org/SiteNavigationElement';
+	$atts['role']       = 'navigation';
+	$atts['itemscope']  = 'itemscope';
+	$atts['itemtype']   = 'http://schema.org/SiteNavigationElement';
 
 	return $atts;
 
@@ -110,17 +103,15 @@ add_filter( 'momtaz_atts-content', 'momtaz_atts_content' );
 function momtaz_atts_content( $atts ) {
 
 	$atts['role'] = 'main';
-
-	// HTML5 Microdata
 	$atts['itemprop'] = 'mainContentOfPage';
 
 	if ( is_search() ) {
-		$atts['itemscope']	= 'itemscope';
-		$atts['itemtype']	= 'http://schema.org/SearchResultsPage';
+		$atts['itemscope']  = 'itemscope';
+		$atts['itemtype']   = 'http://schema.org/SearchResultsPage';
 
 	} elseif ( is_singular( 'post' ) || is_archive() || is_home() ) {
-		$atts['itemscope']	= 'itemscope';
-		$atts['itemtype']	= 'http://schema.org/Blog';
+		$atts['itemscope']  = 'itemscope';
+		$atts['itemtype']   = 'http://schema.org/Blog';
 	}
 
 	return $atts;
@@ -173,7 +164,7 @@ function momtaz_atts_entry( $atts ) {
 
 	} else {
 
-		$atts['itemtype']  = 'http://schema.org/CreativeWork';
+		$atts['itemtype'] = 'http://schema.org/CreativeWork';
 
 	}
 
@@ -191,7 +182,6 @@ add_filter( 'momtaz_atts-entry-title', 'momtaz_atts_entry_title' );
  */
 function momtaz_atts_entry_title( $atts ) {
 
-	// HTML5 Microdata
 	$atts['itemprop'] = 'headline';
 
 	return $atts;
@@ -208,7 +198,6 @@ add_filter( 'momtaz_atts-entry-content', 'momtaz_atts_entry_content' );
  */
 function momtaz_atts_entry_content( $atts ) {
 
-	// HTML5 Microdata
 	$atts['itemprop'] = 'text';
 
 	return $atts;
@@ -225,7 +214,6 @@ add_filter( 'momtaz_atts-entry-summary', 'momtaz_atts_entry_summary' );
  */
 function momtaz_atts_entry_summary( $atts ) {
 
-	// HTML5 Microdata
 	$atts['itemprop'] = 'description';
 
 	return $atts;
@@ -248,10 +236,8 @@ function momtaz_atts_comment( $atts ) {
 		return $atts;
 	}
 
-	$atts['id']	= "comment-{$comment_id}";
-	$atts['class'] = get_comment_class();
-
-	// HTML5 Microdata
+	$atts['id']	       = "comment-{$comment_id}";
+	$atts['class']     = get_comment_class();
 	$atts['itemprop']  = 'comment';
 	$atts['itemscope'] = 'itemscope';
 	$atts['itemtype']  = 'http://schema.org/UserComments';
@@ -270,10 +256,9 @@ add_filter( 'momtaz_atts-comment-author', 'momtaz_atts_comment_author' );
  */
 function momtaz_atts_comment_author( $atts ) {
 
-	// HTML5 Microdata
-	$atts['itemprop']	= 'creator';
-	$atts['itemscope']	= 'itemscope';
-	$atts['itemtype']	= 'http://schema.org/Person';
+	$atts['itemprop']   = 'creator';
+	$atts['itemscope']  = 'itemscope';
+	$atts['itemtype']   = 'http://schema.org/Person';
 
 	return $atts;
 
@@ -289,10 +274,8 @@ add_filter( 'momtaz_atts-comment-time', 'momtaz_atts_comment_time' );
  */
 function momtaz_atts_comment_time( $atts ) {
 
-	$atts['datetime']	= get_comment_date( 'c' );
-
-	// HTML5 Microdata
-	$atts['itemprop']	= 'commentTime';
+	$atts['datetime']   = get_comment_date( 'c' );
+	$atts['itemprop']   = 'commentTime';
 
 	return $atts;
 
@@ -308,10 +291,8 @@ add_filter( 'momtaz_atts-comment-permalink', 'momtaz_atts_comment_permalink' );
  */
 function momtaz_atts_comment_permalink( $atts ) {
 
-	$atts['href']		= get_comment_link();
-
-	// HTML5 Microdata
-	$atts['itemprop']	= 'url';
+	$atts['href']       = get_comment_link();
+	$atts['itemprop']   = 'url';
 
 	return $atts;
 
@@ -327,7 +308,6 @@ add_filter( 'momtaz_atts-comment-content', 'momtaz_atts_comment_content' );
  */
 function momtaz_atts_comment_content( $atts ) {
 
-	// HTML5 Microdata
 	$atts['itemprop'] = 'commentText';
 
 	return $atts;
@@ -344,9 +324,7 @@ add_filter( 'momtaz_atts-sidebar', 'momtaz_atts_sidebar' );
  */
 function momtaz_atts_sidebar( $atts ) {
 
-	$atts['role'] = 'complementary';
-
-	// HTML5 Microdata
+	$atts['role']      = 'complementary';
 	$atts['itemscope'] = 'itemscope';
 	$atts['itemtype']  = 'http://schema.org/WPSideBar';
 
@@ -364,9 +342,7 @@ add_filter( 'momtaz_atts-footer', 'momtaz_atts_footer' );
  */
 function momtaz_atts_footer( $atts ) {
 
-	$atts['role'] = 'contentinfo';
-
-	// HTML5 Microdata
+	$atts['role']      = 'contentinfo';
 	$atts['itemscope'] = 'itemscope';
 	$atts['itemtype']  = 'http://schema.org/WPFooter';
 
@@ -454,7 +430,7 @@ function momtaz_get_html_atts( array $atts, array $args = null ) {
 	 }
 
 	$args = array_merge( array(
-		'after' => '',
+		'after'  => '',
 		'before' => ' ',
 		'escape' => true,
 	), (array) $args );
