@@ -97,16 +97,16 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
  * @return string
  * @since 1.0
  */
- function momtaz_get_style_loader_tag( $stylesheet_uri, $atts = '' ){
+ function momtaz_get_style_loader_tag( $stylesheet_url, array $atts = array() ){
 
-	if ( empty( $stylesheet_uri ) ) {
+	if ( empty( $stylesheet_url ) ) {
 		return;
 	}
 
-	$atts = wp_parse_args( $atts, array(
-		'href'  => $stylesheet_uri,
+	$atts = array_merge( array(
+		'href'  => $stylesheet_url,
 		'media' => 'all',
-	) );
+	), $atts );
 
 	if ( empty( $atts['rel'] ) ) {
 

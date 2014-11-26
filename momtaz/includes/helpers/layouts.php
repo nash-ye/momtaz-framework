@@ -92,10 +92,18 @@ function momtaz_adjust_current_layout() {
 
 	if ( ! Momtaz_Layouts::get_current_layout() ) {
 
-		if ( is_rtl() ) {
-			Momtaz_Layouts::set_current_layout( '2c-l-fixed' );
+		if ( is_active_sidebar( 'primary' ) ) {
+
+			if ( is_rtl() ) {
+				Momtaz_Layouts::set_current_layout( '2c-l-fixed' );
+			} else {
+				Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
+			}
+
 		} else {
-			Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
+
+			Momtaz_Layouts::set_current_layout( '1c-fixed' );
+
 		}
 
 	}

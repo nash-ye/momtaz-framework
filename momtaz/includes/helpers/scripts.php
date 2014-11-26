@@ -33,16 +33,6 @@ function momtaz_register_core_scripts() {
 	}
 
 	$core_scripts = array(
-		'superfish' => array(
-			'src'   => momtaz_theme_uri( 'content/scripts/superfish.js' ),
-			'deps'  => array( 'jquery' ),
-			'ver'   => Momtaz::VERSION,
-		),
-		'superfish.args' => array(
-			'src'   => momtaz_theme_uri( 'content/scripts/superfish.args.js' ),
-			'deps'  => array( 'jquery', 'superfish' ),
-			'ver'   => Momtaz::VERSION,
-		),
 	);
 
 	$core_scripts = apply_filters( 'momtaz_core_scripts', $core_scripts );

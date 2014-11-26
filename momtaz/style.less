@@ -7,20 +7,11 @@
  * @since Momtaz Theme 1.0
  */
 
-// LESS Elements.
-@import "content/styles/mixins.less";
-
 // Normalize CSS.
 @import "content/styles/normalize.css";
 
 // Momtaz Layouts.
 @import "content/styles/layouts.less";
-
-// Superfish - jQuery Menu Plugin.
-@import "content/styles/superfish.less";
-
-// WordPress Defaults.
-@import "content/styles/wp-default.less";
 
 /**
  * Table of Contents:
@@ -51,11 +42,19 @@
  * ----------------------------------------------------------------------------
  */
 
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
 body {
     margin: 0;
     color: #333;
     font-size: 14px;
-    line-height: 22px;
+    line-height: 20px;
     background-color: #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -91,6 +90,7 @@ h6 {
     font-size: 0.67em;
     margin: 2.33em 0;
 }
+
 h1, h2, h3, h4, h5, h6 {
     color: #000;
     display: block;
@@ -225,11 +225,11 @@ a {
     text-decoration: none;
     &:visited {
         color: #6919D2;
-        text-decoration: none;
     }
-    &:hover, &:focus, &:active {
-        text-decoration: underline;
+    &:hover,
+    &:focus {
         outline: 0;
+        text-decoration: underline;
     }
 }
 
@@ -245,37 +245,30 @@ a {
     color: #333;
     width: auto;
     cursor: pointer;
+    background: #ddd;
     overflow: visible;
     border: 1px solid;
     padding: 5px 10px 5px;
     text-shadow: #fff 0 1px 1px;
     border-color: #ddd #bbb #999;
 
-    // Mixins
-    .gradient( #ddd, #ddd, #fff );
-
     &:hover {
         color: #888;
-
-        // Mixins
-        .gradient( #eee, #eee, #fff );
+        background: #eee;
     }
 
     &:active {
         color: #888;
 
         // Mixins
-        .gradient( #fff, #fff, #f1f1f1 );
-        .inner-shadow( 2px, 2px, 3px, 0.2 );
+        background: #fff;
+        box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
     }
 
     &.disabled {
         color: #888;
         cursor: default;
         background:#ECECEC;
-
-        // Mixins
-        .box-shadow( none );
     }
 
 }
@@ -315,9 +308,7 @@ input[type="datetime-local"] {
     color:#222;
     padding:0.4em 0.3em;
     border:1px solid #DDD;
-
-    // Mixins
-    .inner-shadow( 0, 0, 4px, 0.1 );
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.1);
 
     &:hover, &:focus, &:active {
         border:1px #888 solid;
@@ -335,9 +326,6 @@ textarea {
 .search-text {
     width: 160px;
     padding: 6px 5px;
-
-    // Mixins
-    .box-sizing( border-box );
 }
 .search-submit {
     margin: 5px;
@@ -374,9 +362,6 @@ textarea {
     background:#f4f4f4;
     margin: 1.5em 0 0 0;
     border:3px #fff solid;
-
-    // Mixins
-    .drop-shadow( 0px, 0px, 4px, 0.3 );
 
     a {
         color: #000;
@@ -417,14 +402,6 @@ textarea {
         }
 
     }
-
-}
-.regular-textbox,
-.large-textbox,
-.small-textbox {
-
-    // Mixins
-    .box-sizing(border-box);
 
 }
 .regular-textbox {
@@ -563,12 +540,85 @@ textarea {
     }
     img {
         max-width: 100%;
-
-        // Mixins
-        .box-sizing( border-box );
     }
 }
 
+/*** WP Images ***/
+
+img[class*="align"],
+img[class*="wp-image-"] {
+    height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+}
+﻿img[class*="wp-image-"] {
+    border: 1px solid #ddd;
+    margin: 0 0 24px 0;
+    padding: 5px;
+}
+img.size-full,
+img.size-large,
+.wp-post-image {
+    height: auto;
+    max-width: 100%;
+}
+
+/*** WP Smiley ***/
+
+.wp-smiley {
+    border: 0;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*** WP Caption ***/
+
+.wp-caption {
+    clear: both;
+    padding: 5px;
+    max-width: 100%;
+    background: #eee;
+    text-align: center;
+    margin: 14px 0 24px 0;
+    img {
+        margin: 0;
+        height: auto;
+        display: block;
+        max-width: 100%;
+    }
+    .wp-caption-text {
+        margin: 10px 0;
+        position: relative;
+        text-align: center;
+    }
+}
+.gallery-caption,
+.wp-caption-text {
+    color: #666;
+    font-size: 12px;
+}
+
+/*** WP Aligns ***/
+
+.alignleft {
+    float: left;
+}
+.alignright {
+    float: right;
+}
+img.alignleft,
+.wp-caption.alignleft {
+    margin-right: 24px;
+}
+img.alignright,
+.wp-caption.alignright {
+    margin-left: 24px;
+}
+.aligncenter, img.aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    clear: both;
+}
 
 /**
  * 5.2 Single Post
@@ -647,9 +697,6 @@ textarea {
         img {
             padding: 5px;
             border: 1px #D7D7D7 solid;
-
-            // Mixins
-            .drop-shadow( 0px, 1px, 1px, 0.1 );
         }
     }
 
@@ -739,9 +786,6 @@ textarea {
             width: 95%;
             margin-left:5%;
             list-style: none;
-
-            // Mixins
-            .box-sizing( border-box );
         }
     }
 
@@ -763,11 +807,8 @@ textarea {
                 img.avatar {
                     margin: 0 5px;
                     background: #fff;
+                    border-radius: 50%;
                     border: 1px solid #eee;
-
-                    // Mixins
-                    .drop-shadow;
-                    .rounded( 50% );
                 }
 
             }
@@ -794,9 +835,6 @@ textarea {
             background: #FFF;
             padding: 20px 15px;
             border: #CCC 1px solid;
-
-            // Mixins
-            .drop-shadow;
         }
 
         .comment-utility {
@@ -846,9 +884,6 @@ textarea {
         background: #fff;
         margin: 0 10px 0 0;
         border: 1px solid #eee;
-
-        // Mixins
-        .drop-shadow;
     }
 
     .author-description {
@@ -861,7 +896,7 @@ textarea {
  * ----------------------------------------------------------------------------
  */
 
-.widget-area .widget-container {
+.widget-container {
     margin-bottom: 10px;
 
     .widget-title {
@@ -876,6 +911,43 @@ textarea {
         -moz-hyphens: auto;
         -ms-hyphens: auto;
         hyphens: auto;
+    }
+}
+
+/*** WP Calendar Widget ***/
+
+.widget_calendar #wp-calendar {
+    width: 95%;
+    margin: 0 auto;
+    empty-cells: show;
+    text-align: center;
+    td {
+        text-align: center;
+    }
+    th {
+        font-weight: bold;
+        text-align: center;
+        background: #f4f4f4;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    tbody {
+        a {
+            color: #000;
+            font-weight: bold;
+        }
+    }
+    tfoot {
+        td {
+            background: #f4f4f4;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+    caption {
+        margin: 0 0 10px;
+        font-weight: bold;
+        text-align: center;
     }
 }
 
@@ -1019,9 +1091,6 @@ textarea {
     margin: 2px 0px;
     padding: 6px 12px;
     border:#ccc 1px solid;
-
-    // Mixins
-    .drop-shadow( 1px, 1px, 3px, 0.2 );
 }
 
 .note {
