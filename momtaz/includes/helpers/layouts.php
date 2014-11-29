@@ -17,50 +17,30 @@ function momtaz_register_core_layouts() {
 
 	// Get the available core layouts.
 	$core_layouts = array(
-		'1c-fixed' => array(
-			'name' => __( 'One-column, Fixed', 'momtaz' ),
+		'1c' => array(
+			'name' => __( 'One-column', 'momtaz' ),
 			'content_width' => 940,
 			'type' => 'fixed',
 		),
-		'1c-fluid' => array(
-			'name' => __( 'One-column, Fluid', 'momtaz' ),
-			'type' => 'fluid',
-		),
-		'2c-l-fixed' => array(
-			'name' => __( 'Two-column, Left, Fixed', 'momtaz' ),
+		'2c-l' => array(
+			'name' => __( 'Two-column, Left', 'momtaz' ),
 			'content_width' => 620,
 			'type' => 'fixed',
 		),
-		'2c-l-fluid' => array(
-			'name' => __( 'Two-column, Left, Fluid', 'momtaz' ),
-			'type' => 'fluid',
-		),
-		'2c-r-fixed' => array(
-			'name' => __( 'Two-column, Right, Fixed', 'momtaz' ),
+		'2c-r' => array(
+			'name' => __( 'Two-column, Right', 'momtaz' ),
 			'content_width' => 620,
 			'type' => 'fixed',
 		),
-		'2c-r-fluid' => array(
-			'name' => __( 'Two-column, Right, Fluid', 'momtaz' ),
-			'type' => 'fluid',
-		),
-		'3c-l-fixed' => array(
-			'name' => __( 'Three-column, Left, Fixed', 'momtaz' ),
+		'3c-l' => array(
+			'name' => __( 'Three-column, Left', 'momtaz' ),
 			'content_width' => 540,
 			'type' => 'fixed',
 		),
-		'3c-l-fluid' => array(
-			'name' => __( 'Three-column, Left, Fluid', 'momtaz' ),
-			'type' => 'fluid',
-		),
-		'3c-r-fixed' => array(
-			'name' => __( 'Three-column, Right, Fixed', 'momtaz' ),
+		'3c-r' => array(
+			'name' => __( 'Three-column, Right', 'momtaz' ),
 			'content_width' => 540,
 			'type' => 'fixed',
-		),
-		'3c-r-fluid' => array(
-			'name '=> __( 'Three-column, Right, Fluid', 'momtaz' ),
-			'type' => 'fluid',
 		),
 	);
 
@@ -95,14 +75,14 @@ function momtaz_adjust_current_layout() {
 		if ( is_active_sidebar( 'primary' ) ) {
 
 			if ( is_rtl() ) {
-				Momtaz_Layouts::set_current_layout( '2c-l-fixed' );
+				Momtaz_Layouts::set_current_layout( '2c-l' );
 			} else {
-				Momtaz_Layouts::set_current_layout( '2c-r-fixed' );
+				Momtaz_Layouts::set_current_layout( '2c-r' );
 			}
 
 		} else {
 
-			Momtaz_Layouts::set_current_layout( '1c-fixed' );
+			Momtaz_Layouts::set_current_layout( '1c' );
 
 		}
 
