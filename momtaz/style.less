@@ -8,13 +8,18 @@
  */
 
 // Normalize CSS.
-@import "content/styles/normalize.css";
+@import (inline) "content/styles/normalize.css";
 
 /**
  * Table of Contents:
  * 1.0 - Reset
  * 2.0 - Forms
  * 3.0 - The Layout
+ *   3.1 - One-column
+ *   3.2 - Two-column
+ *   3.3 - Three-column
+ *   3.4 - Left Sidebar
+ *   3.5 - Right Sidebar
  * 4.0 - The Header
  *   4.1 - Site Header
  *   4.2 - Navigation
@@ -1009,7 +1014,7 @@ img.alignright,
 
 /*** WP Calendar Widget ***/
 
-.widget_calendar #wp-calendar {
+#wp-calendar {
     width: 95%;
     margin: 0 auto;
     empty-cells: show;

@@ -12,7 +12,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.3-alpha-3';
+	const VERSION = '1.3-alpha-4';
 
 
 	/** Magic Methods *********************************************************/
@@ -185,7 +185,9 @@ final class Momtaz {
 		add_action( 'momtaz_init', 'momtaz_register_core_layouts'  );
 		add_action( 'momtaz_init', 'momtaz_adjust_current_layout'  );
 
-		// Theme scripts.
+		// Theme styles and scripts.
+		add_action( 'wp_enqueue_scripts', 'momtaz_register_core_styles' );
+		add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_styles'  );
 		add_action( 'wp_enqueue_scripts', 'momtaz_register_core_scripts' );
 		add_action( 'wp_enqueue_scripts', 'momtaz_enqueue_core_scripts'  );
 

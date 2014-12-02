@@ -47,10 +47,7 @@ function momtaz_register_core_layouts() {
 	$core_layouts = apply_filters( 'momtaz_core_layouts', $core_layouts );
 
 	foreach( $core_layouts as $id => $layout ) {
-
-		// Register the layout.
 		Momtaz_Layouts::register( $id, $layout );
-
 	}
 
 }
@@ -90,10 +87,8 @@ function momtaz_adjust_current_layout() {
 
 	if ( ! momtaz_get_content_width() ) {
 
-		// Get the current layout.
 		$layout = Momtaz_Layouts::get_current_layout();
 
-		// Set the WordPress content width.
 		if ( $layout && ! empty( $layout->content_width ) ) {
 			momtaz_set_content_width( $layout->content_width );
 		}
@@ -112,7 +107,6 @@ add_filter( 'body_class', 'momtaz_current_layout_body_class' );
 */
 function momtaz_current_layout_body_class( $classes ) {
 
-	// Current theme layout class.
 	if ( ( $layout = Momtaz_Layouts::get_current_layout() ) ) {
 		$classes[] = 'layout-' . trim( $layout->id );
 	}
