@@ -5,7 +5,7 @@
  *
  * @access private
  * @return void
- * @since 1.3
+ * @since 1.3.1
  */
 function momtaz_register_core_styles() {
 
@@ -52,7 +52,7 @@ function momtaz_register_core_styles() {
  * @uses momtaz_get_supported_core_styles() Get the supported core styles.
  * @access private
  * @return void
- * @since 1.3
+ * @since 1.3.1
  */
 function momtaz_enqueue_core_styles() {
 
@@ -79,7 +79,7 @@ function momtaz_enqueue_core_styles() {
  * and then, loaded via momtaz_enqueue_core_styles().
  *
  * @return array
- * @since 1.3
+ * @since 1.3.1
  */
 function momtaz_get_supported_core_styles() {
 

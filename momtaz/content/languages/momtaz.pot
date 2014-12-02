@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Momtaz 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 15:04+0300\n"
-"PO-Revision-Date: 2014-08-13 15:04+0300\n"
+"POT-Creation-Date: 2014-12-02 14:22+0300\n"
+"PO-Revision-Date: 2014-12-02 14:22+0300\n"
 "Last-Translator: \n"
 "Language-Team: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
 "Language: en\n"
@@ -203,43 +203,23 @@ msgid "WordPress"
 msgstr ""
 
 #: ../../includes/helpers/layouts.php:21
-msgid "One-column, Fixed"
+msgid "One-column"
 msgstr ""
 
 #: ../../includes/helpers/layouts.php:26
-msgid "One-column, Fluid"
+msgid "Two-column, Left"
 msgstr ""
 
-#: ../../includes/helpers/layouts.php:30
-msgid "Two-column, Left, Fixed"
+#: ../../includes/helpers/layouts.php:31
+msgid "Two-column, Right"
 msgstr ""
 
-#: ../../includes/helpers/layouts.php:35
-msgid "Two-column, Left, Fluid"
+#: ../../includes/helpers/layouts.php:36
+msgid "Three-column, Left"
 msgstr ""
 
-#: ../../includes/helpers/layouts.php:39
-msgid "Two-column, Right, Fixed"
-msgstr ""
-
-#: ../../includes/helpers/layouts.php:44
-msgid "Two-column, Right, Fluid"
-msgstr ""
-
-#: ../../includes/helpers/layouts.php:48
-msgid "Three-column, Left, Fixed"
-msgstr ""
-
-#: ../../includes/helpers/layouts.php:53
-msgid "Three-column, Left, Fluid"
-msgstr ""
-
-#: ../../includes/helpers/layouts.php:57
-msgid "Three-column, Right, Fixed"
-msgstr ""
-
-#: ../../includes/helpers/layouts.php:62
-msgid "Three-column, Right, Fluid"
+#: ../../includes/helpers/layouts.php:41
+msgid "Three-column, Right"
 msgstr ""
 
 #: ../../includes/helpers/nav-menus.php:27

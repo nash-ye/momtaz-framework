@@ -22,7 +22,7 @@
  *   3.5 - Right Sidebar
  * 4.0 - The Header
  *   4.1 - Site Header
- *   4.2 - Navigation
+ *   4.2 - Site Navigation
  * 5.0 - The Content
  *   5.1 - Shared
  *   5.2 - Single Post
@@ -562,49 +562,65 @@ body.layout-3c-r {
 }
 
 /**
- * 4.2 Navigation
+ * 4.2 Site Navigation
  * ----------------------------------------------------------------------------
  */
 
+.dropdown {
+    display: block;
+    position: relative;
+}
+ul.dropdown,
+.dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.dropdown li {
+    color: #000;
+    padding: 0 10px;
+    background: #FFF;
+    line-height: 36px;
+    position: relative;
+    display: inline-block;
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    &.current-menu-item,
+    .current-menu-ancestor {
+        color: #555;
+        background-color: #f6f6f6;
+    }
+
+    &:hover > ul, &:focus > ul {
+        display: block;
+    }
+}
+.dropdown ul {
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 100%;
+
+    ul {
+        left: 100%;
+        top: 0px;
+    }
+
+    li {
+        display: block;
+        width: 200px;
+    }
+}
 #primary-menu {
     height: 36px;
     padding: 2px 0;
     position: relative;
-
-    .dropdown {
-
-        li {
-            outline: 0;
-            color: #000;
-            font-size: 12px;
-            background: #FFF;
-
-            a {
-                color: #000;
-                padding: 0.65em 1em;
-                text-decoration: none;
-
-                &:hover, &:visited{
-                    color: #555;
-                }
-            }
-
-            li {
-                border: 1px #CCC solid;
-                border-bottom:0;
-
-                &:last-child {
-                    border-bottom: 1px #CCC solid;
-                }
-            }
-
-            &.current-menu-item {
-                background-color: #f6f6f6;
-            }
-        }
-
-    }
-
 }
 
 /**

@@ -2,6 +2,15 @@
 Changelog:
 ================
 
+1.3.1
+  - Update Nmwdhj module to 1.3.1
+  - Update lessCSS language to 2.0.0
+  - Update Get The Image module to 1.0.1
+  - Update normalize.css library to 3.0.2
+  - Simplify and compress the framework styles.
+  - Enhance and clean some framework helper functions.
+  - Drop support for SuperFish, SuperSubs, LESS Elements, Semantic.gs.
+
 1.3
   - NEW: Introduce the Zones API.
   - NEW: Add support for HTML5 Microdata. 
