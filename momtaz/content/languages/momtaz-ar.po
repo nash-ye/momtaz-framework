@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Momtaz 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 14:35+0300\n"
+"POT-Creation-Date: 2014-12-02 14:22+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
 "Language-Team: Nahswan Doaqan <nashwan.doaqan@ymail.com>\n"
@@ -205,44 +205,24 @@ msgid "WordPress"
 msgstr "ووردبريس"
 
 #: ../../includes/helpers/layouts.php:21
-msgid "One-column, Fixed"
-msgstr "عمود واحد، ثابت"
+msgid "One-column"
+msgstr "عمود واحد"
 
 #: ../../includes/helpers/layouts.php:26
-msgid "One-column, Fluid"
-msgstr "عمود واحد، متمدد"
+msgid "Two-column, Left"
+msgstr "عمودين، يسار"
 
-#: ../../includes/helpers/layouts.php:30
-msgid "Two-column, Left, Fixed"
-msgstr "عمودين، يسار، ثابت"
+#: ../../includes/helpers/layouts.php:31
+msgid "Two-column, Right"
+msgstr "عمودين، يمين"
 
-#: ../../includes/helpers/layouts.php:35
-msgid "Two-column, Left, Fluid"
-msgstr "عمودين، يسار، متمدد"
+#: ../../includes/helpers/layouts.php:36
+msgid "Three-column, Left"
+msgstr "ثلاثة أعمدة، يسار"
 
-#: ../../includes/helpers/layouts.php:39
-msgid "Two-column, Right, Fixed"
-msgstr "عمودين، يمين، ثابت"
-
-#: ../../includes/helpers/layouts.php:44
-msgid "Two-column, Right, Fluid"
-msgstr "عمودين، يمين، متمدد"
-
-#: ../../includes/helpers/layouts.php:48
-msgid "Three-column, Left, Fixed"
-msgstr "ثلاثة أعمدة، يسار، ثابت"
-
-#: ../../includes/helpers/layouts.php:53
-msgid "Three-column, Left, Fluid"
-msgstr "ثلاثة أعمدة، يسار، متمدد"
-
-#: ../../includes/helpers/layouts.php:57
-msgid "Three-column, Right, Fixed"
-msgstr "ثلاثة أعمدة، يمين، ثابت"
-
-#: ../../includes/helpers/layouts.php:62
-msgid "Three-column, Right, Fluid"
-msgstr "ثلاثة أعمدة، يمين، متمدد"
+#: ../../includes/helpers/layouts.php:41
+msgid "Three-column, Right"
+msgstr "ثلاثة أعمدة، يمين"
 
 #: ../../includes/helpers/nav-menus.php:27
 msgctxt "nav menu location"
@@ -527,3 +507,18 @@ msgstr "البحث في الموقع..."
 #: ../../searchform.php:40
 msgid "Search"
 msgstr "بحث"
+
+#~ msgid "One-column, Fluid"
+#~ msgstr "عمود واحد، متمدد"
+
+#~ msgid "Two-column, Left, Fluid"
+#~ msgstr "عمودين، يسار، متمدد"
+
+#~ msgid "Two-column, Right, Fluid"
+#~ msgstr "عمودين، يمين، متمدد"
+
+#~ msgid "Three-column, Left, Fluid"
+#~ msgstr "ثلاثة أعمدة، يسار، متمدد"
+
+#~ msgid "Three-column, Right, Fluid"
+#~ msgstr "ثلاثة أعمدة، يمين، متمدد"

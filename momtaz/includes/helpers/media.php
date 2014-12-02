@@ -429,17 +429,17 @@ class Momtaz_Image_Clipper {
 			}
 
 			$dest_img = array(
-				'path' => $saved['path'],
-				'width' => $saved['width'],
+				'path'   => $saved['path'],
+				'width'  => $saved['width'],
 				'height' => $saved['height'],
 			);
 
 		} else {
 
 			$dest_img = array(
-				'width' => $width,
+				'width'  => $width,
 				'height' => $height,
-				'path' => $clip_path,
+				'path'   => $clip_path,
 			);
 
 		}
@@ -463,11 +463,11 @@ function momtaz_resize_image( $image_path, $width, $height, $crop = true ) {
 
 	// Set the clipper properties and save the file.
 	$the_clip = $clipper->set_clip_directory( MOMTAZ_CACHE_DIR )
-						->set_clip_option( 'c', (bool) $crop )
-						->set_image_path( $image_path )
-						->set_clip_height( $height )
-						->set_clip_width( $width )
-						->save_the_clip();
+                        ->set_clip_option( 'c', (bool) $crop )
+                        ->set_image_path( $image_path )
+                        ->set_clip_height( $height )
+                        ->set_clip_width( $width )
+                        ->save_the_clip();
 
 	if ( is_array( $the_clip ) && ! empty( $the_clip['path'] ) ) {
 

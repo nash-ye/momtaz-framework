@@ -1,6 +1,99 @@
 <?php
 
 /**
+ * Registers stylesheets for the framework.
+ *
+ * @access private
+ * @return void
+ * @since 1.3.1
+ */
+function momtaz_register_core_styles() {
+
+	$core_styles = array(
+
+		'normalize' => array(
+			'src'       => momtaz_parent_theme_uri( 'content/styles/normalize.css' ),
+			'version'   => Momtaz::VERSION,
+		),
+
+	);
+
+	$core_styles = apply_filters( 'momtaz_core_styles', $core_styles );
+
+	foreach( $core_styles as $key => $args ) {
+
+		$args = array_merge( array(
+			'handle'    => $key,
+			'src'       => false,
+			'deps'      => array(),
+			'version'   => false,
+			'media'     => 'all',
+		), $args );
+
+		wp_register_style(
+			$args['handle'],
+			$args['src'],
+			$args['deps'],
+			$args['version'],
+			$args['media']
+		);
+
+	}
+
+}
+
+/**
+ * Load the registered theme supported styles.
+ *
+ * Get the theme supported core styles needed for the framework and tell WordPress to
+ * load them using the wp_enqueue_style() function. The function checks if the style is
+ * registered before loading it.
+ *
+ * @uses momtaz_get_supported_core_styles() Get the supported core styles.
+ * @access private
+ * @return void
+ * @since 1.3.1
+ */
+function momtaz_enqueue_core_styles() {
+
+	$styles = momtaz_get_supported_core_styles();
+
+	if ( ! empty( $styles ) ) {
+
+		foreach( $styles as $style ) {
+
+			if ( wp_style_is( $style, 'registered' ) ) {
+				wp_enqueue_style( $style );
+			}
+
+		}
+
+	}
+
+}
+
+/**
+ * Get the supported core styles.
+ *
+ * Get an array of theme supported core styles to be registered in WordPress via momtaz_register_core_styles()
+ * and then, loaded via momtaz_enqueue_core_styles().
+ *
+ * @return array
+ * @since 1.3.1
+ */
+function momtaz_get_supported_core_styles() {
+
+	$styles = get_theme_support( 'momtaz-core-styles' );
+
+	if ( ! empty( $styles ) ) {
+		$styles = reset( $styles );
+	}
+
+	return (array) $styles;
+
+}
+
+/**
  * Display the main stylesheet link tag.
  *
  * @return void
@@ -97,16 +190,16 @@ function momtaz_get_dev_stylesheet_uri( $stylesheet_uri ) {
  * @return string
  * @since 1.0
  */
- function momtaz_get_style_loader_tag( $stylesheet_uri, $atts = '' ){
+ function momtaz_get_style_loader_tag( $stylesheet_url, array $atts = array() ){
 
-	if ( empty( $stylesheet_uri ) ) {
+	if ( empty( $stylesheet_url ) ) {
 		return;
 	}
 
-	$atts = wp_parse_args( $atts, array(
-		'href' => $stylesheet_uri,
+	$atts = array_merge( array(
+		'href'  => $stylesheet_url,
 		'media' => 'all',
-	) );
+	), $atts );
 
 	if ( empty( $atts['rel'] ) ) {
 
