@@ -10,6 +10,7 @@ Changelog:
   - Simplify and compress the framework styles.
   - Enhance and clean some framework helper functions.
   - Drop support for SuperFish, SuperSubs, LESS Elements, Semantic.gs.
+    ...etc
 
 1.3
   - NEW: Introduce the Zones API.
