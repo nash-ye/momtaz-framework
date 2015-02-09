@@ -22,8 +22,8 @@ function momtaz_wp_title( $args = '' ) {
 
 	$args = wp_parse_args( $args, array(
 		'seplocation' => 'right',
-		'separator' => '|',
-		'echo' => true,
+		'separator'   => '|',
+		'echo'        => true,
 	) );
 
 	$title = wp_title( $args['separator'], false, $args['seplocation'] );
@@ -59,7 +59,7 @@ function momtaz_filter_wp_title( $title, $sep ) {
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
 
-	if ( $site_description && ( is_home() || is_front_page() ) ) {
+	if ( ! empty( $site_description ) && ( is_home() || is_front_page() ) ) {
 		$title = "$title $sep $site_description";
 	}
 

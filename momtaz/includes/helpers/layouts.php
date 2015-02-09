@@ -18,29 +18,29 @@ function momtaz_register_core_layouts() {
 	// Get the available core layouts.
 	$core_layouts = array(
 		'1c' => array(
-			'name' => __( 'One-column', 'momtaz' ),
+			'name'          => __( 'One-column', 'momtaz' ),
+			'type'          => 'fixed',
 			'content_width' => 940,
-			'type' => 'fixed',
 		),
 		'2c-l' => array(
-			'name' => __( 'Two-column, Left', 'momtaz' ),
+			'name'          => __( 'Two-column, Left', 'momtaz' ),
+			'type'          => 'fixed',
 			'content_width' => 620,
-			'type' => 'fixed',
 		),
 		'2c-r' => array(
-			'name' => __( 'Two-column, Right', 'momtaz' ),
+			'name'          => __( 'Two-column, Right', 'momtaz' ),
+			'type'          => 'fixed',
 			'content_width' => 620,
-			'type' => 'fixed',
 		),
 		'3c-l' => array(
-			'name' => __( 'Three-column, Left', 'momtaz' ),
+			'name'          => __( 'Three-column, Left', 'momtaz' ),
+			'type'          => 'fixed',
 			'content_width' => 540,
-			'type' => 'fixed',
 		),
 		'3c-r' => array(
-			'name' => __( 'Three-column, Right', 'momtaz' ),
+			'name'          => __( 'Three-column, Right', 'momtaz' ),
+			'type'          => 'fixed',
 			'content_width' => 540,
-			'type' => 'fixed',
 		),
 	);
 
@@ -107,8 +107,10 @@ add_filter( 'body_class', 'momtaz_current_layout_body_class' );
 */
 function momtaz_current_layout_body_class( $classes ) {
 
-	if ( ( $layout = Momtaz_Layouts::get_current_layout() ) ) {
-		$classes[] = 'layout-' . trim( $layout->id );
+	$current_layout = Momtaz_Layouts::get_current_layout() ;
+
+	if ( ! empty( $current_layout ) ) {
+		$classes[] = 'layout-' . trim( $current_layout->id );
 	}
 
 	return $classes;

@@ -13,7 +13,16 @@ final class Manager {
 	/*** Properties ***********************************************************/
 
 	/**
-	 * Elements list.
+	 * Elements types list
+	 *
+	 * @access private
+	 * @var array
+	 * @since 1.3.3
+	 */
+	private static $types = array();
+
+	/**
+	 * Elements objects list
 	 *
 	 * @access private
 	 * @var array
@@ -27,22 +36,56 @@ final class Manager {
 	// Getters
 
 	/**
-	 * Get an element by name.
+	 * Retrieve a list of the elements types
+	 *
+	 * @return array
+	 * @since 1.3.3
+	 */
+	public static function get_types() {
+		return self::$types;
+	}
+
+	/**
+	 * Retrieve a list of the elements objects
+	 *
+	 * @return array
+	 * @since 1.3.3
+	 */
+	public static function get_elements() {
+		return self::$elements;
+	}
+
+	/**
+	 * Get an element object by the element key
 	 *
 	 * @return object|NULL
-	 * @since 1.3
+	 * @since 1.3.3
 	 */
 	public static function get_element( $key ) {
 
 		if ( isset( self::$elements[ $key ] ) ) {
 			return self::$elements[ $key ];
+		}
 
-		} else {
+	}
 
-			foreach ( self::$elements as $element ) {
+	/**
+	 * Get an element type by class or alias name
+	 *
+	 * @return object|NULL
+	 * @since 1.3.3
+	 */
+	public static function get_type( $key, $check_aliases = FALSE ) {
 
-				if ( in_array( $key, (array) $element->aliases, true ) ) {
-					return $element;
+		if ( isset( self::$types[ $key ] ) ) {
+			return self::$types[ $key ];
+
+		} elseif ( $check_aliases ) {
+
+			foreach ( self::get_types() as $type ) {
+
+				if ( in_array( $key, (array) $type->aliases, true ) ) {
+					return $type;
 				}
 
 			}
@@ -52,54 +95,95 @@ final class Manager {
 	}
 
 	/**
-	 * Retrieve a list of registered elements.
+	 * Add a new element
 	 *
-	 * @return array
-	 * @since 1.3
+	 * @return Nmwdhj\Elements\Element|bool
+	 * @since 1.3.3
 	 */
-	public static function get_elements( array $args = NULL, $operator = 'AND' ) {
-		return wp_list_filter( self::$elements, $args, $operator );
+	public static function add_element( $key, $element ) {
+
+		if ( isset( self::$elements[ $key ] ) ) {
+			return FALSE;
+		}
+
+		return self::set_element( $key, $element );
+
 	}
 
-	// Register/Deregister
+	/**
+	 * Replaces an element
+	 *
+	 * @return Nmwdhj\Elements\Element|bool
+	 * @since 1.3.3
+	 */
+	public static function set_element( $key, $element ) {
+
+		if ( ! $element instanceof Elements\Element ) {
+			$element = create_element( $element );
+		}
+
+		self::$elements[ $key ] = $element;
+
+		return $element;
+
+	}
 
 	/**
-	 * Registers a new element.
+	 * Register a new element type
 	 *
 	 * @return object|bool
-	 * @since 1.3
+	 * @since 1.3.3
 	 */
-	public static function register_element( $name, array $args ) {
+	public static function register_type( $class_name, array $args ) {
 
-		if ( ! $name || isset( self::$elements[ $name ] ) ) {
-			return false;
+		if ( isset( self::$types[ $class_name ] ) ) {
+			return FALSE;
 		}
 
 		$args = (object) array_merge( array(
-			'aliases'	=> array(),
+			'aliases' => array(),
 		), $args );
 
-		$args->name = $name; // Set the name.
+		$args->class_name = $class_name; // Set the name.
 
-		self::$elements[ $name ] =  $args;
+		self::$types[ $class_name ] = $args;
+
 		return $args;
 
 	}
 
 	/**
-	 * Deregister an element
+	 * Unregister an element type
 	 *
 	 * @return bool
-	 * @since 1.3
+	 * @since 1.3.3
 	 */
-	public static function deregister_element( $name ) {
+	public static function unregister_type( $class_name ) {
 
-		if ( ! $name || ! isset( self::$elements[ $name ] ) ) {
-			return false;
+		if ( ! isset( self::$types[ $class_name ] ) ) {
+			return FALSE;
 		}
 
-		unset( self::$elements[ $name ] );
-		return true;
+		unset( self::$types[ $class_name ] );
+		return TRUE;
+
+	}
+
+	/**
+	 * Remove an element
+	 *
+	 * @return bool
+	 * @since 1.3.3
+	 */
+	public static function remove_element( $key ) {
+
+		if ( ! isset( self::$elements[ $key ] ) ) {
+			return FALSE;
+		}
+
+		unset( self::$elements[ $key ] );
+
+		return TRUE;
 
 	}
 
@@ -111,50 +195,50 @@ final class Manager {
 	 */
 	public static function register_defaults() {
 
-		self::register_element( 'Nmwdhj\Elements\Form', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Form', array(
+			'aliases' => array(
 				'form'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\Select', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Select', array(
+			'aliases' => array(
 				'select'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\Textarea', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Textarea', array(
+			'aliases' => array(
 				'textarea'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\WP_Editor', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\WP_Editor', array(
+			'aliases' => array(
 				'wp_editor'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\Checkbox', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Checkbox', array(
+			'aliases' => array(
 				'checkbox', 'input_checkbox'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\Checkboxes', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Checkboxes', array(
+			'aliases' => array(
 				'checkboxes', 'multi_checkbox'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\Button', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Button', array(
+			'aliases' => array(
 				'button', 'button_submit', 'button_reset'
 			),
 		) );
 
-		self::register_element( 'Nmwdhj\Elements\Input', array(
-			'aliases'	=> array(
+		self::register_type( 'Nmwdhj\Elements\Input', array(
+			'aliases' => array(
 				'input_text', 'input_url', 'input_email', 'input_range', 'input_search', 'input_date', 'input_file',
 				'input_hidden', 'input_number', 'input_password', 'input_color', 'input_submit', 'input_week',
 				'input_time', 'input_radio', 'input_month', 'input_image'

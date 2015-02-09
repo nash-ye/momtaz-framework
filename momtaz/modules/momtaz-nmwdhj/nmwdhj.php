@@ -5,17 +5,17 @@
  * Description: An API for creating forms elements via code.
  * Author: Nashwan Doaqan
  * Author URI: http://nashwan-d.com
- * Version: 1.3.1
+ * Version: 1.3.3
  *
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Copyright (c) 2013 - 2014 Nashwan Doaqan.  All rights reserved.
+ * Copyright (c) 2014 - 2015 Nashwan Doaqan.  All rights reserved.
  */
 
 namespace Nmwdhj;
 
 // Nmwdhj Version.
-const VERSION = '1.3.1';
+const VERSION = '1.3.3';
 
 /**** Loaders *****************************************************************/
 
@@ -48,13 +48,13 @@ function class_loader( $class_name ) {
 
 		case 'Elements':
 			if ( ! empty( $nps[2] ) ) {
-				$class_path = get_path( "elements/{$nps[2]}.php" );
+				$class_path = get_path( sprintf( 'elements/%s.php', $nps[2] ) );
 			}
 			break;
 
 		case 'Views':
 			if ( ! empty( $nps[2] ) ) {
-				$class_path = get_path( "elements/views/{$nps[2]}.php" );
+				$class_path = get_path( sprintf( 'elements/views/%s.php', $nps[2] ) );
 			}
 			break;
 
@@ -89,13 +89,14 @@ function create_element( $args ) {
 		throw new Exception( 'Invalid element type' );
 	}
 
-	$element = Manager::get_element( $args['type'] );
+	$type = Manager::get_type( $args['type'], TRUE );
 
-	if ( empty( $element ) ) {
+	if ( empty( $type ) ) {
 		throw new Exception( 'Invalid element type' );
 	}
 
-	return new $element->name( $args );
+	$rc = new \ReflectionClass( $type->class_name );
+	return $rc->newInstance( $args );
 
 }
 

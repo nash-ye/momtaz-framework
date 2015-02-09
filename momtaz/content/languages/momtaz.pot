@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Momtaz 1.3\n"
+"Project-Id-Version: Momtaz 1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-02 14:22+0300\n"
-"PO-Revision-Date: 2014-12-02 14:22+0300\n"
+"POT-Creation-Date: 2015-02-09 15:54+0300\n"
+"PO-Revision-Date: 2015-02-09 15:55+0300\n"
 "Last-Translator: \n"
 "Language-Team: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
 "Language: en\n"
@@ -126,12 +126,12 @@ msgstr ""
 msgid "<b>%</b> Comments"
 msgstr ""
 
-#: ../../entry-singular.php:65
+#: ../../entry-singular.php:61
 #, php-format
 msgid "Download &quot;%s&quot;"
 msgstr ""
 
-#: ../../entry-singular.php:78 ../../entry.php:43
+#: ../../entry-singular.php:74 ../../entry.php:43
 msgid "Pages:"
 msgstr ""
 
@@ -440,28 +440,24 @@ msgid ""
 "different keywords."
 msgstr ""
 
-#: ../../loop-meta.php:70
+#: ../../loop-meta.php:62
 msgid "j F, Y"
 msgstr ""
 
-#: ../../loop-meta.php:73
+#: ../../loop-meta.php:68
 msgid "F Y"
 msgstr ""
 
-#: ../../loop-meta.php:76
+#: ../../loop-meta.php:74
 msgid "Y"
 msgstr ""
 
-#: ../../loop-meta.php:85
-msgid "You are browsing the site archives by date."
-msgstr ""
-
-#: ../../loop-meta.php:119
+#: ../../loop-meta.php:106
 #, php-format
-msgid "You are browsing the search results for &quot;%1$s&quot;"
+msgid "Search Results for: %s"
 msgstr ""
 
-#: ../../loop-meta.php:146
+#: ../../loop-meta.php:118
 msgid "Archives"
 msgstr ""
 

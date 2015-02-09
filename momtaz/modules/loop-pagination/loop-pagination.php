@@ -6,13 +6,12 @@
  * (archive, search, and blog) pages without having to worry about which of the many plugins a user might
  * possibly be using.  Instead, they can simply build pagination right into their themes.
  *
- * This program is based on Hybird - Loop Pagination 0.2.1
+ * This module is based on Theme Hybird - Loop Pagination extension 0.2.1
  * http://themehybrid.com/docs/tutorials/loop-pagination
  *
- * @version   0.2
- * @author    Justin Tadlock <justin@justintadlock.com>
+ * @version   0.3
  * @author    Nashwan Doaqan <nashwan.doaqan@ymail.com>
- * @copyright Copyright (c) 2013 - 2014, Nashwan Doaqan
+ * @copyright Copyright (c) 2014 - 2015, Nashwan Doaqan
  * @license   http://www.gnu.org/licenses/gpl-2.0.html
  */
 
@@ -29,23 +28,25 @@ function momtaz_loop_pagination( $args = '' ) {
 
     global $wp_query;
 
+	$total   = (int) ( isset( $wp_query->max_num_pages ) ) ? $wp_query->max_num_pages : 1;
+	$current = (int) ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
     // Merge the arguments input with the defaults.
     $args = wp_parse_args( $args, array(
-        'base'         => '',
-        'format'       => '',
-        'total'        => intval( $wp_query->max_num_pages ),
-        'current'      => max( 1, get_query_var( 'paged' ) ),
-        'prev_next'    => true,
-        'show_all'     => false,
-        'end_size'     => 1,
-        'mid_size'     => 1,
-        'add_fragment' => '',
-        'type'         => 'plain',
+        'total'      => $total,
+        'current'    => $current,
+        'prev_next'  => true,
+		'prev_text'  => __( '&laquo; Previous', 'momtaz' ),
+		'next_text'  => __( 'Next &raquo;', 'momtaz' ),
+        'show_all'   => false,
+        'end_size'   => 1,
+        'mid_size'   => 1,
+        'type'       => 'plain',
 
         // Begin momtaz_loop_pagination() arguments.
-        'before'       => '<nav class="pagination loop-pagination">',
-        'after'        => '</nav>',
-        'echo'         => true,
+        'before'     => '<nav class="pagination loop-pagination">',
+        'after'      => '</nav>',
+        'echo'       => true,
     ) );
 
     // Allow developers to overwrite the arguments with a filter.
@@ -54,11 +55,6 @@ function momtaz_loop_pagination( $args = '' ) {
     // If there's not more than one page, return nothing.
 	if ( $args['total'] < 2 ) {
         return;
-	}
-
-    // Set the default paginated links base.
-	if ( empty( $args['base'] ) ) {
-        $args['base'] = str_replace( 999999999, '%#%', get_pagenum_link( 999999999, true ) );
 	}
 
     // Don't allow the user to set this to an array.
@@ -81,7 +77,7 @@ function momtaz_loop_pagination( $args = '' ) {
 
     echo $page_links;
 
-} // end momtaz_loop_pagination()
+}
 
 if ( ! function_exists( 'loop_pagination' ) ) {
 
@@ -96,6 +92,6 @@ if ( ! function_exists( 'loop_pagination' ) ) {
  */
 function loop_pagination( $args = '' ) {
     return momtaz_loop_pagination( $args );
-} // end loop_pagination()
+}
 
-} // end if
+}

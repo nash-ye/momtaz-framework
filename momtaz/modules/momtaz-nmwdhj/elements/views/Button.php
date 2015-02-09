@@ -17,7 +17,7 @@ class Button extends View {
 	 * @since 1.3
 	 */
 	public function render_element( Element $e ){
-		return '<button' . $e->get_atts( 'string' ) . '>' . $e->get_content() . '</button>';
+		return $this->render_tag( 'button', $e->get_atts_obj(), $e->get_content() );
 	}
 
 }

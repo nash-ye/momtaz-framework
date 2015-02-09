@@ -72,18 +72,23 @@ class Fieldset extends Element {
 	 * @throws Nmwdhj\Exception
 	 * @since 1.3
 	 */
-	public function add( $element, array $args = NULL ) {
+	public function add( $element, array $args = array() ) {
 
 		if ( ! $element instanceof Element ) {
 			$element = \Nmwdhj\create_element( $element );
 		}
 
 		$args = array_merge( array(
-			'key' => $element->get_name(), 'priority' => 10,
+			'key'       => $element->get_name(),
+			'priority'  => 10,
 		), (array) $args );
 
 		if ( empty( $args['key'] ) ) {
 			throw new Exception( 'Cannot add nameless element to form' );
+		}
+
+		if ( $this->has( $args['key'] ) ) {
+			throw new Exception( 'An element with the same name is found' );
 		}
 
 		$this->elements->offsetSet( $args['key'], $element, $args['priority'] );

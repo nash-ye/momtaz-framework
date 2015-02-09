@@ -40,6 +40,6 @@ if ( is_attachment() ) { ?>
 			<span class="next"><?php previous_posts_link( __( 'Newer <span class="meta-nav">&rarr;</span>', 'momtaz' ) ) ?></span>
 		</nav> <!-- .loop-navigation --> <?php
 
-	} // end if
+	}
 
-} // end if
+}

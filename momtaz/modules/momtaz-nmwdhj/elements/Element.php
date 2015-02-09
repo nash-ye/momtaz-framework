@@ -100,6 +100,10 @@ abstract class Element {
 						$this->set_options( $value );
 						break;
 
+					case '+options':
+						$this->set_options( $value, TRUE );
+						break;
+
 					case 'hint':
 					case 'label':
 					case 'wrapper':
@@ -377,7 +381,7 @@ abstract class Element {
 	 * @return Nmwdhj\Elements\Element
 	 * @since 1.0
 	 */
-	public function set_options( array $options, $append = false ) {
+	public function set_options( array $options, $append = FALSE ) {
 
 		if ( $append ) {
 			$this->options = array_merge( $this->options, $options );

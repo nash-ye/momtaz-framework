@@ -17,7 +17,7 @@ class Textarea extends View {
 	 * @since 1.3
 	 */
 	public function render_element( Element $e ){
-		return '<textarea' . $e->get_atts( 'string' ) . '>' . esc_textarea( $e->get_value() ) . '</textarea>';
+		return $this->render_tag( 'textarea', $e->get_atts_obj(), esc_textarea( $e->get_value() ) );
 	}
 
 }

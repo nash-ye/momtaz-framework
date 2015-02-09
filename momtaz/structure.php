@@ -19,9 +19,9 @@ momtaz_template_header();
 
 		<div<?php momtaz_atts( 'container', array( 'id' => 'container' ) ) ?>>
 
-			<div<?php momtaz_atts( 'content', array( 'id' => 'content' ) ) ?>>
+			<main<?php momtaz_atts( 'content', array( 'id' => 'content' ) ) ?>>
 				<?php Momtaz_Zones::call( 'content' ) ?>
-			</div> <!-- #content -->
+			</main> <!-- #content -->
 
 			<?php momtaz_template_sidebar() ?>
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Momtaz 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-02 14:22+0300\n"
+"POT-Creation-Date: 2015-02-09 15:54+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Nashwan Doaqan <nashwan.doaqan@ymail.com>\n"
 "Language-Team: Nahswan Doaqan <nashwan.doaqan@ymail.com>\n"
@@ -128,12 +128,12 @@ msgstr "تعليق واحد"
 msgid "<b>%</b> Comments"
 msgstr "<b>%</b> تعليق"
 
-#: ../../entry-singular.php:65
+#: ../../entry-singular.php:61
 #, php-format
 msgid "Download &quot;%s&quot;"
 msgstr "تحميل &quot;%s&quot;"
 
-#: ../../entry-singular.php:78 ../../entry.php:43
+#: ../../entry-singular.php:74 ../../entry.php:43
 msgid "Pages:"
 msgstr "الصفحات:"
 
@@ -449,28 +449,24 @@ msgid ""
 msgstr ""
 "عذراً، لم يتم العثور على ماتبحث عنه. جرب مرة أخرى بإستخدام كلمات مختلفة."
 
-#: ../../loop-meta.php:70
+#: ../../loop-meta.php:62
 msgid "j F, Y"
 msgstr "j F, Y"
 
-#: ../../loop-meta.php:73
+#: ../../loop-meta.php:68
 msgid "F Y"
 msgstr "F Y"
 
-#: ../../loop-meta.php:76
+#: ../../loop-meta.php:74
 msgid "Y"
 msgstr "Y"
 
-#: ../../loop-meta.php:85
-msgid "You are browsing the site archives by date."
-msgstr "أنت تشاهد آرشيف الموقع بإستخدام التاريخ/الوقت."
-
-#: ../../loop-meta.php:119
+#: ../../loop-meta.php:106
 #, php-format
-msgid "You are browsing the search results for &quot;%1$s&quot;"
-msgstr "أنت تشاهد نتائج البحث عن &quot;%1$s&quot;"
+msgid "Search Results for: %s"
+msgstr "نتائج البحث عن %s"
 
-#: ../../loop-meta.php:146
+#: ../../loop-meta.php:118
 msgid "Archives"
 msgstr "الآرشيف"
 
@@ -507,6 +503,12 @@ msgstr "البحث في الموقع..."
 #: ../../searchform.php:40
 msgid "Search"
 msgstr "بحث"
+
+#~ msgid "You are browsing the site archives by date."
+#~ msgstr "أنت تشاهد آرشيف الموقع بإستخدام التاريخ/الوقت."
+
+#~ msgid "You are browsing the search results for &quot;%1$s&quot;"
+#~ msgstr "أنت تشاهد نتائج البحث عن &quot;%1$s&quot;"
 
 #~ msgid "One-column, Fluid"
 #~ msgstr "عمود واحد، متمدد"
