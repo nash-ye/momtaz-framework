@@ -9,14 +9,7 @@
  */
 function momtaz_register_core_styles() {
 
-	$core_styles = array(
-
-		'normalize' => array(
-			'src'       => momtaz_parent_theme_uri( 'content/styles/normalize.css' ),
-			'version'   => Momtaz::VERSION,
-		),
-
-	);
+	$core_styles = array();
 
 	$core_styles = apply_filters( 'momtaz_core_styles', $core_styles );
 

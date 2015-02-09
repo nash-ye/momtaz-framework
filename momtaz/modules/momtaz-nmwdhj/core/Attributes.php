@@ -148,9 +148,7 @@ class Attributes {
 				$this->set_attr( $key, $value, $override );
 			}
 
-			$this->get_dispatcher()->trigger( 'set_atts',
-				$atts, $override
-			);
+			$this->get_dispatcher()->trigger( 'set_atts', $atts, $override );
 
 		}
 
@@ -172,9 +170,7 @@ class Attributes {
 
 			$this->atts[ $key ] = \Nmwdhj\create_attr_obj( $key, $value );
 
-			$this->get_dispatcher()->trigger( 'set_attr',
-				$key, $value, $override
-			);
+			$this->get_dispatcher()->trigger( 'set_attr', $key, $value, $override );
 
 		}
 
@@ -275,7 +271,7 @@ class Attributes {
 
 		$args = array_merge( array(
 			'before' => ' ',
-			'after' => '',
+			'after'  => '',
 		), (array) $args );
 
 		$atts = array_map( 'strval', $atts );

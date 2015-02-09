@@ -20,6 +20,7 @@ add_action( 'before_momtaz_setup', 'momtaz_support_theme_features' );
 function momtaz_support_theme_features() {
 
 	// Add support for WordPress features.
+	add_theme_support( 'title-tag' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
@@ -81,7 +82,7 @@ function momtaz_register_theme_modules() {
 			'name' => 'Loop Pagination',
 			'path' => 'loop-pagination/loop-pagination.php',
 			'settings' => array(
-				'auto' => false,
+				'auto' => true,
 				'once' => true,
 			),
 		) );

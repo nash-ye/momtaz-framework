@@ -12,7 +12,7 @@ final class Momtaz {
 	 * @var float
 	 * @since 1.0
 	 */
-	const VERSION = '1.3.1';
+	const VERSION = '1.3.2';
 
 
 	/** Magic Methods *********************************************************/
@@ -101,7 +101,7 @@ final class Momtaz {
 		global $wp_version;
 
 		if ( version_compare( PHP_VERSION, '5.3', '<' ) ||
-			 version_compare( $wp_version, '3.5', '<' ) ) {
+			 version_compare( $wp_version, '4.1', '<' ) ) {
 
 			// Switch to the default theme.
 			switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );

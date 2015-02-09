@@ -12,12 +12,9 @@
 <head>
 <!-- Momtaz Head -->
 <meta charset="<?php bloginfo( 'charset' ) ?>" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title><?php momtaz_title() ?></title>
-
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>" />
 <link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <!--[if lt IE 9]>
 	<script src="<?php echo esc_url( momtaz_theme_uri( 'content/scripts/html5shiv.js' ) ) ?>"></script>

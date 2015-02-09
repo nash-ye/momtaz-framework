@@ -61,7 +61,7 @@ class Select extends Element {
 	 * @return Nmwdhj\Elements\Select
 	 * @since 1.0
 	 */
-	public function set_value_options( array $options, $append = false ) {
+	public function set_value_options( array $options, $append = FALSE ) {
 
 		if ( $append ) {
 			$options = array_merge( (array) $this->value_options, $options );

@@ -2,6 +2,17 @@
 Changelog:
 ================
 
+1.3.2
+  - Update lessCSS to 2.3.1
+  - Update Nmwdhj module to 1.3.3
+  - Update Loop Pagination module to 0.3
+  - Use the HTML5 semantic <main> tag.
+  - Remove the 'X-UA-Compatible' meta tag.
+  - Add support for WordPress 4.1 <title> tag.
+  - Load the loop-pagination module by default.
+  - Extract Momtaz styles into Momtaz Sample child-theme.
+    ...etc
+
 1.3.1
   - Update Nmwdhj module to 1.3.1
   - Update lessCSS language to 2.0.0

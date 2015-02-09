@@ -8,23 +8,6 @@ namespace Nmwdhj\Elements;
  */
 class Form extends Fieldset {
 
-	/*** Magic Methods ********************************************************/
-
-	/**
-	 * The Form element constructor
-	 *
-	 * @since 1.3
-	 */
-	public function __construct( $config = NULL ) {
-
-		// Call the parent class constructor.
-		parent::__construct( $config );
-
-	}
-
-
-	/*** Methods **************************************************************/
-
 	// Output
 
 	/**

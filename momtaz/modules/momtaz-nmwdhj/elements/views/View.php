@@ -23,10 +23,10 @@ abstract class View {
 		if ( $e->get_option( 'hint' ) ) {
 
 			$hint_args = array(
-				'position'	=> $e->get_option( 'hint_position', 'after' ),
-				'tag'		=> $e->get_option( 'hint_tag', 'p' ),
-				'atts'		=> $e->get_option( 'hint_atts' ),
-				'text'		=> $e->get_option( 'hint' ),
+				'position'  => $e->get_option( 'hint_position', 'after' ),
+				'tag'       => $e->get_option( 'hint_tag', 'p' ),
+				'atts'      => $e->get_option( 'hint_atts' ),
+				'text'      => $e->get_option( 'hint' ),
 			);
 
 			$hint_args['atts'] = \Nmwdhj\create_atts_obj( $hint_args['atts'] );
@@ -40,9 +40,9 @@ abstract class View {
 		if ( $e->get_option( 'label' ) ) {
 
 			$label_args = array(
-				'position'	=> $e->get_option( 'label_position', 'before' ),
-				'atts'		=> $e->get_option( 'label_atts' ),
-				'text'		=> $e->get_option( 'label' ),
+				'position'  => $e->get_option( 'label_position', 'before' ),
+				'atts'      => $e->get_option( 'label_atts' ),
+				'text'      => $e->get_option( 'label' ),
 			);
 
 			$label_args['atts'] = \Nmwdhj\create_atts_obj( $label_args['atts'] );
@@ -89,8 +89,8 @@ abstract class View {
 
 		$args = array_merge( array(
 			'position' => 'after',
-			'atts' => array(),
-			'text' => '',
+			'atts'     => array(),
+			'text'     => '',
 		), $args );
 
 		if ( empty( $args['text'] ) ) {
@@ -132,9 +132,9 @@ abstract class View {
 
 		$args = array_merge( array(
 			'position' => 'after',
-			'atts' => array(),
-			'tag' => 'p',
-			'text'=> '',
+			'atts'     => array(),
+			'tag'      => 'p',
+			'text'     => '',
 		), $args );
 
 		if ( empty( $args['text'] ) ) {
