@@ -28,47 +28,32 @@ function momtaz_wp_title( $args = '' ) {
 
 	$title = wp_title( $args['separator'], false, $args['seplocation'] );
 
+	if ( ! is_feed() ) {
+
+		global $paged, $page;
+
+		// Add the site name.
+		$title .= get_bloginfo( 'name', 'display' );
+
+		// Add the site description for the home/front page.
+		$site_description = get_bloginfo( 'description', 'display' );
+
+		if ( ! empty( $site_description ) && ( is_home() || is_front_page() ) ) {
+			$title = "$title $args[separator] $site_description";
+		}
+
+		// Add a page number if necessary.
+		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
+			$title = "$title $args[separator] " . sprintf( __( 'Page %s', 'momtaz' ), max( $paged, $page ) );
+		}
+
+	}
+
 	if ( ! $args['echo'] ) {
 		return $title;
 	}
 
 	echo $title;
-
-}
-
-add_filter( 'wp_title', 'momtaz_filter_wp_title', 10, 2 );
-
-/**
- * Creates a nicely formatted and more specific title element text for output
- * in head of document, based on current view.
- *
- * @return string The filtered title.
- * @since 1.0
- */
-function momtaz_filter_wp_title( $title, $sep ) {
-
-	global $paged, $page;
-
-	if ( is_feed() ) {
-		return $title;
-	}
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-
-	if ( ! empty( $site_description ) && ( is_home() || is_front_page() ) ) {
-		$title = "$title $sep $site_description";
-	}
-
-	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 ) {
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'momtaz' ), max( $paged, $page ) );
-	}
-
-	return $title;
 
 }
 

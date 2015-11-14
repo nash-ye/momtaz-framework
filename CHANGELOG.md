@@ -2,61 +2,64 @@
 Changelog:
 ================
 
-1.3.2
-  - Update lessCSS to 2.3.1
-  - Update Nmwdhj module to 1.3.3
-  - Update Loop Pagination module to 0.3
-  - Use the HTML5 semantic <main> tag.
-  - Remove the 'X-UA-Compatible' meta tag.
-  - Add support for WordPress 4.1 <title> tag.
-  - Load the loop-pagination module by default.
-  - Extract Momtaz styles into Momtaz Sample child-theme.
-    ...etc
+v1.3.3
+  - Enhancement: Update lessCSS to v2.5.3.
+  - Enhancement: Update HTML5Shiv to v3.7.3.
+  - Enhancement: Better compatibility with WordPress v4.1 `title-tag` theme feature.
 
-1.3.1
-  - Update Nmwdhj module to 1.3.1
-  - Update lessCSS language to 2.0.0
-  - Update Get The Image module to 1.0.1
-  - Update normalize.css library to 3.0.2
-  - Simplify and compress the framework styles.
-  - Enhance and clean some framework helper functions.
-  - Drop support for SuperFish, SuperSubs, LESS Elements, Semantic.gs.
-    ...etc
-
-1.3
-  - NEW: Introduce the Zones API.
-  - NEW: Add support for HTML5 Microdata. 
-  - NEW: Introduce more helpers functions.
-  - Enhancement: Better directories and templates structure.
-  - Enhancement: Update the framework modules, scripts, third-party styles.
-    ...etc
-
-1.2.1
-  - Fix: PHP Fatal Errors on PHP 5.2
-  - Enhancement: Update less.js to 1.6.0
-  - Enhancement: Update html5shiv.js to 3.7.0
-  - Fix: Style Debug is active when SCRIPT_DEBUG is FALSE.
-  - Enhancement: Loosening the context keys for the Home & Front pages.
-
-1.2
-  - NEW: Momtaz Layouts Manager.
-  - Enhancement: Momtaz Loop Pagination 0.2
-  - Enhancement: Better Directory Structure.
-  - Enhancement: Re-code the theme-settings page.
-  - Enhancement: Remove the buggy 'Supersubs Menu' jQuery plugin.
-  - NEW: Add a new action hook `momtaz_init` which load after Momtaz setup.
-  - NEW: New public functions: momtaz_is_self_hosted_url(), momtaz_get_supported_core_menus(), momtaz_get_supported_core_sidebars(), momtaz_get_supported_core_scripts() and Momtaz::path().
-  - NEW: New theme feature: 'momtaz-core-scripts` which allow the child-theme developers to register the needed-only Momtaz core scripts easily.
+v1.3.2
+  - Enhancement: Update lessCSS to v2.3.1.
+  - Enhancement: Update Nmwdhj module to v1.3.3.
+  - Enhancement: Update Loop Pagination module to v0.3.
+  - Enhancement: Use the HTML5 semantic <main> tag.
+  - Enhancement: Remove the 'X-UA-Compatible' meta tag.
+  - Enhancement: Load the loop-pagination module by default.
+  - Enhancement: Extract Momtaz styles into Momtaz Sample child-theme.
+  - New Feature: Add support for WordPress v4.1 `title-tag` theme feature.
 ...etc
 
-1.1.1
-  - Update the sceeenshot image.
-  - Update Nmwdhj module to 1.2.1
-  - Update Get The Image module to 0.9
-  - Fix a PHP notice in `momtaz_load_textdomain_mofile()` function.
+v1.3.1
+  - Enhancement: Update lessCSS to v2.0.0.
+  - Enhancement: Update Normalize.css to v3.0.2.
+  - Enhancement: Update Nmwdhj module to v1.3.1.
+  - Enhancement: Update Get The Image module to v1.0.1.
+  - Enhancement: Simplify and compress the framework styles.
+  - Enhancement: Enhance and clean some framework helper functions.
+  - Enhancement: Drop support for SuperFish, SuperSubs, LESS Elements and Semantic.gs.
+...etc
 
-1.1
+v1.3
+  - New Feature: Momtaz Zones API.
+  - New Feature: Add support for HTML5 microdata.
+  - Enhancement: Better directories and templates structure.
+  - Enhancement: Update the third-party modules, scripts and styles.
+...etc
+
+v1.2.1
+  - Bug Fix: PHP fatal errors on PHP v5.2.
+  - Enhancement: Update lessCSS to v1.6.0.
+  - Enhancement: Update HTML5Shiv to v3.7.0.
+  - Bug Fix: Style debug is active when SCRIPT_DEBUG is turned off.
+  - Enhancement: Loosening the context keys for the Home & Front pages.
+
+v1.2
+  - New Feature: Momtaz layouts manager.
+  - Enhancement: Better directories structure.
+  - Enhancement: Re-code the theme-settings page.
+  - New Hook: Add a new action hook `momtaz_init`.
+  - Enhancement: Update Loop Pagination module to v0.2.
+  - Enhancement: Remove the buggy 'Supersubs Menu' jQuery plugin.
+  - New Feature: Allow child themes developers to load specific Momtaz core scripts easily.
+...etc
+
+v1.1.1
+  - Enhancement: Update the sceeenshot image.
+  - Enhancement: Update Nmwdhj module to v1.2.1.
+  - Enhancement: Update Get The Image module to v0.9.
+  - Bug Fix: PHP notice in `momtaz_load_textdomain_mofile()` function.
+
+v1.1
   - Public version.
 
-1.0
+v1.0
   - Private version.

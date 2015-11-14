@@ -27,10 +27,10 @@ function momtaz_support_theme_features() {
 	) );
 
 	// Add support for the Momtaz features.
+	add_theme_support( 'momtaz-core-scripts', array() );
 	add_theme_support( 'momtaz-core-menus', array( 'primary' ) );
 	add_theme_support( 'momtaz-core-sidebars', array( 'primary' ) );
 	add_theme_support( 'momtaz-core-theme-settings', array( 'about' ) );
-	add_theme_support( 'momtaz-core-scripts', array( 'superfish', 'superfish.args' ) );
 
 }
 

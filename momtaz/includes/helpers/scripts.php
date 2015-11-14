@@ -12,7 +12,7 @@ function momtaz_register_core_scripts() {
 	$core_scripts = array(
 
 		'less' => array(
-			'src'       => momtaz_theme_uri( 'content/scripts/less.js' ),
+			'src'       => momtaz_theme_uri( 'content/scripts/less.min.js' ),
 			'version'   => Momtaz::VERSION,
 		),
 

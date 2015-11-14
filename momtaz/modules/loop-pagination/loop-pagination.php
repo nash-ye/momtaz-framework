@@ -10,7 +10,7 @@
  * http://themehybrid.com/docs/tutorials/loop-pagination
  *
  * @version   0.3
- * @author    Nashwan Doaqan <nashwan.doaqan@ymail.com>
+ * @author    Nashwan Doaqan <nashwan.doaqan@gmail.com>
  * @copyright Copyright (c) 2014 - 2015, Nashwan Doaqan
  * @license   http://www.gnu.org/licenses/gpl-2.0.html
  */

@@ -19,7 +19,7 @@
  * second during a specific minute within a specific hour on a specific day and so on.
  *
  * @author Justin Tadlock <justin@justintadlock.com>
- * @author Nashwan Doaqan <nashwan.doaqan@ymail.com>
+ * @author Nashwan Doaqan <nashwan.doaqan@gmail.com>
  * @return array
  * @since 1.0
  */

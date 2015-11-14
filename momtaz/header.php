@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <!--[if lt IE 9]>
-	<script src="<?php echo esc_url( momtaz_theme_uri( 'content/scripts/html5shiv.js' ) ) ?>"></script>
+	<script src="<?php echo esc_url( momtaz_theme_uri( 'content/scripts/html5shiv.min.js' ) ) ?>"></script>
 <![endif]-->
 
 <?php Momtaz_Zones::call( 'head' ) ?>
