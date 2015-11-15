@@ -87,51 +87,17 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 	// Merge the classes array with post context.
 	$classes = array_merge( $classes, (array) $context );
 
-	// Post alt class.
-	if ( ! momtaz_is_the_single( $post ) ) {
-
-		static $post_alt = 0;
-		$classes[] = 'set-' . ++$post_alt;
-		$classes[] = ( $post_alt % 2 ) ? 'odd' : 'even alt';
-
-	}
-
-	// Post publish date.
-	if ( ! empty( $post->post_date ) ) {
-
-		// Post Publish Year
-		$classes[] = 'pubdate-y-' . get_post_time( 'y', false, $post );
-
-		// Post Publish Month
-		$classes[] = 'pubdate-m-' . get_post_time( 'm', false, $post );
-
-		// Post Publish Day
-		$classes[] = 'pubdate-d-' . get_post_time( 'd', false, $post );
-
-		// Post Publish Date
-		$classes[] = 'pubdate-' . get_post_time( 'y-m-d', false, $post );
-
-	}
-
 	// Post taxonomies
-	$obj_taxonomies = get_object_taxonomies( $post );
-
-	if ( is_array( $obj_taxonomies ) && ! empty( $obj_taxonomies ) ){
-
-		foreach ( $obj_taxonomies as $taxonomy ) {
-
+	$post_taxonomies = get_post_taxonomies( $post );
+	if ( ! empty( $post_taxonomies ) ){
+		foreach ( $post_taxonomies as $taxonomy ) {
 			$terms = get_the_terms( $post->ID, $taxonomy );
-
 			if ( ! empty( $terms ) ) {
-
 				foreach( $terms as $term ) {
 					$classes[] = 'term-'. sanitize_html_class( $term->slug, $term->term_id );
 				}
-
 			}
-
 		}
-
 	}
 
 	// Sticky posts.
@@ -141,7 +107,14 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 
 	// Is this post protected by a password?
 	if ( post_password_required( $post ) ) {
-		$classes[] = 'password-protected';
+		$classes[] = 'post-password-required';
+	}
+
+	// Post alt class.
+	if ( ! momtaz_is_the_single( $post ) ) {
+		static $post_alt = 0;
+		$classes[] = 'set-' . ++$post_alt;
+		$classes[] = ( $post_alt % 2 ) ? 'odd' : 'even';
 	}
 
 	// Has a custom excerpt?
@@ -151,13 +124,10 @@ function momtaz_get_post_class( $class = '', $post_id = 0 ) {
 
 	// Custom classes.
 	if ( ! empty( $class ) ) {
-
 		if ( ! is_array( $class ) ) {
 			$class = preg_split( '#\s+#', $class );
 		}
-
 		$classes = array_merge( $classes, $class );
-
 	}
 
 	// Apply the WordPress filters.
