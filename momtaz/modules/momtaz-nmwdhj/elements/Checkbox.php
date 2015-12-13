@@ -15,7 +15,7 @@ class Checkbox extends Element {
 	 *
 	 * @since 1.0
 	 */
-	public function __construct( $config = NULL ) {
+	public function __construct( $config = null ) {
 
 		parent::__construct( $config );
 
@@ -44,7 +44,7 @@ class Checkbox extends Element {
 	/**
 	 * Checks or unchecks the checkbox.
 	 *
-	 * @return Nmwdhj\Elements\Checkbox
+	 * @return Checkbox
 	 * @since 1.0
 	 */
 	public function set_checked( $value ) {
@@ -54,7 +54,7 @@ class Checkbox extends Element {
 	/**
 	 * Set the element value.
 	 *
-	 * @return Nmwdhj\Elements\Checkbox
+	 * @return Checkbox
 	 * @since 1.0
 	 */
 	public function set_value( $value ) {
@@ -88,7 +88,7 @@ class Checkbox extends Element {
 	/**
 	 * Set the value to use when checkbox is checked
 	 *
-	 * @return Nmwdhj\Elements\Checkbox
+	 * @return Checkbox
 	 * @since 1.0
 	 */
 	public function set_checked_value( $value ) {
@@ -122,7 +122,7 @@ class Checkbox extends Element {
 	/**
 	 * Set the value to use when checkbox is unchecked.
 	 *
-	 * @return Nmwdhj\Elements\Checkbox
+	 * @return Checkbox
 	 * @since 1.0
 	 */
 	public function set_unchecked_value( $value ) {

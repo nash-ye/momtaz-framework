@@ -24,12 +24,12 @@ global $post_num; ++$post_num;
 			if ( function_exists( 'get_the_image' ) ) {
 
 				get_the_image( array(
-					'before'		=> '<div class="entry-thumbnail">',
-					'after'			=> '</div><!-- .entry-thumbnail -->',
-					'image_class'	=> 'thumbnail',
-					'scan'			=> true,
-					'height'		=> 150,
-					'width'			=> 150,
+					'before'        => '<div class="entry-thumbnail">',
+					'after'         => '</div><!-- .entry-thumbnail -->',
+					'image_class'   => 'thumbnail',
+					'scan'          => true,
+					'height'        => 150,
+					'width'         => 150,
 				) );
 
 			} // end if

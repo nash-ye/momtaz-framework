@@ -2,6 +2,11 @@
 Changelog:
 ================
 
+v1.3.4
+  - Enhancement: Update Nmwdhj to v1.3.4.
+  - Enhancement: Clean the code and remove the deprecated functions.
+...etc
+
 v1.3.3
   - Enhancement: Update lessCSS to v2.5.3.
   - Enhancement: Update HTML5Shiv to v3.7.3.

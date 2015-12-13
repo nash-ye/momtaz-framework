@@ -26,7 +26,7 @@ class Select extends Element {
 	/**
 	 * Configure the element
 	 *
-	 * @return Nmwdhj\Elements\Select
+	 * @return Select
 	 * @since 1.3
 	 */
 	public function configure( $args ) {
@@ -58,10 +58,10 @@ class Select extends Element {
 	/**
 	 * Ser the values and labels for the value options.
 	 *
-	 * @return Nmwdhj\Elements\Select
+	 * @return Select
 	 * @since 1.0
 	 */
-	public function set_value_options( array $options, $append = FALSE ) {
+	public function set_value_options( array $options, $append = false ) {
 
 		if ( $append ) {
 			$options = array_merge( (array) $this->value_options, $options );
@@ -75,10 +75,10 @@ class Select extends Element {
 	/**
 	 * Remove all/specified value options.
 	 *
-	 * @return Nmwdhj\Elements\Select
+	 * @return Select
 	 * @since 1.0
 	 */
-	public function remove_value_options( $options = NULL ) {
+	public function remove_value_options( $options = null ) {
 
 		if ( is_null( $options ) ) {
 
@@ -99,7 +99,7 @@ class Select extends Element {
 	/**
 	 * Remove a specified value option.
 	 *
-	 * @return Nmwdhj\Elements\Select
+	 * @return Select
 	 * @since 1.0
 	 */
 	public function remove_value_option( $option ) {

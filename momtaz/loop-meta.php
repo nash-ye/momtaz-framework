@@ -16,7 +16,7 @@ if ( is_singular() ) {
 
 if ( is_home() && ! is_front_page() ) : ?>
 
-	<header class="loop-header hidden">
+	<header class="loop-header" hidden>
 		<h1 class="loop-title"><?php echo get_post_field( 'post_title', get_queried_object_id() ) ?></h1>
 	</header> <!-- .loop-header -->
 
@@ -82,9 +82,9 @@ if ( is_home() && ! is_front_page() ) : ?>
 
 	?>
 
-	<header id="hcard-<?php echo esc_attr( $author_id ) ?>" class="vcard loop-header user-info author-info">
+	<header id="hcard-<?php echo esc_attr( $author_id ) ?>" class="vcard user-info author-info loop-header">
 
-		<h1 class="loop-title fn n user-name author-name"><?php the_author_meta( 'display_name', $author_id ) ?></h1>
+		<h1 class="fn n user-name author-name loop-title"><?php the_author_meta( 'display_name', $author_id ) ?></h1>
 
 		<?php if ( get_the_author_meta( 'description', $author_id ) ) : ?>
 
@@ -115,7 +115,7 @@ if ( is_home() && ! is_front_page() ) : ?>
 <?php elseif ( is_archive() ) : ?>
 
 	<header class="loop-header">
-		<h1 class="loop-title"><?php _e( 'Archives', 'momtaz' ) ?></h1>
+		<h1 class="loop-title"><?php esc_html_e( 'Archives', 'momtaz' ) ?></h1>
 	</header> <!-- .loop-header -->
 
 <?php endif;

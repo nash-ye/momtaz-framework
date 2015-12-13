@@ -42,7 +42,7 @@ global $comment, $comment_depth, $max_depth ?>
 			<div<?php momtaz_atts( 'comment-content', array( 'class' => 'comment-content' ) ) ?>>
 
 				<?php if ( $comment->comment_approved == 0 ) : ?>
-					 <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'momtaz' ) ?></em>
+					 <em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'momtaz' ) ?></em>
 				<?php endif ?>
 
 				<?php comment_text() ?>

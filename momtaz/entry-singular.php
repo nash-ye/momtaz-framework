@@ -57,9 +57,9 @@ Momtaz_Zones::call( 'entry:before' ) ?>
 
 					<?php the_content();  ?>
 
-					<div class="download">
+					<div class="attachment-file">
 						<a href="<?php echo esc_url( wp_get_attachment_url() ) ?>" type="<?php echo esc_attr( get_post_mime_type() ) ?>"><?php printf( __( 'Download &quot;%s&quot;', 'momtaz' ), the_title( '<span class="fn">', '</span>', false ) ) ?></a>
-					</div> <!-- .download -->
+					</div> <!-- .attachment-file -->
 
 				<?php } ?>
 

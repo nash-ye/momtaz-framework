@@ -64,8 +64,8 @@ endif; // end have_comments()
 
 if ( ! comments_open() && get_comments_number() > 0 ) : ?>
 
-	<p class="alert comments-closed">
-		<?php _e( 'Comments are closed.', 'momtaz' ) ?>
+	<p class="comments-closed">
+		<?php esc_html_e( 'Comments are closed.', 'momtaz' ) ?>
 	</p> <!-- .comments-closed -->
 
 <?php endif;

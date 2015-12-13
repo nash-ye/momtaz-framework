@@ -63,8 +63,8 @@ class Checkboxes extends View {
 		$option = array_merge( array(
 			'disabled' => false,
 			'checked'  => false,
-			'value'    => NULL,
-			'atts'     => NULL,
+			'value'    => null,
+			'atts'     => null,
 			'label'    => '',
 		), $option );
 

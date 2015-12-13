@@ -374,15 +374,15 @@ function momtaz_meta_box_theme_display_about( $object, $box ) {
 
 	<table class="form-table">
 		<tr>
-			<th><?php _e( 'Theme:', 'momtaz' ) ?></th>
+			<th><?php esc_html_e( 'Theme:', 'momtaz' ) ?></th>
 			<td><a href="<?php echo esc_url( $theme_data->display( 'ThemeURI' ) ) ?>"><?php echo $theme_data->display( 'Name' ) ?> <?php echo $theme_data->display( 'Version' ) ?></a></td>
 		</tr>
 		<tr>
-			<th><?php _e( 'Author:', 'momtaz' ) ?></th>
+			<th><?php esc_html_e( 'Author:', 'momtaz' ) ?></th>
 			<td><?php echo $theme_data->display( 'Author' ) ?></td>
 		</tr>
 		<tr>
-			<th><?php _e( 'Description:', 'momtaz' ) ?></th>
+			<th><?php esc_html_e( 'Description:', 'momtaz' ) ?></th>
 			<td><?php echo $theme_data->display( 'Description' ) ?></td>
 		</tr>
 	</table> <!-- .form-table -->

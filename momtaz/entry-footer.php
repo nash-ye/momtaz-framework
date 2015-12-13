@@ -28,10 +28,7 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) ) {
 
 				<?php
 
-					printf( __( '<span class="prep entry-utility-prep">Categories:</span> %s', 'momtaz' ),
-							$post_category
-						 );
-
+					printf( __( '<span class="prep entry-utility-prep">Categories:</span> %s', 'momtaz' ), $post_category );
 					$show_sep = true;
 
 				?>
@@ -57,10 +54,7 @@ if ( in_array( get_post_type(), array( 'page', 'attachment' ) ) ) {
 
 				<?php
 
-					printf( __( '<span class="prep entry-utility-prep">Tags:</span> %s', 'momtaz' ),
-							$post_tags
-						 );
-
+					printf( __( '<span class="prep entry-utility-prep">Tags:</span> %s', 'momtaz' ), $post_tags );
 					$show_sep = true;
 
 				?>

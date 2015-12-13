@@ -15,7 +15,7 @@ class Attributes {
 	/**
 	 * Attributes Event Manager.
 	 *
-	 * @var Nmwdhj\EventManager
+	 * @var \Nmwdhj\EventManager
 	 * @since 1.3
 	 */
 	protected $dispatcher;
@@ -23,7 +23,7 @@ class Attributes {
 	/**
 	 * Attributes list.
 	 *
-	 * @var Nmwdhj\Attributes\Attribute[]
+	 * @var Attribute[]
 	 * @since 1.0
 	 */
 	protected $atts = array();
@@ -36,7 +36,7 @@ class Attributes {
 	 *
 	 * @since 1.0
 	 */
-	public function __construct( $atts = NULL ) {
+	public function __construct( $atts = null ) {
 
 		// Set the attributes.
 		$this->set_atts( $atts );
@@ -51,7 +51,7 @@ class Attributes {
 	/**
 	 * Get all the attributes array.
 	 *
-	 * @return Nmwdhj\Attributes\Attribute[]
+	 * @return Attribute[]
 	 * @since 1.0
 	 */
 	public function get_atts() {
@@ -61,7 +61,7 @@ class Attributes {
 	/**
 	 * Get an attribute object.
 	 *
-	 * @return Nmwdhj\Attributes\Attribute|NULL
+	 * @return Attribute|null
 	 * @since 1.1
 	 */
 	public function get_attr_obj( $key ) {
@@ -133,7 +133,7 @@ class Attributes {
 	/**
 	 * Set many attributes at once.
 	 *
-	 * @return Nmwdhj\Attributes\Attributes
+	 * @return Attributes
 	 * @since 1.0
 	 */
 	public function set_atts( $atts, $override = true ) {
@@ -159,7 +159,7 @@ class Attributes {
 	/**
 	 * Set an attribute value.
 	 *
-	 * @return Nmwdhj\Attributes\Attributes
+	 * @return Attributes
 	 * @since 1.0
 	 */
 	public function set_attr( $key, $value, $override = true ) {
@@ -183,7 +183,7 @@ class Attributes {
 	/**
 	 * Remove many attributes at once.
 	 *
-	 * @return Nmwdhj\Attributes\Attributes
+	 * @return Attributes
 	 * @since 1.0
 	 */
 	public function remove_atts( $keys ) {
@@ -209,7 +209,7 @@ class Attributes {
 	/**
 	 * Remove an attribute.
 	 *
-	 * @return Nmwdhj\Attributes\Attributes
+	 * @return Attributes
 	 * @since 1.0
 	 */
 	public function remove_attr( $key ) {
@@ -228,7 +228,7 @@ class Attributes {
 	/**
 	 * Set the Dispatcher (EventManager).
 	 *
-	 * @return Nmwdhj\Attributes\Attributes
+	 * @return Attributes
 	 * @since 1.3
 	 */
 	public function set_dispatcher( EventManager $dispatcher ) {
@@ -239,7 +239,7 @@ class Attributes {
 	/**
 	 * Get the Dispatcher (EventManager).
 	 *
-	 * @return Nmwdhj\EventManager
+	 * @return \Nmwdhj\EventManager
 	 * @since 1.3
 	 */
 	public function get_dispatcher() {
@@ -260,7 +260,7 @@ class Attributes {
 	 * @return string
 	 * @since 1.0
 	 */
-	public function to_string( array $args = NULL ) {
+	public function to_string( array $args = null ) {
 
 		$output = '';
 		$atts = $this->get_atts();
@@ -404,7 +404,7 @@ class SimpleAttribute implements Attribute {
 	/**
 	 * Set the attribute key.
 	 *
-	 * @return Nmwdhj\Attributes\SimpleAttribute
+	 * @return SimpleAttribute
 	 * @since 1.1
 	 */
 	protected function set_key( $key ) {
@@ -415,7 +415,7 @@ class SimpleAttribute implements Attribute {
 	/**
 	 * Set the attribute value.
 	 *
-	 * @return Nmwdhj\Attributes\SimpleAttribute
+	 * @return SimpleAttribute
 	 * @since 1.1
 	 */
 	protected function set_value( $value ) {
@@ -524,7 +524,7 @@ class ClassAttribute extends SimpleAttribute {
 	/**
 	 * Adds many classes at once.
 	 *
-	 * @return Nmwdhj\Attributes\ClassAttribute
+	 * @return ClassAttribute
 	 * @since 1.1
 	 */
 	public function add_classes( $classes ) {
@@ -545,7 +545,7 @@ class ClassAttribute extends SimpleAttribute {
 	/**
 	 * Removes many classes at once.
 	 *
-	 * @return Nmwdhj\Attributes\ClassAttribute
+	 * @return ClassAttribute
 	 * @since 1.1
 	 */
 	public function remove_classes( $classes ) {
