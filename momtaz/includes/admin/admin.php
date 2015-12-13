@@ -19,7 +19,7 @@ add_action( 'admin_enqueue_scripts', 'momtaz_admin_register_styles' );
 function momtaz_admin_register_styles() {
 
 	// Register the core admin style.
-	wp_register_style( 'momtaz-core-admin', momtaz_theme_uri( 'content/styles/admin.css' ), false, Momtaz::VERSION );
+	wp_register_style( 'momtaz-core-admin', momtaz_theme_uri( 'content/styles/admin.css' ), array(), Momtaz::VERSION );
 
 }
 
@@ -33,7 +33,7 @@ function momtaz_verify_common_post_meta_box( $post, $args ){
 
 	$args = wp_parse_args( $args, array(
 		'nonce_action' => -1,
-		'nonce_name' => '',
+		'nonce_name'   => '',
 	) );
 
 	if ( ! empty( $args['nonce_name'] ) ) {

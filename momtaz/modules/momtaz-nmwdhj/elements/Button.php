@@ -26,7 +26,7 @@ class Button extends Element {
 	 *
 	 * @since 1.3
 	 */
-	public function __construct( $config = NULL ) {
+	public function __construct( $config = null ) {
 
 		parent::__construct( $config );
 
@@ -43,7 +43,7 @@ class Button extends Element {
 	/**
 	 * Configure the element
 	 *
-	 * @return Nmwdhj\Elements\Button
+	 * @return Button
 	 * @since 1.3
 	 */
 	public function configure( $args ) {
@@ -75,7 +75,7 @@ class Button extends Element {
 	/**
 	 * Set the button content.
 	 *
-	 * @return Nmwdhj\Elements\Button
+	 * @return Button
 	 * @since 1.0
 	 */
 	public function set_content( $content ) {

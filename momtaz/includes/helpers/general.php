@@ -1,63 +1,6 @@
 <?php
 
 /**
- * Display the current page title.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_title( $args = '' ) {
-	do_action( 'momtaz_title', $args );
-}
-
-add_action( 'momtaz_title', 'momtaz_wp_title' );
-
-/**
- * Outputs the page title using the wp_title() function.
- *
- * @return void
- * @since 1.0
- */
-function momtaz_wp_title( $args = '' ) {
-
-	$args = wp_parse_args( $args, array(
-		'seplocation' => 'right',
-		'separator'   => '|',
-		'echo'        => true,
-	) );
-
-	$title = wp_title( $args['separator'], false, $args['seplocation'] );
-
-	if ( ! is_feed() ) {
-
-		global $paged, $page;
-
-		// Add the site name.
-		$title .= get_bloginfo( 'name', 'display' );
-
-		// Add the site description for the home/front page.
-		$site_description = get_bloginfo( 'description', 'display' );
-
-		if ( ! empty( $site_description ) && ( is_home() || is_front_page() ) ) {
-			$title = "$title $args[separator] $site_description";
-		}
-
-		// Add a page number if necessary.
-		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title = "$title $args[separator] " . sprintf( __( 'Page %s', 'momtaz' ), max( $paged, $page ) );
-		}
-
-	}
-
-	if ( ! $args['echo'] ) {
-		return $title;
-	}
-
-	echo $title;
-
-}
-
-/**
  * Outputs the generator meta tag.
  *
  * @return void
@@ -75,21 +18,18 @@ function momtaz_meta_generator() {
 */
 function momtaz_get_meta_generator() {
 
-	$generator = array( 'WordPress' );
+	$generators = implode( ',', array_filter( array( 'WordPress', wp_get_theme( get_template() )->get( 'Name' ) ) ) );
 
-	// Add the parent theme name, which will be Momtaz!
-	$generator[] = wp_get_theme( get_template() )->get( 'Name' );
-
-	// Allow plugins/child-themes to filter the generator meta.
-	$generator = apply_filters( 'momtaz_meta_generator', $generator );
-	$generator = array_filter( array_unique( (array) $generator ) );
-
-	// If it is empty, return NULL.
-	if ( empty( $generator ) ) {
+	if ( empty( $generators ) ) {
 		return;
 	}
 
-	return '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => implode( ',', $generator ) ) ) . '>' ."\n";
+	$meta = '<meta' . momtaz_get_html_atts( array( 'name' => 'generator', 'content' => $generators ) ) . '>' . "\n";
+
+	// Allow plugins/child-themes to filter the generator meta.
+	$meta = apply_filters( 'momtaz_meta_generator', $meta, $generators );
+
+	return $meta;
 
 }
 
@@ -114,16 +54,17 @@ function momtaz_get_meta_designer() {
 	// Get the current theme author name.
 	$designer = wp_get_theme( get_stylesheet() )->get( 'Author' );
 
-	// Allow plugins/child-themes to filter the designer meta.
-	$designer = apply_filters( 'momtaz_meta_designer', $designer );
-	$designer = array_filter( array_unique( (array) $designer ) );
-
 	// If it is empty, return NULL.
 	if ( empty( $designer ) ) {
 		return;
 	}
 
-	return '<meta' . momtaz_get_html_atts( array( 'name' => 'designer', 'content' => implode( ',', $designer ) ) ) . '>' ."\n";
+	$meta = '<meta' . momtaz_get_html_atts( array( 'name' => 'designer', 'content' => $designer ) ) . '>' . "\n";
+
+	// Allow plugins/child-themes to filter the designer meta.
+	$meta = apply_filters( 'momtaz_meta_designer', $meta, $designer );
+
+	return $meta;
 
 }
 
@@ -155,7 +96,8 @@ function momtaz_get_site_link( array $args = array() ) {
 	), $args );
 
 	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
-	return apply_filters( 'momtaz_get_site_link', $link, $args );
+	$link = apply_filters( 'momtaz_get_site_link', $link, $args );
+	return $link;
 
 }
 
@@ -186,7 +128,8 @@ function momtaz_get_wp_link( array $args = array() ) {
 	), $args );
 
 	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
-	return apply_filters( 'momtaz_get_wp_link', $link, $args );
+	$link = apply_filters( 'momtaz_get_wp_link', $link, $args );
+	return $link;
 
 }
 
@@ -225,7 +168,8 @@ function momtaz_get_theme_link( $theme, array $args = array() ) {
 	), $args );
 
 	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
-	return apply_filters( 'momtaz_get_theme_link', $link, $theme, $args );
+	$link = apply_filters( 'momtaz_get_theme_link', $link, $theme, $args );
+	return $link;
 
 }
 
@@ -264,6 +208,7 @@ function momtaz_get_theme_author_link( $theme, array $args = array() ) {
 	), $args );
 
 	$link = '<a' . momtaz_get_html_atts( $args['atts'] ) . '>' . $args['text'] . '</a>';
-	return apply_filters( 'momtaz_get_theme_author_link', $link, $theme, $args );
+	$link = apply_filters( 'momtaz_get_theme_author_link', $link, $theme, $args );
+	return $link;
 
 }

@@ -13,7 +13,7 @@ class Input extends Element {
 	/**
 	 * Configure the element
 	 *
-	 * @return Nmwdhj\Elements\Input
+	 * @return Input
 	 * @since 1.3
 	 */
 	public function configure( $args ) {
@@ -129,7 +129,7 @@ class Input extends Element {
 	/**
 	 * Set the element value.
 	 *
-	 * @return Nmwdhj\Elements\Input
+	 * @return Input
 	 * @since 1.3
 	 */
 	public function set_value( $value ) {

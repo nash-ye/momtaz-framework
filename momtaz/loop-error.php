@@ -17,7 +17,7 @@
 		</header>
 
 		<div<?php momtaz_atts( 'entry-content', array( 'class' => 'entry-content' ) ) ?>>
-			<p class='no-data'><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'momtaz')  ?></p>
+			<p><?php esc_html_e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'momtaz')  ?></p>
 			<?php get_search_form() ?>
 		</div>
 
@@ -32,7 +32,7 @@ else : ?>
 		</header>
 
 		<div<?php momtaz_atts( 'entry-content', array( 'class' => 'entry-content' ) ) ?>>
-			<p class='no-data'><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'momtaz') ?></p>
+			<p><?php esc_html_e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'momtaz') ?></p>
 			<?php get_search_form() ?>
 		</div><!-- .entry-content -->
 

@@ -13,7 +13,7 @@ class Fieldset extends Element {
 	/**
 	 * Fieldset elements
 	 *
-	 * @var Nmwdhj\Elements\Element[]
+	 * @var Element[]
 	 * @since 1.3
 	 */
 	protected $elements;
@@ -26,7 +26,7 @@ class Fieldset extends Element {
 	 *
 	 * @since 1.3
 	 */
-	public function __construct( $config = NULL ) {
+	public function __construct( $config = null ) {
 
 		// Initialize the elements priority array.
 		$this->elements = new \Nmwdhj\PriorityArray();
@@ -42,7 +42,7 @@ class Fieldset extends Element {
 	/**
 	 * Configure the element
 	 *
-	 * @return Nmwdhj\Elements\Fieldset
+	 * @return Fieldset
 	 * @since 1.3
 	 */
 	public function configure( $args ) {
@@ -68,8 +68,8 @@ class Fieldset extends Element {
 	/**
 	 * Add an element
 	 *
-	 * @return Nmwdhj\Elements\Fieldset
-	 * @throws Nmwdhj\Exception
+	 * @return Fieldset
+	 * @throws \Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function add( $element, array $args = array() ) {
@@ -99,8 +99,8 @@ class Fieldset extends Element {
 	/**
 	 * Set/change the priority of an element
 	 *
-	 * @return Nmwdhj\Elements\Fieldset
-	 * @throws Nmwdhj\Exception
+	 * @return Fieldset
+	 * @throws \Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function set_priority( $key, $priority ) {
@@ -117,8 +117,8 @@ class Fieldset extends Element {
 	/**
 	 * Remove a named element
 	 *
-	 * @return Nmwdhj\Elements\Fieldset
-	 * @throws Nmwdhj\Exception
+	 * @return Fieldset
+	 * @throws \Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function remove( $key ) {
@@ -135,8 +135,8 @@ class Fieldset extends Element {
 	/**
 	 * Retrieve a named element
 	 *
-	 * @return Nmwdhj\Elements\Element
-	 * @throws Nmwdhj\Exception
+	 * @return Element
+	 * @throws \Nmwdhj\Exception
 	 * @since 1.3
 	 */
 	public function get( $key ) {
@@ -162,7 +162,7 @@ class Fieldset extends Element {
 	/**
 	 * Retrieve all attached elements
 	 *
-	 * @return Nmwdhj\Elements\Element[]
+	 * @return Element[]
 	 * @since 1.3
 	 */
 	public function get_elements() {

@@ -24,7 +24,7 @@ abstract class Element {
 	/**
 	 * Element attributes.
 	 *
-	 * @var Nmwdhj\Attributes\Attributes
+	 * @var \Nmwdhj\Attributes\Attributes
 	 * @since 1.3
 	 */
 	protected $atts;
@@ -32,7 +32,7 @@ abstract class Element {
 	/**
 	 * Element Event Manager.
 	 *
-	 * @var Nmwdhj\EventManager
+	 * @var \Nmwdhj\EventManager
 	 * @since 1.3
 	 */
 	protected $dispatcher;
@@ -53,7 +53,7 @@ abstract class Element {
 	 *
 	 * @since 1.0
 	 */
-	public function __construct( $config = NULL ) {
+	public function __construct( $config = null ) {
 		$this->configure( $config );
 	}
 
@@ -65,7 +65,7 @@ abstract class Element {
 	/**
 	 * Configure the element
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.3
 	 */
 	public function configure( $config ) {
@@ -101,7 +101,7 @@ abstract class Element {
 						break;
 
 					case '+options':
-						$this->set_options( $value, TRUE );
+						$this->set_options( $value, true );
 						break;
 
 					case 'hint':
@@ -145,7 +145,7 @@ abstract class Element {
 	/**
 	 * Set the element value.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_value( $value ) {
@@ -157,7 +157,7 @@ abstract class Element {
 	/**
 	 * Set a value callback.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_value_callback( $callback ) {
@@ -168,7 +168,7 @@ abstract class Element {
 	/**
 	 * Set a value callback with an array of parameters.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.1
 	 */
 	public function set_value_callback_array( $callback, array $args ) {
@@ -204,7 +204,7 @@ abstract class Element {
 	/**
 	 * Set the element ID attribute.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_ID( $value ) {
@@ -225,7 +225,7 @@ abstract class Element {
 	/**
 	 * Set the element name attribute.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_name( $value ) {
@@ -253,7 +253,7 @@ abstract class Element {
 
 			case 'string':
 
-				$args = NULL;
+				$args = null;
 
 				if ( func_num_args() > 1 ) {
 					$args = (array) func_get_arg( 1 );
@@ -288,7 +288,7 @@ abstract class Element {
 	/**
 	 * Set many attributes at once.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_atts( $atts, $override = true ) {
@@ -299,7 +299,7 @@ abstract class Element {
 	/**
 	 * Set an attribute value.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_attr( $key, $value ) {
@@ -310,7 +310,7 @@ abstract class Element {
 	/**
 	 * Remove many attributes at once.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function remove_atts( $keys ) {
@@ -321,7 +321,7 @@ abstract class Element {
 	/**
 	 * Remove an attribute.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function remove_attr( $key ) {
@@ -332,7 +332,7 @@ abstract class Element {
 	/**
 	 * Get the attributes object.
 	 *
-	 * @return Nmwdhj\Attributes\Attributes
+	 * @return Attributes
 	 * @since 1.0
 	 */
 	public function get_atts_obj() {
@@ -363,7 +363,7 @@ abstract class Element {
 	 * @return mixed
 	 * @since 1.0
 	 */
-	public function get_option( $option, $default = NULL ) {
+	public function get_option( $option, $default = null ) {
 
 		$options = $this->get_options();
 
@@ -378,10 +378,10 @@ abstract class Element {
 	/**
 	 * Set the element options.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
-	public function set_options( array $options, $append = FALSE ) {
+	public function set_options( array $options, $append = false ) {
 
 		if ( $append ) {
 			$this->options = array_merge( $this->options, $options );
@@ -397,7 +397,7 @@ abstract class Element {
 	/**
 	 * Set a specified option.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function set_option( $option, $value ) {
@@ -411,7 +411,7 @@ abstract class Element {
 	/**
 	 * Remove all/specified options.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function remove_options( $options = '' ) {
@@ -436,7 +436,7 @@ abstract class Element {
 	/**
 	 * Remove a specified option.
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.0
 	 */
 	public function remove_option( $option ) {
@@ -452,7 +452,7 @@ abstract class Element {
 	/**
 	 * Set the Dispatcher (EventManager).
 	 *
-	 * @return Nmwdhj\Elements\Element
+	 * @return Element
 	 * @since 1.3
 	 */
 	public function set_dispatcher( EventManager $dispatcher ) {
@@ -463,7 +463,7 @@ abstract class Element {
 	/**
 	 * Get the Dispatcher (EventManager).
 	 *
-	 * @return Nmwdhj\EventManager
+	 * @return \Nmwdhj\EventManager
 	 * @since 1.3
 	 */
 	public function get_dispatcher() {

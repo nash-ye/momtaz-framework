@@ -43,7 +43,7 @@ class Checkboxes extends Input {
 	/**
 	 * Configure the element
 	 *
-	 * @return Nmwdhj\Elements\Checkboxes
+	 * @return Checkboxes
 	 * @since 1.3
 	 */
 	public function configure( $args ) {
@@ -75,7 +75,7 @@ class Checkboxes extends Input {
 	/**
 	 * Ser the values and labels for the value options.
 	 *
-	 * @return Nmwdhj\Elements\Checkboxes
+	 * @return Checkboxes
 	 * @since 1.0
 	 */
 	public function set_value_options( array $options, $append = false ) {
@@ -92,10 +92,10 @@ class Checkboxes extends Input {
 	/**
 	 * Remove all/specified value options.
 	 *
-	 * @return Nmwdhj\Elements\Checkboxes
+	 * @return Checkboxes
 	 * @since 1.0
 	 */
-	public function remove_value_options( $options = NULL ) {
+	public function remove_value_options( $options = null ) {
 
 		if ( is_null( $options ) ) {
 
@@ -116,7 +116,7 @@ class Checkboxes extends Input {
 	/**
 	 * Remove a specified value option.
 	 *
-	 * @return Nmwdhj\Elements\Checkboxes
+	 * @return Checkboxes
 	 * @since 1.0
 	 */
 	public function remove_value_option( $option ) {

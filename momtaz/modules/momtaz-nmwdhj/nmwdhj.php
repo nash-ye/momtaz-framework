@@ -5,17 +5,17 @@
  * Description: An API for creating forms elements via code.
  * Author: Nashwan Doaqan
  * Author URI: http://nashwan-d.com
- * Version: 1.3.3
+ * Version: 1.3.4
  *
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Copyright (c) 2014 - 2015 Nashwan Doaqan.  All rights reserved.
+ * Copyright (c) 2014 - 2016 Nashwan Doaqan.  All rights reserved.
  */
 
 namespace Nmwdhj;
 
 // Nmwdhj Version.
-const VERSION = '1.3.3';
+const VERSION = '1.3.4';
 
 /**** Loaders *****************************************************************/
 
@@ -75,8 +75,8 @@ spl_autoload_register( 'Nmwdhj\class_loader' );
 /**
  * Create an element object.
  *
- * @return Nmwdhj\Elements\Element
- * @throws Nmwdhj\Exception
+ * @return Element
+ * @throws Exception
  * @since 1.2
  */
 function create_element( $args ) {
@@ -89,7 +89,7 @@ function create_element( $args ) {
 		throw new Exception( 'Invalid element type' );
 	}
 
-	$type = Manager::get_type( $args['type'], TRUE );
+	$type = Manager::get_type( $args['type'], true );
 
 	if ( empty( $type ) ) {
 		throw new Exception( 'Invalid element type' );
@@ -103,8 +103,8 @@ function create_element( $args ) {
 /**
  * Create many elements objects at once.
  *
- * @return Nmwdhj\Elements\Element[]
- * @throws Nmwdhj\Exception
+ * @return Elements\Element[]
+ * @throws Exception
  * @since 1.2
  */
 function create_elements( array $elements ) {
@@ -122,7 +122,7 @@ function create_elements( array $elements ) {
 /**
  * Create an attributes object.
  *
- * @return Nmwdhj\Attributes\Attributes
+ * @return Attributes\Attributes
  * @since 1.0
  */
 function create_atts_obj( $atts ) {
@@ -139,7 +139,7 @@ function create_atts_obj( $atts ) {
 /**
  * Create an attribute object.
  *
- * @return Nmwdhj\Attributes\Attribute
+ * @return Attributes\Attribute
  * @since 1.1
  */
 function create_attr_obj( $key, $value ) {

@@ -58,7 +58,7 @@ final class Manager {
 	/**
 	 * Get an element object by the element key
 	 *
-	 * @return object|NULL
+	 * @return object|null
 	 * @since 1.3.3
 	 */
 	public static function get_element( $key ) {
@@ -72,10 +72,10 @@ final class Manager {
 	/**
 	 * Get an element type by class or alias name
 	 *
-	 * @return object|NULL
+	 * @return object|null
 	 * @since 1.3.3
 	 */
-	public static function get_type( $key, $check_aliases = FALSE ) {
+	public static function get_type( $key, $check_aliases = false ) {
 
 		if ( isset( self::$types[ $key ] ) ) {
 			return self::$types[ $key ];
@@ -97,13 +97,13 @@ final class Manager {
 	/**
 	 * Add a new element
 	 *
-	 * @return Nmwdhj\Elements\Element|bool
+	 * @return Element|bool
 	 * @since 1.3.3
 	 */
 	public static function add_element( $key, $element ) {
 
 		if ( isset( self::$elements[ $key ] ) ) {
-			return FALSE;
+			return false;
 		}
 
 		return self::set_element( $key, $element );
@@ -113,7 +113,7 @@ final class Manager {
 	/**
 	 * Replaces an element
 	 *
-	 * @return Nmwdhj\Elements\Element|bool
+	 * @return Element|bool
 	 * @since 1.3.3
 	 */
 	public static function set_element( $key, $element ) {
@@ -137,7 +137,7 @@ final class Manager {
 	public static function register_type( $class_name, array $args ) {
 
 		if ( isset( self::$types[ $class_name ] ) ) {
-			return FALSE;
+			return false;
 		}
 
 		$args = (object) array_merge( array(
@@ -161,11 +161,11 @@ final class Manager {
 	public static function unregister_type( $class_name ) {
 
 		if ( ! isset( self::$types[ $class_name ] ) ) {
-			return FALSE;
+			return false;
 		}
 
 		unset( self::$types[ $class_name ] );
-		return TRUE;
+		return true;
 
 	}
 
@@ -178,12 +178,12 @@ final class Manager {
 	public static function remove_element( $key ) {
 
 		if ( ! isset( self::$elements[ $key ] ) ) {
-			return FALSE;
+			return false;
 		}
 
 		unset( self::$elements[ $key ] );
 
-		return TRUE;
+		return true;
 
 	}
 
@@ -309,7 +309,7 @@ class EventManager {
 	 */
 	public function attach( $event, $listener, $priority = 10 ) {
 
-		if ( NULL === $listener ) {
+		if ( null === $listener ) {
 			throw new Exception( 'The provided listener isn\'t a valid callback.' );
 		}
 
@@ -339,7 +339,7 @@ class EventManager {
 	 */
 	public function detach( $event, $listener ) {
 
-		if ( NULL === $listener ) {
+		if ( null === $listener ) {
 			throw new Exception( 'The provided listener isn\'t a valid callback.' );
 		}
 
@@ -519,7 +519,15 @@ class PriorityArray implements \IteratorAggregate, \ArrayAccess, \Serializable, 
 					$p1 = (int) $p8s[ $a ];
 					$p2 = (int) $p8s[ $b ];
 
-					return ( $p1 <= $p2 ) ? +1 : -1;
+					if ( $p1 === $p2 ) {
+						return 0;
+					}
+
+					if ( $p1 < $p2 ) {
+						return +1;
+					} else {
+						return -1;
+					}
 
 				}
 

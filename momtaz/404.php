@@ -22,11 +22,11 @@ function momtaz_template_content() { ?>
 		<article<?php momtaz_atts( 'entry', array( 'id' => 'post-0', 'class' => 'hentry not-found error-404' ) ) ?>>
 
 			<header<?php momtaz_atts( 'entry-header', array( 'class' => 'entry-header' ) ) ?>>
-				<h1<?php momtaz_atts( 'entry-title', array( 'class' => 'entry-title' ) ) ?>><?php _e( 'Not found', 'momtaz' ) ?></h1>
+				<h1<?php momtaz_atts( 'entry-title', array( 'class' => 'entry-title' ) ) ?>><?php esc_html_e( 'Not found', 'momtaz' ) ?></h1>
 			</header>
 
 			<div<?php momtaz_atts( 'entry-content', array( 'class' => 'entry-content' ) ) ?>>
-				<p class="error"><?php _e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'momtaz' ) ?></p>
+				<p><?php esc_html_e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'momtaz' ) ?></p>
 				<?php get_search_form() ?>
 			</div>
 
